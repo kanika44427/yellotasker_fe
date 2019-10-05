@@ -1,0 +1,185 @@
+<div class="sub-banner profile-banner">
+	<div class="user-profile-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="user-profile-pic">
+						<img src="img/user-profile.png">
+					</div>
+					<div class="user-name-detail">
+						<h4>Kanika Sethi <span><a href="#"><img src="img/edit-icon.png"></a></span></h4>
+						<p>
+								Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+		Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+		when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-4 text-center">
+					<div class="profile-counter">
+						<h4>Your Profile Is 54% Complete</h4>
+						<p><a href="#"><img src="img/account-icon.png"></a> &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/profile-icon.png"></a> &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/payment-icon.png"></a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="browse-menu profile-banner">
+		<div class="container">
+			<ul>
+				<li class="mega-menu"><a href="#">Latest task posted</a>
+					<div class="mega-menu-list">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-3">
+									<h4>Heading Goes Here</h4>
+									<ul>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Heading Goes Here</h4>
+									<ul>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Heading Goes Here</h4>
+									<ul>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Heading Goes Here</h4>
+									<ul>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+										<li><a href="#">Sub list goes here</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>       
+				<li><a href="#">Browse by due date</a></li>       
+				<li><a href="#">Browse by budget</a></li>       
+				<li><a href="#">Browse by man power</a></li>
+				<li class="mega-menu"><a href="#">Setting</a>
+					<div class="mega-menu-list">
+						
+									<ul>
+										<li><a href="#">Account</a></li>
+										<li><a [routerLink] ="['/skills']">Skill</a></li>
+										<li><a href="#">Badges</a></li>
+										<li><a href="#">Task Alert Keywords</a></li>
+										<li><a href="#">Notification Settings</a></li>
+										<li><a href="#">Mobile</a></li>
+										<li><a href="#">Portfolio</a></li>
+										<li><a href="#">Password</a></li>
+									</ul>
+						
+					</div>
+				</li>
+				<li class="search-task"><a href="#"><i class="fa fa-search"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="profile-main-content">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 head-pro text-center">
+				<h3>My Tasks Summary</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="setting-sidebar">
+					<ul>
+										<li><a href="#" class="setting-active">Account</a></li>
+										<li><a [routerLink] ="['/skills']">Skill</a></li>
+										<li><a href="#">Badges</a></li>
+										<li><a href="#">Task Alert Keywords</a></li>
+										<li><a href="#">Notification Settings</a></li>
+										<li><a href="#">Mobile</a></li>
+										<li><a href="#">Portfolio</a></li>
+										<li><a href="#">Password</a></li>
+									</ul>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="account-inner">
+						<div class="anchovy-form">
+						 <form #skillForm="ngForm" (ngSubmit)="skillSave(skillForm.value, skillForm.valid);" 
+								novalidate class="form setting">
+						<h4>Skill</h4>
+						<div class="anchovy-form-item" style="float:left; width:100%;"><label>These are your skills. Keep them updated with any new skills you learn so other members can know what you can offer.</label>
+						<input type="text" id="ui-test-first-name" maxlength="30" name="skills" [(ngModel)]="skills.skills" #tagLine="ngModel" value={{skills.skills}} placeholder="e.g. cleaning, driving and graphic design">
+						</div>
+						
+						<div class="anchovy-form-item" style="float:left; width:100%;"><label>How do you get around?</label><div class="checkbox-item"><input type="checkbox" (change)="modeOfReach($event,'Bicycle');" value="Bicycle"><label><!-- react-text: 4331 -->Bicycle<!-- /react-text --></label></div>
+						<div class="checkbox-item"><input type="checkbox"  (change)="modeOfReach($event,'Car');" value="Car"><label><!-- react-text: 4335 -->Car<!-- /react-text --></label></div>
+						<div class="checkbox-item"><input type="checkbox"  (change)="modeOfReach($event,'Online');" value="Online"><label><!-- react-text: 4335 -->Online<!-- /react-text --></label></div>
+						<div class="checkbox-item"><input type="checkbox"  (change)="modeOfReach($event,'Scooter');" value="Scooter"><label><!-- react-text: 4335 -->Scooter<!-- /react-text --></label></div>
+						<div class="checkbox-item"><input type="checkbox"  (change)="modeOfReach($event,'Truck');" value="Truck"><label><!-- react-text: 4335 -->Truck<!-- /react-text --></label></div>
+						<div class="checkbox-item"><input type="checkbox"  (change)="modeOfReach($event,'Walk');" value="Walk"><label><!-- react-text: 4335 -->Walk<!-- /react-text --></label></div>
+						</div>
+						<div class="anchovy-form-item" style="float:left; width:100%;"><label>What languages can you speak/write?</label>
+						<input type="text" id="ui-test-first-name" maxlength="30" name="language" 
+						[(ngModel)]="skills.language" #tagLine="ngModel" value={{skills.language}} placeholder="e.g. English and French">
+						</div>
+						<div class="anchovy-form-item" style="float:left; width:100%;"><label>What qualifications have you got?</label>
+						<input type="text" id="ui-test-first-name" maxlength="30" 
+						 name="qualification" [(ngModel)]="skills.qualification" #qualification="ngModel" value={{skills.qualification}} placeholder="e.g. Higher School Certificate (HSC), Accredited Barista">
+						</div>
+						<div class="anchovy-form-item" style="float:left; width:100%;"><label>What's your work experience?</label>
+						<input type="text" id="ui-test-first-name" maxlength="30" name="workExperience" 
+						[(ngModel)]="skills.workExperience" #workExperience="ngModel" value={{skills.workExperience}} placeholder="e.g. 3 years as a Barista at The Cafe">
+						</div>
+						<div class="save-btn-yellow"><button id="ui-test-begin-save" class="button-med button-cta">Save Skill</button></div>
+					</form>
+					</div>
+				     </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--Success Offer -->
+<div class="modal fade" id="OfferModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	 
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span></button>
+		  <h4 class="modal-title" id="myModalLabel">Skills Saved Successfully</h4>
+		</div>
+		<div class="modal-body">
+			 <div class="text-center">
+					  <img src="assets/img/checkmark.gif" alt="yellotasker">
+					<p><b>Skills updated</b></p>
+				</div>   
+		</div>
+		
+	  </div>
+	</div>
+  </div>
+
+
+
+

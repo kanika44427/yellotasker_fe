@@ -1,0 +1,85 @@
+<div class="payment-ackn">
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-6 payment-sent-div">
+     <div *ngIf="transactionDetails" class="payment-sent-indicator text-center">
+      <img [src]="transactionDetails.status=='Failed'?'assets/img/failure_status.png':' assets/img/checkmark.gif'">
+      <h3><b>Payment Sent</b></h3>
+      <div class="print-invoice">
+      <button>Print Invoice</button>
+      <p><b>Please call at 1234567890 to raise any issues or mail us at support@yellotasker.com.</b></p>
+      </div>
+     </div>
+    </div>
+    <div *ngIf="transactionDetails" class="col-sm-6 summery-main">
+     <div class="summery-head text-center">
+      <h3><b>Transaction Summary</b></h3>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Transaction ID </p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.transaction_id}}</p>
+      </div>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Amount Paid </p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.total_price}}</p>
+      </div>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Date of transaction</p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.order_date}}</p>
+      </div>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Time of transaction</p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.order_time}}</p>
+      </div>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Payment method</p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.payment_mode}}</p>
+      </div>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Transaction Status</p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.status}}</p>
+      </div>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Orderid</p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.order_id}}</p>
+      </div>
+     </div>
+     <div class="summery-table">
+      <div class="summery-left text-center">
+       <p>Task title</p>
+      </div>
+      <div class="summery-right text-center">
+       <p>{{transactionDetails.task_title}}</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>

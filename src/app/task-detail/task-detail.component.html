@@ -1,0 +1,1005 @@
+<div  class="modal post-detail-pop fade"  id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content" *ngIf="!paymentIndicator">
+          <button type="button" class="close" (click)="closePopup()"aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-body">
+             <div class="post-detail-left">
+                <span *ngIf="taskDetails.offerAssignedTaskIndicator==true&&taskStatus=='assigned'"class="blink_text"><b>4 days left for completion of this task.</b></span>
+                <span class="browse-anchor">
+                    <a class="active-a">{{task.status}}</a>
+                    <!-- <a *ngIf="!taskStatusIndicator&&!taskDetails.offerTaskIndicator" style="background:none !important; color:#484848 !important;" href="#">
+                      <i class="fa fa-trash" style="color:#337ab7;"></i></a> -->
+                        <a *ngIf="taskDetails.savedTaskIndicator&&!taskStatusIndicator&&!taskDetails.offerTaskIndicator" (click)="confrimDelete(task.taskId)" style="background:none !important; color:#484848 !important;" >
+                            <i class="fa fa-trash" style="color:#337ab7;"></i></a>
+
+                     <a *ngIf="taskDetails.postedTaskIndicator&&!taskStatusIndicator&&!taskDetails.offerTaskIndicator" (click)="confrimDelete(task.id)" style="background:none !important; color:#484848 !important;" >
+                        <i class="fa fa-trash" style="color:#337ab7;"></i></a>
+    
+                      <a *ngIf="!taskStatusIndicator&&!taskDetails.offerTaskIndicator" style="background:none !important; color:#484848 !important; padding-left:0px;">
+                          <i (click)="showEditForm()"class="fa fa-pencil" style="color:#666;"></i></a>
+                </span>
+                <div class="detail-pic-name">
+                   <div class="pic-name-right" style="width:100%;">
+                      <h4 style="color:#34495e;">
+                        <b>{{task.title}} </b>
+                       </h4>
+                   </div>
+                  
+                </div>
+                <div class="post-description">
+                   <div class="pop-accordion">
+                      <a class="anchor-desc" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                         <h4>Description <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                      </a>
+                      <div id="collapse1" class="panel-collapse collapse in">
+                         <div class="panel-body">
+                          <div *ngIf="!showForm">
+                            <p>
+                               {{task.description}}
+                            </p>
+                            <p class="due-para"><i class="fa fa-calendar"></i> 
+                              <span class="due-text"><b>Due Date</b> {{task.dueDate|date}}</span></p>
+                              <p> <span><b>Budget Type </b> {{task.budgetType }}</span><br>
+                                <span><b> Total amount </b>{{task.totalAmount}} MYR</span>
+                              </p>
+                              <p>
+                                    <span><b> Location </b>{{task.locationType=='Digital task'?task.locationType:task.locationType+ task.address}}</span>
+                                 </p>
+                                </div>
+                                 <div *ngIf="showForm" class="desrciption-form">
+                                    <form  #editForm="ngForm" (ngSubmit)="submitForm(editForm.value, editForm.valid);" 
+                                    novalidate >
+                                    <small class="text-danger" *ngIf="errorIndicator">
+                                        Please provide required details.
+                                    </small>
+                                            <div class="form-control">
+                                                    <label>Task Title<span style="color:red;">*</span></label>
+                                                    <input   name="title" [(ngModel)]="taskInfo.title"  required 
+                                                    #title="ngModel" type="text"  placeholder="Enter title">
+                                                   </div>
+                                     <div class="form-control">
+                                      <label>Description<span style="color:red;">*</span></label>
+                                      <textarea name="description" [(ngModel)]="taskInfo.description"  required 
+                                                    #description="ngModel" ></textarea>
+                                                    <small class="text-danger" *ngIf="minLenIndicator">
+                                                        Tell us more! Please enter at least 25 characters.
+                                                    </small>
+                                     </div>
+                                     <div class="form-control">
+                                      <label>Due Date</label>
+                                      <material-datepicker ngDefaultControl name="dueDate"
+                                      placeholder="select date" [ngModel]="taskInfo.dueDate | date:'dd-MM-y'" 
+                                     style="padding-left:35px;" class="new-date-box"
+                                     [(date)]="taskInfo.dueDate"  dateFormat="DD-MM-YYYY"></material-datepicker>
+                                     </div>
+                                     <div class="form-control">
+                                      <label>Budget Type</label>
+                                      <select name="budgetType" (change)="onChangeBudget(taskInfo.budgetType)" #budgetType="ngModel" required [(ngModel)]="taskInfo.budgetType">
+                                          <option value="Materials & workmanship">
+                                                Materials & workmanship
+                                              </option>
+                                              <option value="Workmanship only - i will supply materials"> 
+                                                    Workmanship only - i will supply materials
+                                                    </option>
+                                          </select>
+                                     </div>
+                                     <div class="form-control">
+                                      <label>Total amount</label>
+                                      <input type="text" name="totalAmount" [(ngModel)]="taskInfo.totalAmount"  required 
+                                      #totalAmount="ngModel" >
+                                     </div>
+                                     <div class="form-control">
+                                            <label>Location Type</label>
+                                            <select (change)="onChangeLocation(taskInfo.locationType)" name="locationType" #locationType="ngModel" [(ngModel)]="taskInfo.locationType">
+                                                <option value="Physical task">
+                                                        Physical task
+                                                    </option>
+                                                    <option value="Digital task">
+                                                           Digital task
+                                                          </option>
+                                                </select>
+                                           </div>
+                                     <div *ngIf="taskInfo.locationType=='Physical task'" class="form-control">
+                                      <label>Suburb<span style="color:red;">*</span></label>
+                                      <textarea name="address" required  [(ngModel)]="taskInfo.address" 
+                                      #address="ngModel" ></textarea>
+                                     </div>
+                                     <div class="form-control">
+                                      <input type="button" value="update" type="submit" class="submit">
+                                      <input type="button" (click)="closeForm()" value="cancel" class="submit">
+                                     </div>
+                                    </form>
+                                   </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="pop-accordion">
+                      <a class="anchor-comment" data-toggle="collapse" data-parent="#accordion" 
+                      href="#collapse2">
+                         <h4>Comment {{taskStatusIndicator?'history':''}}<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                      </a>
+                      <div id="collapse2" class="panel-collapse collapse">
+                         <div class="comment-box-browse">
+                            <div class="comment-head">
+                               <div class="header-comment">
+                                  <div class="line"></div>
+                                  <div class="title interactive">{{commentList?.length|| 'No'}} comments about this Task</div>
+                               </div>
+                               <p *ngIf="!taskStatusIndicator" class="comment-para">Comment below for more details and remember that for your safety, not to share personal information e.g. email and phone numbers.
+                               </p>
+                            </div>
+                            <div *ngIf="!taskStatusIndicator"class="commenter">
+                               <div class="commenter-pic">
+                                  <a href="#"><img [src]="userImage" alt="yellotasker"></a>
+                               </div>
+                               <div class="commenter-text">
+                                  <textarea placeholder="Ask a question" [(ngModel)]="comment.commentDescription" #description ="ngModel" 
+                                  name="description" (ngModelChange)="addCommentChange($event)"></textarea>
+                                  <p class="comment-footer">
+                                     <span><a (click)="addComment(comment, task)" [class.disabled]="anchorDisable ? true : null"
+                                     [ngStyle]="{'color': anchorDisable  ? 'grey' : 'black' }">Send</a></span>       
+                                  </p>
+                               </div>
+                            </div>
+                            <div *ngIf="commentIndicator">
+                               <div class="commenter" *ngFor ="let item of commentList">
+                                  <div id="commentItem" *ngIf="item.commentId == 0">
+                                     <div class="commenter">
+                                        <div class="commenter-pic">
+                                           <a href="#"><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                        </div>
+                                        <div class="commenter-text">
+                                           <h4><a href="#">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</a>
+                                            <a *ngIf="item.userId==userId" (click)="deleteComment(item.id,item.taskId,item.userId)"><i class="fa fa-trash" style="color:#337ab7;"></i></a>
+                                           </h4>
+                                           <p class="commenter-desc">{{item.commentDescription}}</p>
+                                           <p class="timing-reply"><span>{{item.created_at | timeAgo }}</span> <span>
+                                              <a (click)="onReply(item)"><i class="fa fa-reply"></i> Reply</a></span>
+                                           </p>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div style="display: none" id="item_{{item.id}}">
+                                     <div class="commenter-pic">
+                                        <a href="#"><img [src]="userImage!='null'&&userImage!=''?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                     </div>
+                                     <div class="commenter-text">
+                                        <textarea value="Ask a question"  [(ngModel)]="replyCommentDesc" #replyDescription ="ngModel" 
+                                        name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
+                                        <p class="comment-footer">
+                                           <span><a (click) = "replyComment(replyCommentDesc, task, item.id)" 
+                                           [class.disabled]="anchorReplyDisable ? true : null"
+                                           [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }" >Send</a></span>       
+                                        </p>
+                                     </div>
+                                  </div>
+                                  <!--reply list div starts-->
+                                  <div *ngIf="checkIfReplyExists(item.id, commentList)"  >
+                                     <div *ngFor="let data of repliedObjectList">
+                                        <div class="commenter sub-reply">
+                                           <div class="commenter-pic">
+                                              <a href="#"><img [src]="data.user_detail.profile_image!=null&&data.user_detail.profile_image!=''?data.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                           </div>
+                                           <div class="commenter-text">
+                                              <h4><a href="#">{{data.user_detail.first_name}} {{data.user_detail.last_name}}</a>
+                                                <a *ngIf="data.userId==userId" (click)="deleteComment(data.id,data.taskId,data.userId)"><i class="fa fa-trash" style="color:#337ab7;"></i></a>
+                                            </h4>
+                                              <p class="commenter-desc">{{data.commentDescription}}</p>
+                                              <p class="timing-reply"><span>{{data.created_at | timeAgo }}</span> <span>
+                                                 <a (click)="onReply(data)"><i class="fa fa-reply"></i> Reply</a></span>
+                                              </p>
+                                           </div>
+                                        </div>
+                                        <div style="display: none" id="item_{{data.id}}">
+                                           <div class="commenter-pic">
+                                              <a href="#"><img [src]="userImage!='null'&&userImage!=''?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                           </div>
+                                           <div class="commenter-text">
+                                              <textarea value="Ask a question"  [(ngModel)]="replyCommentDesc" #replyDescription ="ngModel" 
+                                              name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
+                                              <p class="comment-footer">
+                                                 <span><a (click) = "replyComment(replyCommentDesc, task, item.id)" 
+                                                 [class.disabled]="anchorReplyDisable ? true : null"
+                                                 [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }" >Send</a></span>       
+                                              </p>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <!--reply list div ends-->
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                    </div>
+                 <div class="pop-accordion">
+                         <!-- <a href="#" class="anchor-offer"><h4>Offer <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4></a> -->
+                         <a class="anchor-offer" data-toggle="collapse" data-parent="#accordion" 
+                         href="#collapse3">
+                            <h4>Offer {{taskStatusIndicator?'history':''}} <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                         </a>
+                         <!-- <div class="acc-open" id="acc-offer" style="display:none;">
+                            <div class="offer-section"> -->
+                         <div id="collapse3" class="panel-collapse collapse">
+                            <div class="offer-section child-acor">
+                                  <div class="panel-group"  [attr.id]="'accordion_' + i" *ngFor="let list of offerList; let i = index;">
+                                      <div class="panel panel-default" >
+                                          <div class="panel-heading">
+                                              <h4 class="panel-title">
+                                                  <a data-toggle="collapse"
+                                                   [attr.data-parent]="'#accordion_' + i" 
+                                                   [attr.href]="'#collapseOne_' + i">
+                                                   {{list.interested_user[0].first_name}} 
+                                                   {{list.interested_user[0].last_name}}</a>
+                                              </h4>
+                                          </div>
+                                          <div [attr.id]="'collapseOne_' + i" class="panel-collapse collapse">
+                                              
+                                                  <div class="offer-rating">
+                                                        <img [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'" alt=""> &nbsp;&nbsp;
+                                                        <span class="offer-link">
+                                                                <a routerLink ="/profile-view/{{list.interested_user[0].first_name}}/{{list.interested_user[0].id}}">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
+                                                                <div class="offer-tooltip" style="display:none">
+                                                                   <h5><a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a></h5>
+                                                                   <p>231 indrapuri indore near bhawarkua</p>
+                                                                   <p class="offer-rating-star"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></p>
+                                                                   <p class="offer-completion-rate">100% completion rate</p>
+                                                                   <p class="offer-request-quoate"><a href="#">Request Quote</a></p>
+                                                                </div>
+                                                              </span>
+                                                        <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+                                                     </div>
+                                               
+                                              
+                                               <div class="offer-complete">
+                                                  <span class="percentage">84%</span>
+                                               </div>
+                                               <div class="offer-post-time assign-btn-of">
+                                                  <span *ngIf="taskStatus=='open'&&!taskDetails.offerTaskIndicator" class=""><a (click)="assignTask(task,list)">Assign</a></span>
+                                               </div>
+                                              <div class="offer-post-time">
+                                                  <span class=""><a (click)="showOfferDetail()">View Detail</a></span>
+                                               </div>
+                                          </div>
+                                          <div *ngIf="showOfferDetailIndicator" class="offer-child">
+                                              
+                                           <h3>Offer detail</h3>
+                                             <span><b>offer price :</b> {{list.offerPrice}} MYR</span>
+                                            <span><b>offer comment :</b> {{list.comment}}</span>
+                                             <span><b>completion date : </b> {{list.completionDate}}</span>
+                                            
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="panel-group" *ngIf="!offerList?.length > 0">
+                                    Currently there is no offer for this task 
+                                  </div>
+                            </div>
+                         </div>
+                      </div>
+                   <!-- my offer -->
+                   <div *ngIf="(taskDetails.offerTaskIndicator&&taskStatus=='open'||taskDetails.offerAssignedTaskIndicator&&(taskStatus=='reopen'||taskStatus=='assigned'))&&offerList?.length > 0"class="pop-accordion">
+                    <a class="anchor-offer" data-toggle="collapse" data-parent="#accordion" 
+                    href="#collapse5">
+                       <h4>My Offer <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                    </a>
+                    <div id="collapse5" class="panel-collapse collapse">
+                       <div class="offer-section child-acor">
+                             <div class="panel-group"  [attr.id]="'accordion_' + j" *ngFor="let list of offerList; let j = index;">
+                                 <div *ngIf="userId==list.interestedUserId" class="panel panel-default" >
+                                     <div class="panel-heading">
+                                         <h4 class="panel-title">
+                                             <a data-toggle="collapse"
+                                              [attr.data-parent]="'#accordion_' + j" 
+                                              [attr.href]="'#collapseOne_' + j">
+                                              {{list.interested_user[0].first_name}} 
+                                              {{list.interested_user[0].last_name}}</a>
+                                              <span class="browse-anchor">
+                                                <a *ngIf="taskDetails.offerTaskIndicator&&taskStatus=='open'&&userId==list.interestedUserId" style="background:none !important; color:#484848 !important;">
+                                                  <i (click)="deleteOffer(list.id,list.taskId)" class="fa fa-trash" style="color:#337ab7;"></i></a>
+                                                  <a *ngIf="taskDetails.offerTaskIndicator&&taskStatus=='open'&&userId==list.interestedUserId" style="background:none !important; color:#484848 !important; padding-left:0px;">
+                                                      <i (click)="offerEdit(list)"class="fa fa-pencil" style="color:#666;"></i></a>
+                                            </span>
+                                         </h4>
+                                        
+                                     </div>
+                                     <div [attr.id]="'collapseOne_' + j" class="panel-collapse collapse">
+                                         
+                                             <div class="offer-rating">
+                                                   <span class="offer-link">
+                                                           <a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
+                                                           <div class="offer-tooltip" style="display:none">
+                                                              <h5><a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a></h5>
+                                                              <p>231 indrapuri indore near bhawarkua</p>
+                                                              <p class="offer-rating-star"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></p>
+                                                              <p class="offer-completion-rate">100% completion rate</p>
+                                                              <p class="offer-request-quoate"><a href="#">Request Quote</a></p>
+                                                           </div>
+                                                         </span>
+                                                   <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+                                                </div>
+                                          
+                                         
+                                          <div class="offer-complete">
+                                             <span class="percentage">84%</span>
+                                          </div>
+                                          <div class="offer-post-time assign-btn-of">
+                                             <span *ngIf="taskStatus=='open'" class=""><a (click)="assignTask(task,list)">Assign</a></span>
+                                          </div>
+                                         <div class="offer-post-time">
+                                             <span class=""><a (click)="showOfferDetail()">View Detail</a></span>
+                                          </div>
+                                          <span class="browse-anchor">
+                                           <a *ngIf="taskDetails.offerTaskIndicator&&taskStatus=='open'&&userId==list.interestedUserId" style="background:none !important; color:#484848 !important;">
+                                             <i (click)="deleteOffer(list.id,list.taskId)" class="fa fa-trash" style="color:#337ab7;"></i></a>
+                                             <a *ngIf="taskDetails.offerTaskIndicator&&taskStatus=='open'&&userId==list.interestedUserId" style="background:none !important; color:#484848 !important; padding-left:0px;">
+                                                 <i (click)="offerEdit(list)"class="fa fa-pencil" style="color:#666;"></i></a>
+                                       </span>
+                                     </div>
+                                     <!-- offer detail -->
+                                     <div  class="offer-child">
+                                         <span><b>Task price :</b> {{task.totalAmount}} MYR </span>
+                                         <span><b>offer price :</b> {{list.offerPrice}} MYR </span>
+                                         <span><b>offer comment :</b> {{list.comment}}</span>
+                                         <span><b>completion date : </b> {{list.completionDate}}</span>
+                                         Note : offer price is amount you get into bank account after deductions of 
+                                         service charges from your quoted bid price. 
+                                    </div>
+                                    <!-- -->
+                                    <!-- edit offer -->
+                                    <div *ngIf="editOffer" class="desrciption-form">
+                                       <form #offerEditForm="ngForm" (ngSubmit)="updateOffer(offerEditForm.value, offerEditForm.valid);" 
+                                       novalidate >
+                                               <div class="form-control">
+                                                       <label>Bid price</label>
+                                                       <input  min="1"  type="number" 
+                                                       name="offerPrice" [(ngModel)]="offerInfo.offerPrice" (blur)="getServiceCharge($event)" required 
+                                                       #offerPrice="ngModel">
+
+                                                      </div>
+                                        <div class="form-control">
+                                         <label>Comment</label>
+                                        <textarea id="post-task-description" 
+                                                       name="comment" [(ngModel)]="offerInfo.comment" 
+                                                        #comment="ngModel"  class="tick-input" rows="8"></textarea>
+                                        </div>
+                                        <div class="form-control">
+                                                <label>completion date</label>
+                                                {{list.completionDate}}
+                                               </div>
+                                        <div class="form-control">
+                                         <input type="button" value="update" type="submit" class="submit">
+                                         <input type="button" (click)="closeOfferForm()" value="cancel" class="submit">
+                                        </div>
+                                       </form>
+                                      </div>
+                                      <!-- -->
+                                   
+                                 </div>
+                             </div>
+                       </div>
+                    </div>
+                 </div>
+                 <!-- -->
+                   <div class="pop-accordion" *ngIf="taskStatusIndicator &&!taskDetails.offerTaskIndicator ">
+                      <!-- <a href="#" class="anchor-acc" style="padding:0px;"><h4 style="margin-bottom:0px;">View Message History <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4></a> -->
+                      <a class="anchor-acc" style="padding:0px;" data-toggle="collapse" 
+                      data-parent="#accordion" href="#collapse4">
+                         <h4 style="margin-bottom:0px;">View Messages {{taskStatus!='assigned'?'history':''}} <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                      </a>
+                      <!-- <div class="acc-open" id="acc-div" style="display:none;">
+                         <div class="offer-card"> -->
+                      <div id="collapse4" class="panel-collapse collapse">
+                         <div class="comment-box-browse">
+                            <div class="comment-head">
+                               <div class="header-comment">
+                                  <div class="line"></div>
+                                  <div class="title interactive">{{messageData?.length || 'No'}} Messages</div>
+                               </div>
+                               <p class="comment-para">Comment below for more details and remember that for your safety, not to share personal information e.g. email and phone numbers.
+                               </p>
+                            </div>
+                            <div class="commenter">
+                               <div class="commenter-pic">
+                                  <a href="#"><img [src]="userImage!='null'&&userImage!=''?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+                               </div>
+                               <div class="commenter-text">
+                                  <textarea value="Ask a question"  [(ngModel)]="messages" 
+                                  name="messages" ></textarea>
+                                  <p class="comment-footer">
+                                     <span><a href="#"><i class="fa fa-cloud-upload" aria-hidden="true"></i></a></span>
+                                     <span><a (click)="addMessage(messages, task)">Send</a></span>							
+                                  </p>
+                               </div>
+                            </div>
+                            <div class="commenter" *ngFor ="let msg of messageData">
+                               <div class="commenter-pic">
+                                  <a href="#"><img [src]="msg.comment_posted_user.profile_image!=null&&msg.comment_posted_user.profile_image!=''?msg.comment_posted_user.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
+                               </div>
+                               <div *ngIf="taskDetails.offerAssignedTaskIndicator||taskDetails.postedTaskIndicator"class="commenter-text">
+                                  <h4><a>{{msg.comment_posted_user.first_name}} {{msg.comment_posted_user.last_name }}
+                                    </a></h4>
+                                  <p class="commenter-desc">
+                                    {{msg.comments}}
+                                  </p>
+                                  <p class="timing-reply"><span>{{msg.updated_at | timeAgo }}</span> <span>
+                                 </span>
+                                 </p>
+                                  <!-- <p class="timing-reply"><span>1 mins ago</span> <span><a href="#"><i class="fa fa-reply"></i> Reply</a></span></p> -->
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="pop-accordion" *ngIf="taskStatus!='assigned'&&taskStatus!='open'&&showFeedback==true||(taskDetails.offerAssignedTaskIndicator&&taskStatus=='assigned'&&showFeedback==true)||taskStatus=='completed from doer'">
+                      <a class="anchor-desc" data-toggle="collapse" data-parent="#accordion" href="#collapseFeedback">
+                         <h4>Feedback <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                      </a>
+                      <div id="collapseFeedback" class="panel-collapse collapse">
+                         <div class="panel-body">
+                            <div class="review-rate">
+                                <p>Thank you for doing {{task.task_posted_user.first_name}} {{task.task_posted_user.last_name}}'s {{task.title}} task . Please provide your valuable feedback.</p>
+                                <small class="text-danger" *ngIf="feedbackError">
+                                        Please provide required details.
+                                    </small>
+                                <p><b>Rating</b> <span>
+                                        <div  class="change-status">   
+                                                <select name="rating"  [(ngModel)]="rating" (change)="onChangeRating($event.target.value)">
+                                                        <option value="1">
+                                                           1
+                                                        </option> 
+                                                        <option value="2">
+                                                           2
+                                                        </option>
+                                                        <option value="3">
+                                                           3
+                                                         </option>
+                                                         <option value="4">
+                                                                4
+                                                         </option>
+                                                        <option value="5">
+                                                                    5
+                                                         </option>
+                                                    </select>
+                                                    <span  *ngFor ="let rate of feedbackRating">
+                                                            <i  class="fa fa-star"></i>
+                                                    </span>
+                                                </div>
+                                </span></p><p><b>Review</b></p>
+                                <p><textarea name="review" [(ngModel)]="review"></textarea></p>
+                            <p class="review-submit"><a (click)="submitReviewRating(rating,review, task)">Submit</a></p>
+                                <!-- <p><b>Rating</b>
+                                    <select>
+                                        <option value="1">1</option>
+                                        <option value="1">2</option>
+
+                                        <option value="1">3</option>                                    </select>
+                             <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></p><p><b>Review</b></p>
+                                <p><textarea></textarea></p>
+                            <p class="review-submit">
+                                <input type="button" value="Submit"/>
+                            </p> -->
+                                
+                                </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                
+             </div>
+             <div class="post-detail-right">
+                    <div *ngIf="taskDetails.offerAssignedTaskIndicator==true&&taskStatus=='assigned'" class="rate">
+                            <p class="main-price completion-text">
+                             <b>Completion date</b> <br/> 
+                             <span style="color:#fff; font-size:16px;"><i class="fa fa-calendar"></i> &nbsp;{{task.dueDate|date}}</span>
+                            </p>
+                           </div>
+                    <div class="share-container" *ngIf="!taskStatusIndicator&&!taskDetails.offerTaskIndicator">
+                            <p class="share-text">SHARE</p>
+                            <div class="buttons-s">
+                               <a class="facebook-share" data-toggle="tooltip" title="facebook" ><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                               <a class="twitter-share" data-toggle="tooltip" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                               <a class="google-plus-share" data-toggle="tooltip" title="google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                               <a class="linkedin-share" data-toggle="tooltip" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                              <!-- <a class="embed-share"><i class="fa fa-code" aria-hidden="true"></i></a>
+                              -->
+                            </div>
+                         </div>
+                         <div class="report-task" (click)="reportTask()"><a> <i class="fa fa-flag"></i> Report this task</a></div>
+                <div class="posted-By tp-post">
+                         <h4>Posted By : </h4>
+                <div class="offer-pic" style="float:left; width:25%;">
+                   <img [src]="task.task_posted_user.profile_image!=null&&task.task_posted_user.profile_image!=''?task.task_posted_user.profile_image:'assets/img/task-person.png'" alt=""> 
+                </div>
+                <div class="right-posted-crd" style="float:left; width:75%; padding-left:10px;">
+                   <span>{{task.task_posted_user.first_name}} {{task.task_posted_user.last_name}}</span>
+                   <p *ngIf="taskDoer" class="offer-rating-star">
+                        <span  *ngFor="let i of Arr(task.task_posted_user.rating).fill(1)">
+                                <i  class="fa fa-star"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+                <div class="popup-location">
+                   <div class="pop-location-nav">
+                      <i class="fa fa-calendar"></i>
+                   </div>
+                   <div class="pop-location-desc">
+                      <h4>Posted on :</h4>
+                      <div class="right-posted-crd" style="float:left; width:75%; padding-left:10px;">
+                      {{task.created_at|date}}
+                      </div>
+                   </div>
+                </div>
+                <div *ngIf="taskStatusIndicator">
+                <h4>Assigned To  : </h4>
+                <div *ngIf="taskDoer" class="offer-pic" style="float:left; width:25%;">
+                   <img  [src]="taskDoer.profile_image!=null&&taskDoer.profile_image!=''?taskDoer.profile_image:'assets/img/task-person.png'"alt=""> 
+                </div>
+                <div class="right-posted-crd" style="float:left; width:75%; padding-left:10px;">
+                   <span>{{taskDoer!=undefined?taskDoer.first_name+' '+taskDoer.last_name:''}}</span>
+                   <p *ngIf="taskDoer"class="offer-rating-star">
+                        <span  *ngFor="let i of Arr(taskDoer.rating).fill(1)">
+                                <i  class="fa fa-star"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+                <div class="popup-location" *ngIf="taskStatusIndicator">
+                        <div class="pop-location-nav">
+                           <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="pop-location-desc">
+                           <h4>Assigned on :</h4>
+                           <div class="right-posted-crd" style="float:left; width:75%; padding-left:10px;">
+                           {{task.created_at|date}}
+                           </div>
+                        </div>
+                        <div *ngIf="taskDetails.postedTaskIndicator" class="sam-btn">
+                            <a (click)="openMessage()">Message {{taskDoer!=undefined?taskDoer.first_name+' '+taskDoer.last_name:''}}</a>
+                        </div>
+                        <div *ngIf="taskDetails.offerAssignedTaskIndicator" class="sam-btn">
+                            <a (click)="openMessage()">Message {{task.task_posted_user.first_name}} {{task.task_posted_user.last_name}}</a>
+                        </div>
+                     </div>
+                     <div *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')" class="change-status">
+                        <label>Change task Status</label>    
+                        <select name="status"  #status="ngModel"  [(ngModel)]="taskStatus"  (ngModelChange)="onChange(taskStatus,task, prevStatus)"
+                        (focus)="prevStatus=taskStatus">
+                               
+                                <option style="color:green;">
+                                    completed 
+                                  </option>
+                                <option style="color:red;">
+                                    reopen
+                                 </option>
+                            </select>
+                        </div>
+
+                        <div *ngIf="taskDetails.offerAssignedTaskIndicator==true&&hideStatus==false" class="change-status">
+                            <label>Change task Status</label>    
+                            <select name="status"  #status="ngModel"  [(ngModel)]="taskStatus"  (ngModelChange)="onChange(taskStatus,task, prevStatus)"
+                            (focus)="prevStatus=taskStatus">
+                            <option value="">
+                                -Please Select-
+                              </option>
+                                    <option value="completed from doer" style="color:green;">
+                                        completed from my side
+                                      </option>
+                                </select>
+                            </div>
+
+                     <!-- <div *ngIf="!hideStatus&&taskStatus!='open'&&taskStatus!='assigned'&&!taskDetails.offerTaskIndicator||(taskDetails.offerAssignedTaskIndicator==true&&(taskStatus=='assigned'||taskStatus=='reopen'))" class="change-status">
+                            <label>Change task Status</label>    
+                            <select *ngIf="taskStatus=='assigned'" [(ngModel)]="taskStatus"  (change)="onChange($event.target.value,task)">
+                                    <option value="reopen" style="color:red;">
+                                       reopen
+                                    </option>
+                                    <option value="closed"style="color:green;">
+                                       closed
+                                    </option>
+                                     <option value="assigned" style="color:green;"  *ngIf="taskStatus!='completed from doer'">
+                                        Assigned
+                                      </option>
+                                      <option value="completed from doer" style="color:green;">
+                                        completed from doer
+                                      </option>
+                                </select>
+                                <select *ngIf="taskStatus=='completed from doer'" [(ngModel)]="taskStatus"  (change)="onChange($event.target.value,task)">
+                                    <option value="assigned" style="color:green;" >
+                                        Assigned
+                                      </option>
+                                    <option value="completed from doer" style="color:green;" *ngIf="taskStatus!='assigned'">
+                                       completed from doer
+                                     </option>
+                                </select>
+                            </div> -->
+             </div>
+          </div>
+       </div>
+
+       <div class="modal-content" *ngIf="paymentIndicator">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Yellotasker</h4>
+          </div>
+      <div class="modal-body">
+         <div class="text-center">
+          <p><b>You need to pay before assiging task</b></p>
+        </div>   
+        <div role="tabpanel" class="tab-pane" id="finish">
+            <!-- commenting existing code
+          <form action="https://sandbox.molpay.com/MOLPay/pay/SB_yellotasker/" method="post" id="payment" ngNoForm>
+              <input type="hidden" name="amount" value="{{molPayValues.amount}}">
+              <input type="hidden" name="orderid" value="{{molPayValues.oid}}">
+              <input type="hidden" name="bill_name" value="{{molPayValues.bill_name}}">
+              <input type="hidden" name="bill_email" value="{{molPayValues.bill_email}}">
+              <input type="hidden" name="bill_mobile" value="">
+              <input type="hidden" name="country" value="">
+              <input type="hidden" name="currency1" value="">
+              <input type="hidden" name="vcode" value="{{molPayValues.vcode}}">
+              <input type="hidden" name="returnurl" value="{{molPayValues.returnurl}}">
+              
+              <input type="hidden" name="bill_desc" value="Task Payment : Describe your task in more detail *">-->
+              <h1 class="margintop">Payment Method</h1>
+<p class="smalltxt">
+<strong>Secure Online Payment by MOLPay</strong>
+<br>
+Please select a payment type from below to proceed for payment.
+</p>
+<div class="row">
+<!--credit card -->
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+    <label class="hand" for="paymentcredit_alb-paymex">
+        <img src="assets/img/payment-credit.jpg" title="ALB-Paymex">
+    </label>
+    <br>
+    <input type="radio" name="payment_options" id="paymentcredit_alb-paymex" value="credit"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="credit"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentfpx"><img src="assets/img/payment-fpx.jpg"></label>
+<br>
+<input type="radio" name="paymentfpx" id="paymentfpx" value="fpx"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="fpx"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentm2u"><img src="assets/img/payment-m2u.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymentm2u" value="maybank2u"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="maybank2u"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymenthlb"><img src="assets/img/payment-hlb.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymenthlb" value="hlb"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="hlb"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentcimb"><img src="assets/img/payment-cimb.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymentcimb" value="cimbclicks"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="cimbclicks"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentrhb"><img src="assets/img/payment-rhb.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymentrhb" value="rhb"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="rhb"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentaffin"><img src="assets/img/payment-affin.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymentaffin" value="affinonline"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="affinonline"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentam"><img src="assets/img/payment-amonline.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymentam" value="amb"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="amb"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentislam"><img src="assets/img/payment-bank-islam.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymentislam" value="bankislam" 
+    data-toggle="molpayseamless"
+    data-mpsmerchantid="SB_yellotasker"
+    data-mpschannel="bankislam"
+    attr.data-mpsamount="{{molPayValues.amount}}"
+    attr.data-mpsorderid="{{molPayValues.oid}}"
+    attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+    attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+    attr.data-mpsbill_desc="test"
+    attr.data-mpsvcode="{{molPayValues.vcode}}"
+    data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="paymentpbe"><img src="assets/img/payment-pbe.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paymentpbe" value="pbb"
+    data-toggle="molpayseamless"
+    data-mpsmerchantid="SB_yellotasker"
+    data-mpschannel="pbb"
+    attr.data-mpsamount="{{molPayValues.amount}}"
+    attr.data-mpsorderid="{{molPayValues.oid}}"
+    attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+    attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+    attr.data-mpsbill_desc="test"
+    attr.data-mpsvcode="{{molPayValues.vcode}}"
+    data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+    <label class="hand" for="FPX_SCB"><img src="assets/img/payment-standard-chartered.jpg"></label>
+    <br>
+    <input type="radio" name="payment_options" id="FPX_SCB" value="FPX_SCB"
+            data-toggle="molpayseamless"
+            data-mpsmerchantid="SB_yellotasker"
+            data-mpschannel="FPX_SCB"
+            attr.data-mpsamount="{{molPayValues.amount}}"
+            attr.data-mpsorderid="{{molPayValues.oid}}"
+            attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+            attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+            attr.data-mpsbill_desc="test"
+            attr.data-mpsvcode="{{molPayValues.vcode}}"
+            data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="payment7e"><img src="assets/img/payment-7e.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="payment7e" value="cash-711"
+data-toggle="molpayseamless"
+data-mpsmerchantid="SB_yellotasker"
+data-mpschannel="cash-711"
+attr.data-mpsamount="{{molPayValues.amount}}"
+attr.data-mpsorderid="{{molPayValues.oid}}"
+attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+attr.data-mpsbill_desc="test"
+attr.data-mpsvcode="{{molPayValues.vcode}}"
+data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="jompay"><img src="assets/img/payment-jompay.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="jompay" value="jompay"
+data-toggle="molpayseamless"
+data-mpsmerchantid="SB_yellotasker"
+data-mpschannel="jompay"
+attr.data-mpsamount="{{molPayValues.amount}}"
+attr.data-mpsorderid="{{molPayValues.oid}}"
+attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+attr.data-mpsbill_desc="test"
+attr.data-mpsvcode="{{molPayValues.vcode}}"
+data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center thb" style="display: none;">
+<label class="hand" for="scb"><img src="assets/img/payment-scb.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="scb" value="TH_PB_SCBPN"
+data-toggle="molpayseamless"
+data-mpsmerchantid="SB_yellotasker"
+data-mpschannel="TH_PB_SCBPN"
+attr.data-mpsamount="{{molPayValues.amount}}"
+attr.data-mpsorderid="{{molPayValues.oid}}"
+attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+attr.data-mpsbill_desc="test"
+attr.data-mpsvcode="{{molPayValues.vcode}}"
+data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center thb" style="display: none;">
+<label class="hand" for="krungthai"><img src="assets/img/payment-krungthai.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="krungthai" value="TH_PB_KTBPN" 
+data-toggle="molpayseamless"
+data-mpsmerchantid="SB_yellotasker"
+data-mpschannel="TH_PB_KTBPN"
+attr.data-mpsamount="{{molPayValues.amount}}"
+attr.data-mpsorderid="{{molPayValues.oid}}"
+attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+attr.data-mpsbill_desc="test"
+attr.data-mpsvcode="{{molPayValues.vcode}}"
+data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center thb" style="display: none;">
+<label class="hand" for="krungsri"><img src="assets/img/payment-krungsri.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="krungsri" value="TH_PB_BAYPN"
+data-toggle="molpayseamless"
+data-mpsmerchantid="SB_yellotasker"
+data-mpschannel="TH_PB_BAYPN"
+attr.data-mpsamount="{{molPayValues.amount}}"
+attr.data-mpsorderid="{{molPayValues.oid}}"
+attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+attr.data-mpsbill_desc="test"
+attr.data-mpsvcode="{{molPayValues.vcode}}"
+data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center thb" style="display: none;">
+<label class="hand" for="bangkokbank"><img src="assets/img/payment-bangkokbank.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="bangkokbank" value="TH_PB_BBLPN"
+data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="TH_PB_BBLPN"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center thb" style="display: none;">
+<label class="hand" for="paysbuy"><img src="assets/img/payment-paysbuy.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="paysbuy" value="TH_PB_CASH"
+data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="TH_PB_CASH"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+<label class="hand" for="FPX_OCBC"><img src="assets/img/payment-ocbc.jpg"></label>
+<br>
+<input type="radio" name="payment_options" id="FPX_OCBC" value="FPX_OCBC"
+data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="FPX_OCBC"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center myr">
+
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center vnd" style="display: none;">
+<label class="hand" for="VTCPay_Ewallet"><img src="assets/img/vtcpay/vtcpay.png" alt="VTCPay_Ewallet"></label>
+<br>
+<input type="radio" name="payment_options" id="VTCPay_Ewallet" value="vtcpay-ewallet"
+data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="vtcpay-ewallet"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center vnd" style="display: none;">
+<label class="hand" for="VTCPay_Vietcombank"><img src="assets/img/vtcpay/vietcombank.png"></label>
+<br>
+<input type="radio" name="payment_options" id="VTCPay_Vietcombank" value="vtcpay-vietcombank"
+data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="vtcpay-vietcombank"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+<div class="col-md-2 col-xs-6 marginbttm text-center vnd" style="display: none;">
+<label class="hand" for="VTCPay_Techcombank"><img src="assets/img/vtcpay/techcom-bank.png"></label>
+<br>
+<input type="radio" name="payment_options" id="VTCPay_Techcombank" value="vtcpay-techcombank"
+        data-toggle="molpayseamless"
+        data-mpsmerchantid="SB_yellotasker"
+        data-mpschannel="vtcpay-techcombank"
+        attr.data-mpsamount="{{molPayValues.amount}}"
+        attr.data-mpsorderid="{{molPayValues.oid}}"
+        attr.data-mpsbill_name="{{molPayValues.bill_name}}"
+        attr.data-mpsbill_email="{{molPayValues.bill_email}}"
+        attr.data-mpsbill_desc="test"
+        attr.data-mpsvcode="{{molPayValues.vcode}}"
+        data-mpsreturnurl="http://api.yellotasker.com/molpay/return_ipn">
+</div>
+</div>
+              <div class="buttons">
+              <div class="pull-right">
+                  <input type="submit" value="Pay With MolPay" class="btn btn-primary">
+              </div>
+              </div>
+              <!--</form>-->
+       </div>	
+      </div>
+    </div>
+    </div>
+
+  
+
+      
+
+      

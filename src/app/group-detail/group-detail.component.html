@@ -1,0 +1,260 @@
+<div class="sub-banner">
+      <img src="assets/img/about-banner.jpg">
+      <div class="banner-content-inner">
+			<h1><b>Home & Garden</b></h1>
+			<h3>Access our skilled community of over 1.6M people to help with your home & garden tasks today.</h3>
+		</div>
+</div>
+<div class="browse-view">
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-8" >
+        <div class="row text-center sub-category-inner" *ngFor ="let category of otherCategoryList">
+        <div class="col-sm-3">
+            <img src="assets/img/service2.jpg">
+            <h4>{{category.category_name}}</h4>
+           </div>
+           </div>
+     <!-- <div class="row text-center sub-category-inner">
+      <div class="col-sm-3">
+       <img src="assets/img/service2.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service3.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service4.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service5.jpg">
+       <h4>Category Name</h4>
+      </div>
+     </div>
+     
+     <div class="row text-center sub-category-inner">
+      <div class="col-sm-3">
+       <img src="assets/img/service2.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service3.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service4.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service5.jpg">
+       <h4>Category Name</h4>
+      </div>
+     </div>
+     
+     <div class="row text-center sub-category-inner">
+      <div class="col-sm-3">
+       <img src="assets/img/service2.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service3.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service4.jpg">
+       <h4>Category Name</h4>
+      </div>
+      <div class="col-sm-3">
+       <img src="assets/img/service5.jpg">
+       <h4>Category Name</h4>
+      </div>
+     </div> -->
+     
+    </div>
+    <div class="col-sm-4">
+     <div class="browse-right-menu category-right-notification">
+        <notification-browse-task></notification-browse-task>
+      <!-- <marquee behavior="scroll" direction="up">
+      <div class="right-card">
+       <div class="right-card-pic">
+        <img src="assets/img/client1.png">
+       </div>
+       <div class="right-card-content">
+        <h4>Title goes here</h4>
+        <p>lorem ipsum dolor sit amet is the dummy text for describing the website content as dummy.</p>
+        <a href="#">View Detail</a>
+       </div>
+      </div>
+      <div class="right-card">
+       <div class="right-card-pic">
+        <img src="assets/img/client1.png">
+       </div>
+       <div class="right-card-content">
+        <h4>Title goes here</h4>
+        <p>lorem ipsum dolor sit amet is the dummy text for describing the website content as dummy.</p>
+        <a href="#">View Detail</a>
+       </div>
+      </div>
+      <div class="right-card">
+       <div class="right-card-pic">
+        <img src="assets/img/client1.png">
+       </div>
+       <div class="right-card-content">
+        <h4>Title goes here</h4>
+        <p>lorem ipsum dolor sit amet is the dummy text for describing the website content as dummy.</p>
+        <a href="#">View Detail</a>
+       </div>
+      </div>
+      <div class="right-card">
+       <div class="right-card-pic">
+        <img src="assets/img/client1.png">
+       </div>
+       <div class="right-card-content">
+        <h4>Title goes here</h4>
+        <p>lorem ipsum dolor sit amet is the dummy text for describing the website content as dummy.</p>
+        <a href="#">View Detail</a>
+       </div>
+      </div>
+      <div class="right-card">
+       <div class="right-card-pic">
+        <img src="assets/img/client1.png">
+       </div>
+       <div class="right-card-content">
+        <h4>Title goes here</h4>
+        <p>lorem ipsum dolor sit amet is the dummy text for describing the website content as dummy.</p>
+        <a href="#">View Detail</a>
+       </div>
+      </div>
+      </marquee> -->
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ 
+ 
+ <div class="recent-task recent-task-tiles">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2>Recently Posted Task</h2>
+				</div>
+			</div>
+			<!--bindings={
+  "ng-reflect-ng-if": "[object Object],[object Object"
+}--><div class="row task-comment text-center" *ngFor ="let task of taskList" >
+  <div class="col-sm-3">
+      <a ng-reflect-router-link="browse-task/343" href="#/browse-task/343">
+      <div class="tile three columns panel">
+        <div class="top"><img alt="" class="avatar small" src="http://api.yellotasker.co/storage/image/1513503724.jpg">
+        <div class="heading"><span class="date">
+          {{task.title}}</span></div></div>
+        <div class="clear"></div><div class="details"><span class="description">
+        {{task.description}} 
+          </span></div>
+         <div class="location-date">
+            <span><i class="fa fa-location-arrow"></i> {{task.locationType}}</span>
+            <span><i class="fa fa-calendar"></i> Due Date Mar 7, 2018</span>
+          </div>
+         </div>
+        </a>
+    </div>
+				<!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}
+<!--<div class="col-sm-3">
+					<a ng-reflect-router-link="browse-task/341" href="#/browse-task/341">
+					<div class="tile three columns panel">
+						<div class="top"><img alt="" class="avatar small" src="http://api.yellotasker.co/storage/image/1513503724.jpg">
+						<div class="heading"><span class="date">
+							clean my bathroom </span></div></div>
+						<div class="clear"></div><div class="details"><span class="description">
+						 clean my bathroom  clean my bathroom  clean my bathroom  clean my... 
+							</span></div>
+	 					<div class="location-date">
+								<span><i class="fa fa-location-arrow"></i> Work remotely</span>
+								<span><i class="fa fa-calendar"></i> Due Date Mar 7, 2018</span>
+							</div>
+<div class="interested-task">
+      <div class="interestedpart">
+             <p>Are you interested to post this type of task.</p>  <a href="#"> Copy</a>
+      </div>
+      <div class="interestedpart" style="margin-bottom:none; border:none;h ">
+            <p>Are you interested to make an offer for this task.</p>  <a href="#">Make an offerr</a>
+      </div>
+    </div>
+						 </div>
+						</a>
+				</div><div class="col-sm-3">
+					<a ng-reflect-router-link="browse-task/342" href="#/browse-task/342">
+					<div class="tile three columns panel">
+						<div class="top"><img alt="" class="avatar small" src="http://api.yellotasker.co/storage/image/1513503724.jpg">
+						<div class="heading"><span class="date">
+							clean my bathroom </span></div></div>
+						<div class="clear"></div><div class="details"><span class="description">
+						 clean my bathroom  clean my bathroom  clean my bathroom  
+							</span></div>
+	 					<div class="location-date">
+								<span><i class="fa fa-location-arrow"></i> Work remotely</span>
+								<span><i class="fa fa-calendar"></i> Due Date Mar 7, 2018</span>
+							</div>
+						 </div>
+						</a>
+				</div><div class="col-sm-3">
+					<a ng-reflect-router-link="browse-task/343" href="#/browse-task/343">
+					<div class="tile three columns panel">
+						<div class="top"><img alt="" class="avatar small" src="http://api.yellotasker.co/storage/image/1513503724.jpg">
+						<div class="heading"><span class="date">
+							clean my bathroom </span></div></div>
+						<div class="clear"></div><div class="details"><span class="description">
+						 clean my bathroom  clean my bathroom  clean my bathroom  
+							</span></div>
+	 					<div class="location-date">
+								<span><i class="fa fa-location-arrow"></i> Work remotely</span>
+								<span><i class="fa fa-calendar"></i> Due Date Mar 7, 2018</span>
+							</div>
+						 </div>
+						</a>
+				</div><div class="col-sm-3">
+					<a ng-reflect-router-link="browse-task/344" href="#/browse-task/344">
+					<div class="tile three columns panel">
+						<div class="top"><img alt="" class="avatar small" src="http://api.yellotasker.co/storage/image/1513503724.jpg">
+						<div class="heading"><span class="date">
+							clean my bathroom </span></div></div>
+						<div class="clear"></div><div class="details"><span class="description">
+						 this.apiResponse.data this.apiResponse.data this.apiResponse.data... 
+							</span></div>
+	 					<div class="location-date">
+								<span><i class="fa fa-location-arrow"></i> Work remotely</span>
+								<span><i class="fa fa-calendar"></i> Due Date Mar 7, 2018</span>
+							</div>
+						 </div>
+						</a>
+				</div> -->
+			</div>
+			<!--<div class="row">
+				<div class="col-sm-12 see-more-cat-btn text-center">
+					<a ng-reflect-router-link="/browse-task" href="#/browse-task">Browse more task</a>
+				</div>
+		   </div>-->
+		 </div>
+	 </div>
+ 
+ <!--<div class="interest-category">
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-6">
+     <div class="interested-btn">
+      <p>Are you interested to post this type of task. </p>
+      <a href="#">Copy task </a>     </div>
+    </div>
+    <div class="col-sm-6">
+     <div class="interested-btn">
+      <p>Lorem ipsum dolor sit amet is the dummy text for describing the web content.</p>
+      <a href="#">Make an offer</a>     </div>
+    </div>
+   </div>
+  </div>
+ </div>-->

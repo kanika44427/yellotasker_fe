@@ -1,0 +1,28 @@
+<div class="about-page text-center" style="
+    margin-top:  88px;
+">
+  
+  <div class="container">
+  <h2 style="font-size:36px">In the news.</h2>
+  <h4 style="font-size:30px">Read all about how we’re revolutionizing how work gets done.
+</h4>
+<p style="font-size:24px">Media inquiries? We can be reached at press@yellotasker.com.<br><br>
+</p>
+</div>
+ </div>
+<div class="community-content">
+  <div class="container">
+   <div class="row">
+    
+    <div class="col-sm-6" *ngFor = "let item of press">
+     <div class="earn-block">
+      <h4>{{item.pressName}}</h4>
+      <a target="_blank" href="{{item.link}}"><span [innerHTML]="item.articleDescription"></span></a>
+      
+      <p class="press-date">{{item.created_at}}</p>
+     </div>
+    </div>
+
+     </div>
+  </div>
+ </div>

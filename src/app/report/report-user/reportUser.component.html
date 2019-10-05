@@ -1,0 +1,39 @@
+<!--Report  Modal -->
+<div class="modal fade" id="ReportUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+     <form #reportForm="ngForm"> 
+      novalidate class="form login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closePopup()">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Report this User</h4>
+      </div>
+      <div class="modal-body">
+        <div class="report-popup">
+           <label class="error-text">
+                {{errorMessage}}
+                 </label>
+        <div class="drop-down-report">
+            <p>Please give us more information regarding this project</p>
+            <select [(ngModel)]="selectedVal" required name="reasonValue">
+                 <option value="" selected>Please select</option>
+                <option *ngFor="let reason of parentComponent.reasonUserList" value= {{reason.id}}>{{reason.reasonDescription}}</option>
+            </select>
+        </div>
+        <div class="report-area">
+           <textarea name="description" #description ="ngModel" [(ngModel)]="commdescription" 
+            placeholder="Comment (required)" required></textarea>
+           <a href="#" aria-controls="profile" role="tab" data-toggle="tab" id="login-button" 
+           class="button-cta button-lrg center full-width" (click)="reportUser(reportForm.value, reportForm.valid)">
+               Continue
+           </a>
+           <div class="text-center make-continue">
+            <p> <a (click)="closePopup()">Cancel</a></p></div>
+            </div>
+       </div>
+      </div>
+     </div>
+    </form>
+  </div>
+</div>

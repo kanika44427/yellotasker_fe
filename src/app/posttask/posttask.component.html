@@ -1,0 +1,292 @@
+<div class="modal fade post-task-model" id="PostTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"  aria-label="Close" (click)="closePosttaskPopup()">
+					<span aria-hidden="true">&times;</span></button>
+					<button  *ngIf="locationIndicator||budgetIndicator" class="back" (click)="back()" type="button">
+						<i class="fa fa-angle-left"></i></button>
+        <h4 class="modal-title" id="myModalLabel">Post Your Task For FREE</h4>
+      </div>
+      <div class="modal-body">
+	  		<div class="stepwizard">
+    <div class="stepwizard-row">
+        <div class="stepwizard-step">
+            <button (click)="showDetailsTab()" aria-controls="home" role="tab" data-toggle="tab" 
+						  type="button" class="btn btn-primary btn-circle" [ngClass]="{'active-btn': detailsIndicator}">1</button>
+            <p>Details</p>
+        </div>
+        <div class="stepwizard-step">
+            <button (click)="showLocationTab()" aria-controls="location" role="tab" data-toggle="tab" type="button" 
+						class="btn btn-primary btn-circle" [ngClass]="{'active-btn': locationIndicator}">2</button>
+            <p>Location</p>
+        </div>
+        <div class="stepwizard-step">
+            <button (click)="showBudgetTab()" aria-controls="budget" role="tab" data-toggle="tab" type="button" 
+						class="btn btn-primary btn-circle" [ngClass]="{'active-btn': budgetIndicator}">3</button>
+            <p>Budget</p>
+		</div>
+		<!-- <div class="stepwizard-step">
+            <button (click)="showPaymentTab()" aria-controls="payment" role="tab" data-toggle="tab" type="button" 
+						class="btn btn-primary btn-circle" [ngClass]="{'active-btn': paymentIndicator}">4</button>
+            <p>Payment</p>
+        </div> -->
+		
+    </div>
+</div>	
+    <div class="tab-content">
+		<div role="tabpanel" class="tab-pane" id="home" *ngIf="detailsIndicator" [ngClass]="{'active': detailsIndicator}" >
+		
+			<form [formGroup]="postTaskStep1Form" (ngSubmit)="onStep1Submit(postTaskStep1Form, postTaskStep1Form.value, postTaskStep1Form.valid)">
+						<small class="text-danger" *ngIf="errorIndicator">
+							Please provide required details.
+						</small>
+						<div class="form-item login-form-item"><label class="block">What task do you need done?<span style="color:red;">*</span></label>
+						<input class="{{titleReqIndicator==true?'red-border':''}}" type="text" id="email-input" formControlName="title" name="taskTitle" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name:'e.g. Clean my 2 bedroom apartmen'}}"></div>
+
+					<div class="form-item login-form-item"><label class="block">Describe your task in more detail <span style="color:red;">*</span></label>
+					<textarea class="{{minLenIndicator==true||descReqIndicator==true?'red-border':''}}" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name+' '+parentComponent.catObject.category_group_name:'e.g. Clean my 2 bedroom apartmen'}}" id="post-task-description" (keyup)="changed(postTaskStep1Form.value.description)" 
+					   formControlName="description" class="tick-input" rows="8"></textarea>
+					<span style="float:right; font-size:13px;">{{ charsLeft }} characters remaining</span>
+						<small class="text-danger" *ngIf="minLenIndicator">
+							Tell us more! Please enter at least 25 characters.
+						</small>
+					<span class="sub-content" style="float:left; width:100%;color: #000 !important;">For your safety, please do not share personal information, e.g., email, phone or address.</span>
+					</div>
+					<div class="form-item login-form-item center padder5">
+					<!--	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" id="login-button" class="button-cta button-lrg center full-width">
+							Continue
+						</a>-->
+						<input id="taskStep1Continue" class="button-cta button-lrg center full-width" value="Continue" type="submit">
+					</div>
+			 </form>
+			
+		 </div>
+               <div role="tabpanel" class="tab-pane" id="location"  *ngIf="locationIndicator" [ngClass]="{'active': locationIndicator}" >
+                         <form #postTaskStep2Form="ngForm" novalidate (ngSubmit)="onStep2Submit(postTaskStep2Form.value, postTaskStep2Form.valid)">
+																<small class="text-danger" *ngIf="errorIndicator">
+																	Please provide required details.
+																</small>
+																<div class="form-item login-form-item"><label class="block">
+																	Is this a physical or digital task?<span style="color:red;">*</span></label>
+																<!--<input type="text" id="email-input" name="location" placeholder="Sydney, NSW, 2000, Australia" formControlName="location">-->
+																</div>
+																		
+															<div class="funkyradio divide-row">
+																<div class="funkyradio-default">
+																	<input class="{{locationReqIndicator==true?'red-border':''}}"  type="radio"
+																	 name="locationType" id="radio4"  value="Physical task"
+																	 [(ngModel)]="user.locationType" #locationType="ngModel" />
+																	<label for="radio4">Physical task</label>
+																</div>
+																<div class="funkyradio-default">
+																	<input class="{{locationReqIndicator==true?'red-border':''}}" type="radio" name="locationType" id="radio5" 
+																	 value="Digital task"  [(ngModel)]="user.locationType" #locationType="ngModel"/>
+																	<label for="radio5">Digital task</label>
+																</div>
+															</div>
+															<div *ngIf="postTaskStep2Form.value.locationType ==  'Physical task'">
+																<div class="form-item login-form-item"><label class="block">Suburb<span style="color:red;">*</span></label>
+																<textarea class="{{locationReqIndicator==true?'red-border':''}}" required id="post-task-description" [(ngModel)]="user.address" #address="ngModel"
+																 class="tick-input" rows="3" name="address"></textarea>
+																</div>
+																<!-- <div class="form-item login-form-item"><label class="block">Zipcode</label>
+																<input type="number"
+																 id="email-input" name="zipcode" [(ngModel)]="user.zipcode" #zipcode="ngModel"  placeholder=""></div> -->
+															</div>
+															<small class="text-danger" *ngIf="locationReqIndicator">
+																	Please enter location type.
+																</small>
+															
+															
+														<!--	<span class="sub-content">We value your work details and contact number so, we promise we will
+																not share contact details untill or less a user has shown interest in your task</span>-->
+															
+														<div class="form-item login-form-item"><label class="block">Need task completed by <span style="color:red;">*</span></label>
+															<div class="funkyradio divide-row">
+																<div class="funkyradio-default">
+																	<input class="{{dueDateReqIndicator==true?'red-border':''}}" type="radio" 
+																	name="dueDateType"  value="Today" id="radiodate1"
+																	(click)="getDate('Today')"  [(ngModel)]="user.dueDateType" 
+																	 #dueDateType="ngModel" />
+																	<label for="radiodate1">Today</label>
+																</div>
+																<div class="funkyradio-default">
+																	<input class="{{dueDateReqIndicator==true?'red-border':''}}" type="radio"
+																	 name="dueDateType"   value="Tommorow"  id="radiodate2"
+																	(click)="getDate('Tommorow')" [(ngModel)]="user.dueDateType"
+																	#dueDateType="ngModel" />
+																	<label for="radiodate2">Tommorow</label>
+																</div>
+																<div class="funkyradio-default">
+																	<input class="{{dueDateReqIndicator==true?'red-border':''}}" type="radio" 
+																	name="dueDateType"   value="Within 1 week"  id="radiodate3"
+																	(click)="getDate('Within 1 week')" [(ngModel)]="user.dueDateType"
+																	#dueDateType="ngModel" />
+																	<label for="radiodate3">Within 1 week</label>
+																</div>
+																<div class="funkyradio-default">
+																	<input class="{{dueDateReqIndicator==true?'red-border':''}}" type="radio" 
+																	name="dueDateType"
+																	   value="By a certain date"  id="radiodate4"
+																	(click)="getDate('By a certain date')" [(ngModel)]="user.dueDateType"
+																	#dueDateType="ngModel"/>
+																	<label for="radiodate4">By a certain date</label>
+																</div>
+															</div>
+															
+															<div class="form-item login-form-item relative" *ngIf="user.dueDateType && user.dueDateType != 'By a certain date'">
+																<span class="input-icon"><img src="assets/img/calendar-icon.png"></span>
+																<input type="text"  name="dueDate" placeholder="select date" readonly
+																 style="padding-left:35px;" #dueDate="ngModel" [ngModel]="user.dueDate | date:'dd-MM-y'"
+																 (ngModelChange)="user.dueDate = $event" class="dueDate">
+															</div>
+															<small class="text-danger" *ngIf="dueDateReqIndicator">
+																	Please enter due date.
+																</small>
+															<div class="form-item login-form-item relative" *ngIf="user.dueDateType && user.dueDateType == 'By a certain date'">
+																<span class="input-icon"><img src="assets/img/calendar-icon.png"></span>
+															
+															  <material-datepicker ngDefaultControl name="dueDate"
+															   placeholder="select date" [ngModel]="user.dueDate | date:'dd-MM-y'" 
+															  style="padding-left:35px;" class="new-date-box"
+															  [(date)]="user.dueDate"  dateFormat="DD-MM-YYYY"></material-datepicker>
+															</div>
+															<span class="sub-content">For your safety, please do not share personal information, e.g., email, phone or address.</span>
+														</div>
+														<div class="form-item login-form-item center padder5">
+																<input id="taskStep2Continue" class="button-cta button-lrg center full-width" value="Continue" type="submit">
+														</div>
+									    </form>
+			         </div>
+
+                        <div role="tabpanel" class="tab-pane" id="budget" *ngIf="budgetIndicator" [ngClass]="{'active': budgetIndicator}">
+													<form [formGroup]="postTaskStep3Form" (ngSubmit)="onStep3Submit(postTaskStep3Form.value, postTaskStep3Form.valid)">
+																<small class="text-danger" *ngIf="errorIndicator">
+																	Please provide required details.
+																</small>
+															  <!--<div class="form-item login-form-item"><label class="block">People required for this task</label>
+																<input min="1"type="number" id="peopleRequired" name="peopleRequired" placeholder="1" 
+																formControlName="peopleRequired" ></div>-->
+															  <br/>
+																<!--<div *ngIf="postTaskStep3Form.value.peopleRequired > 1" class="funkyradio divide-row">
+																			<div class="funkyradio-default full-width">
+																			<input type="radio" name="typeOfPeople" id="radioPeopleRequired" formControlName="typeOfPeople" value="Looking for multiple people"  />
+																			<label for="radioPeopleRequired">Looking for multiple people</label>
+																</div>
+																<div class="funkyradio-default full-width">
+																			<input type="radio" name="typeOfPeople" id="radioPeopleRequired2" formControlName="typeOfPeople" value="Looking for one team with multiple people" />
+																			<label for="radioPeopleRequired2">Looking for one team with multiple people</label>
+																</div>
+																</div>-->		
+																<div class="form-item login-form-item"><label class="block">What's your budget?</label>
+																	<div class="funkyradio divide-row">
+																	<div class="funkyradio-default full-funky">
+																			<input type="radio" name="budgetType" id="budgetType" 
+																			formControlName="budgetType" value="Materials & workmanship"  />
+																			<label for="budgetType">Materials & workmanship</label>
+																	</div>
+																	<div class="funkyradio-default full-funky">
+																			<input type="radio" name="budgetType" id="budgetType1" 
+																			formControlName="budgetType" value="Workmanship only - i will supply materials" />
+																			<label for="budgetType1">Workmanship only - i will supply materials</label>
+																	</div>
+																	<small class="text-danger" *ngIf="budgetReqIndicator">
+																			Please enter budget type.
+																		</small>
+																	<div class="funkyradio-default" *ngIf="postTaskStep3Form.value.typeOfPeople == 'Looking for one team with multiple people'">
+																			<input type="radio" name="budgetType2" id="budgetType2" formControlName="budgetType" value="Team, Per person per hour" />
+																			<label for="budgetType2">Team(Per person per hour)</label>
+																	</div>
+																	</div>
+																	<div class="form-item login-form-item half-width" >
+																		<label class="block">MYR</label>
+																	 	<input min="1" (keypress)="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" class="price-in" type="number" id="email-input" name="amount" placeholder="e.g. 25"
+																			  ([ngModel])="postTaskStep3Form.value.amount" formControlName="amount">
+																			 
+																	 </div>
+																	 <small class="text-danger" *ngIf="minReqValIndicator">
+																			Amount can not be zero.
+																		</small>
+																	<div class="form-item login-form-item half-width-second" *ngIf="postTaskStep3Form.value.budgetType == 'Per Hour'">
+																		<label class="per-hour">per hour for</label>
+																		<input type="number" id="email-input" name="hourlyRate" placeholder="hours" 
+																		formControlName="hourlyRate" ([ngModel])="hourlyRate"> 
+																	 </div>
+																</div>
+																<div class="form-item login-form-item" *ngIf="postTaskStep3Form.value.budgetType == 'Total'">
+																	<label class="block">
+																		Total Estimated Amount :  {{postTaskStep3Form.value.amount}} MYR
+																	</label>
+																</div>
+															     <div class="form-item login-form-item" *ngIf="postTaskStep3Form.value.budgetType == 'Per Hour'">
+																	<label class="block">
+																		Total Estimated Amount : {{postTaskStep3Form.value.amount * postTaskStep3Form.value.hourlyRate}}
+																	</label>
+																</div>
+																<div class="form-item login-form-item center padder5">
+																	<input id="taskStep3Continue" class="button-cta button-lrg center full-width" 
+																	value="Get Quotes Now" type="submit">
+																</div>
+															</form>
+													</div>
+															
+																<div role="tabpanel" class="tab-pane" id="finish" *ngIf="taskFinishIndicator" [ngClass]="{'active': taskFinishIndicator}">
+																	<br/>
+																	<div class="text-center">
+																	<p><b>Your Post Succesfully added</b></p>
+																	</div>
+																	
+																			<div class="finish-radio">
+																				<div class="radio-text">
+																					<input (click)="hidePaymentTab()" type="radio" name="radio" id="radio10" checked="checked" value="pay-to-YT-before-task" />
+																					<span>You release payment at the time of assigning task to offers posted.</span>
+																				</div>
+																				<div class="radio-text">
+																					<input (click)="showPaymentTab()" type="radio" name="radio" id="radio11"  value="pay-to-YT-after-task-completion" />
+																					<span>You are releasing payment now.</span>
+																				</div>
+																			</div>
+																			<div role="tabpanel" class="tab-pane" id="finish" *ngIf="paymentIndicator" [ngClass]="{'active': paymentIndicator}">
+																				<form action="https://sandbox.molpay.com/MOLPay/pay/SB_yellotasker/" method="post" id="payment" ngNoForm>
+																					
+																					<input type="hidden" name="amount" value="{{molPayValues.amount}}">
+																					<input type="hidden" name="orderid" value="{{molPayValues.oid}}">
+																					<input type="hidden" name="bill_name" value="{{molPayValues.bill_name}}">
+																					<input type="hidden" name="bill_email" value="{{molPayValues.bill_email}}">
+																					<input type="hidden" name="bill_mobile" value="">
+																					<input type="hidden" name="country" value="">
+																					<input type="hidden" name="currency1" value="">
+																					<input type="hidden" name="vcode" value="{{molPayValues.vcode}}">
+																					<input type="hidden" name="returnurl" value="{{molPayValues.returnurl}}">
+																					
+																					<input type="hidden" name="bill_desc" value="Task Payment : Describe your task in more detail *">
+																					<div class="buttons">
+																					<div class="pull-right">
+																						<input type="submit" value="Pay With MolPay" class="btn btn-primary">
+																					</div>
+																					</div>
+																					</form>
+																			 </div>	
+																	<div class="form-item login-form-item center padder5 finish-btn">
+																		<a (click)="showSuccessPopup()" aria-controls="success" role="tab"
+																		 data-toggle="tab" 
+																		id="login-button" class="button-cta button-lrg center full-width">Finish</a>
+																	</div>
+															
+																	</div>
+																	<div role="tabpanel" class="tab-pane" id="success"  >
+																		<br/>
+																		<div class="text-center">
+																			<img src="assets/img/checkmark.gif" alt="yellotasker">
+																		<p><b>Your Post Successfully Added</b></p>
+																		</div> 
+																	</div>
+                              </div>
+                          <!-- Tab panes -->
+
+      </div>
+      
+    </div>
+  </div>
+</div>

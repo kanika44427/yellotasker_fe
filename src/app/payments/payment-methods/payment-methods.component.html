@@ -1,0 +1,57 @@
+<div class="sub-banner profile-banner">
+  <div class="browse-menu profile-banner">
+      <div class="container">
+        <ul>
+          <li ><a [routerLink] ="['/dashboard']">Dashboard</a>
+          </li>       
+          <li><a [routerLink] ="['/payment/history']">Payment History</a></li>       
+          <li [ngClass]="{'mega-menu-active': true}"><a [routerLink] ="['payment/payment-methods']">Payment Methods</a></li>       
+          <li><a href="#">Refer a friend</a></li>
+          <li><a href="#">Notifications</a></li>
+          <li><a href="#">Settings</a></li>
+          
+        </ul>
+      </div>
+  </div>
+</div>
+<div class="container payment-method-form">
+  <div>
+    Receive Payments
+  </div>
+  <div>
+      Once a task is completed, you will be able to request payment from the Job Poster, who will then release it to your nominated account.
+  </div>
+  <div class="bank-heading-d">
+      BANK ACCOUNT DETAILS
+  </div>
+  <div *ngIf= "!isBankAlreadyExist">
+      <label>Bank Name : <span class="mend-str">*</span></label>
+      <input type="text" id="bankname"  name="bankname" [(ngModel)]="bankDetails.bankName" #bankname="ngModel">
+      <label>Account Holder Name : <span class="mend-str">*</span></label>
+      <input type="text" id="accountName"  name="accountName" [(ngModel)]="bankDetails.accountName" #bankname="ngModel">
+      <label>Account Number : <span class="mend-str">*</span></label>
+      <input type="text" id="accountNumber"  name="accountNumber" [(ngModel)]="bankDetails.accountNumber" #bankname="ngModel">
+      <label>IFSC Code :  <span class="mend-str">*</span></label> 
+      <input type="text" id="ifscCode"  name="ifscCode" [(ngModel)]="bankDetails.ifscCode" #bankname="ngModel">
+      <label>Bank Branch : <span class="mend-str">*</span></label> 
+      <input type="text" id="bankBranch"  name="bankBranch" [(ngModel)]="bankDetails.bankBranch" #bankname="ngModel">
+      <button (click)="addBankAccount()" type="button">Add bank account</button>
+ </div>
+ <div *ngIf= "isBankAlreadyExist">
+    <div>
+        Bank Name : {{userBankDetail.bank_name}}
+    </div>
+    <div>
+        Account Holder Name  : {{userBankDetail.account_name}}
+    </div>
+    <div>
+        IFSC Code : {{userBankDetail.ifsc_code}}
+    </div>
+    <div>
+        Bank Branch : {{userBankDetail.bank_branch}}
+    </div>
+    <div>
+        <button (click)="deleteBankAccount()" type="button">Delete</button>
+    </div>
+ </div>
+</div>

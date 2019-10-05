@@ -1,0 +1,190 @@
+<div class="sub-banner profile-banner profile-no-margin">
+		<div class="user-profile-section">
+		 <div class="container">
+		  <div class="row">
+		   <div *ngIf="profileData" class="col-sm-8">
+			<div class="user-profile-pic">
+			 <img [src]="profileData.profile_image!=null&&profileData.profile_image!=''?profileData.profile_image:'assets/img/task-person.png'">
+			</div>
+			<div class="user-name-detail">
+			 <h4>{{profileData.first_name}} {{profileData.last_name}}</h4>
+			 <p *ngIf="profileData.location">
+			  <i class="fa fa-map-marker"></i> {{profileData.location}}
+			 </p>
+			 <p>
+				Member since {{profileData.created_at|date}}
+			 </p>
+			 <p style="font-size:13px;" (click)="reportUser()">
+			  <i class="fa fa-flag"></i> <a style="color:#000;">Report this member</a>
+			 </p>
+			</div>
+		   </div>
+		  
+		  </div>
+		 </div>
+		</div>
+		
+	   </div>
+
+
+
+<div class="profile-main-content">
+	<div class="container">
+	 <div class="row">
+	  <div class="col-sm-9">
+	   <div class="public-pro-left-content">
+			<div class="public-about" *ngIf="profileData">
+						<div  *ngIf="profileData.about_me != null">
+							<h4 >About {{profileData.first_name}}</h4>
+								{{profileData.about_me}}
+						</div>
+						<div  *ngIf="profileData.tagLine != null">
+							<h4>{{profileData.first_name}}'s Tagline</h4>
+							
+									{{profileData.tagLine}}
+							
+						</div>
+						<div  *ngIf="profileData.language != null">
+							<h4>Languages Known</h4>
+						
+							    {{profileData.language}}
+							
+						</div>
+						<div  *ngIf="profileData.qualification != null">
+							<h4>Qualification</h4>
+							
+							    {{profileData.qualification}}
+							
+						</div>
+						<div  *ngIf="profileData.workExperience != null">
+							<h4>Work Experience</h4>
+							
+							    {{profileData.workExperience}}
+							
+						</div>
+			</div>
+        <div class="other-border">
+			<ul class="nav nav-tabs" role="tablist">
+					<li class="active" role="presentation">
+						<a aria-controls="home" (click)="getUserProfile('poster')" data-toggle="tab"
+						 role="tab" aria-expanded="true">
+							As Poster
+						</a>
+					</li>
+					<li role="presentation" class="">
+						<a aria-controls="profile" (click)="getUserProfile('worker')"
+						 data-toggle="tab" role="tab" aria-expanded="false">
+							As Worker
+						</a>
+					</li>
+			</ul>
+			<div *ngIf="posterIndicator"><!-- user profile open --> 
+					<!--<div class="user-rating-detail">
+					<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+					<p>5 Star from 1 review</p>
+					<p>No Completion Rate</p>
+					<small>1 completed tasks</small>
+					</div>-->
+					<div class="main-profile-review">
+						<h4>Review</h4>
+					<div *ngFor ="let list of profileData.task_as_poster">
+				     <div *ngIf="list.doer_user_detail && list.doer_user_detail.doer_review">
+					  <div *ngFor ="let review of list.doer_user_detail.doer_review">
+							  <span *ngIf= "review.taskId == list.id" >
+									<div class="half-review" >
+											<div class="recent-detail" >
+										<div class="recent-pic" *ngIf ="list.task_posted_user">
+												<img [src]="list.doer_user_detail.profile_image!=null&&list.doer_user_detail.profile_image!=''?list.doer_user_detail.profile_image:'assets/img/task-person.png'">
+										</div>
+										<span>{{list.title}}</span>
+										<br/>
+										<span *ngIf="list.doer_user_detail.first_name && list.doer_user_detail.last_name">
+										   <a routerLink ="/profile-view/{{list.doer_user_detail.first_name}}/{{list.doer_user_detail.id}}" (click)="getProfileOfOthers()">
+											{{list.doer_user_detail.first_name}} {{list.doer_user_detail.last_name}} </a> said "
+										</span>
+									      {{review.doerReview}}"
+										<p style="color:#666; font-size:13px; margin-top:10px;">
+												{{list.updated_at | timeAgo }}
+										</p>
+									<span *ngFor = "let rating of createRange(review.doerRating)">
+											<i class="fa fa-star"></i> 
+									</span>
+								 
+								 </div>
+								 </div>
+							</span>
+					   </div>
+					 </div>
+				   </div>
+				</div>
+		</div><!--user profile close-->
+		<div *ngIf="!posterIndicator"><!-- task doer indicator --> 
+			<h4>Review</h4>
+			<div *ngFor ="let list of profileData.task_as_doer">
+				<div *ngIf="list.task_posted_user && list.task_posted_user.poster_review">
+				 <div *ngFor ="let review of list.task_posted_user.poster_review">
+						 <span *ngIf= "review.taskId == list.id" >
+							   <div class="half-review" >
+									   <div class="recent-detail" >
+								   <div class="recent-pic" *ngIf ="list.task_posted_user">
+										   <img [src]="list.task_posted_user.profile_image!=null&&list.task_posted_user.profile_image!=''?list.task_posted_user.profile_image:'assets/img/task-person.png'">
+								   </div>
+								   <span>{{list.title}}</span>
+								   <br/>
+								   <span *ngIf="list.task_posted_user.first_name && list.task_posted_user.last_name">
+									  <a routerLink ="/profile-view/{{list.task_posted_user.first_name}}/{{list.task_posted_user.id}}" (click)="getProfileOfOthers()">
+									   {{list.task_posted_user.first_name}} {{list.task_posted_user.last_name}} </a> said "
+								   </span>
+									 {{review.posterReview}}"
+								   <p style="color:#666; font-size:13px; margin-top:10px;">
+										   {{list.updated_at | timeAgo }}
+								   </p>
+							   <span *ngFor = "let rating of createRange(review.posterRating)">
+									   <i class="fa fa-star"></i> 
+							   </span>
+							
+							</div>
+							</div>
+					   </span>
+				   
+				  </div>
+				</div>
+			  </div>
+		</div>
+	   </div>
+	  </div>
+	</div>
+	  <div class="col-sm-3">
+	   <div class="recent-profile-activity main-profile-right">
+		<p class="text-center review-bg"><span>Badges</span></p>
+		<p><i class="fa fa-credit-card"></i> Payment Method</p>
+		<p><i class="fa fa-phone"></i> Mobile</p>
+		<p><i class="fa fa-facebook"></i> Facebook</p>
+	   </div>
+	   <div class="recent-profile-activity main-profile-right" *ngIf="profileData.skills != null">
+		<p class="text-center review-bg"><span>Skills</span></p>
+		<p *ngFor = "let item of profileData.skills">{{item}}</p>
+		
+	   </div>
+	   <div class="recent-profile-activity main-profile-right" *ngIf="profileData.modeOfreach != null">
+		<p class="text-center review-bg"><span>Transpotation</span></p>
+		<p *ngFor = "let data of profileData.modeOfreach">{{data}}</p>
+		
+	   </div>
+	   <div class="recent-profile-activity main-profile-right" *ngIf="portfolioImagesArr.length > 0">
+			<p class="text-center review-bg"><span>Portfolio</span></p>
+			<ul class="portfolio-select-img portfolio-last">
+					<li  *ngFor="let item of portfolioImagesArr">
+						<img [src]="item.images">
+					</li>
+
+			</ul>
+		   </div>
+	  </div>
+	 </div>
+	</div>
+  
+   </div>
+   <div *ngIf = "profileData">
+   <reportUser-popup [userID]="profileData.id"></reportUser-popup>
+   </div>

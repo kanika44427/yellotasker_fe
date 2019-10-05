@@ -1,0 +1,36 @@
+<div class="sub-banner">
+		<img src="assets/img/about-banner.jpg" alt="">
+		<div class="banner-content-inner">
+			<h1>Browse Categories</h1>
+			<h3>Lets know something about us</h3>
+		</div>
+	</div>
+	<div class="about-page text-center">
+		<div class="container">
+			<h2>Browse Categories</h2>
+		</div>
+	</div>
+	<div class="cate-listing">
+				<div class="container">
+			<div class="row" *ngFor ="let category of categoryList">
+				<div class="col-md-6 list-category text-primary">
+									<h3 class="title">
+										
+									    <p routerLink ="/group-detail/{{category.group_id}}"><img src={{category.category_group_image}}> {{category.category_group_name}}</p>
+									</h3>
+							 
+									<div class="list-group" *ngFor ="let subCategory of category.category">
+										
+										<a routerLink ="/category-detail/{{subCategory.category_id}}" class="list-group-item">
+											<div class="truncate pull-left">	{{subCategory.category_name}}</div><span class="badge"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+									</div>
+									
+                                    <span class="list-footer">
+									    <a  class="btn btn-sm btn-primary">View All</a>
+                                    </span>
+
+								</div>
+					
+			</div>
+		</div>
+	</div>

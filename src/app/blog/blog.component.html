@@ -1,0 +1,105 @@
+<div class="sub-banner">
+  <img src="assets/img/sub-banner.jpg" alt="">
+  <div class="search">
+    <input [(ngModel)]="query"><i class="fa fa-search"></i>
+    <div  *ngIf = "query.length > 0" class="auto-search">
+      <div  *ngFor="let item of blogs | search:'blog_title':query">
+          <span style="cursor:pointer;" (click)="navigateArticleDetail(item.id)">
+            <u> {{item.blog_title}} </u>
+            </span>
+            
+      </div>
+  </div>
+  </div>
+  </div>
+<div class="blog-page">
+    <div class="container">
+     <div class="row">
+      <div class="col-sm-12 blog-head text-center">
+        <h2><b>Yellotasker Blogs</b></h2>
+       </div>
+       <div class="col-sm-12">
+         <div class="show-left">
+        <h1>Helping you get more done</h1>
+    <p class="show-blog">Show me <select (change)="getblogs($event.target.value,'topic')">
+       <option value="">All topics</option>
+       <option value="news">News</option>
+       <option value="stories">Stories</option>
+       <option value="tips">Tips</option>
+       </select> 
+       ordered by
+        <!-- <select>
+       <option>All categories</option>
+       <option>Popularity</option>
+       </select> -->
+       <select  *ngIf="catList?.length > 0" (change)="getblogs($event.target.value,'cat')">
+        <option value="" selected>All categories</option>
+        <option *ngFor="let category of catList" [value]="category.group_id">{{category.category_group_name}}</option>
+      </select>
+    </p>
+    </div>
+   <div class="show-right">
+<p class="article-para"><span class="blog-search">
+        <input autocomplete="off" class="search-field" id="eac-5954" name="s" placeholder="Search" type="search" value=""><a href="#"><i class="fa fa-search"></i></a></span></p>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+            <div class="col-sm-12">
+                <p class="we-found">WE FOUND {{blogs?.length || '0'}} ARTICLES FOR YOU</p>
+             <div class="post-view-switcher">
+                <input type="radio" name="view" value="cards" id="cards" class="switcher" checked=""><label (click)="showBlog('list')" for="cards">Card View</label>
+                <input type="radio" name="view" value="rows" id="rows" class="switcher"><label (click)="showBlog('grid')" for="rows">Row View</label>
+              </div>
+            </div>
+           </div>
+     <div class="row blog-widget" *ngIf="gridBlog" id="blog-grid" >
+      <div class="col-sm-4" *ngFor ="let blog of blogs">
+       <div class="blog-col">
+        <div class="blog-pic">
+            <a routerLink ="/blogs/{{blog.id}}">  
+                <img src={{blog.blog_image}} onError="this.src='/assets/img/dummy-img.jpg';">
+             </a>
+        </div>
+        <div class="blog-descri">
+         <div class="post-details">
+          <span class="category-container">TIPS</span>  <span class="author">By {{blog.author}}</span>
+            </div>
+            <a routerLink ="/blogs/{{blog.id}}"><h3>{{blog.blog_title}}</h3></a>
+            <div class="blog-main-descr" [innerHTML]="blog.blog_description"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="row blog-widget" *ngIf="listBlog" id="blog-listing">
+            <div class="col-sm-12"  *ngFor ="let blog of blogs">
+             <div class="blog-col blog-col-listing">
+              <div class="blog-pic blog-pic-listing">
+                    <a routerLink ="/blogs/{{blog.id}}">  
+                         <img src="{{blog.blog_image}}" onError="this.src='/assets/img/dummy-img.jpg';">
+                    </a>
+              </div>
+              <div class="blog-descri blog-desc-listing">
+               <div class="post-details">
+                <span class="category-container">{{blog.blog_type}}</span>  <span class="author">{{blog.author}}</span>
+                  </div>
+                  <a routerLink ="/blogs/{{blog.id}}">
+                    <h3>
+                       {{blog.blog_title}}
+                    </h3>
+                 </a>
+               <div class="blog-main-descr" [innerHTML]="blog.blog_description.length>100?blog.blog_description.substring(0, 100)+'...':blog.blog_description"></div> 
+              </div>
+             </div>
+            </div>
+        </div>
+        <div class="row pull-right see-more-blg">
+          <div class="container">
+              <div *ngIf="!hideSeeMore" class="col-sm-12">
+                  <input (click)="getMoreBlogs()" type="button" value="See More"/>
+                </div>
+            </div>
+          </div>
+   </div>
+</div>
+

@@ -1,0 +1,242 @@
+	<div class="hero-section">
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    	<div class="item active" id="banner1">
+	   		<img src="assets/img/banner_1.jpg" alt="...">
+	        <div class="carousel-caption">
+				<h1>Something need doing ?</h1>
+				<p><b>FREE to post any task </b> in 3 easy steps and receive no obligation quotes quickly. Simple.</p>
+				<a (click)="openPostTask()">Post a task</a>
+			
+				<div class="app-icon">
+					<img src="assets/img/google-play_new.png" height="50px;"> 
+					<img src="assets/img/apple-store_new.png" height="50px;">
+				</div>
+			</div>
+		</div>
+   		 <div class="item" id="banner2">
+			  <img src="assets/img/banner_2.jpg" alt="...">
+			  	<div class="carousel-caption">
+					<h1>Swap your time for cash</h1>
+					<p><b>Yellotasker allows you to earn </b>when, how and where you want by completing physical or digital tasks. Nothing beats flexibility.</p>
+					<a [routerLink] ="['/browse-task']">Start earning now</a>
+					
+					<div class="app-icon">
+						<img src="assets/img/google-play_new.png" height="50px;"> 
+						<img src="assets/img/apple-store_new.png" height="50px;">
+					
+					</div>
+				</div>
+				</div>
+
+  <!-- Controls -->
+  
+</div>
+<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <img src="assets/img/prev-tab.png">
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <img src="assets/img/next-tab.png">
+  </a>
+		
+	</div>
+	<div class="how-to-use">
+		<div class="how-left">
+			<h2>How Yellotasker works</h2>
+			<p>Yellotasker is a community that connects people who need tasks done, with people who are looking to earn money and ready to work. Simple, secure and free.</p>
+			<ul>
+				<li><img src="assets/img/step1.png">
+					<span><b>Post a task for free</b><br/></span>
+						<span *ngIf="!how_1_full">{{how_1.length>15?how_1.substring(0, 15)+'...':how_1}}
+							<a (click)="how_1_read_more()">Read More</a>
+						</span>
+						<span *ngIf="how_1_full">{{how_1}}</span>
+										
+					</li>
+				<li><img src="assets/img/step2.png">
+					<!--Review quotes and -->
+					<span><b>Select a Tasker</b><br/></span>
+						<span *ngIf="!how_2_full">{{how_2.length>15?how_2.substring(0, 15)+'...':how_2}}
+							<a (click)="how_2_read_more()">Read More</a>
+						</span>
+						<span *ngIf="how_2_full">{{how_2}}</span>
+								</li>
+					
+				<li><img src="assets/img/step3.png">
+					<span><b>Pay for task well done</b>
+						<br/></span>
+						<span *ngIf="!how_3_full">	
+						{{how_3.length>15?how_3.substring(0, 15)+'...':how_3}}
+						<a (click)="how_3_read_more()">Read More</a>
+						</span>
+						<span *ngIf="how_3_full">{{how_3}}</span>
+						
+						</li>
+			</ul>
+			<a [routerLink] ="['/how-it-works']" class="get-s-h">How it works</a>		</div>
+		<div class="how-right">
+			<img src="assets/img/right-how.jpg" alt="">		</div>
+		<!--<div class="play-btn">
+			<img src="assets/img/play.png">		</div>-->
+	</div>
+		
+	<!--<div class="why-use">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center why-head">
+					<h2>Why use Yellotasker?</h2>
+					<p>Lorem ipsum dolor sit amet is the dummy text for describing<br/>
+website content lorem ipsum dolor is dummy text</p>
+				</div>
+			</div>
+			<div class="row text-center feature-part">
+				<div class="col-sm-4">
+					<img src="assets/img/why1.png">
+					<p>Free to post</p>
+					<span>Lorem ipsum dolor sit amet is<br/>
+the dummy text for describing
+</span>
+				</div>
+				<div class="col-sm-4">
+					<img src="assets/img/why2.png">
+					<p>Secure payments</p>
+					<span>Lorem ipsum dolor sit amet is<br/>
+the dummy text for describing
+</span>
+				</div>
+				<div class="col-sm-4">
+					<img src="assets/img/why3.png">
+					<p>Get It More</p>
+					<span>Lorem ipsum dolor sit amet is<br/>
+the dummy text for describing
+</span>
+				</div>
+			</div>
+		</div>
+	</div>-->
+	<div class="services-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<h2>What do you need done?</h2>
+				</div>
+			</div>
+		<div  *ngFor ="let cat of categoryList">	
+			<!-- <div class="row"> -->
+				<div class="col-sm-3">
+					<div class="service-pic">
+						<a (click)="openPostTask(cat)">
+							<img src={{cat.category_image}} alt="">
+							<div class="service-over">
+								<p>{{cat.category_name}}</p>
+							</div>
+							<div class="service-over-post">
+								<a>post a task now </a>
+							</div>
+						</a>
+					</div>
+				</div>
+			
+			 <!-- </div> -->
+			</div>
+			<div class="row">
+				<div class="col-sm-12 see-more-cat-btn text-center">
+					<a (click)="openPostTask()">post any task for free</a>
+					<a [routerLink] ="['/category-list']">See More Categories</a>
+				</div>
+		   </div>
+		</div>
+	</div>
+	
+	  <div class="recent-task recent-task-tiles" >
+		<div  class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2>Recently posted tasks</h2>
+				</div>
+			</div>
+			<div class="row task-comment text-center" *ngIf="taskList">
+				<div class="col-sm-3" *ngFor ="let item of taskList">
+					<a routerLink="browse-task/{{item.id}}">
+					<div class="tile three columns panel">
+						<div class="top"><img class="avatar small" 
+							src="{{item.user_detail.profile_image?item.user_detail.profile_image:
+								'assets/img/task-person.png'}}"  alt="" >
+						<div class="heading"><span class="date">
+							{{item.title.length>30?item.title.substring(0, 30)+'...':item.title}}</span></div></div>
+						<div class="clear"></div><div class="details"><span class="description">
+						 {{item.description.length>25?item.description.substring(0, 25)+'...':item.description}} 
+							</span></div>
+	 					<div class="location-date">
+								<span><i class="fa fa-location-arrow"></i> {{item.locationType}}</span>
+								<span><i class="fa fa-calendar"></i> Due Date {{item.dueDate | date}}</span>
+							</div>
+						 </div>
+						</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 see-more-cat-btn text-center">
+					<a [routerLink] ="['/browse-task']">Browse more task</a>
+				</div>
+		   </div>
+		 </div>
+	 </div>
+
+
+
+	
+	<div class="earn-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3>Need extra cash? Find tasks for free on Yellotasker</h3>
+				</div>
+			</div>
+			<div class="row earn-point">
+				<div class="col-sm-12">
+					<div class="earn-img">
+						<img src="assets/img/earn1.png">
+					</div>
+					<div class="earn-content">
+						<h4>1. Find a task for free</h4>
+						<p>Yello! It’s simple, secure and free to browse for any tasks. If you need more details on a task, our free messaging functionality will put you in touch with the Poster. 
+</p>
+					</div>
+				</div>
+			</div>
+			<div class="row earn-point">
+				<div class="col-sm-12">
+					<div class="earn-img">
+						<img src="assets/img/earn2.png">
+					</div>
+					<div class="earn-content">
+						<h4>2. Provide quotes and complete tasks</h4>
+						<p>Want to earn? It’s simple and free to provide a quote to the Poster. Take up as many tasks as you can do and complete all tasks to Poster’s requirements.
+</p>
+					</div>
+				</div>
+			</div>
+			<div class="row earn-point">
+				<div class="col-sm-12">
+					<div class="earn-img">
+						<img src="assets/img/earn3.png">
+					</div>
+					<div class="earn-content">
+						<h4>3. Request payment for task well done</h4>
+						<p>
+								Yaaay! The Poster is smiling ear to ear because you’re awesome. Request the money held in escrow to be released. Help the Yellotasker community grow by writing a simple review.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	

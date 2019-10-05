@@ -1,0 +1,49 @@
+		<!--lOGIN  Modal -->
+<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+	  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value, loginForm.valid);" 
+      novalidate class="form login">
+          <div class="modal-content login-front">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closeLoginPopup()">
+            <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+	            <label class="error-text">
+                {{errorMessage}}
+                 </label>
+					<div class="form-item login-form-item"><label class="block">Email <span style="color:red;">*</span></label>
+					      <input class="{{emailError==true||(email.touched && !email?.valid)?'red-border':''}}" type="email" placeholder="Email" required [(ngModel)]="user.email" 
+						   #email="ngModel" name="email" email 
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
+							<small *ngIf = "email.touched && !email?.valid" class="pull-left">
+							Please enter valid email address.
+							</small>
+					</div>
+					<div class="form-item login-form-item"><label class="block">Password <span style="color:red;">*</span></label>
+					 <input class="{{passwordError==true?'red-border':''}}" type="password" placeholder="Password" required 
+					 [(ngModel)]="user.password" #password ="ngModel" name="password">
+					</div>
+					<div class="form-item login-form-item center padder5">
+						<input id="login-button" class="button-cta button-lrg center full-width" type="submit" value="Login"/>
+					<a class="forgot-password-link small center margin-20-top" (click)="openForgetPopup()">Forgot Password?</a>
+					</div>
+					<div class="login-form-item"><div class="wings">or</div></div>
+					<div class="login-div text-center">
+						<p>Don't have an account? <a (click)="openSignupPopup()">Sign up</a></p>
+					</div>
+					<div class="facebook-btn">
+						<a (click)="socialSignIn('facebook')" data-toggle="tooltip" title="facebook"><i class="fa fa-facebook"></i></a>
+					</div>
+					<!--<div class="inta-btn">
+						<a href="#" data-toggle="tooltip" title="google-plus"><i class="fa fa-google-plus"></i></a>
+					</div>-->
+					<div class="google-btn">
+						<a (click)="socialSignIn('google')" data-toggle="tooltip" title="google-plus"><i class="fa fa-google-plus"></i></a>
+					</div>
+              </div>
+          </div>
+	  </form>
+  </div>
+</div>

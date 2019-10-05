@@ -1,0 +1,88 @@
+
+
+	<div class="sub-banner profile-banner">
+			<div class="browse-menu profile-banner">
+					<div class="container">
+						<ul>
+							<li ><a [routerLink] ="['/dashboard']">Dashboard</a>
+							</li>       
+							<li [ngClass]="{'mega-menu-active': true}"><a [routerLink] ="['/payment/history']">Payment History</a></li>       
+							<li><a [routerLink] ="['payment/payment-methods']">Payment Methods</a></li>       
+							<li><a href="#">Refer a friend</a></li>
+							<li><a href="#">Notifications</a></li>
+							<li><a href="#">Settings</a></li>
+							
+						</ul>
+					</div>
+			</div>
+		</div>
+		<div class="container">
+			<span *ngIf = "apiOutgoingResponse" class="span-gap">{{netEarnedCaption}} : {{netEarned}} MYR</span>
+				<div class="card-profile">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" [ngClass]="{'active': earnedIndicator}">
+								<a (click)="getPaymentHistory('Earned')">Earned</a>
+							</li>
+							<li role="presentation" [ngClass]="{'active': !earnedIndicator}">
+								<a (click)="getPaymentHistory('Outgoing')">Outgoing</a>
+							 </li>
+						</ul>
+			<div *ngIf = "earnedIndicator && apiOutgoingResponse && apiIncomingResponse">
+				<span class="span-gap">Total earned by doing task  : {{apiOutgoingResponse.net_incoming}} MYR</span>
+				<div class="col-sm-12">
+				<div class="summary">
+					<table border="1" class="payment-table" width="100%">
+					<tbody><tr>
+					<td><b>S.NO</b></td>
+					<td><b>Task ID</b></td>
+					<td><b>Task Name</b></td>
+					<td><b>Total Task Amount</b></td>
+					<td><b>Service Charges</b></td>
+					<td><b>Paid Amount</b></td>
+					</tr>
+					<tr *ngFor="let item of incomingHistoryList; let i=index">
+							<td>{{i+1}}</td>
+							<td>{{item.taskId}}</td>
+							<td>{{item.task_details.title}}</td>
+							<td>{{item.amount}} MYR</td>
+							<td>{{item.service_charge}} MYR</td>
+							<td>{{item.payable_amount}} MYR</td>
+						</tr>
+					</tbody></table>
+				</div>
+				</div>
+		</div>
+		  <div *ngIf = "!earnedIndicator && apiOutgoingResponse">
+				<span class="span-gap">Total spent on task you have been posted : 
+					{{apiOutgoingResponse.net_outgoing}} MYR
+				</span>
+		  <div class="col-sm-12">
+				<div class="summary">
+				 <table border="1" class="payment-table" width="100%">
+				 <tbody><tr>
+				<td><b>S.No</b></td>
+				 <td><b>Task ID</b></td>
+				 <td><b>Task Name</b></td>
+				 <td><b>Trasaction ID</b></td>
+				 <td><b>Order ID</b></td>
+				 <td><b>Transation Date</b></td>
+				 <td><b>Amount</b></td>
+				 <td><b>Transation Status</b></td>
+				 </tr>
+				 <tr *ngFor="let item of outgoingHistoryList; let i=index">
+					<td>{{i+1}}</td>
+					<td>{{item.task_id}}</td>
+					<td>{{item.task_title}}</td>
+					<td>{{item.transaction_id}}</td>
+					<td>{{item.order_id}}</td>
+					<td>{{item.order_date}}</td>
+					<td>{{item.total_price}} MYR</td>
+					<td class="{{item.status}}-td">{{item.status}}</td>				
+				</tr>
+			  </tbody>
+			</table>
+		   
+				</div>
+			   </div>
+			</div>
+		 </div>

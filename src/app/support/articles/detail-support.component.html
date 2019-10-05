@@ -1,0 +1,112 @@
+
+<div class="support-detail-page">
+<article class="main-column"  *ngIf="supportList">
+
+      <header class="article-header">
+        <h1>
+          
+         {{supportList.article_title}}
+        </h1>
+        <div class="article-info">
+          <div class="article-avatar">
+            <img src="assets/img/task-person.png">
+          </div>
+          <div class="article-meta">
+            <strong class="article-author">
+              
+                Yellotasker  Support
+              
+            </strong>
+            <div class="article-updated meta"><time datetime="2017-12-11T03:51:09Z" title="2017-12-11 09:21" data-datetime="calendar">{{supportList.updated_at|date}}</time></div>
+          </div>
+          <!--<div><a class="article-subscribe" rel="nofollow" role="button" data-auth-action="signin" aria-selected="false" href="/hc/en-us/articles/200919990-What-is-Airtasker-/subscription">Follow</a></div>-->
+        </div>
+      </header>
+  
+      <div class="article-body markdown">
+
+        <!-- <p class="wysiwyg-text-align-left"><span class="wysiwyg-font-size-medium">yellotasker is a trusted community platform that connects people who need to outsource tasks and find local services, with people who are looking to earn money and ready to work.</span><br><br>Tell us what you need doing, receive offers from trusted Airtasker Workers in minutes, and choose the best person for the job.&nbsp;</p>
+        <p class="wysiwyg-text-align-left">From simple to complicated tasks, yellotasker can help you complete your home cleaning, handyman jobs, admin work, photography, graphic design or even build a website.</p>
+        <p class="wysiwyg-text-align-left">Go online or download the app and let yellotasker help you to get more done.</p>
+        <p class="wysiwyg-text-align-left">For more information please visit <a href="">How it Works</a>.&nbsp;</p>
+        <p class="support-social">
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+    <a href="#"><i class="fa fa-whatsapp"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a> 
+    <a href="#"><i aria-hidden="true" class="fa fa-google-plus"></i></a>
+  </p> -->
+
+          <div [innerHTML]="supportList.description"></div>
+          <p class="wysiwyg-text-align-left">For more information please visit <a routerLink ="/how-it-works">How it Works</a>.&nbsp;</p>
+          <p class="support-social">
+              <a href="#"><i class="fa fa-facebook"></i></a> 
+              <a href="#"><i class="fa fa-whatsapp"></i></a> 
+              <a href="#"><i class="fa fa-twitter"></i></a> 
+              <a href="#"><i aria-hidden="true" class="fa fa-google-plus"></i></a>
+            </p>
+        <!-- <p class="wysiwyg-text-align-left"><span class="wysiwyg-font-size-medium">yellotasker is a trusted community platform that connects people who need to outsource tasks and find local services, with people who are looking to earn money and ready to work.</span><br><br>Tell us what you need doing, receive offers from trusted Airtasker Workers in minutes, and choose the best person for the job.&nbsp;</p>
+  <p class="wysiwyg-text-align-left">From simple to complicated tasks, yellotasker can help you complete your home cleaning, handyman jobs, admin work, photography, graphic design or even build a website.</p>
+  <p class="wysiwyg-text-align-left">Go online or download the app and let yellotasker help you to get more done.</p>
+  <p class="wysiwyg-text-align-left">For more information please visit <a href="">How it Works</a>.&nbsp;</p> -->
+
+      </div>
+  
+      <div class="article-attachments">
+        <ul class="attachments">
+          
+        </ul>
+      </div>
+  
+      <footer class="article-footer">
+        <!--
+          <div class="article-vote">
+            <span class="article-vote-question">Was this article helpful?</span>
+            <div class="article-vote-controls">
+              <a role="button" rel="nofollow" class="article-vote-up" title="Yes" aria-selected="false" data-auth-action="signin" href="/hc/en-us/signin?return_to=https%3A%2F%2Fsupport.airtasker.com%2Fhc%2Fen-us%2Farticles%2F200919990-What-is-Airtasker-"></a>
+              <a role="button" rel="nofollow" class="article-vote-down" title="No" aria-selected="false" data-auth-action="signin" href="/hc/en-us/signin?return_to=https%3A%2F%2Fsupport.airtasker.com%2Fhc%2Fen-us%2Farticles%2F200919990-What-is-Airtasker-"></a>
+            </div>
+            <small class="article-vote-count">
+              <span class="article-vote-label">0 out of 0 found this helpful</span>
+            </small>
+          </div>
+        -->
+        
+  
+      </footer>
+  
+      <div class="article-more-questions">
+        <img src="//p6.zdassets.com/hc/theme_assets/474139/200014615/icon-help_2x.png" width="20px"><span> Have more questions? <a routerLink ="/submit-a-request">Submit a request</a></span>
+      </div>
+  
+    </article>
+    <aside class="article-sidebar side-column">
+    
+    
+      <section class="related-articles">
+        <h3>Related articles</h3>
+        <ul *ngFor="let article of relatedSupportList" >
+          <li><a routerLink ="/support-detail/{{article.id}}">{{article.article_title}}</a></li>
+        </ul>
+          
+            <!-- <li>
+              <a href="#">What is yellotasker Pay? </a>
+            </li>
+          
+            <li>
+              <a href="#">How do I sign up?</a>
+            </li>
+          
+            <li>
+              <a href="#">How do I release payment to the Airtasker Worker?</a>
+            </li>
+          
+            <li>
+              <a href="#">How do I respond to comments on a task?</a>
+            </li> -->
+          
+        <!-- </ul> -->
+      </section>
+    
+    
+      </aside>
+    </div>

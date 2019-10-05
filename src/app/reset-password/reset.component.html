@@ -1,0 +1,59 @@
+<div class="modal fade" id="myModalreset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+     <form #resetForm="ngForm" (ngSubmit)="reset(resetForm.value, resetForm.valid);" 
+      novalidate class="form login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closeResetPopup()">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Forgot Password</h4>
+      </div>
+      <div class="modal-body">
+   <div class="error-msg">
+    <p class="text-center">Enter your email below and we will send you instructions on how to reset your password</p>
+    <label class="error-text" style="padding-left:0px;">
+                {{errorMessage}}
+    </label>
+    <div class="form-item login-form-item forgot-email"><label class="block">Email <span style="color:red;">*</span></label>
+    <input type="email" placeholder="Email" required [(ngModel)]="user.email" 
+						   #email="ngModel" name="email" email 
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
+							<small *ngIf = "email.touched && !email?.valid" class="pull-left">
+							Please enter valid email address.
+							</small>
+    </div>
+    <br/>
+    <p class="text-center" style="float:left; width:50%; padding-right:10px;">
+      <button id="login-button" class="button-cta button-lrg center full-width" (click)="closeResetPopup()">Cancel</button></p>
+    
+    <p class="text-center" style="float:left; width:50%; padding-left:10px;">
+      <input style="background:#000;" id="login-button" value="Send" class="button-cta button-lrg center full-width pop-sign no-margin"
+       type="submit"/>
+        </p>
+   </div>   
+      </div>
+      
+    </div>
+     </form>
+  </div>
+</div>
+
+<div class="modal fade" id="resetModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+   
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Forgot Password</h4>
+      </div>
+      <div class="modal-body">
+ 	      <div class="text-center">
+					<img src="assets/img/checkmark.gif" alt="yellotasker">
+				  <p><b>Reset password link has been sucessfully sent. Please check your email.</b></p>
+			  </div>   
+      </div>
+      
+    </div>
+  </div>
+</div>

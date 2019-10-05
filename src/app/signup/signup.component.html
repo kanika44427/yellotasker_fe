@@ -1,0 +1,66 @@
+<div class="modal fade" id="SignupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content " >
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closeSignupPopup()">
+					<span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+      </div>
+			<form #signupForm="ngForm" (ngSubmit)="signup(signupForm.value, signupForm.valid);" 
+          novalidate class="form login">
+      		<div class="modal-body signup-front signup-fields">
+					<label class="error-text-sign">
+                {{errorMessage}}
+           </label>
+			    <div class="form-item login-form-item first-name">
+						<label class="block">First name <span style="color:red;">*</span></label>
+						<input class="{{firstError==true?'red-border':''}}"  type="text" id="email-input" name="firstName" 
+						required [(ngModel)]="user.first_name" #firstName ="ngModel" placeholder="First Name">
+				  </div>
+								<div class="form-item login-form-item second-name"><label class="block">Last name</label>
+								 <input type="text" id="email-input"  name="lastName" [(ngModel)]="user.last_name"
+								  #lastName ="ngModel" placeholder="Last Name">
+								</div>
+								<div class="form-item login-form-item"><label class="block">Email <span style="color:red;">*</span></label>
+									<input class="{{emailError==true||(email.touched && !email?.valid)?'red-border':''}}" type="email" placeholder="Email" required [(ngModel)]="user.email" #email="ngModel" 
+									   name="email" email 
+										 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
+										 <small *ngIf = "email.touched && !email?.valid" class="pull-left">
+												Please enter valid email address.
+										 </small>
+									</div>
+								<div class="form-item login-form-item"><label class="block">Password <span style="color:red;">*</span></label>
+									<input class="{{passwordError==true?'red-border':''}}"  type="password" placeholder="Password" required [(ngModel)]="user.password" #password ="ngModel" name="password">
+								</div>
+								<div class="form-item login-form-item"><label class="block">Confirm password <span style="color:red;">*</span></label>
+									 <input class="{{confrmPasswordError==true?'red-border':''}}"  type="password" placeholder="Password" required [(ngModel)]="user.confrmPassword" #confrmPassword ="ngModel" name="cnfrmpassword">
+							     <small *ngIf = "passwordIndicator" class="pull-left">
+									  Password and confirm password are not same.
+									 </small>
+								</div>
+
+								<div class="form-item login-form-item center padder5">
+									<button id="login-button" class="button-cta button-lrg center full-width" type="submit">
+										Welcome To Yellotasker</button></div>
+									<div class="login-div text-center">
+									<p>Already have an account? <a (click)="openLoginPopup()">Login</a></p>
+								</div>
+							<div class="login-form-item"><div class="wings">or</div></div>
+							
+							<div class="facebook-btn">
+								<a (click)="socialSignIn('facebook')" data-toggle="tooltip" title="facebook"><i class="fa fa-facebook"></i></a>
+							</div>
+							<div class="google-btn">
+								<a (click)="socialSignIn('google')" data-toggle="tooltip" title="google-plus"><i class="fa fa-google-plus"></i></a>
+							</div>
+						  <div class="inta-btn">
+								<a (click)="instagramLogin()" data-toggle="tooltip" title="instagram" ><i class="fa fa-instagram"></i></a>
+							</div>
+								<a class="forgot-password-link small center margin-20-top">
+												By signing up, I agree to Yellotasker's Terms & Conditions, 
+								Privacy Policy and Community Guidelines.</a>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

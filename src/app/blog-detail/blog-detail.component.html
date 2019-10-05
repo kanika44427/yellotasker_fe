@@ -1,0 +1,30 @@
+<div class="blog-page">
+  <div class="container">
+   <div class="row blog-widget blog-details" *ngFor ="let blog of blogs">
+    <div class="col-sm-12">
+     <div class="blog-detail-head">
+      <div class="post-details post-main-detail" style="padding:0px;">
+          <span class="category-container">{{blog.blog_type}}</span>      
+        <h3 style="margin-bottom:15px;">{{blog.blog_title}}</h3>
+        <span class="author">By <b>{{blog.author}}</b> On <b>{{blog.created_date |date}}</b></span>
+       </div>
+     </div>
+     <div *ngIf="blog.blog_image!=null&&blog.blog_image!=''"class="blog-pic details-pic">
+       <img src={{blog.blog_image}}>
+     </div>
+     <div class="text-center blog-detail-social">
+        <p class="support-social">
+            <a ceiboShare [facebook]="{u: repoUrl}" data-toggle="tooltip" title="facebook"><i class="fa fa-facebook"></i></a> 
+            <a ceiboShare [pinterest]="{url: repoUrl, description: blog.blog_title, media: blog.blog_image}" data-toggle="tooltip" title="pinterest"><i class="fa fa-pinterest"></i></a> 
+            <a ceiboShare [twitter]="{url:repoUrl, text: blog.blog_title}" data-toggle="tooltip" title="twitter"><i class="fa fa-twitter"></i></a> 
+            <a ceiboShare [googlePlus]="{url:repoUrl, media: blog.blog_image, description:blog.blog_title}" data-toggle="tooltip" title="google-plus"><i aria-hidden="true" class="fa fa-google-plus"></i></a>
+            <a ceiboShare [linkedIn]="{url:repoUrl, media: blog.blog_image, description:blog.blog_title}" data-toggle="tooltip" title="linkedIn"><i aria-hidden="true" class="fa fa-linkedin"></i></a>
+          </p>
+       </div>
+    </div>
+    <div class="col-sm-12">
+     <div class="blog-detail-desc">
+       <div [innerHTML]="blog.blog_description"></div>
+     </div>
+    </div>
+   </div>

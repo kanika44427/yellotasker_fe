@@ -1,0 +1,156 @@
+<div id="loading">
+  <img id="loading-image" src="assets/img/cate-more.png" alt="Loading..." />
+</div>
+<div class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="logo border-right">
+						<a [routerLink] ="['/']"><img src="assets/img/logo.png" alt="yellotasker"></a>
+					</div>	
+				</div>
+				<div class="col-sm-4">
+					<ul class="top-links-left" [ngClass]="{'no-login': !loginIndicator}">
+						<li *ngIf= "!loginIndicator"><a (click)="openLoginPopup()">Login</a></li>
+						<li *ngIf= "!loginIndicator"><a (click)="openSignupPopup()">Sign up</a></li>
+            <li><a [routerLink] ="['/how-it-works']">How it works</a></li>
+            <li class="desk-block after-login-pic" *ngIf= "loginIndicator">
+            <a href="#" id="open-welcome"><img src="{{this.loginDetails.profile_image!='undefined'?this.loginDetails.profile_image:'assets/img/task-person.png'}}" height="39px;"> 
+                  <span class="welcome-text">{{this.loginDetails.first_name }} <i class="fa fa-chevron-down"></i></span></a>
+               <div class="welcome-div" style="display:none">
+                <div class="user-name">
+                  <p><a [routerLink] ="['/dashboard']">Dashboard</a></p>
+                  <p><a (click)="navigateToPublicProfile()">Public Profile</a></p>
+                  <p><a [routerLink] ="['/settings']">Settings</a></p>
+                  <p><a [routerLink] ="['/my-task']">My Tasks</a></p>
+                  <p><a [routerLink] ="['/change-password']">Change Password</a></p>
+                  <p><a (click)="logout()">Logout</a></p>
+                </div> 
+              </div>
+            </li>
+					</ul>
+				</div>
+				<div class="col-sm-5">
+					<div class="right-top-links pull-right">
+						<ul>
+							<li><a (click)="openPostTaskPopup()">Post a task</a></li>
+							<li><a [routerLink] ="['/browse-task']">Browse tasks</a></li>
+							<li class="mob-block after-login-pic" *ngIf= "loginIndicator">
+                <a href="#" id="open-welcome"><img src="{{this.loginDetails.profile_image!='undefined'&&this.loginDetails.profile_image!=''&&this.loginDetails.profile_image!=null?this.loginDetails.profile_image:'assets/img/task-person.png'}}" height="39px;"> 
+                    <span class="welcome-text">{{this.loginDetails.first_name }} <i class="fa fa-chevron-down"></i></span></a>
+								 <div class="welcome-div" style="display:none;">
+									<div class="user-name">
+                    <p><a [routerLink] ="['/dashboard']">Dashboard</a></p>
+                    <p><a (click)="navigateToPublicProfile()">Public Profile</a></p>
+										<p><a [routerLink] ="['/settings']">Settings</a></p>
+                    <p><a [routerLink] ="['/my-task']">My Tasks</a></p>
+                    <p><a [routerLink] ="['/change-password']">Change Password</a></p>
+										<p><a (click)="logout()">Logout</a></p>
+									</div> 
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+   <login-popup (setUserDashboard)="setUserDashboard($event)"></login-popup>
+   <signup-popup (setUserDashboard)="setUserDashboard($event)"></signup-popup>
+   <posttask-popup (setUserDashboard)="setUserDashboard($event)"></posttask-popup>
+   <reset-popup></reset-popup>
+   <!--prompt for login/signup -->
+   <div class="modal fade " id="loginPrompt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog popup-before-loged center-pop" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Get the most out of Yellotasker</h4>
+      </div>
+      <div class="modal-body">
+      <div class="error-msg">
+      <p class="text-center"><b>Easy one Time Sign In Process</b></p>
+      <br/>
+      <p class="text-center" style="float:left; width:50%; padding-right:10px;">
+        <button id="login-button" class="button-cta button-lrg center full-width"
+        (click)="openLoginPopup()">
+          Login</button>
+      </p>
+    
+      <p class="text-center" style="float:left; width:50%; padding-left:10px;">
+         <button id="login-button" 
+         class="button-cta button-lrg center full-width pop-sign"
+         (click)="openSignupPopup()">Signup</button></p>
+    </div>   
+     </div>
+    </div>
+    </div>
+  </div>
+   <!--main content -->
+   </div>
+   <router-outlet></router-outlet>
+
+  	<div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <h4>Discover Yellotasker</h4>
+            <ul class="footer-link">
+              <li><a [routerLink] ="['/how-it-works']">How it works</a></li>
+              <li><a [routerLink] ="['/how-to-earn-money']">How to earn money</a></li>
+              <li><a [routerLink] ="['/community-guidelines']">Community guidelines</a></li>
+              <li><a [routerLink] ="['/trust-and-safety']">Trust and safety</a></li>
+              <li><a [routerLink] ="['/support']">FAQ</a></li>
+              <li><a [routerLink] ="['/submit-a-request']">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <h4>Company info</h4>
+            <ul class="footer-link">
+              <li><a [routerLink] ="['/about-us']" routerLinkActive="foot-active">About us</a></li>
+              <li><a [routerLink] ="['/blogs']" routerLinkActive="foot-active">Blog</a></li>
+              <li><a [routerLink] ="['/press']" routerLinkActive="foot-active">Press</a></li>
+              <li><a [routerLink] ="['/terms-and-conditions']" routerLinkActive="foot-active">Terms & conditions</a></li>
+              <li><a [routerLink] ="['/privacy-policy']"routerLinkActive="foot-active" >Privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <h4>Yellotasker favorites</h4>
+            <ul class="footer-link">
+              <li><a (click)="openPostTaskPopup()">Post a task</a></li>
+              <li><a [routerLink] ="['/browse-task']">Browse tasks</a></li>
+              <li *ngIf= "!loginIndicator"><a (click)="openLoginPopup()">Login</a></li>
+             
+              <li><a href="#">Yellotasker verification</a></li>
+              <li><a href="#">Yellotasker levels and badges</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-sm-3">
+              <h4>Connect with us</h4>
+              <ul class="footer-link">
+                  <p class="main-footer-social-icon">
+                    <a href="#" data-toggle="tooltip" title="facebook"><i class="fa fa-facebook"></i></a> 
+                    <a href="#" data-toggle="tooltip" title="whatsapp"><i class="fa fa-whatsapp"></i></a> 
+                    <a href="#" data-toggle="tooltip" title="twitter"><i class="fa fa-twitter"></i></a> 
+                    <a href="#" data-toggle="tooltip" title="google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                  </p>
+              </ul>
+            </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="footer-app">
+              <img src="assets/img/google-play.png" height="35px;"> <img src="assets/img/apple-store.png" height="35px;">
+            </div>
+          </div>
+        </div>
+        
+      </div>
+	  </div>
+	<div class="last">
+    
+		<p>yellotasker 2018, All rights reserved</p>
+	</div>

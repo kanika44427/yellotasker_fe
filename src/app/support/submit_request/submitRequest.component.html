@@ -1,0 +1,105 @@
+<div class="container-inner">
+        <h1 class="page-header">
+          Submit a request
+        </h1>
+        
+        <div class="form">
+     <form class="request-form" [formGroup]="submitRequestForm" (ngSubmit)="submitRequest(submitRequestForm.value, submitRequestForm.valid)">
+     <!-- <form id="new_request" data-form="" class="request-form"> -->
+        <span class="text-danger" *ngIf="requiredValidator">
+            Please enter required fields.
+          </span>
+        <input name="" type="hidden" value="✓">
+        <input type="hidden" name="" value="">
+          <div class="form-field select optional request_ticket_form_id">
+         <label for="request_ticket_form_id">What can we help you with?</label>
+       <!-- <select [(ngModel)]="selectedVal" required name="reasonValue"> -->
+          <select  *ngIf="categoryList?.length > 0" class="request-form" name="requestCategory" id="requestCategory" formControlName="requestCategory">
+              <option value="" selected>Please select</option>
+              <option *ngFor="let category of categoryList" [value]="category.id">{{category.article_category}}</option>
+            </select>
+          </div>
+        
+          <div class="form-field string required request_anonymous_requester_email">
+            <label for="requestEmail">Your email address</label>
+        <input type="text" name="requestEmail" id="requestEmail" 
+        formControlName="requestEmail">
+        <span class="text-danger" *ngIf="submitRequestForm.hasError('email', 'requestEmail') && submitRequestForm.get('requestEmail').touched">
+            Please enter the correct email, this email is not valid.
+          </span>
+        </div>
+        
+          
+        
+          
+            <div class="form-field string  required  request_subject">
+              <label for="requestSubject">Subject</label>
+              <input type="text" name="requestSubject" id="requestSubject" formControlName="requestSubject"
+              maxlength="150" size="150">
+              
+              
+                <p class="description">Please summarise your request in a few words.</p>
+              
+            </div>
+        
+            
+              <div class="suggestion-list" data-hc-class="searchbox" data-hc-suggestion-list="true"></div>
+            
+          
+            <div class="form-field text  required  request_description">
+              <label for="requestDescription">Description</label>
+              <textarea name="requestDescription" id="requestDescription" formControlName="requestDescription"></textarea>
+              
+              
+                <p>Please provide the full details of your issue.</p>
+              
+            </div>
+            <div class="form-field string  optional  request_custom_fields_21573560">
+              <label for="requestTaskid">Task id (if you remember)</label>
+              <input type="text" name="requestTaskid" id="requestTaskid" formControlName="requestTaskid">
+            </div>
+          <div class="form-field">
+          <label>Attachments</label>
+          <div id="upload-dropzone" class="upload-dropzone">
+          <input type="file" (change)="fileUpload($event)" name="requestFile" id="requestFile" formControlName="requestFile" multiple="true">
+          <span>
+            <a>Add file</a> or drop files here
+          </span>
+        </div>
+        
+        <div id="upload-error" class="notification notification-error notification-inline" style="display: none;">
+          <span data-upload-error-message=""></span>
+        </div>
+        
+        
+          <ul id="request-attachments-pool" class="upload-pool" data-template="upload-template"></ul>
+        
+        <script type="text/html" id="upload-template">
+        <li class="upload-item" data-upload-item>
+          <a class="upload-link" target="_blank" data-upload-link></a>
+          <p class="upload-path" data-upload-path></p>
+          <span class="upload-remove" data-upload-remove></span>
+          <div class="upload-progress" data-upload-progress></div>
+          <input type="hidden">
+        </li>
+        </script>
+        
+        
+        </div>
+        
+        
+          
+          
+        
+          
+        
+          <footer><input type="submit" name="commit" value="Submit"></footer>
+        
+        </form>
+        
+        
+        
+        </div>
+        
+        
+        </div>

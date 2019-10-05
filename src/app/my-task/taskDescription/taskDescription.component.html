@@ -1,0 +1,224 @@
+<!--Task Description Pop up -->
+	<div class="modal post-detail-pop fade" id="taskDescriptionModal" tabindex="-1" role="dialog"
+	 aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document" *ngIf="itemDetail">
+				<div class="modal-content browse-pop-modal">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-body">
+<div class="post-detail-left">
+<h4 style="color:#34495e"><b>{{itemDetail.title}}</b></h4>
+
+<p class="browse-anchor">
+ <a class="active-a" href="#">Open</a> 
+ <a href="#">Assigned</a> 
+ <a href="#">Completed</a>
+</p>
+<div class="detail-pic-name">
+<div class="pic-name-left">
+<img alt="" src="assets/img/task-person.png">
+</div>
+<div class="pic-name-right" *ngIf="itemDetail">
+<p class="posted-by"><b>Posted By </b></p> 
+<h5><a href="#">{{itemDetail.task_posted_user.first_name}}</a>
+ <span class="follow-ico"><a href="#">
+  <img src="assets/img/follow.png"></a></span></h5>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+   <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+   <i class="fa fa-star"></i>
+</p>
+
+
+</div>
+</div>
+
+<div class="post-description">
+<h4><b>Description</b></h4>
+<p>
+{{itemDetail.description}}
+</p>
+<p class="due-para"><i class="fa fa-calendar"></i> 
+<span class="due-text"><b>Due Date</b> {{itemDetail.dueDate | date }}</span></p>
+
+<p class="people-req">   <span> <b>People required </b>  5 {{itemDetail.peopleRequired}}</span><br/>
+<span><b>Budget Type </b> {{itemDetail.budgetType}}</span><br/>
+<span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Hourly rate </b> {{itemDetail.hourlyRate}} MYR <br/></span>
+<span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Total hours </b> {{itemDetail.totalHours}} <br/></span>
+<span><b> Total amount </b> {{itemDetail.totalAmount}} MYR</span>
+</p>
+
+<br>
+<div *ngIf="itemDetail.locationType == 'Come to work place'">
+<h4><b>Requirement</b></h4>
+<p>This task has certain requirements of the yellotasker Worker</p>
+<p>
+<img alt="" src="assets/img/map.jpg" width="100%;">
+</p>
+</div>
+</div>
+<div class="offer-section" >
+<h4>OFFER</h4>
+<div class="offer-card" *ngFor ="let list of offerList">
+<div class="offer-pic">
+<img src="assets/img/task-person.png" alt=""> &nbsp;&nbsp;<span class="offer-link"><a href="#">{{list.first_name}} {{list.last_name}}</a>
+<div class="offer-tooltip" style="display:none">
+						<h5><a href="#">{{list.first_name}} {{list.last_name}}</a></h5>
+						<p>231 indrapuri indore near bhawarkua</p>
+						<p class="offer-rating-star"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></p>
+						<p class="offer-completion-rate">100% completion rate</p>
+						<p class="offer-request-quoate"><a href="#">Request Quote</a></p>
+					</div>
+</span>
+</div>
+<div class="offer-rating">
+<span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+</div>
+<div class="offer-complete">
+<span class="percentage">84%</span>
+</div>
+<div class="offer-post-time">
+<span>{{list.created_at | timeAgo }}</span>
+</div>
+</div>
+</div>
+<div class="comment-box-browse">
+<div class="comment-head">
+<div class="header-comment" *ngIf= "this.commentIndicator"><div class="line"></div><div class="title interactive">
+5 comments about this Task</div>
+</div>
+<div class="header-comment" *ngIf= "!this.commentIndicator"><div class="line"></div><div class="title interactive">
+NO Comments</div>
+</div>
+<p class="comment-para">Comment below for more details and remember that for your safety, not to share personal information e.g. email and phone numbers.
+</p> 
+</div>
+
+<div class="commenter">
+<div class="commenter-pic">
+<a href="#"><img src="assets/img/task-person.png" alt="yellotasker"></a>
+</div>
+<div class="commenter-text">
+<textarea placeholder="Ask a question" [(ngModel)]="comment.commentDescription" #description ="ngModel" 
+name="description" (ngModelChange)="addCommentChange($event)"></textarea>
+<p class="comment-footer">
+<!-- <span><a href="#"><i class="fa fa-cloud-upload" aria-hidden="true"></i></a></span>-->
+<span><a (click)="addComment(comment, itemDetail)" [class.disabled]="anchorDisable ? true : null"
+[ngStyle]="{'color': anchorDisable  ? 'grey' : 'black' }">Send</a></span>       </p>
+</div>
+
+</div>
+<div *ngIf="commentIndicator">
+<div class="commenter" *ngFor ="let item of commentList">
+<div id="commentItem" *ngIf="item.commentId == 0">
+<div class="commenter-pic">
+<a href="#"><img src="assets/img/task-person.png" alt="yellotasker"></a>
+</div>
+<div class="commenter-text">
+<h4><a href="#">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</a></h4>
+<p class="commenter-desc">{{item.commentDescription}}</p>
+<p class="timing-reply"><span>{{item.created_at | timeAgo }}</span> <span>
+<a (click)="onReply(item)"><i class="fa fa-reply"></i> Reply</a></span></p>
+</div>
+</div>
+<div style="display: none" id="item_{{item.id}}">
+  <div class="commenter-pic">
+	<a href="#"><img src="assets/img/task-person.png" alt="yellotasker"></a>
+</div>
+  <div class="commenter-text">
+	<textarea value="Ask a question"  [(ngModel)]="replyCommentDesc" #replyDescription ="ngModel" 
+	name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
+	<p class="comment-footer">
+	<span><a (click) = "replyComment(replyCommentDesc, itemDetail, item.id)" 
+		  [class.disabled]="anchorReplyDisable ? true : null"
+		  [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }" >Send</a></span>       </p>
+  </div>
+</div>
+<div *ngIf="checkIfReplyExists(item.id, commentList)"  > <!--reply list div starts-->
+<div *ngFor="let data of repliedObjectList">
+  <div class="commenter sub-reply">
+  <div class="commenter-pic">
+  <a href="#"><img src="assets/img/task-person.png" alt="yellotasker"></a>
+  </div>
+  <div class="commenter-text">
+  <h4><a href="#">{{data.user_detail.first_name}} {{data.user_detail.last_name}}</a></h4>
+  <p class="commenter-desc">{{data.commentDescription}}</p>
+  <p class="timing-reply"><span>{{data.created_at | timeAgo }}</span> <span>
+	<a (click)="onReply(data)"><i class="fa fa-reply"></i> Reply</a></span></p>
+  </div>
+</div>
+ <div style="display: none" id="item_{{data.id}}">
+  <div class="commenter-pic">
+	<a href="#"><img src="assets/img/task-person.png" alt="yellotasker"></a>
+</div>
+  <div class="commenter-text">
+	<textarea value="Ask a question"  [(ngModel)]="replyCommentDesc" #replyDescription ="ngModel" 
+	name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
+	<p class="comment-footer">
+	<span><a (click) = "replyComment(replyCommentDesc, itemDetail, item.id)" 
+		  [class.disabled]="anchorReplyDisable ? true : null"
+		  [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }" >Send</a></span>       </p>
+  </div>
+</div>
+</div>
+</div><!--reply list div ends-->
+</div>
+</div>
+
+</div>
+</div>
+<div class="post-detail-right">
+<h4><b>Task Budget</b></h4>
+<div class="rate">
+<p class="main-price">
+$100
+</p>
+<p class="make-offer">
+<a (click)= "showOfferConfirmationPopup(itemDetail)">Make An Offer</a>
+</p>
+</div>
+<div class="share-container">
+		<p class="share-text">SHARE</p>
+		<div class="buttons-s">
+			<a class="facebook-share"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			<a class="twitter-share"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+			<a class="google-plus-share"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+			<a class="linkedin-share"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+			<a class="embed-share"><i class="fa fa-code" aria-hidden="true"></i></a>
+		</div>
+	</div>
+<div class="report-task" (click)="reportTask()"><a>Report this task</a></div>
+<div class="popup-location">
+<div class="pop-location-nav">
+<i class="fa fa-location-arrow"></i>
+</div>
+<div class="pop-location-desc">
+<b>Location</b>
+</div>
+<br>
+<h5>Come to work place</h5>
+<!--bindings={
+"ng-reflect-ng-if": "true"
+}--><p>
+Melbourne VIC 3004, Australia
+</p>
+</div>
+<div class="popup-location">
+<div class="pop-location-nav">
+<i class="fa fa-calendar"></i>
+</div>
+<div class="pop-location-desc">
+<h5>Posted on</h5>
+</div>
+
+<span class="right-post-date">Nov 20, 2017</span>
+</div>
+
+<div class="offers-pop">
+
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
