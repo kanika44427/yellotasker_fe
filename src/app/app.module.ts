@@ -12,7 +12,7 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //application components 
 import { AppComponent } from './app.component';
-
+import { DataService } from './services/data.service';
 import { NotificationComponent} from './browsetask/notification/notification.component';
 import { BrowseTaskComponent } from './browsetask/browsetask.component';
 import { LoginComponent } from './login/login.component';

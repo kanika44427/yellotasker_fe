@@ -26,11 +26,11 @@
 						class="btn btn-primary btn-circle" [ngClass]="{'active-btn': budgetIndicator}">3</button>
             <p>Budget</p>
 		</div>
-		<!-- <div class="stepwizard-step">
+		<div class="stepwizard-step" *ngIf="parentComponent.configSettings && parentComponent.configSettings.payment_status == 'enable' ">
             <button (click)="showPaymentTab()" aria-controls="payment" role="tab" data-toggle="tab" type="button" 
 						class="btn btn-primary btn-circle" [ngClass]="{'active-btn': paymentIndicator}">4</button>
             <p>Payment</p>
-        </div> -->
+        </div>
 		
     </div>
 </div>	
@@ -41,11 +41,26 @@
 						<small class="text-danger" *ngIf="errorIndicator">
 							Please provide required details.
 						</small>
-						<div class="form-item login-form-item"><label class="block">What task do you need done?<span style="color:red;">*</span></label>
+						<div class="form-item login-form-item"><label class="block">I need help with...<span style="color:red;">*</span></label>
 						<input class="{{titleReqIndicator==true?'red-border':''}}" type="text" id="email-input" formControlName="title" name="taskTitle" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name:'e.g. Clean my 2 bedroom apartmen'}}"></div>
 
-					<div class="form-item login-form-item"><label class="block">Describe your task in more detail <span style="color:red;">*</span></label>
-					<textarea class="{{minLenIndicator==true||descReqIndicator==true?'red-border':''}}" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name+' '+parentComponent.catObject.category_group_name:'e.g. Clean my 2 bedroom apartmen'}}" id="post-task-description" (keyup)="changed(postTaskStep1Form.value.description)" 
+					<div class="form-item login-form-item"><label class="block">Describe your task in more details ? <span style="color:red;">*</span></label>
+					<textarea class="{{minLenIndicator==true||descReqIndicator==true?'red-border':''}}" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name+' '+parentComponent.catObject.category_group_name:'e.g. I need help cleaning my 3 bedroom 3 bathroom house, including: 
+					-Vacuuming
+					-Mopping
+					-Clean stove top
+					-Clean kitchen
+					-General tidy up\n 
+Describe your task as detail as possible to receive accurate quotes: 
+Home Cleaning 
+Handyman@tukang
+Tutoring 
+Runner
+Plumbing 
+AirCon Servicing 
+Wedding Services
+Everything else
+'}}" id="post-task-description" (keyup)="changed(postTaskStep1Form.value.description)" 
 					   formControlName="description" class="tick-input" rows="8"></textarea>
 					<span style="float:right; font-size:13px;">{{ charsLeft }} characters remaining</span>
 						<small class="text-danger" *ngIf="minLenIndicator">
@@ -86,7 +101,7 @@
 																</div>
 															</div>
 															<div *ngIf="postTaskStep2Form.value.locationType ==  'Physical task'">
-																<div class="form-item login-form-item"><label class="block">Suburb<span style="color:red;">*</span></label>
+																<div class="form-item login-form-item"><label class="block">																																																																																																																																																																																																							ocation<span style="color:red;">*</span></label>
 																<textarea class="{{locationReqIndicator==true?'red-border':''}}" required id="post-task-description" [(ngModel)]="user.address" #address="ngModel"
 																 class="tick-input" rows="3" name="address"></textarea>
 																</div>
@@ -97,14 +112,14 @@
 															<small class="text-danger" *ngIf="locationReqIndicator">
 																	Please enter location type.
 																</small>
-															
+																																																																																																																																																																																																								
 															
 														<!--	<span class="sub-content">We value your work details and contact number so, we promise we will
-																not share contact details untill or less a user has shown interest in your task</span>-->
+																not share contact details untill or less a user has shown interest in your task</span>-->																							
 															
-														<div class="form-item login-form-item"><label class="block">Need task completed by <span style="color:red;">*</span></label>
-															<div class="funkyradio divide-row">
-																<div class="funkyradio-default">
+														<div class="form-item login-form-item"><label class="block">Need task completed by <span style="color:red;">*</span></label>						
+															<div class="funkyradio divide-row">						
+																<div class="funkyradio-default">																																																																																																																																																																																																																																																																											
 																	<input class="{{dueDateReqIndicator==true?'red-border':''}}" type="radio" 
 																	name="dueDateType"  value="Today" id="radiodate1"
 																	(click)="getDate('Today')"  [(ngModel)]="user.dueDateType" 

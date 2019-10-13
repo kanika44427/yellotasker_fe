@@ -2,6 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import { CommonService } from './services/common.service';
 import {ActivatedRoute,Router} from '@angular/router';
 import { HttpService } from './services/http.service';
+import { DataService } from './services/data.service';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider} from 'angular5-social-login';
 
 declare var jquery:any;
@@ -10,7 +11,7 @@ declare var $ :any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [CommonService, HttpService] 
+  providers: [CommonService, HttpService, DataService] 
 })
 
 export class AppComponent implements OnInit {
@@ -23,7 +24,10 @@ taskFinishIndicator:boolean;
 apiResponse : any;
 reasonList : any;
 reasonUserList : any;
-constructor(private commonService: CommonService,private route:ActivatedRoute,private router:Router, private httpService: HttpService, private socialAuthService: AuthService){}
+configSettings : any;
+constructor(private commonService: CommonService,
+  private dataService : DataService, 
+  private route:ActivatedRoute,private router:Router, private httpService: HttpService, private socialAuthService: AuthService){}
 
 ngOnInit() {
    this.loginDetails = {};
@@ -36,8 +40,10 @@ ngOnInit() {
         this.loginDetails.profile_image = this.commonService.getCookieValues("userImage");
    }
     this.getReason();
-    
+    this.dataService.setConfigData();
  }
+
+
  getReason(){
     this.httpService.getReason().subscribe(
       data => {
@@ -76,12 +82,14 @@ navigateToPublicProfile()
 }
 openLoginPopup ()
 {
+  this.dataService.setConfigData();
   $('#loginPrompt').modal('hide'); 
   $('#LoginModal').modal({backdrop: 'static', keyboard: false},'show'); 
 }
 
 openSignupPopup ()
 {
+  this.dataService.setConfigData();
   $('#loginPrompt').modal('hide'); 
   $('#SignupModal').modal({backdrop: 'static', keyboard: false},'show'); 
 }
@@ -94,6 +102,8 @@ openLoginPromptPopup ()
 openPostTaskPopup(category)
 {
   this.catObject=category;
+  this.configSettings = this.dataService.getConfigData();
+  console.log("in post tasl", this.configSettings);
  // if(this.loginDetails != null && this.loginDetails.id != null)
     $('#success').modal('hide');
     $('#PostTaskModal').modal({backdrop: 'static', keyboard: false},'show'); 
