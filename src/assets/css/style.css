@@ -814,7 +814,7 @@ button#login-button:hover
 
 h1.title { 
 	font-size: 50px;
-	font-family: 'Passion One', cursive; 
+	/*font-family: 'Passion One', cursive; */
 	font-weight: 400; 
 }
 
