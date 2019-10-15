@@ -6,6 +6,7 @@ import { HttpService } from '../services/http.service';
 import { CommonService } from '../services/common.service';
 import { User } from '../posttask/user';
 import { DatePipe } from '@angular/common';
+import { DataService } from '../services/data.service';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import {ActivatedRoute,Router} from '@angular/router';
 declare var jquery:any;
@@ -54,7 +55,10 @@ taskTitle : any;
 molPayValues : any;
 postTaskSucess:boolean;
 budgetReqIndicator:boolean;
-constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService, private fb: FormBuilder
+configSettings : any;
+constructor(private inj:Injector,private httpService: HttpService, 
+  private dataService : DataService,
+  private commonService: CommonService, private fb: FormBuilder
 , private datePipe: DatePipe,private route:ActivatedRoute,private router:Router){
   this.parentComponent = this.inj.get(AppComponent);
 }
@@ -228,8 +232,8 @@ onStep1Submit(form : any , model: any, isValid: boolean) {
                    this.locationIndicator = false;
                    this.budgetIndicator = false;
                    //ks : commenting fourth tab. 
-                   //this.taskFinishIndicator = true;
-                   $('#success').modal('show');
+                   this.taskFinishIndicator = true;
+                  // $('#success').modal('show');
                    this.isTaskPosted=true;
                    this.taskId=this.apiResponse.data.id;
                    this.taskTitle=this.apiResponse.data.title;
