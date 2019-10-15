@@ -95,13 +95,13 @@
                                     </ul>
 
 
-                                <div class="tab-content" *ngIf="posterIndicator == true">
+                                <div class="post-worker-info tab-content" *ngIf="posterIndicator == true">
 											<div>Task Posted : {{dashboardData.user_Task_Summary.as_poster.posted_offers}} </div>
 											<div>Task in progress: {{dashboardData.user_Task_Summary.as_poster.assigned + dashboardData.user_Task_Summary.as_poster.completed_from_doer}} </div>	
 											<div>Reopen : {{dashboardData.user_Task_Summary.as_poster.reopen}}</div>
 											<div>Closed : {{dashboardData.user_Task_Summary.as_poster.closed}} </div>
 									</div>
-								<div class="tab-content" *ngIf="posterIndicator == false">
+								<div class="post-worker-info tab-content" *ngIf="posterIndicator == false">
 										
 											<div>Offers Posted : {{dashboardData.user_Task_Summary.as_doer.posted_offers}}</div>
 											<div>Offers Assigned : {{dashboardData.user_Task_Summary.as_doer.assigned}}</div>

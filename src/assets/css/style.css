@@ -814,7 +814,7 @@ button#login-button:hover
 
 h1.title { 
 	font-size: 50px;
-	/*font-family: 'Passion One', cursive; */
+	/* font-family: 'Passion One', cursive;  */
 	font-weight: 400; 
 }
 
@@ -4929,7 +4929,7 @@ div#OfferModalConfirmation {
     width: 18%;
     text-align: center;
 }
-#.child-acor .panel-group .offer-complete {
+.child-acor .panel-group .offer-complete {
     float: left;
     width: 18%;
     text-align: center;
@@ -6101,6 +6101,11 @@ height: auto;
 {
 padding: 10px 7px !important;
 }
+.card-profile .tab-content div {
+    flex-basis: auto;
+    width: auto !important;
+    margin: 10px !important;
+}
 ul.top-links-left li a:hover {
     font-weight: 700;
     color: #000;
@@ -6619,6 +6624,20 @@ p.browse-anchor {
     width: 75%;
     margin: 0 auto;
     display: table;
+}
+.card-profile .post-worker-info.tab-content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-profile .post-worker-info.tab-content div {
+    box-shadow: 0 10px 10px rgba(0,0,0,.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 p.badge-content.text-center span {
     background: #fff;
