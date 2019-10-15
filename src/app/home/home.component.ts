@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit{
       this.how_3_full = false;
       this.how_1 = "Yello! It’s simple, secure and free to post any tasks";
       this.how_2 = "Review quotes and select the best Tasker";
-      this.how_3 = "Yaaay! Release the money held in escrow when your task is done Link the word escrow to the trust and security page";
+      this.how_3 = "Yaaay! Release the money held in escrow when your task is done. Link the word escrow to the trust and security page";
 
      this.commonService.showLoader();
      this.httpService.getLatestPostedTask().subscribe(
