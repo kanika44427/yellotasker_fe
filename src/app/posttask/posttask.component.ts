@@ -232,8 +232,11 @@ onStep1Submit(form : any , model: any, isValid: boolean) {
                    this.locationIndicator = false;
                    this.budgetIndicator = false;
                    //ks : commenting fourth tab. 
-                   this.taskFinishIndicator = true;
-                  // $('#success').modal('show');
+                   var config = this.dataService.getConfigData();
+                   if(config && config.payment_status == 'enable')
+                     this.taskFinishIndicator = true;
+                   else
+                     $('#success').modal('show');
                    this.isTaskPosted=true;
                    this.taskId=this.apiResponse.data.id;
                    this.taskTitle=this.apiResponse.data.title;

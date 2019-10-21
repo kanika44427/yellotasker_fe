@@ -3480,8 +3480,11 @@ var PostTaskComponent = (function () {
                         _this.locationIndicator = false;
                         _this.budgetIndicator = false;
                         //ks : commenting fourth tab. 
-                        _this.taskFinishIndicator = true;
-                        // $('#success').modal('show');
+                        var config = _this.dataService.getConfigData();
+                        if (config && config.payment_status == 'enable')
+                            _this.taskFinishIndicator = true;
+                        else
+                            $('#success').modal('show');
                         _this.isTaskPosted = true;
                         _this.taskId = _this.apiResponse.data.id;
                         _this.taskTitle = _this.apiResponse.data.title;
