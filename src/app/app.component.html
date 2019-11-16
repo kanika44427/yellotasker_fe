@@ -2,7 +2,7 @@
   <a [routerLink] ="['/']"><img id="loading-image" src="assets/img/cate-more.png" alt="Loading..." /></a>
 </div>
 <div class="header">
-		<div class="container">
+		<div class="container header-main">
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="logo border-right">
@@ -54,7 +54,24 @@
 				</div>
 				
 			</div>
-		</div>
+    </div>
+    
+  <!-- Mobile menu code -->
+  <div class="mob-list-menu">
+      <a href="javascript:void(0);" class="toggle-menu"><i class="fa fa-bars"></i></a>
+      <div class="menu-open"><!-- toggle "show" class -->
+        <a href="javascript:void(0);" class="close-menu"><i class="fa fa-times"></i></a><!-- OnClick remove "show"  class -->
+        <ul>
+          <li><a href="javascript:void(0);">Home</a></li>
+          <li><a href="javascript:void(0);">Dashboard</a></li>
+          <li><a href="javascript:void(0);">Post a Job</a></li>
+          <li><a href="javascript:void(0);">How it works</a></li>
+          <li><a href="javascript:void(0);">Browse Task</a></li>
+        </ul>
+      </div>
+    </div>
+  <!-- Mobile menu code -->
+  
 	
    <login-popup (setUserDashboard)="setUserDashboard($event)"></login-popup>
    <signup-popup (setUserDashboard)="setUserDashboard($event)"></signup-popup>
@@ -149,7 +166,40 @@
         </div>
         
       </div>
-	  </div>
+    </div>
+    
+<!-- Mobile Footer -->
+<div class="mob-footer">
+    <ul>
+      <li>
+        <a href="#">
+          <i class="fa fa-search"></i>
+          <span>Browse Task</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-plus-square"></i>
+          <span>Post Task</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-tasks"></i>
+          <span>My Task</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-user-o"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- End Mobile Footer -->
+  
+
 	<div class="last">
     
 		<p>yellotasker 2018, All rights reserved</p>
