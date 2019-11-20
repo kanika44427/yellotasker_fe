@@ -827,11 +827,6 @@ hr{
 .form-group{
 	margin-bottom: 15px;
 }
-input,
-input::-webkit-input-placeholder {
-    font-size: 11px;
-    padding-top: 3px;
-}
 
 .main-login{
  	background-color: #fff;
@@ -7056,4 +7051,7 @@ a.toggle-menu {position: absolute;top: 0;right: 0;font-size: 24px;color: #d0cd0e
 .menu-open ul li a {display: block;color: #000;font-size: 18px;padding: 10px 25px;font-weight: 500;border-bottom: 1px solid #b5b32d;}
 .menu-open ul {max-height: 95vh;overflow-y: auto;}
 a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width: 30px;height: 30px;text-align: center;font-size: 18px;line-height: 30px;}
+.usr-info {padding: 15px;display: flex;align-items: center;font-size: 18px;font-weight: bold;border-bottom: 1px solid #b5b32d;}
+.usr-info span {width: 50px;height: 50px;overflow: hidden;display: inline-block;border-radius: 50%;margin-right: 15px;}
+.usr-info span img {max-width: 100%;width: 100%;height: 100%;}
 }
