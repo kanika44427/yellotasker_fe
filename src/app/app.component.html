@@ -58,18 +58,36 @@
     
   <!-- Mobile menu code -->
   <div class="mob-list-menu">
-      <a href="javascript:void(0);" class="toggle-menu"><i class="fa fa-bars"></i></a>
-      <div class="menu-open"><!-- toggle "show" class -->
-        <a href="javascript:void(0);" class="close-menu"><i class="fa fa-times"></i></a><!-- OnClick remove "show"  class -->
-        <div class="usr-info">
-          <span><img src="../assets/img/user-intro-pic.png" alt=""></span> John Doe
+      <a  (click)="openMenu()" class="toggle-menu"><i class="fa fa-bars"></i></a>
+      <div 	class="{{showMenu?'show menu-open':'menu-open'}}"><!-- toggle "show" class -->
+        <a (click)="openMenu()" class="close-menu"><i class="fa fa-times"></i></a><!-- OnClick remove "show"  class -->
+        <div class="usr-info" (click)="redirectToMenu('profile')" *ngIf="loginIndicator">
+          <span><img src="{{loginDetails.profile_image?loginDetails.profile_image:'assets/img/task-person.png'}}" alt=""></span>{{loginDetails.first_name}} {{loginDetails.last_name}}
         </div>
-        <ul>
-          <li><a href="javascript:void(0);">Home</a></li>
-          <li><a href="javascript:void(0);">Dashboard</a></li>
-          <li><a href="javascript:void(0);">Post a Job</a></li>
-          <li><a href="javascript:void(0);">How it works</a></li>
-          <li><a href="javascript:void(0);">Browse Task</a></li>
+        <ul *ngIf="!loginIndicator">
+          <li><a (click)="redirectToMenu('register')">Register</a></li>
+          <li><a (click)="redirectToMenu('login')">Login</a></li>
+        </ul>
+        <ul *ngIf="loginIndicator">
+          <li><a (click)="redirectToMenu('')">Home</a></li>
+          <li><a (click)="redirectToMenu('dashboard')">Dashboard</a></li>
+          <li><a (click)="redirectToMenu('postTask')">Post Task</a></li>
+          <li><a (click)="redirectToMenu('browse-task')">Browse Task</a></li>
+          <li><a (click)="redirectToMenu('settings')">Settings</a></li>
+          <li><a (click)="redirectToMenu('category-list')">Categories</a></li>
+          <li><a (click)="redirectToMenu('how-it-works')">How it works</a></li>
+          <li><a (click)="redirectToMenu('how-to-earn-money')">How To earn money</a></li>
+          <li><a (click)="redirectToMenu('community-guidelines')">Community Guidelines</a></li>
+          <li><a (click)="redirectToMenu('trust-and-safety')">Trust and safety</a></li>
+          <!-- <li><a (click)="redirectToMenu('browse-task')">Help</a></li> -->
+          <li><a (click)="redirectToMenu('support')">Faq</a></li>
+          <li><a (click)="redirectToMenu('submit-a-request')">Contact us</a></li>
+          <li><a (click)="redirectToMenu('about-us')">About us</a></li>
+          <li><a (click)="redirectToMenu('blogs')">Blog</a></li>
+          <li><a (click)="redirectToMenu('press')">Press</a></li>
+          <li><a (click)="redirectToMenu('terms-and-conditions')">Terms & conditions</a></li>
+          <li><a (click)="redirectToMenu('privacy-policy')">Privacy policy</a></li>
+          <li><a (click)="redirectToMenu('logout')">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -173,33 +191,33 @@
     
 <!-- Mobile Footer -->
 <div class="mob-footer">
-    <ul>
-      <li>
-        <a href="#">
-          <i class="fa fa-search"></i>
-          <span>Browse Task</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-plus-square"></i>
-          <span>Post Task</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-tasks"></i>
-          <span>My Task</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-user-o"></i>
-          <span>Profile</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li>
+      <a href="#">
+        <i class="fa fa-search"></i>
+        <span><a [routerLink] ="['/browse-task']">Browse tasks</a></span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-plus-square"></i>
+        <span><a (click)="openPostTaskPopup()">Post Task</a></span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-tasks"></i>
+        <span><a [routerLink] ="['/my-task']">My Task</a></span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-user-o"></i>
+        <span><a (click)="navigateToPublicProfile()">Profile</a></span>
+      </a>
+    </li>
+  </ul>
+</div>
   <!-- End Mobile Footer -->
   
 

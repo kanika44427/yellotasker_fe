@@ -44,6 +44,8 @@ export class SettingComponent  implements OnInit {
   errorOTPMessage : any;
   otpNumber : any;
   isMobileVerified : any;
+  dashboardData : any;
+  totalPercentage : any;
   constructor(private inj:Injector,private route:ActivatedRoute,private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
     this.parentComponent = this.inj.get(AppComponent);
     
@@ -51,6 +53,7 @@ export class SettingComponent  implements OnInit {
   ngOnInit() {
     window.scrollTo(0,0);
     this.getUserProfile();
+    this.getProfilecompletion();
     this.setting=new Setting();
     this.skills=new Skills();
     this.skillArray=[];
@@ -101,9 +104,11 @@ export class SettingComponent  implements OnInit {
     this.httpService.getUserProfile(userId).subscribe(
       data => {
         this.apiResponse = data;
+        
         if(this.apiResponse.message == 'User data fetched.')
         {
           this.setting=this.apiResponse.data;
+          console.log("Daattaa",this.apiResponse);
           if(this.apiResponse.data.phone != null && this.apiResponse.data != "" && this.apiResponse.data.phone != undefined)
           {
             this.isMobileVerified = true;
@@ -121,8 +126,33 @@ export class SettingComponent  implements OnInit {
         else{
            this.commonService.hideLoader();
         }
+        
     });
   }
+  getProfilecompletion()
+{
+  
+    let userId=this.commonService.getCookieValues("userid");
+    this.commonService.showLoader();
+    this.httpService.dashboard(userId).subscribe(
+      data => {
+        this.apiResponse = data;
+        if(this.apiResponse.message == 'User dashboard data')
+        {
+          this.dashboardData=this.apiResponse.data;
+          console.log("Profile completion",this.apiResponse);
+         // this.dashboardData.percentageCompletion = 
+         var skill_completion =  +this.dashboardData.skill_completion.replace("%", "");
+         var profile_completion = +this.dashboardData.profile_completion.replace("%", "");
+         var badges_completion = +this.dashboardData.badges.replace("%", "");
+         this.totalPercentage = (skill_completion + profile_completion + badges_completion) / 3;
+         this.commonService.hideLoader();
+        }
+        else{
+           this.commonService.hideLoader();
+        }
+});
+}
   settingSave(model: any,isValid:any){
     this.commonService.showLoader();
     this.settingObj={};

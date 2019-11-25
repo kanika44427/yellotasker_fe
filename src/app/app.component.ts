@@ -25,6 +25,7 @@ apiResponse : any;
 reasonList : any;
 reasonUserList : any;
 configSettings : any;
+showMenu:boolean=false;
 constructor(private commonService: CommonService,
   private dataService : DataService, 
   private route:ActivatedRoute,private router:Router, private httpService: HttpService, private socialAuthService: AuthService){}
@@ -78,7 +79,11 @@ setUserDashboard(loginDetails: any) {
 
 navigateToPublicProfile()
 {
-  this.router.navigate(['/profile-view/' + "/" + this.loginDetails.first_name + "/"+  this.loginDetails.id]);
+  if(this.loginIndicator) {
+    this.router.navigate(['/profile-view/' + "/" + this.loginDetails.first_name + "/"+  this.loginDetails.id]);
+  } else {
+    this.openLoginPopup();
+  }
 }
 openLoginPopup ()
 {
@@ -109,6 +114,36 @@ openPostTaskPopup(category)
     $('#PostTaskModal').modal({backdrop: 'static', keyboard: false},'show'); 
  // else
    // this.openLoginPromptPopup();
+}
+
+openMenu() {
+  if(this.showMenu) {
+    this.showMenu=false;
+  } else {
+    this.showMenu=true;
+  }
+}
+// rediect to particular menu item
+redirectToMenu(menu) {
+  if(menu=='postTask') {
+     this.openPostTaskPopup('');
+     this.showMenu=false;
+  } else if(menu=='register') {
+     this.openSignupPopup();
+     this.showMenu=false;
+  } else if(menu=='login') {
+     this.openLoginPopup();
+     this.showMenu=false;
+  } else if(menu=='logout') {
+     this.logout();
+     this.showMenu=false;
+  } else if(menu=='profile') {
+    this.router.navigate(['./profile-view/'+ this.loginDetails.first_name+'/'+this.loginDetails.id]);
+    this.showMenu=false;
+  } else {
+    this.router.navigate(['./'+ menu]);
+    this.showMenu=false;
+  }
 }
 logout()
 {
