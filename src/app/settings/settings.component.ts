@@ -44,6 +44,9 @@ export class SettingComponent  implements OnInit {
   errorOTPMessage : any;
   otpNumber : any;
   isMobileVerified : any;
+
+  openMenu:boolean = false;
+
   constructor(private inj:Injector,private route:ActivatedRoute,private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
     this.parentComponent = this.inj.get(AppComponent);
     
@@ -69,6 +72,12 @@ export class SettingComponent  implements OnInit {
     this.errorMobileMessage = "";
     this.isMobileVerified = false;
   }
+
+  toggleMenu(){
+    this.openMenu = !this.openMenu;
+  }
+
+
   deactivateAcc(){
     var r = confirm("Are you sure you want to deactivate your account ?");
     if (r) {
