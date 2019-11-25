@@ -40,9 +40,9 @@
 						<li><a (click)="settingTab('mobile')" [ngClass]="{'setting-active': showMobile}">Mobile</a></li>
 						<li><a (click)="settingTab('portfolio')" [ngClass]="{'setting-active': portfolio}">Portfolio</a>
 						</li>
-						<li><a href="#">Password</a></li>
+						<li ><a href="#">Password</a></li>
 						<li>
-							<a href="javascript:void(0);" (click)="toggleMenu()">Privacy & Settings</a>
+							<a href="javascript:void(0);" class="child-menu-main" (click)="toggleMenu()">Privacy & Settings</a>
 							<ul class="submenu-tabs" [ngClass]="openMenu ? 'show' : ''">
 								<li><a class="submenu-active" href="javascript:void(0);">Submenu 1</a></li>
 								<li><a href="javascript:void(0);">Submenu 2</a></li>
