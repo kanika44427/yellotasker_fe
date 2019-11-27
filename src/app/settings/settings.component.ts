@@ -46,6 +46,13 @@ export class SettingComponent  implements OnInit {
   isMobileVerified : any;
   dashboardData : any;
   totalPercentage : any;
+  accountDeactivation:boolean=false;
+  openMenu:boolean = false;
+  notificationAlerts:boolean=false;
+  notificationPreference:boolean=false;
+  passwordChange:boolean=false;
+  activeMenu:any='account';
+
   constructor(private inj:Injector,private route:ActivatedRoute,private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
     this.parentComponent = this.inj.get(AppComponent);
     
@@ -72,6 +79,13 @@ export class SettingComponent  implements OnInit {
     this.errorMobileMessage = "";
     this.isMobileVerified = false;
   }
+
+  toggleMenu(){
+    this.openMenu = !this.openMenu;
+    this.settingTab('privacy-settings');
+  }
+
+
   deactivateAcc(){
     var r = confirm("Are you sure you want to deactivate your account ?");
     if (r) {
@@ -82,6 +96,7 @@ export class SettingComponent  implements OnInit {
         this.apiResponse = data;
         if(this.apiResponse.message == 'Account deativated')
         {
+          alert("Your account has been deactivated successfully.Please contact admin@yellotasker.com to activate account again.")
           this.parentComponent.loginIndicator = false;
           this.parentComponent.loginDetails = null;
           this.commonService.deleteCookieValues("userid");
@@ -210,29 +225,83 @@ export class SettingComponent  implements OnInit {
      }
   }
   settingTab(type){
-    if(type=='mobile'){
-      this.showMobile=true;
-      this.showAccount=false;
-      this.showSkills=false;
-      this.portfolio=false;
-    } else if(type=='account'){
-      this.showAccount=true;
-      this.showMobile=false;
-      this.showSkills=false;
-      this.portfolio=false;
-    } else if(type=='skills'){
-      this.getSkills();
-      this.showSkills=true;
-      this.showAccount=false;
-      this.showMobile=false;
-      this.portfolio=false;
-    } else if(type=='portfolio'){
-      this.getPortfolioImage();
-      this.portfolio=true;
-      this.showSkills=false;
-      this.showAccount=false;
-      this.showMobile=false;
-    }
+    this.activeMenu='';
+    this.activeMenu=type;
+    // if(type=='mobile'){
+    //   this.showMobile=true;
+    //   this.showAccount=false;
+    //   this.showSkills=false;
+    //   this.portfolio=false;
+    //   this.accountDeactivation=false;
+    //   this.notificationAlerts=false;
+    //   this.notificationPreference=false;
+    //   this.passwordChange=false;
+    // } else if(type=='account'){
+    //   this.showAccount=true;
+    //   this.showMobile=false;
+    //   this.showSkills=false;
+    //   this.portfolio=false;
+    //   this.accountDeactivation=false;
+    //   this.notificationAlerts=false;
+    //   this.notificationPreference=false;
+    //   this.passwordChange=false;
+    // } else if(type=='skills'){
+    //   this.getSkills();
+    //   this.showSkills=true;
+    //   this.showAccount=false;
+    //   this.showMobile=false;
+    //   this.portfolio=false;
+    //   this.accountDeactivation=false;
+    //   this.notificationAlerts=false;
+    //   this.notificationPreference=false;
+    //   this.passwordChange=false;
+    // } else if(type=='portfolio'){
+    //   this.getPortfolioImage();
+    //   this.portfolio=true;
+    //   this.showSkills=false;
+    //   this.showAccount=false;
+    //   this.showMobile=false;
+    //   this.accountDeactivation=false;
+    //   this.notificationAlerts=false;
+    //   this.notificationPreference=false;
+    //   this.passwordChange=false;
+    // } else if(type=='privacy-settings') {
+    //   this.portfolio=false;
+    //   this.showSkills=false;
+    //   this.showAccount=false;
+    //   this.showMobile=false;
+    //   this.accountDeactivation=true;
+    //   this.notificationAlerts=false;
+    //   this.notificationPreference=false;
+    //   this.passwordChange=false;
+    // } else if(type=='notf-preference') {
+    //   this.portfolio=false;
+    //   this.showSkills=false;
+    //   this.showAccount=false;
+    //   this.showMobile=false;
+    //   this.accountDeactivation=false;
+    //   this.notificationAlerts=false;
+    //   this.notificationPreference=true;
+    //   this.passwordChange=false;
+    // } else if(type=='password-change') {
+    //   this.portfolio=false;
+    //   this.showSkills=false;
+    //   this.showAccount=false;
+    //   this.showMobile=false;
+    //   this.notificationAlerts=false;
+    //   this.accountDeactivation=false;
+    //   this.notificationPreference=false;
+    //   this.passwordChange=true;
+    // } else if(type=='notf-alerts') {
+    //   this.portfolio=false;
+    //   this.showSkills=false;
+    //   this.showAccount=false;
+    //   this.showMobile=false;
+    //   this.accountDeactivation=false;
+    //   this.notificationAlerts=true;
+    //   this.notificationPreference=false;
+    //   this.passwordChange=false;
+    // }
   }
   getSkills(){
     let userId=this.commonService.getCookieValues("userid");
