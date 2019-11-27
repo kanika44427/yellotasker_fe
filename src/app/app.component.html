@@ -44,7 +44,7 @@
                     <p><a (click)="navigateToPublicProfile()">Public Profile</a></p>
 										<p><a [routerLink] ="['/settings']">Settings</a></p>
                     <p><a [routerLink] ="['/my-task']">My Tasks</a></p>
-                    <p><a [routerLink] ="['/change-password']">Change Password</a></p>
+                    <!-- <p><a [routerLink] ="['/change-password']">Change Password</a></p> -->
 										<p><a (click)="logout()">Logout</a></p>
 									</div> 
 								</div>
@@ -67,6 +67,21 @@
         <ul *ngIf="!loginIndicator">
           <li><a (click)="redirectToMenu('register')">Register</a></li>
           <li><a (click)="redirectToMenu('login')">Login</a></li>
+          <li><a (click)="redirectToMenu('postTask')">Post Task</a></li>
+          <li><a (click)="redirectToMenu('browse-task')">Browse Task</a></li>
+          <li><a (click)="redirectToMenu('category-list')">Categories</a></li>
+          <li><a (click)="redirectToMenu('how-it-works')">How it works</a></li>
+          <li><a (click)="redirectToMenu('how-to-earn-money')">How To earn money</a></li>
+          <li><a (click)="redirectToMenu('community-guidelines')">Community Guidelines</a></li>
+          <li><a (click)="redirectToMenu('trust-and-safety')">Trust and safety</a></li>
+          <!-- <li><a (click)="redirectToMenu('browse-task')">Help</a></li> -->
+          <li><a (click)="redirectToMenu('support')">Faq</a></li>
+          <li><a (click)="redirectToMenu('submit-a-request')">Contact us</a></li>
+          <li><a (click)="redirectToMenu('about-us')">About us</a></li>
+          <li><a (click)="redirectToMenu('blogs')">Blog</a></li>
+          <li><a (click)="redirectToMenu('press')">Press</a></li>
+          <li><a (click)="redirectToMenu('terms-and-conditions')">Terms & conditions</a></li>
+          <li><a (click)="redirectToMenu('privacy-policy')">Privacy policy</a></li>
         </ul>
         <ul *ngIf="loginIndicator">
           <li><a (click)="redirectToMenu('')">Home</a></li>

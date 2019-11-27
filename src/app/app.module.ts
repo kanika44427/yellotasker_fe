@@ -28,7 +28,6 @@ import { ContactUsComponent } from './contact-us/contact.component';
 import { SupportComponent } from './support/support.component';
 import { ResetPasswordComponent } from './reset-password/reset.component'; // forget password pop up 
 import { UpdatePasswordComponent } from './update-password/updatePassword.component'; // update password from reset link from mail 
-import { ChangePasswordComponent } from './change-password/changePassword.component'; //change password by email 
 import { MyTaskComponent } from './my-task/myTask.component';
 import { ReporttaskComponent } from './report/report-task/reportTask.component';
 import { ReportUserComponent } from './report/report-user/reportUser.component';
@@ -73,7 +72,6 @@ const appRoutes: Routes = [
     { path: 'support-detail/:id', component: DetailSupportComponent },
     { path: 'how-it-works', component: HowItWorksComponent},
     { path: 'update-password' , component: UpdatePasswordComponent },
-    { path: 'change-password' , component: ChangePasswordComponent },
     { path: 'my-task' , component: MyTaskComponent },
     { path: 'blogs' , component: BlogComponent },
     { path:  'blogs/:id',component: BlogDetailComponent},
@@ -127,7 +125,6 @@ export function getAuthServiceConfigs() {
     SupportComponent,
     ResetPasswordComponent,
     UpdatePasswordComponent,
-    ChangePasswordComponent,
     TimeAgoPipe,
     MyTaskComponent,
     ReporttaskComponent,
