@@ -1,138 +1,201 @@
 <div class="sub-banner profile-banner">
-		<div class="user-profile-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8">
-						<div class="user-profile-pic" *ngIf = "setting.profile_image == null">
-							<img src="assets/img/task-person.png">
-						</div>
-						<div class="user-profile-pic" *ngIf = "setting.profile_image !== null">
-								<img src="{{setting.profile_image}}">
-							</div>
-						<div class="user-name-detail">
-							<h4>{{setting.first_name}} {{setting.last_name}} 
-						     </h4>
-						</div>
+	<div class="user-profile-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="user-profile-pic" *ngIf="setting.profile_image == null">
+						<img src="assets/img/task-person.png">
 					</div>
-					<div class="col-sm-4 text-center">
-						<div class="profile-counter">
-							<h4>Your Profile Is {{totalPercentage | number : '1.2-2'}} % Complete</h4>
-						</div>
+					<div class="user-profile-pic" *ngIf="setting.profile_image !== null">
+						<img src="{{setting.profile_image}}">
+					</div>
+					<div class="user-name-detail">
+						<h4>{{setting.first_name}} {{setting.last_name}}
+						</h4>
+					</div>
+				</div>
+				<div class="col-sm-4 text-center">
+					<div class="profile-counter">
+						<h4>Your Profile Is {{totalPercentage | number : '1.2-2'}} % Complete</h4>
 					</div>
 				</div>
 			</div>
 		</div>
-	
 	</div>
-	
-	<div class="profile-main-content">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="setting-sidebar">
-						<ul>
-											<li><a (click)="settingTab('account')" [ngClass]="{'setting-active': showAccount}">Account</a></li>
-											<li><a (click)="settingTab('skills')" [ngClass]="{'setting-active': showSkills}">Skill</a></li>
-											<li><a href="#">Notification Preferences</a></li>
-											<li><a href="#">Account Deactivation</a></li>
-											<!--<li><a href="#">Badges</a></li>-->
-											<!--<li><a href="#">Task Alert Keywords</a></li>-->
-											<!--<li><a href="#">Notification Settings</a></li>-->
-											<li><a (click)="settingTab('mobile')" [ngClass]="{'setting-active': showMobile}">Mobile</a></li>
-											<li><a (click)="settingTab('portfolio')" [ngClass]="{'setting-active': portfolio}">Portfolio</a></li>
-											<li><a href="#">Password</a></li>
-										</ul>
-					</div>
+
+</div>
+
+<div class="profile-main-content">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="setting-sidebar">
+					<ul>
+						<li><a (click)="settingTab('account')" [ngClass]="{'setting-active': activeMenu=='account'}">Account</a>
+						</li>
+						<li><a (click)="settingTab('skills')" [ngClass]="{'setting-active': activeMenu=='skills'}">Skill</a></li>
+						<!-- <li><a href="#">Badges</a></li> -->
+						<!--<li><a href="#">Task Alert Keywords</a></li>-->
+						<!--<li><a href="#">Notification Settings</a></li>-->
+						<li><a (click)="settingTab('mobile')" [ngClass]="{'setting-active': activeMenu=='mobile'}">Mobile</a></li>
+						<li><a (click)="settingTab('portfolio')" [ngClass]="{'setting-active':  activeMenu=='portfolio'}">Portfolio</a>
+						</li>
+						<!-- <li ><a href="#">Password</a></li> -->
+						<li>
+							<a href="javascript:void(0);" class="child-menu-main"  [ngClass]="{'setting-active':  activeMenu=='privacy-settings'||activeMenu=='notf-preference'||activeMenu=='notf-alerts'|| activeMenu=='password-change'}" (click)="toggleMenu()">Privacy & Settings</a>
+							<ul class="submenu-tabs" [ngClass]="openMenu ? 'show' : ''">
+								<li><a  (click)="settingTab('privacy-settings')" [ngClass]="{'submenu-active':  activeMenu=='privacy-settings'}">Account deactivation </a></li>
+								<li><a (click)="settingTab('notf-preference')"  [ngClass]="{'submenu-active':  activeMenu=='notf-preference'}">Notification preference</a></li>
+								<li><a (click)="settingTab('notf-alerts')" [ngClass]="{'submenu-active':  activeMenu=='notf-alerts'}">Notification alerts</a></li>
+								<li><a (click)="settingTab('password-change')" [ngClass]="{'submenu-active':  activeMenu=='password-change'}">Password change</a></li>
+							</ul>
+						</li>
+					</ul>
 				</div>
-				<div class="col-sm-8">
-					<div class="account-inner">
-						<!--skills form-->
-					<div class="anchovy-form" *ngIf="showAccount">
-							<form #settingForm="ngForm" (ngSubmit)="settingSave(settingForm.value, settingForm.valid);" 
+			</div>
+			<div class="col-sm-8">
+				<div class="account-inner">
+					<!--skills form-->
+					<div class="anchovy-form" *ngIf="activeMenu=='account'">
+						<form #settingForm="ngForm" (ngSubmit)="settingSave(settingForm.value, settingForm.valid);"
 							novalidate class="form setting">
-					<div class="anchovy-form-item" style="float:left; width:100%;"><label>Upload Avatar</label>
-                    <div class="avatar-holder"><div class="anchovy-avatar-input">
-                        <div class="loaderific-not-loading"></div><div class="anchovy-avatar-input-inner">
-                            <div class="anchovy-img-holder"><img name="profile_image"  [(ngModel)]="setting.profile_image" #profile_image="ngModel" src="{{setting.profile_image?setting.profile_image:'assets/img/person-1.png'}}"></div><div class="attachment-input-holder "><div class="attachment-input "><input type="file" (change)="imageUpload($event)"><button class="button-cta button-med">Upload photo</button></div><div class="clear"></div></div></div></div></div></div>
-					
-					<div class="anchovy-form-item"><label><!-- react-text: 4296 -->First name<!-- /react-text --></label><input type="text" id="ui-test-first-name" maxlength="30" name="first_name" [(ngModel)]="setting.first_name" #first_name="ngModel" value={{setting.first_name}}></div>
-					<div class="anchovy-form-item"><label><!-- react-text: 4300 -->Last name<!-- /react-text --></label><input type="text" id="ui-test-last-name" maxlength="30" name="last_name" [(ngModel)]="setting.last_name" #last_name="ngModel" value={{setting.last_name}}></div>
-					<div class="anchovy-form-item"><label>Tagline</label><input  type="text" id="ui-test-tagline" placeholder="Mini bio"name="tagLine" [(ngModel)]="setting.tagLine" #tagLine="ngModel" value={{setting.tagLine}}></div>
-					<div class="anchovy-form-item"><label>Location</label><div class="air-location-component"><input name="location"  [(ngModel)]="setting.location" #location="ngModel" type="text" id="location-input" value={{setting.location}} placeholder="Enter a suburb"><div class="suggestions closed"></div></div></div>
-					<div class="anchovy-form-item"><label>Email</label>
-						<input class="{{emailError==true||(email.touched && !email?.valid)?'red-border':''}}" type="email" placeholder="Email" required [(ngModel)]="setting.email" #email="ngModel" 
-						name="email" email value={{setting.email}}
-						  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
-						  <small *ngIf = "email.touched && !email?.valid" class="pull-left">
-								 Please enter valid email address.
-						  </small>
-					</div>
-					<div class="anchovy-form-item"><label><!-- react-text: 4315 -->Birthday<!-- /react-text --></label>
-						<div id="date-of-birth-input">
-							<!-- <input type="number" min="1" max="31" class="date" name="date"  [(ngModel)]="setting.date" #date="ngModel" placeholder="DD">
+							<div class="anchovy-form-item" style="float:left; width:100%;"><label>Upload Avatar</label>
+								<div class="avatar-holder">
+									<div class="anchovy-avatar-input">
+										<div class="loaderific-not-loading"></div>
+										<div class="anchovy-avatar-input-inner">
+											<div class="anchovy-img-holder"><img name="profile_image"
+													[(ngModel)]="setting.profile_image" #profile_image="ngModel"
+													src="{{setting.profile_image?setting.profile_image:'assets/img/person-1.png'}}">
+											</div>
+											<div class="attachment-input-holder ">
+												<div class="attachment-input "><input type="file"
+														(change)="imageUpload($event)"><button
+														class="button-cta button-med">Upload photo</button></div>
+												<div class="clear"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="anchovy-form-item"><label>
+									<!-- react-text: 4296 -->First name
+									<!-- /react-text --></label><input type="text" id="ui-test-first-name"
+									maxlength="30" name="first_name" [(ngModel)]="setting.first_name"
+									#first_name="ngModel" value={{setting.first_name}}></div>
+							<div class="anchovy-form-item"><label>
+									<!-- react-text: 4300 -->Last name
+									<!-- /react-text --></label><input type="text" id="ui-test-last-name" maxlength="30"
+									name="last_name" [(ngModel)]="setting.last_name" #last_name="ngModel"
+									value={{setting.last_name}}></div>
+							<div class="anchovy-form-item"><label>Tagline</label><input type="text" id="ui-test-tagline"
+									placeholder="Mini bio" name="tagLine" [(ngModel)]="setting.tagLine"
+									#tagLine="ngModel" value={{setting.tagLine}}></div>
+							<div class="anchovy-form-item"><label>Location</label>
+								<div class="air-location-component"><input name="location"
+										[(ngModel)]="setting.location" #location="ngModel" type="text"
+										id="location-input" value={{setting.location}} placeholder="Enter a suburb">
+									<div class="suggestions closed"></div>
+								</div>
+							</div>
+							<div class="anchovy-form-item"><label>Email</label>
+								<input class="{{emailError==true||(email.touched && !email?.valid)?'red-border':''}}"
+									type="email" placeholder="Email" required [(ngModel)]="setting.email"
+									#email="ngModel" name="email" email value={{setting.email}}
+									pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+								<small *ngIf="email.touched && !email?.valid" class="pull-left">
+									Please enter valid email address.
+								</small>
+							</div>
+							<div class="anchovy-form-item"><label>
+									<!-- react-text: 4315 -->Birthday
+									<!-- /react-text --></label>
+								<div id="date-of-birth-input">
+									<!-- <input type="number" min="1" max="31" class="date" name="date"  [(ngModel)]="setting.date" #date="ngModel" placeholder="DD">
 							<input type="number" min="1" max="12" class="month" name="month"  [(ngModel)]="setting.month" #month="ngModel" placeholder="MM" value="1">
 							<input type="number" min="1900" max="2017" class="year" name="year"  [(ngModel)]="setting.year" #year="ngModel" placeholder="YYYY"> -->
-							<material-datepicker ngDefaultControl name="birthday"
-							placeholder="select date" [ngModel]="setting.birthday | date:'dd-MM-y'" 
-						   style="padding-left:35px;" class="new-date-box"
-						   [(date)]="setting.birthday"  dateFormat="DD-MM-YYYY"></material-datepicker>
-						</div>
+									<material-datepicker ngDefaultControl name="birthday" placeholder="select date"
+										[ngModel]="setting.birthday | date:'dd-MM-y'" style="padding-left:35px;"
+										class="new-date-box" [(date)]="setting.birthday" dateFormat="DD-MM-YYYY">
+									</material-datepicker>
+								</div>
+							</div>
+							<!-- <div class="anchovy-form-item"><label>ABN</label>
+								<input type="number" name="abn" [(ngModel)]="setting.abn" value="setting.abn"></div> -->
+							<div class="anchovy-form-item"><label>Description</label><textarea name="about_me"
+									[(ngModel)]="setting.about_me" #about_me="ngModel"
+									id="ui-test-description">{{setting.about_me}}</textarea></div>
+							<div class="anchovy-form-item"><label>On Yellotasker I want to</label>
+								<div class="checkbox-item"><input type="checkbox" name="postTask"
+										[checked]="roleArr.indexOf('Post Task') >= 0"
+										(change)="roleType($event,'Post Task');" value="Post Task">
+									<label>
+										<!-- react-text: 4331 -->Post tasks
+										<!-- /react-text --></label>
+								</div>
+								<div class="checkbox-item"><input type="checkbox" name="earnMoney"
+										[checked]="roleArr.indexOf('Earn Money') >= 0"
+										(change)="roleType($event,'Earn Money');" value="Earn Money">
+									<label>
+										<!-- react-text: 4335 -->Earn money
+										<!-- /react-text --></label>
+								</div>
+							</div>
+							<div class="save-btn-yellow">
+								<button id="ui-test-begin-save" class="button-med button-cta">Save profile</button>
+							</div>
+						</form>
+				
 					</div>
-					<!-- <div class="anchovy-form-item"><label>ABN</label>
-						<input type="number"  name="abn"  [(ngModel)]="setting.abn"  value="setting.abn"></div> -->
-					<div class="anchovy-form-item"><label>Description</label><textarea  name="about_me"  [(ngModel)]="setting.about_me" #about_me="ngModel" id="ui-test-description" >{{setting.about_me}}</textarea></div>
-					<div class="anchovy-form-item"><label>On Yellotasker I want to</label>
-						<div class="checkbox-item"><input type="checkbox" name="postTask" [checked]="roleArr.indexOf('Post Task') >= 0"  (change)="roleType($event,'Post Task');"value="Post Task">
-							<label><!-- react-text: 4331 -->Post tasks<!-- /react-text --></label>
-						</div><div class="checkbox-item"><input type="checkbox" name="earnMoney" [checked]="roleArr.indexOf('Earn Money') >= 0" (change)="roleType($event,'Earn Money');"value="Earn Money">
-							<label><!-- react-text: 4335 -->Earn money<!-- /react-text --></label>
-						</div></div>
-					<div class="save-btn-yellow">
-						<button id="ui-test-begin-save" class="button-med button-cta">Save profile</button>
-					</div>
-					</form>
-				   <button id="ui-test-begin-save" class="button-med button-cta"  (click)="deactivateAcc()" style="background:#000; color:#fff !important">Deactivate My Account</button>
-				  </div>
-				  <!-- mobile form -->
-				  <div *ngIf="showMobile" class="account vertical-scroll" style="width: 100%; height: auto;">
+					<!-- mobile form -->
+					<div  *ngIf="activeMenu=='mobile'" class="account vertical-scroll" style="width: 100%; height: auto;">
 						<div class="system-notifications"></div>
 						<div class="account-mobile">
-						<div class="account-inner anchovy-form">
-						<div><div class="anchovy-verify-mobile anchovy-form-item" *ngIf="mobileSectionIndicator">
-								<p style="padding-left:15px;">Let's stay in touch. 
-										Enter your mobile number below so you can receive SMS updates about your tasks.
-									</p>
-							<label>
-									{{errorMobileMessage}}
-							   </label>
+							<div class="account-inner anchovy-form">
+								<div>
+									<div class="anchovy-verify-mobile anchovy-form-item" *ngIf="mobileSectionIndicator">
+										<p style="padding-left:15px;">Let's stay in touch.
+											Enter your mobile number below so you can receive SMS updates about your
+											tasks.
+										</p>
+										<label>
+											{{errorMobileMessage}}
+										</label>
 
-							<label>Mobile number</label>
-							<div class="small">We will send you a verification code</div>
-							<div class="margin-10-top">
-					      <input type="text" id="mobile" name="mobile" placeholder="+919826012345" [(ngModel)]="mobileNumber" #mobile ="ngModel">
-						  <button class="mobile-otp-btn" (click)="getOtp()">Enter mobile number</button>
-						</div></div>
-						<!--otp section --> 
-						<div class="anchovy-verify-mobile anchovy-form-item" *ngIf="otpSectionIndicator">
-								<div class="loaderific-not-loading"></div>
-								<label >
-										{{errorOTPMessage}}
-								   </label>
-								<label>Enter OTP</label>
-								<div class="small">Please enter verification code we have send to your entered mobile number.</div>
-								<div class="margin-10-top">
-							  <input type="text" id="otp" name="otp" [(ngModel)]="otpNumber" #otp ="ngModel">
-							  <button class="mobile-otp-btn" (click)="sendOTP()">Send OTP</button>
-							</div></div>
-							<div *ngIf= "isMobileVerified">
-									Mobile number verified successfully : 
-									<span id="settingsPhone" *ngIf="setting.phone">{{setting.phone }} </span>
-									<span id="phone" *ngIf="mobileNumber">{{ mobileNumber }} </span>
-									<img src="assets/img/checkmark.gif" alt="yellotasker">
-								
-							</div>
-						<!--call section open -->
-						<!--<div class="anchovy-form-item"><label class="inline">
+										<label>Mobile number</label>
+										<div class="small">We will send you a verification code</div>
+										<div class="margin-10-top">
+											<input type="text" id="mobile" name="mobile" placeholder="+919826012345"
+												[(ngModel)]="mobileNumber" #mobile="ngModel">
+											<button class="mobile-otp-btn" (click)="getOtp()">Enter mobile
+												number</button>
+										</div>
+									</div>
+									<!--otp section -->
+									<div class="anchovy-verify-mobile anchovy-form-item" *ngIf="otpSectionIndicator">
+										<div class="loaderific-not-loading"></div>
+										<label>
+											{{errorOTPMessage}}
+										</label>
+										<label>Enter OTP</label>
+										<div class="small">Please enter verification code we have send to your entered
+											mobile number.</div>
+										<div class="margin-10-top">
+											<input type="text" id="otp" name="otp" [(ngModel)]="otpNumber"
+												#otp="ngModel">
+											<button class="mobile-otp-btn" (click)="sendOTP()">Send OTP</button>
+										</div>
+									</div>
+									<div *ngIf="isMobileVerified">
+										Mobile number verified successfully :
+										<span id="settingsPhone" *ngIf="setting.phone">{{setting.phone }} </span>
+										<span id="phone" *ngIf="mobileNumber">{{ mobileNumber }} </span>
+										<img src="assets/img/checkmark.gif" alt="yellotasker">
+
+									</div>
+									<!--call section open -->
+									<!--<div class="anchovy-form-item"><label class="inline">
 							Get free calls with yellotasker</label>
 							<p>This will allow you to make or receive calls through Airtasker when you have
 								 task in progress.</p>
@@ -141,62 +204,118 @@
 									 <p>Would you like to enable free calls?</p>
 									 <div class="button-bar"><a class="half selected">Yes</a>
 										<a class="half">No</a></div>
-									</div>--><!--call section close -->
+									</div>-->
+									<!--call section close -->
 								</div>
-								</div></div></div>
-		        <!-- mobile form end -->
-				<div class="anchovy-form" *ngIf="showSkills">
-						<form #skillForm="ngForm" (ngSubmit)="skillSave(skillForm.value, skillForm.valid);" 
-							   novalidate class="form setting">
-					   <h4>Skill</h4>
-					   <div class="anchovy-form-item" style="float:left; width:100%;"><label>These are your skills. Keep them updated with any new skills you learn so other members can know what you can offer.</label>
-					   <input type="text" id="ui-test-first-name" maxlength="30" name="skills" [(ngModel)]="skills.skills" #tagLine="ngModel" value={{skills.skills}} placeholder="e.g. cleaning, driving and graphic design">
-					   </div>
-					   
-					   <div class="anchovy-form-item" style="float:left; width:100%;"><label>How do you get around?</label><div class="checkbox-item"><input type="checkbox"  [checked]="skillArray.indexOf('Bicycle') >= 0" (change)="modeOfReach($event,'Bicycle');" value="Bicycle"><label><!-- react-text: 4331 -->Bicycle<!-- /react-text --></label></div>
-					   <div class="checkbox-item"><input type="checkbox"  [checked]="skillArray.indexOf('Car') >= 0" (change)="modeOfReach($event,'Car');" value="Car"><label><!-- react-text: 4335 -->Car<!-- /react-text --></label></div>
-					   <div class="checkbox-item"><input type="checkbox"  [checked]="skillArray.indexOf('Online') >= 0" (change)="modeOfReach($event,'Online');" value="Online"><label><!-- react-text: 4335 -->Online<!-- /react-text --></label></div>
-					   <div class="checkbox-item"><input type="checkbox"  [checked]="skillArray.indexOf('Scooter') >= 0"(change)="modeOfReach($event,'Scooter');" value="Scooter"><label><!-- react-text: 4335 -->Scooter<!-- /react-text --></label></div>
-					   <div class="checkbox-item"><input type="checkbox"  [checked]="skillArray.indexOf('Truck') >= 0" (change)="modeOfReach($event,'Truck');" value="Truck"><label><!-- react-text: 4335 -->Truck<!-- /react-text --></label></div>
-					   <div class="checkbox-item"><input type="checkbox"  [checked]="skillArray.indexOf('Walk') >= 0" (change)="modeOfReach($event,'Walk');" value="Walk"><label><!-- react-text: 4335 -->Walk<!-- /react-text --></label></div>
-					   </div>
-					   <div class="anchovy-form-item" style="float:left; width:100%;"><label>What languages can you speak/write?</label>
-					   <input type="text" id="ui-test-first-name" maxlength="30" name="language" [(ngModel)]="skills.language" #tagLine="ngModel" value={{skills.language}} placeholder="e.g. English and French">
-					   </div>
-					   <div class="anchovy-form-item" style="float:left; width:100%;"><label>What qualifications have you got?</label>
-					   <input type="text" id="ui-test-first-name" maxlength="30"  name="qualification" [(ngModel)]="skills.qualification" #qualification="ngModel" value={{skills.qualification}} placeholder="e.g. Higher School Certificate (HSC), Accredited Barista">
-					   </div>
-					   <div class="anchovy-form-item" style="float:left; width:100%;"><label>What's your work experience?</label>
-					   <input type="text" id="ui-test-first-name" maxlength="30" name="workExperience" [(ngModel)]="skills.workExperience" #workExperience="ngModel" value={{skills.workExperience}} placeholder="e.g. 3 years as a Barista at The Cafe">
-					   </div>
-					   <div class="save-btn-yellow"><button type="submit" id="ui-test-begin-save" class="button-med button-cta">Save Skill</button></div>
-				   </form>
-				   </div>
-				  <!--setting form close-->
-				  <div *ngIf="portfolio">
-						<div class="anchovy-form">
-						<h4>Portfolio</h4>
-						<div class="portfolio"><h4>Upload portfolio items</h4><p>Showcase your talents by adding items to your               portfolio (visible on your profile). This is particularly great for photographers,               designers and illustrators, but also great for a gallery to advertise you completing               tasks.</p>
-							<div class="attachment-manager">
-							<div class="loaderific-not-loading"></div>
-							<div class="cta">You may upload a maximum of 6 items. File formats can be                 JPG/PNG/PDF/TXT and must be no larger than 5MB. For your own security and privacy,                 please make sure you don't upload any personal details in your attachments.</div><div class="attachment-input-submit clearfix"><div class="attachment-input-holder">
-							<div class="attachment-input">
-							<form method="post" enctype="multipart/form-data"><input type="file"(change)="imageUpload($event,'portfolio')"></form>
-							<img *ngIf="portfolioImage" [src]="portfolioImage">
-							<button class="button-ghost button-med attachment-text">
-								Select file(s)</button>
-							<button (click)="uploadImage()"class="button-ghost button-med attachment-text">
-									Upload Photo</button>
-									 <label class="error-text">
-										{{errorMessage}}
-									</label>
 							</div>
-							<ul class="portfolio-select-img"  >
-									<li  *ngFor="let item of portfolioImagesArr">
-										<a (click)="deletePortfolioImage(item.imageId)" class="port-close"><i class="fa fa-close"></i></a>
-										<img [src]="item.images"></li> 
-										<li> 
-												<!-- <a href="#" class="port-close"><i class="fa fa-close"></i></a>
+						</div>
+					</div>
+					<!-- mobile form end -->
+					<div class="anchovy-form" *ngIf="activeMenu=='skills'">
+						<form #skillForm="ngForm" (ngSubmit)="skillSave(skillForm.value, skillForm.valid);" novalidate
+							class="form setting">
+							<h4>Skill</h4>
+							<div class="anchovy-form-item" style="float:left; width:100%;"><label>These are your skills.
+									Keep them updated with any new skills you learn so other members can know what you
+									can offer.</label>
+								<input type="text" id="ui-test-first-name" maxlength="30" name="skills"
+									[(ngModel)]="skills.skills" #tagLine="ngModel" value={{skills.skills}}
+									placeholder="e.g. cleaning, driving and graphic design">
+							</div>
+
+							<div class="anchovy-form-item" style="float:left; width:100%;"><label>How do you get
+									around?</label>
+								<div class="checkbox-item"><input type="checkbox"
+										[checked]="skillArray.indexOf('Bicycle') >= 0"
+										(change)="modeOfReach($event,'Bicycle');" value="Bicycle"><label>
+										<!-- react-text: 4331 -->Bicycle
+										<!-- /react-text --></label></div>
+								<div class="checkbox-item"><input type="checkbox"
+										[checked]="skillArray.indexOf('Car') >= 0" (change)="modeOfReach($event,'Car');"
+										value="Car"><label>
+										<!-- react-text: 4335 -->Car
+										<!-- /react-text --></label></div>
+								<div class="checkbox-item"><input type="checkbox"
+										[checked]="skillArray.indexOf('Online') >= 0"
+										(change)="modeOfReach($event,'Online');" value="Online"><label>
+										<!-- react-text: 4335 -->Online
+										<!-- /react-text --></label></div>
+								<div class="checkbox-item"><input type="checkbox"
+										[checked]="skillArray.indexOf('Scooter') >= 0"
+										(change)="modeOfReach($event,'Scooter');" value="Scooter"><label>
+										<!-- react-text: 4335 -->Scooter
+										<!-- /react-text --></label></div>
+								<div class="checkbox-item"><input type="checkbox"
+										[checked]="skillArray.indexOf('Truck') >= 0"
+										(change)="modeOfReach($event,'Truck');" value="Truck"><label>
+										<!-- react-text: 4335 -->Truck
+										<!-- /react-text --></label></div>
+								<div class="checkbox-item"><input type="checkbox"
+										[checked]="skillArray.indexOf('Walk') >= 0"
+										(change)="modeOfReach($event,'Walk');" value="Walk"><label>
+										<!-- react-text: 4335 -->Walk
+										<!-- /react-text --></label></div>
+							</div>
+							<div class="anchovy-form-item" style="float:left; width:100%;"><label>What languages can you
+									speak/write?</label>
+								<input type="text" id="ui-test-first-name" maxlength="30" name="language"
+									[(ngModel)]="skills.language" #tagLine="ngModel" value={{skills.language}}
+									placeholder="e.g. English and French">
+							</div>
+							<div class="anchovy-form-item" style="float:left; width:100%;"><label>What qualifications
+									have you got?</label>
+								<input type="text" id="ui-test-first-name" maxlength="30" name="qualification"
+									[(ngModel)]="skills.qualification" #qualification="ngModel"
+									value={{skills.qualification}}
+									placeholder="e.g. Higher School Certificate (HSC), Accredited Barista">
+							</div>
+							<div class="anchovy-form-item" style="float:left; width:100%;"><label>What's your work
+									experience?</label>
+								<input type="text" id="ui-test-first-name" maxlength="30" name="workExperience"
+									[(ngModel)]="skills.workExperience" #workExperience="ngModel"
+									value={{skills.workExperience}} placeholder="e.g. 3 years as a Barista at The Cafe">
+							</div>
+							<div class="save-btn-yellow"><button type="submit" id="ui-test-begin-save"
+									class="button-med button-cta">Save Skill</button></div>
+						</form>
+					</div>
+					<!--setting form close-->
+					<div *ngIf="activeMenu=='portfolio'">
+						<div class="anchovy-form">
+							<h4>Portfolio</h4>
+							<div class="portfolio">
+								<h4>Upload portfolio items</h4>
+								<p>Showcase your talents by adding items to your portfolio (visible on your profile).
+									This is particularly great for photographers, designers and illustrators, but also
+									great for a gallery to advertise you completing tasks.</p>
+								<div class="attachment-manager">
+									<div class="loaderific-not-loading"></div>
+									<div class="cta">You may upload a maximum of 6 items. File formats can be
+										JPG/PNG/PDF/TXT and must be no larger than 5MB. For your own security and
+										privacy, please make sure you don't upload any personal details in your
+										attachments.</div>
+									<div class="attachment-input-submit clearfix">
+										<div class="attachment-input-holder">
+											<div class="attachment-input">
+												<form method="post" enctype="multipart/form-data"><input type="file"
+														(change)="imageUpload($event,'portfolio')"></form>
+												<img *ngIf="portfolioImage" [src]="portfolioImage">
+												<button class="button-ghost button-med attachment-text">
+													Select file(s)</button>
+												<button (click)="uploadImage()"
+													class="button-ghost button-med attachment-text">
+													Upload Photo</button>
+												<label class="error-text">
+													{{errorMessage}}
+												</label>
+											</div>
+											<ul class="portfolio-select-img">
+												<li *ngFor="let item of portfolioImagesArr">
+													<a (click)="deletePortfolioImage(item.imageId)"
+														class="port-close"><i class="fa fa-close"></i></a>
+													<img [src]="item.images"></li>
+												<li>
+													<!-- <a href="#" class="port-close"><i class="fa fa-close"></i></a>
 												<img src="assets/img/service1.jpg"></li>
 												<li>
 														<a href="#" class="port-close"><i class="fa fa-close"></i></a>
@@ -207,11 +326,94 @@
 																<li>
 																		<a href="#" class="port-close"><i class="fa fa-close"></i></a>
 																		<img src="assets/img/service1.jpg"></li>  -->
-							</ul>
-								
-							<div class="clear"></div></div></div></div></div></div>
+											</ul>
+
+											<div class="clear"></div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-							  
+					</div>
+
+               		<!-- Account deactivation -->
+					<div *ngIf="activeMenu=='privacy-settings'" class="anchovy-form alert-main">
+						<h4>Account Deactivation</h4>
+						<br>You can deactivate your account.You will no longer login to this account.<br>
+						<button id="ui-test-begin-save" class="button-med button-cta" (click)="deactivateAcc()"
+						style="background:#000; color:#fff !important">Deactivate My Account</button>
+						
+					</div>
+					<!-- End New Section RB -->
+					<!-- New Section RB -->
+					<div *ngIf="activeMenu=='notf-alerts'" class="anchovy-form alert-main">
+						<h4>Alerts</h4>
+						<form action="">
+							<div class="alert-input">
+								<h5>Email Alerts</h5>
+								<label class="switch-wrap">
+								<input type="checkbox" checked />
+								<div class="switch"></div>
+								</label>
+							</div>
+							<div class="alert-input">
+									<h5>Mobile Alerts</h5>
+									<label class="switch-wrap">
+									<input type="checkbox" checked />
+									<div class="switch"></div>
+									</label>
+								</div>
+						</form>
+					</div>
+					<!-- End New Section RB -->
+					<!-- Notification preferences -->
+					<div *ngIf="activeMenu=='notf-preference'"class="anchovy-form alert-main">
+						<h4>Coming soon</h4>
+						
+					</div>
+					<!-- End New Section RB -->
+                   	<!-- Password change -->
+					<div  *ngIf="activeMenu=='password-change'" class="reset-password-section">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-12">
+									<h1 class="text-center">Reset Your Password</h1>
+									<div  class="reset-form">
+										<label class="error-text">
+											{{errorMessage}}
+										 </label>
+										<label class="error-text" *ngIf = "successIndicator" style="color:green;">
+											Password reset successfully. Please login to continue. 
+										 </label>
+										 
+										<div class="form-group">
+										<label>Old Password <span style="color:red;">*</span></label>
+										<input type="password" required tabindex="2"  name="oldPassword" >
+										</div>
+										<div class="form-group">
+										<label>New Password <span style="color:red;">*</span></label>
+										<input type="password" required tabindex="2" name="newPassword">
+										</div>
+										<div class="form-group">
+										<label>Confirm New Password <span style="color:red;">*</span></label>
+										<input type="password" required tabindex="2" name="confirmNewPassword">
+										</div>
+										 <small *ngIf = "passwordIndicator" class="pull-left">
+											 Password and confirm password are not same.
+										 </small>
+										<!--<a (click)="resetPassword()">Reset Password</a>-->
+										<input id="login-button" class="reset-btn" 
+										type="submit" value="Change Password"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
 				</div>
 			</div>
 		</div>
@@ -230,20 +432,20 @@
 	<!--Success Offer -->
 	<div class="modal fade" id="OfferModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
-		 
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span></button>
-			  <h4 class="modal-title" id="myModalLabel">Details Saved Successfully</h4>
-			</div>
-			<div class="modal-body">
-				 <div class="text-center">
-						  <img src="assets/img/checkmark.gif" alt="yellotasker">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Details Saved Successfully</h4>
+				</div>
+				<div class="modal-body">
+					<div class="text-center">
+						<img src="assets/img/checkmark.gif" alt="yellotasker">
 						<p><b>Profile updated</b></p>
-					</div>   
+					</div>
+				</div>
+
 			</div>
-			
-		  </div>
 		</div>
-	  </div>
+	</div>
