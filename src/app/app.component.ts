@@ -26,6 +26,7 @@ reasonList : any;
 reasonUserList : any;
 configSettings : any;
 showMenu:boolean=false;
+footerMenu:any='';
 constructor(private commonService: CommonService,
   private dataService : DataService, 
   private route:ActivatedRoute,private router:Router, private httpService: HttpService, private socialAuthService: AuthService){}
@@ -144,6 +145,17 @@ redirectToMenu(menu) {
     this.router.navigate(['./'+ menu]);
     this.showMenu=false;
   }
+}
+footerMenuRedirection(menu) {
+  this.footerMenu=menu;
+  if(menu=='post-task') {
+   this.openPostTaskPopup('');
+  } else if(menu=='profile') {
+    this.navigateToPublicProfile();
+  } else {
+    this.router.navigate(['./'+ menu]);
+  }
+  
 }
 logout()
 {
