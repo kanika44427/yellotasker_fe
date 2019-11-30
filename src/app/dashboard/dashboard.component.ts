@@ -3,6 +3,7 @@ import { CommonService } from '../services/common.service';
 import { HttpService } from '../services/http.service';
 import { Injector } from '@angular/core';
 import {AppComponent} from '../app.component';
+import {ActivatedRoute,Router} from '@angular/router';
 
 @Component({
   selector: 'routing-root',
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit{
   totalPercentage : any;
   parentComponent : any;
   categoryList : any;
-  constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService){
+  constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService,private router:Router){
     this.parentComponent = this.inj.get(AppComponent);
   }
 
@@ -72,5 +73,9 @@ export class DashboardComponent implements OnInit{
   openPostTask(cat)
   {
     this.parentComponent.openPostTaskPopup(cat);
+  }
+  redirectToMyTask(taskType) {
+    this.commonService.setCookieValues('taskType',taskType);
+    this.router.navigate(['./my-task']);
   }
 }
