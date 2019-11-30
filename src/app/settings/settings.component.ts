@@ -52,7 +52,8 @@ export class SettingComponent  implements OnInit {
   notificationPreference:boolean=false;
   passwordChange:boolean=false;
   activeMenu:any='account';
-
+  emailAlert:any=false;
+  mobileAlert:any=false;
   constructor(private inj:Injector,private route:ActivatedRoute,private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
     this.parentComponent = this.inj.get(AppComponent);
     
@@ -136,12 +137,71 @@ export class SettingComponent  implements OnInit {
             this.roleArr = this.setting.user_type.split(',');
            }
           this.getRole=this.roleArr;
+          this.emailAlert=(this.setting.email_alert=="true")?true:false;
+          this.mobileAlert=(this.setting.mobile_alert=="true")?true:false;
           this.commonService.hideLoader();
         }
         else{
            this.commonService.hideLoader();
         }
         
+    });
+  }
+  emailAlertAction() {
+    if(this.emailAlert) {
+      this.emailAlert=false;
+    } else {
+      this.emailAlert=true;
+    }
+    var obj={
+      "email_alert":this.emailAlert?"true":"false"
+    }
+    let userId=this.commonService.getCookieValues("userid");
+    this.commonService.showLoader();
+    this.httpService.saveUserProfile(obj,userId).subscribe(
+      data => {
+        this.apiResponse = data;
+        if(this.apiResponse.message == 'Profile updated successfully')
+        {
+         // this.setting=this.apiResponse.data;
+          this.commonService.hideLoader();
+          $('#OfferModalSuccess').modal('show');
+          setTimeout(()=>{ 
+            $('#OfferModalSuccess').modal('hide');
+          }, 3000);
+        }
+        else{
+           this.commonService.hideLoader();
+        }
+    });
+  }
+
+  mobileAlertAction() {
+    if(this.mobileAlert) {
+      this.mobileAlert=false;
+    } else {
+      this.mobileAlert=true;
+    }
+    var obj={
+      "mobile_alert":this.mobileAlert?"true":"false"
+    }
+    let userId=this.commonService.getCookieValues("userid");
+    this.commonService.showLoader();
+    this.httpService.saveUserProfile(obj,userId).subscribe(
+      data => {
+        this.apiResponse = data;
+        if(this.apiResponse.message == 'Profile updated successfully')
+        {
+         // this.setting=this.apiResponse.data;
+          this.commonService.hideLoader();
+          $('#OfferModalSuccess').modal('show');
+          setTimeout(()=>{ 
+            $('#OfferModalSuccess').modal('hide');
+          }, 3000);
+        }
+        else{
+           this.commonService.hideLoader();
+        }
     });
   }
   getProfilecompletion()
@@ -177,6 +237,8 @@ export class SettingComponent  implements OnInit {
     this.settingObj.birthday=date;
     this.settingObj.user_type=this.getRole.toString();
     let userId=this.commonService.getCookieValues("userid");
+    this.settingObj.email_alert=this.emailAlert;
+    this.settingObj.mobile_alert=this.mobileAlert;
     this.httpService.saveUserProfile(this.settingObj,userId).subscribe(
       data => {
         this.apiResponse = data;
