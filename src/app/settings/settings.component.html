@@ -352,14 +352,16 @@
 							<div class="alert-input">
 								<h5>Email Alerts</h5>
 								<label class="switch-wrap">
-								<input type="checkbox" checked />
+								<input type="checkbox" 	[checked]="emailAlert"
+								(change)="emailAlertAction();"  />
 								<div class="switch"></div>
 								</label>
 							</div>
 							<div class="alert-input">
 									<h5>Mobile Alerts</h5>
 									<label class="switch-wrap">
-									<input type="checkbox" checked />
+									<input type="checkbox"	[checked]="mobileAlert"
+									(change)="mobileAlertAction();" />
 									<div class="switch"></div>
 									</label>
 								</div>

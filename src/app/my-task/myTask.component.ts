@@ -47,16 +47,28 @@ export class MyTaskComponent  implements OnInit {
   query : any;
   constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService,private reversePipe: ReversePipe,private datePipe: DatePipe,private router:Router){
     this.parentComponent = this.inj.get(AppComponent);
-    this.showTaskList('saveTask');
     this.query = "";
   }
   ngOnInit() {
+    var redirectFromDashboard=this.commonService.getCookieValues('taskType');
     window.scrollTo(0,0);
-    this.savedTaskIndicator = true;
-    this.postedTaskIndicator=false;
-    this.offerTaskIndicator=false;
-    this.offerAssignedTaskIndicator=false;
-    this.taskDetail=false;
+    if(redirectFromDashboard) {
+      this.showTask(redirectFromDashboard);
+      this.savedTaskIndicator = false;
+      this.postedTaskIndicator=redirectFromDashboard=='postedTask'?true:false;
+      this.offerTaskIndicator=redirectFromDashboard=='offerPending'?true:false;
+      this.offerAssignedTaskIndicator=redirectFromDashboard=='offerAccepting'?true:false;
+      this.taskDetail=false;
+      this.commonService.deleteCookieValues('taskType');
+    } else{
+      this.showTaskList('saveTask');
+      this.savedTaskIndicator = true;
+      this.postedTaskIndicator=false;
+      this.offerTaskIndicator=false;
+      this.offerAssignedTaskIndicator=false;
+      this.taskDetail=false;
+    }
+
   }
   removeFilter()
   {

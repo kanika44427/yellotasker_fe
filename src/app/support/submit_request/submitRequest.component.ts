@@ -60,6 +60,7 @@ export class SubmitRequestComponent implements OnInit {
           if (this.apiResponse.status == 1) {
             alert(this.apiResponse.message);
             this.submitRequestForm.reset();
+            this.fileName = null;
             //this.categoryList=this.apiResponse.data;
             this.commonService.hideLoader();
 
