@@ -96,18 +96,18 @@
 
 
                                 <div class="post-worker-info tab-content" *ngIf="posterIndicator == true">
-											<div><a [routerLink] ="['/my-task']">Task Posted : {{dashboardData.user_Task_Summary.as_poster.posted_offers}}</a> </div>
-											<div><a [routerLink] ="['/my-task']">Task in progress: {{dashboardData.user_Task_Summary.as_poster.assigned + dashboardData.user_Task_Summary.as_poster.completed_from_doer}}</a></div>	
-											<div><a [routerLink] ="['/my-task']">Reopen : {{dashboardData.user_Task_Summary.as_poster.reopen}}</a></div>
-											<div><a [routerLink] ="['/my-task']">Closed : {{dashboardData.user_Task_Summary.as_poster.closed}}</a></div>
+											<div><a (click)="redirectToMyTask('postedTask')">Task Posted : {{dashboardData.user_Task_Summary.as_poster.posted_offers}}</a> </div>
+											<div><a (click)="redirectToMyTask('offerAccepting')">Task in progress: {{dashboardData.user_Task_Summary.as_poster.assigned + dashboardData.user_Task_Summary.as_poster.completed_from_doer}}</a></div>	
+											<div><a (click)="redirectToMyTask('offerAccepting')">Reopen : {{dashboardData.user_Task_Summary.as_poster.reopen}}</a></div>
+											<div><a (click)="redirectToMyTask('offerAccepting')">Closed : {{dashboardData.user_Task_Summary.as_poster.closed}}</a></div>
 									</div>
 								<div class="post-worker-info tab-content" *ngIf="posterIndicator == false">
 										
-											<div><a [routerLink] ="['/my-task']">Offers Posted : {{dashboardData.user_Task_Summary.as_doer.posted_offers}}</a></div>
-											<div><a [routerLink] ="['/my-task']">Offers Assigned : {{dashboardData.user_Task_Summary.as_doer.assigned}}</a></div>
-											<div><a [routerLink] ="['/my-task']">Task completed : {{dashboardData.user_Task_Summary.as_doer.completed   }}</a></div>
-											<div><a [routerLink] ="['/my-task']">Awaiting payment : {{dashboardData.user_Task_Summary.as_doer.awaitingPayment}}</a></div>
-											<div><a [routerLink] ="['/my-task']">Closed : {{dashboardData.user_Task_Summary.as_doer.closed}}</a></div>
+											<div><a (click)="redirectToMyTask('offerPending')">Offers Posted : {{dashboardData.user_Task_Summary.as_doer.posted_offers}}</a></div>
+											<div><a (click)="redirectToMyTask('offerAccepting')">Offers Assigned : {{dashboardData.user_Task_Summary.as_doer.assigned}}</a></div>
+											<div><a (click)="redirectToMyTask('offerAccepting')">Task completed : {{dashboardData.user_Task_Summary.as_doer.completed   }}</a></div>
+											<div><a (click)="redirectToMyTask('offerAccepting')">Awaiting payment : {{dashboardData.user_Task_Summary.as_doer.awaitingPayment}}</a></div>
+											<div><a (click)="redirectToMyTask('offerAccepting')">Closed : {{dashboardData.user_Task_Summary.as_doer.closed}}</a></div>
 										
 									</div>
 								</div>
