@@ -289,6 +289,9 @@ export class SettingComponent  implements OnInit {
   settingTab(type){
     this.activeMenu='';
     this.activeMenu=type;
+    if(type=='account'||type=='skills'||type=='mobile'||type=='portfolio') {
+      this.openMenu = false;
+    }
     // if(type=='mobile'){
     //   this.showMobile=true;
     //   this.showAccount=false;
