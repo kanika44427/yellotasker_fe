@@ -3,19 +3,22 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-8">
-					<div class="user-profile-pic" *ngIf="setting.profile_image == null">
-						<img src="assets/img/task-person.png">
-					</div>
-					<div class="user-profile-pic" *ngIf="setting.profile_image !== null">
-						<img src="{{setting.profile_image}}">
-					</div>
-					<div class="user-name-detail">
-						<h4>{{setting.first_name}} {{setting.last_name}}
-						</h4>
+					<div class="usr-info">
+						<div class="usr-profile-pic" *ngIf="setting.profile_image == null">
+							<img src="assets/img/task-person.png">
+						</div>
+						<div class="usr-profile-pic" *ngIf="setting.profile_image !== null">
+							<img src="{{setting.profile_image}}">
+						</div>
+
+						<div class="usr-name-detail">
+							<h4>{{setting.first_name}} {{setting.last_name}}
+							</h4>
+						</div>
 					</div>
 				</div>
 				<div class="col-sm-4 text-center">
-					<div class="profile-counter">
+					<div class="profile-completion-info">
 						<h4>Your Profile Is {{totalPercentage | number : '1.2-2'}} % Complete</h4>
 					</div>
 				</div>
@@ -339,10 +342,11 @@
                		<!-- Account deactivation -->
 					<div *ngIf="activeMenu=='privacy-settings'" class="anchovy-form alert-main">
 						<h4>Account Deactivation</h4>
-						<br>You can deactivate your account.You will no longer login to this account.<br>
+						<p>You can deactivate your account.You will no longer login to this account.</p>
+						<div class="mt-20">
 						<button id="ui-test-begin-save" class="button-med button-cta" (click)="deactivateAcc()"
-						style="background:#000; color:#fff !important">Deactivate My Account</button>
-						
+						>Deactivate My Account</button>
+						</div>
 					</div>
 					<!-- End New Section RB -->
 					<!-- New Section RB -->
@@ -374,12 +378,11 @@
 						
 					</div>
 					<!-- End New Section RB -->
-                   	<!-- Password change -->
-					<div  *ngIf="activeMenu=='password-change'" class="reset-password-section">
-						<div class="container">
-							<div class="row">
+					   <!-- Password change -->
+					   
+					<div  *ngIf="activeMenu=='password-change'" class="anchovy-form alert-main">
 								<div class="col-sm-12">
-									<h1 class="text-center">Reset Your Password</h1>
+									<h4>Reset Your Password</h4>
 									<div  class="reset-form">
 										<label class="error-text">
 											{{errorMessage}}
@@ -404,14 +407,13 @@
 											 Password and confirm password are not same.
 										 </small>
 										<!--<a (click)="resetPassword()">Reset Password</a>-->
-										<input id="login-button" class="reset-btn" 
-										type="submit" value="Change Password"/>
+										<button id="login-button" class="button-med button-cta" 
+										type="submit" >Change Password</button>
 									</div>
 								</div>
-							</div>
-						</div>
 					</div>
 
+					<!-- End Reset password -->
 
 
 
