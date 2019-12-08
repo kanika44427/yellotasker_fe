@@ -155,12 +155,12 @@
 	  </div>
 	</div>
 	  <div class="col-sm-3">
-	   <div class="recent-profile-activity main-profile-right">
+	   <!-- <div class="recent-profile-activity main-profile-right">
 		<p class="text-center review-bg"><span>Badges</span></p>
 		<p><i class="fa fa-credit-card"></i> Payment Method</p>
 		<p><i class="fa fa-phone"></i> Mobile</p>
 		<p><i class="fa fa-facebook"></i> Facebook</p>
-	   </div>
+	   </div> -->
 	   <div class="recent-profile-activity main-profile-right" *ngIf="profileData.skills != null">
 		<p class="text-center review-bg"><span>Skills</span></p>
 		<p *ngFor = "let item of profileData.skills">{{item}}</p>
