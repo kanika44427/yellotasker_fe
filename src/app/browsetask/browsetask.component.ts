@@ -619,8 +619,10 @@ getTaskbyLocation(type){
   closeReadMore(){
     let currentUrl = this.router.url;
     if(currentUrl!='/browse-task') {
-    this.router.navigate(['./my-task']);
-    window.location.reload();
+      $('#taskDescriptionModal').modal('hide');
+    this.router.navigate(['./browse-task']); 
+    //check in future
+  //  window.location.reload();
   } else {
     $('#taskDescriptionModal').modal('hide');
   }
