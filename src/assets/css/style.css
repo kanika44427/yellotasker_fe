@@ -6630,7 +6630,7 @@ p.browse-anchor {
 }
 
 .card-profile .post-worker-info.tab-content div {
-    box-shadow: 0 10px 10px rgba(0,0,0,.08);
+    box-shadow: 6px 6px 6px rgba(0,0,0,.08);
     display: flex;
     justify-content: center;
     align-items: center;
