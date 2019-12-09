@@ -6664,7 +6664,7 @@ h4.right-heading-recent {
 .recent-profile-activity {
     background: #f9f9f9;
 }
-.card-profile .tab-content div:nth-child(1) {
+/* .card-profile .tab-content div:nth-child(1) {
     border-bottom: 4px solid #34495e;
 }
 .card-profile .tab-content div:nth-child(2) {
@@ -6674,7 +6674,7 @@ h4.right-heading-recent {
     border-bottom: 4px solid #f39c12;
 }
 .card-profile .tab-content div:nth-child(4) {
-    border-bottom: 4px solid #27ae60;
+    border-bottom: 4px solid #27ae60; */
 }
 .card-profile .tab-content div
 {
