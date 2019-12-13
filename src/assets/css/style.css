@@ -1990,10 +1990,6 @@ p.people-req {
     border-bottom: 1px solid #ccc;
     margin-bottom: 0px;
 }
-.modal-content.browse-pop-modal {
-    max-height: 600px;
-    overflow-y: scroll;
-}
 .pic-name-right h5 {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -3566,7 +3562,7 @@ textarea#post-task-description {
     padding: 10px 15px;
     color: #000 !important;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
 }
 h4#myModalLabel {
     color: #000;
@@ -3587,8 +3583,16 @@ h4#myModalLabel {
     border: 1px solid #ddd;
     color: #000 !important;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     padding-left: 15px;
+}
+.login-form-item label {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.login-form-item {
+    margin-bottom: 15px !important;
 }
 .funkyradio-default label {
     color: #000 !important;
@@ -7056,6 +7060,17 @@ label.switch-wrap input:checked + .switch:before {background: #ffff01;}
 .profile-completion-info {border: 1px solid #b5b5b5;padding: 25px 15px;border-radius: 4px;}
 .mt-20{margin-top:20px;}
 /* ==================== Style for Mobile Only ======================== */
+/*====================== Style for custom modal =================*/
+.post-task-model,#SignupModal,#LoginModal,.post-detail-pop {padding-right: 0 !important;}
+.post-task-model .modal-dialog,#SignupModal .modal-dialog,#LoginModal .modal-dialog,.post-detail-pop .modal-dialog  {width: 100% !important;margin: 0;}
+.post-task-model .modal-content,#SignupModal .modal-content,#LoginModal .modal-content,.post-detail-pop .modal-content {border-radius: 0;min-height: 100vh;}
+.post-task-model .modal-body,#SignupModal .modal-body, #LoginModal .modal-body,.post-detail-pop .modal-body {max-width: 600px;margin: 0 auto;float: none;}
+.post-detail-pop .modal-body {padding-top: 30px !important;}
+.post-detail-pop .modal-body {max-width: 800px !important;}
+/*====================== End Style for custom modal =================*/
+
+
+
 @media (min-width : 768px){
 .mob-footer,.mob-list-menu {display: none;}
 
