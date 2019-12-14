@@ -62,6 +62,18 @@
 							    {{profileData.workExperience}}
 							
 						</div>
+						<div  *ngIf="profileData.rating != null">
+							<h4>Rating</h4>
+							
+							    {{profileData.rating}}
+							
+						</div>
+						<div>
+							<h4>Completion Percentage</h4>
+							
+							    {{ profileData.percentageCompletion!= null?profileData.percentageCompletion:'-'}} %
+							
+						</div>
 			</div>
         <div class="other-border">
 			<ul class="nav nav-tabs" role="tablist">
