@@ -7063,14 +7063,7 @@ label.switch-wrap input:checked + .switch:before {background: #ffff01;}
 .profile-completion-info {border: 1px solid #b5b5b5;padding: 25px 15px;border-radius: 4px;}
 .mt-20{margin-top:20px;}
 /* ==================== Style for Mobile Only ======================== */
-/*====================== Style for custom modal =================*/
-.post-task-model,#SignupModal,#LoginModal,.post-detail-pop {padding-right: 0 !important;}
-.post-task-model .modal-dialog,#SignupModal .modal-dialog,#LoginModal .modal-dialog,.post-detail-pop .modal-dialog  {width: 100% !important;margin: 0;}
-.post-task-model .modal-content,#SignupModal .modal-content,#LoginModal .modal-content,.post-detail-pop .modal-content {border-radius: 0;min-height: 100vh;}
-.post-task-model .modal-body,#SignupModal .modal-body, #LoginModal .modal-body,.post-detail-pop .modal-body {max-width: 600px;margin: 0 auto;float: none;}
-.post-detail-pop .modal-body {padding-top: 30px !important;}
-.post-detail-pop .modal-body {max-width: 800px !important;}
-/*====================== End Style for custom modal =================*/
+
 .error-text.top-error {text-align: center;color: #f00;padding: 10px 0;}
 .error-text-sign.top-error {text-align: center;color: #f00;padding: 10px 0;}
 
@@ -7100,6 +7093,17 @@ a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width:
 .usr-info {padding: 15px;display: flex;align-items: center;font-size: 16px;font-weight: bold;border-bottom: 1px solid #b5b32d;    justify-content: center;}
 .usr-info span {width: 50px;height: 50px;overflow: hidden;display: inline-block;border-radius: 50%;margin-right: 15px;}
 .usr-info span img {max-width: 100%;width: 100%;height: 100%;}
+/*====================== Style for custom modal =================*/
+
+.post-task-model,#SignupModal,#LoginModal,.post-detail-pop {padding-right: 0 !important;}
+.post-task-model .modal-dialog,#SignupModal .modal-dialog,#LoginModal .modal-dialog,.post-detail-pop .modal-dialog  {width: 100% !important;margin: 0;}
+.post-task-model .modal-content,#SignupModal .modal-content,#LoginModal .modal-content,.post-detail-pop .modal-content {border-radius: 0;min-height: 100vh;}
+.post-task-model .modal-body,#SignupModal .modal-body, #LoginModal .modal-body,.post-detail-pop .modal-body {max-width: 600px;margin: 0 auto;float: none;}
+.post-detail-pop .modal-body {padding-top: 30px !important;}
+.post-detail-pop .modal-body {max-width: 800px !important;}
+
+/*====================== End Style for custom modal =================*/
+
 }
 @media (max-width:360px){
 .menu-open.show {width: 260px;}
