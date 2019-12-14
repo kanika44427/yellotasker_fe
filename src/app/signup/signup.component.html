@@ -9,9 +9,9 @@
 			<form #signupForm="ngForm" (ngSubmit)="signup(signupForm.value, signupForm.valid);" 
           novalidate class="form login">
       		<div class="modal-body signup-front signup-fields">
-					<label class="error-text-sign">
+					<div class="error-text-sign  top-error">
                 {{errorMessage}}
-           </label>
+					</div>
 			    <div class="form-item login-form-item first-name">
 						<label class="block">First name <span style="color:red;">*</span></label>
 						<input class="{{firstError==true?'red-border':''}}"  type="text" id="email-input" name="firstName" 

@@ -10,9 +10,9 @@
         <h4 class="modal-title" id="myModalLabel">Login</h4>
       </div>
       <div class="modal-body">
-	            <label class="error-text">
+	            <div class="error-text top-error">
                 {{errorMessage}}
-                 </label>
+				</div>
 					<div class="form-item login-form-item"><label class="block">Email <span style="color:red;">*</span></label>
 					      <input class="{{emailError==true||(email.touched && !email?.valid)?'red-border':''}}" type="email" placeholder="Email" required [(ngModel)]="user.email" 
 						   #email="ngModel" name="email" email 
