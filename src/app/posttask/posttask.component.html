@@ -41,16 +41,16 @@
 						<small class="text-danger" *ngIf="errorIndicator">
 							Please provide required details.
 						</small>
-						<div class="form-item login-form-item"><label class="block">I need help with...<span style="color:red;">*</span></label>
-						<input class="{{titleReqIndicator==true?'red-border':''}}" type="text" id="email-input" formControlName="title" name="taskTitle" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name:'e.g. Clean my 2 bedroom apartment'}}"></div>
+						<div class="form-item login-form-item"><label class="block">What task do you need done?<span style="color:red;">*</span></label>
+						<input class="{{titleReqIndicator==true?'red-border':''}}" type="text" id="email-input" formControlName="title" name="taskTitle" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name:'I need help with...'}}"></div>
 
-					<div class="form-item login-form-item"><label class="block">Describe your task in more detail<span style="color:red;">*</span></label>
+					<div class="form-item login-form-item"><label class="block">Describe your task in more detail?<span style="color:red;">*</span></label>
 					<textarea class="{{minLenIndicator==true||descReqIndicator==true?'red-border':''}}" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name+' '+parentComponent.catObject.category_group_name:'e.g. I need help cleaning my 3 bedroom 3 bathroom house, including: 
-					-Vacuuming
-					-Mopping
-					-Clean stove top
-					-Clean kitchen
-					-General tidy up\n 
+-Vacuuming
+-Mopping
+-Clean stove top
+-Clean kitchen
+-General tidy up\n 
 Describe your task as detail as possible to receive accurate quotes: 
 Home Cleaning 
 Handyman@tukang

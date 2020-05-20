@@ -383,7 +383,8 @@
 					<div  *ngIf="activeMenu=='password-change'" class="anchovy-form alert-main">
 								<div class="col-sm-12">
 									<h4>Reset Your Password</h4>
-									<div  class="reset-form">
+<form class="reset-form" #resetForm="ngForm" (ngSubmit)="resetPassword(resetForm.value, resetForm.valid);" novalidate>
+								
 										<label class="error-text">
 											{{errorMessage}}
 										 </label>
@@ -408,8 +409,8 @@
 										 </small>
 										<!--<a (click)="resetPassword()">Reset Password</a>-->
 										<button id="login-button" class="button-med button-cta" 
-										type="submit" >Change Password</button>
-									</div>
+										type="submit"  >Change Password</button>
+</form>
 								</div>
 					</div>
 

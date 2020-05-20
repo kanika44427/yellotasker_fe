@@ -54,6 +54,8 @@ export class SettingComponent  implements OnInit {
   activeMenu:any='account';
   emailAlert:any=false;
   mobileAlert:any=false;
+  passwordIndicator = false;
+  successIndicator = false;
   constructor(private inj:Injector,private route:ActivatedRoute,private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
     this.parentComponent = this.inj.get(AppComponent);
     
@@ -569,4 +571,53 @@ export class SettingComponent  implements OnInit {
      });
     }
   }
+
+  resetPassword(model: any, isValid: boolean)
+  {
+    this.errorMessage = "";
+    if(isValid)
+    {
+      if(model.password == model.confirm_password)
+      {
+        this.passwordIndicator = false;
+        this.commonService.showLoader();
+        //model.token = this.token;
+        //model.key = this.key;
+        var resetOperation =  this.httpService.resetPassword(model);
+        resetOperation.subscribe(
+        response => {
+          this.apiResponse = response;
+          if(this.apiResponse.message == 'Password reset successfully.' )
+          {
+           this.successIndicator = true;
+           this.commonService.hideLoader();
+           //this.user = new User();
+            setTimeout(function(){
+              $('#loginPrompt').modal('hide'); 
+              $('#LoginModal').modal({backdrop: 'static', keyboard: false},'show'); 
+            }, 1000);
+          }
+          else if(this.apiResponse.message == 'Invalid reset password link!')
+          {
+              this.errorMessage = 'Something went wrong. Please try after some time.';
+              this.commonService.hideLoader();
+          }
+          
+        },
+        err => {
+          console.log(err);
+         }
+      );
+      }
+      else{
+
+        this.passwordIndicator = true;
+      }
+    }
+    else
+      {
+        if(model.confirm_password == "" || model.password == "")
+        this.errorMessage = "Please enter required details.";
+      }
+    }
 }
