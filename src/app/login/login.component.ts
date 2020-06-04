@@ -4,6 +4,7 @@ import { AppComponent } from '../app.component';
 import { HttpService } from '../services/http.service';
 import { CommonService } from '../services/common.service';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'angular5-social-login';
+import { DataService } from '../services/data.service';
 declare var jquery: any;
 declare var $: any;
 
@@ -27,7 +28,9 @@ export class LoginComponent {
   apiResponse: any;
   parentComponent: any;
 
-  constructor(private inj: Injector, private httpService: HttpService, private commonService: CommonService, private socialAuthService: AuthService) {
+  constructor(private inj: Injector, private httpService: HttpService, 
+    public dataService : DataService, 
+    private commonService: CommonService, private socialAuthService: AuthService) {
     this.parentComponent = this.inj.get(AppComponent);
   }
 
@@ -43,6 +46,7 @@ export class LoginComponent {
           if (this.apiResponse.message == 'Successfully logged in.') {
             this.setUserDashboard.emit(response);
             this.commonService.hideLoader();
+            this.dataService.setUserData(this.apiResponse.data); 
             this.user = new loginUser('', '');
             if (this.parentComponent.postTaskObject) {
               this.parentComponent.postTaskObject.userId = this.apiResponse.data.id;

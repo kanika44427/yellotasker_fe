@@ -9,6 +9,7 @@ import {ActivatedRoute,Router} from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import {ReversePipe} from '../pipes/reversePipes';
+import { DataService } from '../services/data.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -56,7 +57,12 @@ export class SettingComponent  implements OnInit {
   mobileAlert:any=false;
   passwordIndicator = false;
   successIndicator = false;
-  constructor(private inj:Injector,private route:ActivatedRoute,private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
+  oldPass : string =""; 
+  newPass : string = ""; 
+  confPass : string = ""; 
+  constructor(private inj:Injector,private route:ActivatedRoute,
+    public dataService : DataService, 
+    private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
     this.parentComponent = this.inj.get(AppComponent);
     
 }
@@ -577,19 +583,23 @@ export class SettingComponent  implements OnInit {
     this.errorMessage = "";
     if(isValid)
     {
-      if(model.password == model.confirm_password)
+      if(model.newPassword == model.confirmNewPassword)
       {
         this.passwordIndicator = false;
         this.commonService.showLoader();
-        //model.token = this.token;
-        //model.key = this.key;
-        var resetOperation =  this.httpService.resetPassword(model);
-        resetOperation.subscribe(
+       // var user = this.dataService.getUserData(); 
+        model.email = this.setting.email;  
+        var changePassword =  this.httpService.changePassword(model);
+        changePassword.subscribe(
         response => {
           this.apiResponse = response;
-          if(this.apiResponse.message == 'Password reset successfully.' )
+          if(this.apiResponse.message == 'Password changed successfully.' )
           {
            this.successIndicator = true;
+           model.email = ""; 
+           model.oldPassword = ""; 
+           model.newPassword = ""; 
+           model.confirmNewPassword = ""; 
            this.commonService.hideLoader();
            //this.user = new User();
             setTimeout(function(){
@@ -597,9 +607,9 @@ export class SettingComponent  implements OnInit {
               $('#LoginModal').modal({backdrop: 'static', keyboard: false},'show'); 
             }, 1000);
           }
-          else if(this.apiResponse.message == 'Invalid reset password link!')
+          else if(this.apiResponse.message == 'Old password mismatch!')
           {
-              this.errorMessage = 'Something went wrong. Please try after some time.';
+              this.errorMessage = 'Current password you entered is wrong. Please enter correct password.';
               this.commonService.hideLoader();
           }
           
@@ -616,7 +626,7 @@ export class SettingComponent  implements OnInit {
     }
     else
       {
-        if(model.confirm_password == "" || model.password == "")
+        if(model.newPassword == "" || model.oldPassword == "")
         this.errorMessage = "Please enter required details.";
       }
     }

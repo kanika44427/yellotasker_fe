@@ -36,11 +36,11 @@
 					<ul>
 						<li><a (click)="settingTab('account')" [ngClass]="{'setting-active': activeMenu=='account'}">Account</a>
 						</li>
-						<li><a (click)="settingTab('skills')" [ngClass]="{'setting-active': activeMenu=='skills'}">Skill</a></li>
+						<li><a (click)="settingTab('skills')" [ngClass]="{'setting-active': activeMenu=='skills'}">Skills</a></li>
 						<!-- <li><a href="#">Badges</a></li> -->
 						<!--<li><a href="#">Task Alert Keywords</a></li>-->
 						<!--<li><a href="#">Notification Settings</a></li>-->
-						<li><a (click)="settingTab('mobile')" [ngClass]="{'setting-active': activeMenu=='mobile'}">Mobile</a></li>
+						<li><a (click)="settingTab('mobile')" [ngClass]="{'setting-active': activeMenu=='mobile'}">Mobile Verification</a></li>
 						<li><a (click)="settingTab('portfolio')" [ngClass]="{'setting-active':  activeMenu=='portfolio'}">Portfolio</a>
 						</li>
 						<!-- <li ><a href="#">Password</a></li> -->
@@ -382,34 +382,33 @@
 					   
 					<div  *ngIf="activeMenu=='password-change'" class="anchovy-form alert-main">
 								<div class="col-sm-12">
-									<h4>Reset Your Password</h4>
+									<h4>Change Your Password</h4>
 <form class="reset-form" #resetForm="ngForm" (ngSubmit)="resetPassword(resetForm.value, resetForm.valid);" novalidate>
 								
 										<label class="error-text">
-											{{errorMessage}}
+										{{errorMessage}}
 										 </label>
 										<label class="error-text" *ngIf = "successIndicator" style="color:green;">
-											Password reset successfully. Please login to continue. 
+								         Password changed successfully. Please login to continue. 
 										 </label>
 										 
 										<div class="form-group">
-										<label>Old Password <span style="color:red;">*</span></label>
-										<input type="password" required tabindex="2"  name="oldPassword" >
+										<label>Current Password <span style="color:red;">*</span></label>
+										<input type="password" required tabindex="2" [(ngModel)]="oldPass"  name="oldPassword" #oldPassword="ngModel" >
 										</div>
 										<div class="form-group">
 										<label>New Password <span style="color:red;">*</span></label>
-										<input type="password" required tabindex="2" name="newPassword">
+										<input type="password" required tabindex="2" name="newPassword" [(ngModel)]="newPass" #newPassword="ngModel">
 										</div>
 										<div class="form-group">
 										<label>Confirm New Password <span style="color:red;">*</span></label>
-										<input type="password" required tabindex="2" name="confirmNewPassword">
+										<input type="password" required tabindex="2" name="confirmNewPassword" [(ngModel)]="confPass" #confirmNewPassword = "ngModel">
 										</div>
 										 <small *ngIf = "passwordIndicator" class="pull-left">
-											 Password and confirm password are not same.
+									    Password and confirm password are not same.
 										 </small>
-										<!--<a (click)="resetPassword()">Reset Password</a>-->
-										<button id="login-button" class="button-med button-cta" 
-										type="submit"  >Change Password</button>
+										<input id="login-button" class="button-med button-cta" 
+										type="submit" value="Change Password" />
 </form>
 								</div>
 					</div>

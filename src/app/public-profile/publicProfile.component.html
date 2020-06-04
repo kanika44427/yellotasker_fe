@@ -64,9 +64,9 @@
 						</div>
 						<div  *ngIf="profileData.rating != null">
 							<h4>Rating</h4>
-							
-							    {{profileData.rating}}
-							
+								<span *ngFor="let star of createRange(profileData.rating)">
+									<i class="fa fa-star"></i>
+								</span>
 						</div>
 						<div>
 							<h4>Completion Percentage</h4>

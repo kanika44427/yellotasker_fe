@@ -5,7 +5,7 @@ import { HttpService } from './http.service';
 export class DataService {
   ConfigData : any;
   apiResponse : any;
-
+  userData : any; 
   constructor(private httpService: HttpService) { }
 
   getConfigData(){
@@ -17,7 +17,12 @@ export class DataService {
       return this.ConfigData;
     }  
   }
-
+  setUserData(data){
+    this.userData = data; 
+  }
+  getUserData(){
+    return this.userData;  
+  }
   setConfigData(){
     this.httpService.getConfig().subscribe(data => {
       this.apiResponse = data;

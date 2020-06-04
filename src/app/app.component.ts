@@ -141,7 +141,8 @@ redirectToMenu(menu) {
   } else if(menu=='profile') {
     this.router.navigate(['./profile-view/'+ this.loginDetails.first_name+'/'+this.loginDetails.id]);
     this.showMenu=false;
-  } else {
+  } 
+  else {
     this.router.navigate(['./'+ menu]);
     this.showMenu=false;
   }

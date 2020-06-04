@@ -23,6 +23,7 @@
                   <p><a (click)="navigateToPublicProfile()">Public Profile</a></p>
                   <p><a [routerLink] ="['/settings']">Settings</a></p>
                   <p><a [routerLink] ="['/my-task']">My Tasks</a></p>
+                  <p><a [routerLink] ="['/']">My Messages</a></p>
                   <p><a [routerLink] ="['/change-password']">Change Password</a></p>
                   <p><a (click)="logout()">Logout</a></p>
                 </div> 
@@ -44,7 +45,7 @@
                     <p><a (click)="navigateToPublicProfile()">Public Profile</a></p>
 										<p><a [routerLink] ="['/settings']">Settings</a></p>
                     <p><a [routerLink] ="['/my-task']">My Tasks</a></p>
-                    <!-- <p><a [routerLink] ="['/change-password']">Change Password</a></p> -->
+                     <p><a [routerLink] ="['/']">My Messages</a></p>
 										<p><a (click)="logout()">Logout</a></p>
 									</div> 
 								</div>
@@ -70,6 +71,7 @@
           <li><a (click)="redirectToMenu('login')">Login</a></li>
           <li><a (click)="redirectToMenu('postTask')">Post Task</a></li>
           <li><a (click)="redirectToMenu('browse-task')">Browse Task</a></li>
+          <li><a (click)="redirectToMenu('my-task')">My Tasks</a></li>
           <li><a (click)="redirectToMenu('category-list')">Categories</a></li>
           <li><a (click)="redirectToMenu('how-it-works')">How it works</a></li>
           <li><a (click)="redirectToMenu('how-to-earn-money')">How To earn money</a></li>
