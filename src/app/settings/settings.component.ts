@@ -103,7 +103,7 @@ export class SettingComponent  implements OnInit {
     this.httpService.deactivateAcc(userId).subscribe(
       data => {
         this.apiResponse = data;
-        if(this.apiResponse.message == 'Account deativated')
+        if(this.apiResponse.message == 'Account deativated successfully')
         {
           alert("Your account has been deactivated successfully.Please contact admin@yellotasker.com to activate account again.")
           this.parentComponent.loginIndicator = false;
@@ -490,6 +490,7 @@ export class SettingComponent  implements OnInit {
     this.commonService.showLoader();
     this.skillsObj={};
     this.skillsObj=model;
+    this.skillsObj.skills = "cleaning", "dancing"; 
     this.skillsObj.modeOfreach=this.getAround.toString();
     let userId=this.commonService.getCookieValues("userid");
     this.httpService.saveUserProfile(this.skillsObj,userId).subscribe(
