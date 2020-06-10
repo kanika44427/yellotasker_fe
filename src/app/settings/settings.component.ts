@@ -597,11 +597,17 @@ export class SettingComponent  implements OnInit {
           if(this.apiResponse.message == 'Password changed successfully.' )
           {
            this.successIndicator = true;
-           model.email = ""; 
-           model.oldPassword = ""; 
-           model.newPassword = ""; 
-           model.confirmNewPassword = ""; 
+           model = {}; 
+           this.oldPass = null;
+           this.newPass = null; 
+           this.confPass = null; 
+           this.commonService.deleteCookieValues('userFirstName');
+           this.commonService.deleteCookieValues('userImage');
+           this.commonService.deleteCookieValues('userLastName');
+           this.commonService.deleteCookieValues('userImage');
            this.commonService.hideLoader();
+           this.parentComponent.loginIndicator = false;
+           this.router.navigate(['/']);
            //this.user = new User();
             setTimeout(function(){
               $('#loginPrompt').modal('hide'); 

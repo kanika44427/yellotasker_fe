@@ -1129,7 +1129,7 @@ color:#000 !important;
     padding-top: 15px;
     background: #2e2e2e;
     color: #fff;
-    padding-bottom: 0px;
+    padding-bottom: 57px;
 }
 .posted-card {
     float: left;
@@ -1500,9 +1500,9 @@ color:yellow !important;
 .browse-menu.profile-banner {
     bottom: -52px;
 }
-.sub-banner.profile-banner {
-    /*margin-bottom: 100px;*/
-}
+/* .sub-banner .profile-banner {
+    margin-bottom: 100px;
+} */
 .sub-banner.profile-banner
 {
 background:url(/assets/img/profile-banner.jpg);

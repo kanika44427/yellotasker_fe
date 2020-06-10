@@ -191,9 +191,9 @@
 							<p class="save-job">
 								<a (click)="addToSaveJobs(item)"><i class="fa fa-plus"></i> Save this Job </a>
 							</p>
-							<p class="{{item.taskOwnerId==userId?'offer-not-active view-offer':'view-offer'}}">
-								<a (click)="showTaskDescription(item)">View & Make Offer</a>
-							</p>
+							 <p >
+								<!-- <a (click)="showTaskDescription(item)">View & Make Offer</a> -->
+							</p> 
 						</div>
             <div *ngIf="itemDetail">
              <reportTask-popup [taskID]="itemDetail.id"></reportTask-popup>
