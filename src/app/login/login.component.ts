@@ -81,7 +81,8 @@ export class LoginComponent {
             this.emailError = true;
             this.passwordError = true;
             this.commonService.hideLoader();
-          } else if (this.apiResponse.message == 'This user is temporarily banned from using yellotasker') {
+          } 
+          else if (this.apiResponse.message == 'This account is deactivated') {
             this.errorMessage = 'Your account has been deactivated.Please contact "admin@yellotasker.com" for futher assistance.';
             this.commonService.hideLoader();
           }
