@@ -60,6 +60,7 @@ export class SettingComponent  implements OnInit {
   oldPass : string =""; 
   newPass : string = ""; 
   confPass : string = ""; 
+  user_skill : any =  []; 
   constructor(private inj:Injector,private route:ActivatedRoute,
     public dataService : DataService, 
     private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
@@ -132,7 +133,6 @@ export class SettingComponent  implements OnInit {
         if(this.apiResponse.message == 'User data fetched.')
         {
           this.setting=this.apiResponse.data;
-          console.log("Daattaa",this.apiResponse);
           if(this.apiResponse.data.phone != null && this.apiResponse.data != "" && this.apiResponse.data.phone != undefined)
           {
             this.isMobileVerified = true;
@@ -300,6 +300,9 @@ export class SettingComponent  implements OnInit {
     if(type=='account'||type=='skills'||type=='mobile'||type=='portfolio') {
       this.openMenu = false;
     }
+    if(type=='skills'){
+      this.getSkills();
+    }
     // if(type=='mobile'){
     //   this.showMobile=true;
     //   this.showAccount=false;
@@ -384,9 +387,13 @@ export class SettingComponent  implements OnInit {
         this.apiResponse = data;
         if(this.apiResponse.message == 'User data fetched.')
         {
-          this.skills=this.apiResponse.data;
+           this.user_skill = [];
+           this.skills=this.apiResponse.data;
+           if(this.skills.skills!=null&&this.skills.skills !==''){
+           this.user_skill= this.skills.skills.split(',');
+           }
            let modeOfReach=[];
-           if(this.skills.modeOfreach!=null&&this.skills.modeOfreach==''){
+           if(this.skills.modeOfreach!=null&&this.skills.modeOfreach !==''){
             modeOfReach=this.skills.modeOfreach.split(',');
            }
            this.skillArray=modeOfReach;
@@ -490,7 +497,16 @@ export class SettingComponent  implements OnInit {
     this.commonService.showLoader();
     this.skillsObj={};
     this.skillsObj=model;
-    this.skillsObj.skills = "cleaning", "dancing"; 
+    this.skillsObj.skills = []; 
+    if(this.user_skill && this.user_skill.length > 0){
+      for(var i=0; i< this.user_skill.length ; i++){
+       this.skillsObj.skills.push(this.user_skill[i].value);
+       if(i == this.user_skill.length -1){
+        this.skillsObj.skills = this.skillsObj.skills.toString();
+       }
+      }
+    }
+    console.log(this.skillArray);
     this.skillsObj.modeOfreach=this.getAround.toString();
     let userId=this.commonService.getCookieValues("userid");
     this.httpService.saveUserProfile(this.skillsObj,userId).subscribe(

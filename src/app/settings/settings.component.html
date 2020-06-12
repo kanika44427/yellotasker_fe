@@ -215,13 +215,17 @@
 					<div class="anchovy-form" *ngIf="activeMenu=='skills'">
 						<form #skillForm="ngForm" (ngSubmit)="skillSave(skillForm.value, skillForm.valid);" novalidate
 							class="form setting">
-							<h4>Skill</h4>
+							<h4>Skills</h4>
 							<div class="anchovy-form-item" style="float:left; width:100%;"><label>These are your skills.
 									Keep them updated with any new skills you learn so other members can know what you
-									can offer.</label>
-								<input type="text" id="ui-test-first-name" maxlength="30" name="skills"
+									can offer (e.g. cleaning, driving and graphic design)</label>
+							 <tag-input name="userSkills"  #userSkills="ngModel"  [(ngModel)]='user_skill'
+							 placeholder = "Add Skill">
+
+							 </tag-input>
+								<!-- <input type="text" id="ui-test-first-name" maxlength="30" name="skills"
 									[(ngModel)]="skills.skills" #tagLine="ngModel" value={{skills.skills}}
-									placeholder="e.g. cleaning, driving and graphic design">
+									placeholder="e.g. cleaning, driving and graphic design"> -->
 							</div>
 
 							<div class="anchovy-form-item" style="float:left; width:100%;"><label>How do you get

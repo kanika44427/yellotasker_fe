@@ -51,6 +51,7 @@ import { TrustsafetyComponent } from './trustsafety/trustsafety.component';
 import { BadgesComponent } from './badges/badges.component';
 import { CommunityGuidelinesComponent } from './community-guidelines/community-guidelines.component';
 import { EarnMoneyComponent } from './earn-money/earn-money.component';
+import { TagInputModule } from 'ngx-chips';
 import { PressComponent } from './press/press.component';
 import { CeiboShare } from 'ng2-social-share';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from "angular5-social-login";
@@ -160,8 +161,8 @@ export function getAuthServiceConfigs() {
     ReactiveFormsModule,
     DatepickerModule ,
     BrowserAnimationsModule,
-    SocialLoginModule
-    
+    SocialLoginModule,
+    TagInputModule
   ],
   
   providers: [CookieService , DatePipe,  {

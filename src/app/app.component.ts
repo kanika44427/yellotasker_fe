@@ -5,6 +5,7 @@ import { HttpService } from './services/http.service';
 import { DataService } from './services/data.service';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider} from 'angular5-social-login';
 
+
 declare var jquery:any;
 declare var $ :any;
 
