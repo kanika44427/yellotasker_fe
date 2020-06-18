@@ -1,32 +1,32 @@
 <div class="sub-banner">
-    <img src="assets/img/sub-banner.jpg" alt="">
-          <div class="search">
-          <input [(ngModel)]="query"><i class="fa fa-search"></i>
-          <div  *ngIf = "query.length > 0">
-            <div class="auto-search"  *ngFor="let item of taskList | search:'title':query">
-              <a (click)="showTaskDescription(item)"> {{item.title}} </a>
-            </div>
-        </div>
-        </div>
+  <img src="assets/img/sub-banner.jpg" alt="">
+  <div class="search">
+    <input [(ngModel)]="query"><i class="fa fa-search"></i>
+    <div *ngIf="query.length > 0">
+      <div class="auto-search" *ngFor="let item of taskList | search:'title':query">
+        <a (click)="showTaskDescription(item)"> {{item.title}} </a>
+      </div>
+    </div>
+  </div>
+<!-- 
+  <div class="browse-menu">
+    <div class="container">
+      <ul>
+        <li><a [ngClass]="{'browse-active': latestTask}" (click)="getLatestTask()">Latest task posted</a></li>
+        <li class="mega-menu"><a [ngClass]="{'browse-active': taskByDueDate}">Browse by Due Date</a>
+          <div class="mega-menu-list">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
 
-		<div class="browse-menu">
-			<div class="container">
-				<ul>
-					<li><a [ngClass]="{'browse-active': latestTask}" (click)="getLatestTask()">Latest task posted</a></li> 
-          <li class="mega-menu"><a [ngClass]="{'browse-active': taskByDueDate}">Browse by Due Date</a>
-            <div class="mega-menu-list">
-							<div class="container">
-								<div class="row">
-									<div class="col-sm-4">
-										<!--<h4>Due Date</h4>-->
-										<ul>
-											<li><a (click)="getTaskbyTime('due_today')">Due Today</a></li>
-											<li><a (click)="getTaskbyTime('due_tomorrow')">Due Tommorow</a></li>
-											<li><a (click)="getTaskbyTime('due_current_week')">Due within current week </a></li>
-											<li><a (click)="getTaskbyTime('due_current_month')">Due within current month </a></li>
-										</ul>
-									</div>
-									<!--<div class="col-sm-3">
+                  <ul>
+                    <li><a (click)="getTaskbyTime('due_today')">Due Today</a></li>
+                    <li><a (click)="getTaskbyTime('due_tomorrow')">Due Tommorow</a></li>
+                    <li><a (click)="getTaskbyTime('due_current_week')">Due within current week </a></li>
+                    <li><a (click)="getTaskbyTime('due_current_month')">Due within current month </a></li>
+                  </ul>
+                </div>
+                <div class="col-sm-3">
 										<h4>Budget</h4>
 										<ul>
 											<li><a (click)="getTaskbyBudget('0-100')">under $100 </a></li>
@@ -44,204 +44,291 @@
 											<li><a href="#">Sub list goes here</a></li>
 										</ul>
 									</div>-->
-									
-								</div>
-							</div>
-						</div>
-          </li>       
-          <li class="mega-menu"><a [ngClass]="{'browse-active': taskByBudget}" >Browse by budget</a>
-            <div class="mega-menu-list">
-							<div class="container">
-								<div class="row">
-									<div class="col-sm-6">
-                    <ul>
-											<li><a (click)="getTaskbyBudget('0-100','budget')">under 100 MYR </a></li>
-											<li><a (click)="getTaskbyBudget('100-500','budget')">more than 100 MYR and less than 500 MYR</a></li>
-											<li><a (click)="getTaskbyBudget('500-1000','budget')">more than 500 MYR and less than 1000 MYR</a></li>
-											<li><a (click)="getTaskbyBudget('1000-1500','budget')">more than 1000 MYR and less than 1500 MYR</a></li>
-										</ul>
-									</div>
-                </div>
-              </div>
+
+              <!-- </div>
             </div>
-          </li>       
-          <li class="mega-menu"><a [ngClass]="{'browse-active': taskByLocation}">Browse by location</a>
-            <div class="mega-menu-list">
-							<div class="container">
-								<div class="row">
-									<div class="col-sm-3">
-                    <ul>
-										 <li><a (click)="getTaskbyLocation('work remotely')">work remotely </a></li>
-                     <li><a (click)="getTaskbyLocation('come to workplace')">Come to work place</a></li>
-										</ul>
-									</div>
-                </div>
-              </div>
-            </div>
-          </li>       
-					<li class="mega-menu"><a [ngClass]="{'browse-active': taskByCategory}">Browse by Category</a>
-            <div class="mega-menu-list">
-              <div class="container">
+          </div>
+        </li>
+        <li class="mega-menu"><a [ngClass]="{'browse-active': taskByBudget}">Browse by budget</a>
+          <div class="mega-menu-list">
+            <div class="container">
               <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li><a (click)="getTaskbyBudget('0-100','budget')">under 100 MYR </a></li>
+                    <li><a (click)="getTaskbyBudget('100-500','budget')">more than 100 MYR and less than 500 MYR</a>
+                    </li>
+                    <li><a (click)="getTaskbyBudget('500-1000','budget')">more than 500 MYR and less than 1000 MYR</a>
+                    </li>
+                    <li><a (click)="getTaskbyBudget('1000-1500','budget')">more than 1000 MYR and less than 1500 MYR</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="mega-menu"><a [ngClass]="{'browse-active': taskByLocation}">Browse by location</a>
+          <div class="mega-menu-list">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-3">
+                  <ul>
+                    <li><a (click)="getTaskbyLocation('work remotely')">work remotely </a></li>
+                    <li><a (click)="getTaskbyLocation('come to workplace')">Come to work place</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="mega-menu"><a [ngClass]="{'browse-active': taskByCategory}">Browse by Category</a>
+          <div class="mega-menu-list">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-3">
+                  <ul *ngFor="let list of categoryList">
+                    <li><a (click)="getTaskbyBudget(list.category_id,'category')">{{list.category_name}}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li *ngIf="loggedIndicator"><a (click)="getTaskbyBookmark()"
+            [ngClass]="{'browse-active': taskByBookmark}">Browse by bookmark</a></li>
+        <div class="mega-menu-list">
+          <div class="container">
+            <div class="row">
               <div class="col-sm-3">
-                 <ul *ngFor="let list of categoryList" >
-                   <li><a (click)="getTaskbyBudget(list.category_id,'category')">{{list.category_name}}</a></li>
+                <h4>Heading Goes Here</h4>
+                <ul>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
                 </ul>
-             </div>
+              </div>
+              <div class="col-sm-3">
+                <h4>Heading Goes Here</h4>
+                <ul>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-3">
+                <h4>Heading Goes Here</h4>
+                <ul>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-3">
+                <h4>Heading Goes Here</h4>
+                <ul>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                  <li><a href="#">Sub list goes here</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        </div>	
-        </li>
-          <li  *ngIf="loggedIndicator"><a (click)="getTaskbyBookmark()" [ngClass]="{'browse-active': taskByBookmark}">Browse by bookmark</a></li>
-          						<div class="mega-menu-list">
-       <div class="container">
-        <div class="row">
-         <div class="col-sm-3">
-          <h4>Heading Goes Here</h4>
-          <ul>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
+
+      </ul>
+    </div>
+  </div> --> 
+</div>
+
+<div class="browse-view">
+  <div class="container">
+    <div class="row" *ngIf="taskListIndicator">
+      <!-- Sidebar -->
+      <div class="col-sm-3">
+        <div class="filter-right">
+          <ul >
+            <li [ngClass]="{'active' : currentMenuSelected == 'latest'}">
+              <a (click)="getLatestTask()">Latest Task Posted</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Browse by due date <i class="fa fa-chevron-down"></i></a>
+              <ul class="open-drop browse-date active">
+                <li>
+                  <div class="form-gropup">
+                    <label for="">Min Date</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </li>
+                <li>
+                  <div class="form-gropup">
+                    <label for="">Max Date</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Browse by budget <i class="fa fa-chevron-down"></i></a>
+              <ul class="open-drop location active">
+                <li>
+                  <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Browse by location <i class="fa fa-chevron-down"></i></a>
+              <ul class="open-drop location active">
+                <li>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checklocation">
+                    <label class="form-check-label" for="checklocation">
+                      Bnglore
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checklocation2">
+                    <label class="form-check-label" for="checklocation2">
+                      Pune
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checklocation3">
+                    <label class="form-check-label" for="checklocation3">
+                      Jabalpur
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Browse by category <i class="fa fa-chevron-down"></i></a>
+              <ul class="open-drop browse-cat active">
+                <li><a href="#">Wedding</a></li>
+                <li><a href="#">Plumbing</a></li>
+                <li><a href="#">Catering</a></li>
+                <li><a href="#">Home Cleaning</a></li>
+              </ul>
+            </li>
           </ul>
-         </div>
-         <div class="col-sm-3">
-          <h4>Heading Goes Here</h4>
-          <ul>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-          </ul>
-         </div>
-         <div class="col-sm-3">
-          <h4>Heading Goes Here</h4>
-          <ul>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-          </ul>
-         </div>
-         <div class="col-sm-3">
-          <h4>Heading Goes Here</h4>
-          <ul>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-           <li><a href="#">Sub list goes here</a></li>
-          </ul>
-         </div>
         </div>
-       </div>
-      </div>	
-					
-				</ul>
-			</div>
-		</div>
-	</div>
-	
-	<div class="browse-view">
-		<div class="container">
-			<div class="row" *ngIf="taskListIndicator">
-				<div class="col-sm-12" *ngIf="taskList?.length > 0">
-					<div class="posted-card" *ngFor ="let item of taskList">
-						<a class="card-left" (click)="showTaskDescription(item)">
-							<h4>{{item.title}}
-               <!-- <span class="follow-ico"><a (click)="startFollowing()"><img src="assets/img/follow.png"></a></span> -->
-              </h4>
-							<p> {{item.description.length>65?item.description.substring(0, 65)+'...':item.description}} <a (click)="showTaskDescription(item)">Read More</a></p>
-							<p class="poster-name">
-                <a *ngIf="item.user_detail!=''" routerLink ="/profile-view/{{item.user_detail.first_name}}/{{item.user_detail.id}}">
-								<span ><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="poster image" height="39px;"></span>
-								<span *ngIf="item.user_detail">{{item.user_detail.first_name}} {{item.user_detail.last_name}}
-                  <br/>
+      </div>
+       <!-- End Sidebar -->
+      <div class="col-sm-9" *ngIf="taskList?.length > 0">
+        <div class="posted-card" *ngFor="let item of taskList">
+          <div class="card-left" (click)="showTaskDescription(item)">
+            <h4>{{item.title}}
+              <!-- <span class="follow-ico"><a (click)="startFollowing()"><img src="assets/img/follow.png"></a></span> -->
+            </h4>
+            <p> {{item.description.length>65?item.description.substring(0, 65)+'...':item.description}} <a
+                (click)="showTaskDescription(item)">Read More</a></p>
+            <p class="poster-name">
+              <a *ngIf="item.user_detail!=''"
+                routerLink="/profile-view/{{item.user_detail.first_name}}/{{item.user_detail.id}}">
+                <span><img
+                    [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'"
+                    alt="poster image" height="39px;"></span>
+                <span *ngIf="item.user_detail">{{item.user_detail.first_name}} {{item.user_detail.last_name}}
+                  <br />
                   <!-- <p *ngIf="item.user_detail"class="offer-rating-star"> -->
-                      <span  *ngFor="let i of Arr(item.user_detail.rating).fill(1)">
-                              <i  class="fa fa-star"></i>
-                      </span>
+                  <span *ngFor="let i of Arr(item.user_detail.rating).fill(1)">
+                    <i class="fa fa-star"></i>
+                  </span>
                   <!-- </p> -->
                   <!-- <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
                                 <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> -->
-                              </span>
-                              </a>
-                              </p>
-							<p class="location-date">
-								<span *ngIf="item.locationType == 'Digital task'"><i class="fa fa-location-arrow" ></i> 
-                  Digital task</span>
-								 <span *ngIf="item.locationType == 'Physical task'"><i class="fa fa-location-arrow" ></i> 
-								 Come to work place at {{item.address}}</span>
-								<span><i class="fa fa-calendar"></i> <b>Due Date </b>{{item.dueDate | date}}</span>
-              </p>
-              <p class="task-verview">
-                 <span class="myi-task-comm">{{item.comment_count}} Comment</span>
-                <span class="my-task-offer">{{item.offer_count}} Offers</span>
-              </p>
-            </a>
-						<div class="card-right">
-							<p class="post-date">
-								Posted on {{item.created_at | date }}
-							</p>
-							<p class="main-price">
-								{{item.totalAmount}} MYR
-							</p>
-							<p  class="{{item.taskOwnerId==userId?'offer-not-active':'make-offer'}}">
-								<a (click)="showOfferConfirmationPopup(item)">Make An Offer</a>
-							</p>
-							<p class="save-job">
-								<a (click)="addToSaveJobs(item)"><i class="fa fa-plus"></i> Save this Job </a>
-							</p>
-							 <p >
-								<!-- <a (click)="showTaskDescription(item)">View & Make Offer</a> -->
-							</p> 
-						</div>
-            <div *ngIf="itemDetail">
-             <reportTask-popup [taskID]="itemDetail.id"></reportTask-popup>
-            </div>
-					</div>
-					<div class="row" *ngIf= "seeMoreIndicator">
+                </span>
+              </a>
+            </p>
+            <p class="location-date">
+              <span *ngIf="item.locationType == 'Digital task'"><i class="fa fa-location-arrow"></i>
+                Digital task</span>
+              <span *ngIf="item.locationType == 'Physical task'"><i class="fa fa-location-arrow"></i>
+                Come to work place at {{item.address}}</span>
+              <span><i class="fa fa-calendar"></i> <b>Due Date </b>{{item.dueDate | date}}</span>
+            </p>
+            <p class="task-verview">
+              <span class="myi-task-comm">{{item.comment_count}} Comment</span>
+              <span class="my-task-offer">{{item.offer_count}} Offers</span>
+            </p>
+          </div>
+          <div class="card-right">
+            <p class="post-date">
+              Posted on {{item.created_at | date }}
+            </p>
+            <p class="main-price">
+              {{item.totalAmount}} MYR
+            </p>
+            <p class="{{item.taskOwnerId==userId?'offer-not-active':'make-offer'}}">
+              <a (click)="showOfferConfirmationPopup(item)">Make An Offer</a>
+            </p>
+            <p class="save-job">
+              <a (click)="addToSaveJobs(item)"><i class="fa fa-plus"></i> Save this Job </a>
+            </p>
+            <p class="{{item.taskOwnerId==userId?'offer-not-active view-offer':'view-offer'}}">
+              <a (click)="showTaskDescription(item)">View & Make Offer</a>
+            </p>
+          </div>
+          <div *ngIf="itemDetail">
+            <reportTask-popup [taskID]="itemDetail.id"></reportTask-popup>
+          </div>
+        </div>
+        <div class="row" *ngIf="seeMoreIndicator">
           <div class="col-sm-12 see-more-cat-btn text-center">
-             <a (click)="getMoreItems()">See More</a>
-          </div></div>
+            <a (click)="getMoreItems()">See More</a>
+          </div>
         </div>
-        <div class="col-sm-12" *ngIf="!taskList?.length > 0">
-          No task found
-        </div>
-				<!--<div class="col-sm-4">
+      </div>
+
+      <div class="col-sm-9" *ngIf="!taskList?.length > 0">
+        No task found
+      </div>
+      <!--<div class="col-sm-4">
 					 <div class="browse-right-menu">
              <notification-browse-task></notification-browse-task> 
 					</div> 
         </div>-->
-			</div>
-		</div>
-	</div>
-   
+    </div>
+  </div>
+</div>
+
 <!--Offer  Modal -->
 <div class="modal fade" id="OfferModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-   
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{offerPostSuccess==true?'Quote Successfully provided for FREE':'Successfully Posted Offer'}}</h4>
+        <h4 class="modal-title" id="myModalLabel">
+          {{offerPostSuccess==true?'Quote Successfully provided for FREE':'Successfully Posted Offer'}}</h4>
       </div>
       <div class="modal-body">
- 	      <div class="text-center">
-					<img src="assets/img/checkmark.gif" alt="yellotasker">
-				  <p><b>Offer has been posted for this task.</b></p>
-        </div>   
-        <a  (click)="redirect('/my-task')" class="button-cta button-lrg center full-width">Edit your quote</a>
-      	<a (click)="redirect('/browse-task')" class="button-cta button-lrg center full-width">Browse other task</a>
+        <div class="text-center">
+          <img src="assets/img/checkmark.gif" alt="yellotasker">
+          <p><b>Offer has been posted for this task.</b></p>
+        </div>
+        <a (click)="redirect('/my-task')" class="button-cta button-lrg center full-width">Edit your quote</a>
+        <a (click)="redirect('/browse-task')" class="button-cta button-lrg center full-width">Browse other task</a>
       </div>
-      
+
     </div>
   </div>
 </div>
 <!-- Task already saved -->
 <div class="modal fade" id="taskAlreadySaved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-   
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -249,47 +336,47 @@
         <h4 class="modal-title" id="myModalLabel">Yellotasker</h4>
       </div>
       <div class="modal-body">
- 	      <div class="text-center">
-				  <p><b>Task already added in your saved task bucket.</b></p>
-			  </div>   
+        <div class="text-center">
+          <p><b>Task already added in your saved task bucket.</b></p>
+        </div>
       </div>
-      
+
     </div>
   </div>
 </div>
 
 <!--Offer already posted -->
 <div class="modal fade" id="OfferAlreadyPosted" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-     
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Yellotasker</h4>
-            </div>
-        <div class="modal-body">
-           <div class="text-center">
-            <p><b>Offer is already posted !</b></p>
-          </div>   
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Yellotasker</h4>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <p><b>Offer is already posted !</b></p>
         </div>
       </div>
     </div>
   </div>
-  <!--Post user cant post Offer -->
+</div>
+<!--Post user cant post Offer -->
 <div class="modal fade" id="OfferFail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-   
+
     <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Yellotasker</h4>
-          </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Yellotasker</h4>
+      </div>
       <div class="modal-body">
-         <div class="text-center">
+        <div class="text-center">
           <p><b>Sorry you are not allowed to post offer on your task !</b></p>
-        </div>   
+        </div>
       </div>
     </div>
   </div>
@@ -306,10 +393,10 @@
         </h4>
       </div>
       <div class="modal-body">
- 	      <div class="text-center">
-					<img src="assets/img/checkmark.gif" alt="yellotasker">
-				  <p><b> Successfully reported this task. Admin will take action and get back to you.</b></p>
-			  </div>   
+        <div class="text-center">
+          <img src="assets/img/checkmark.gif" alt="yellotasker">
+          <p><b> Successfully reported this task. Admin will take action and get back to you.</b></p>
+        </div>
       </div>
     </div>
   </div>
@@ -324,10 +411,10 @@
         <h4 class="modal-title" id="myModalLabel">Saved Jobs</h4>
       </div>
       <div class="modal-body">
- 	      <div class="text-center">
-					<img src="assets/img/checkmark.gif" alt="yellotasker">
-				  <p><b>Successfully added to Saved Jobs.</b></p>
-			  </div>   
+        <div class="text-center">
+          <img src="assets/img/checkmark.gif" alt="yellotasker">
+          <p><b>Successfully added to Saved Jobs.</b></p>
+        </div>
       </div>
     </div>
   </div>
@@ -336,118 +423,129 @@
 <div class="modal fade" id="OfferModalConfirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" *ngIf="itemDetail">
     <div class="modal-content">
-        <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm your offer</h4>
-                  </div>
-        <form #offerForm="ngForm" (ngSubmit)="showOfferPopup(offerForm.value, offerForm.valid);" 
-        novalidate class="form login">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirm your offer</h4>
+      </div>
+      <form #offerForm="ngForm" (ngSubmit)="showOfferPopup(offerForm.value, offerForm.valid);" novalidate
+        class="form login">
         <small class="text-danger" *ngIf="errorIndicator">
-            Please provide required details.
-          </small>
-          <small class="text-danger" *ngIf="minReqValIndicator">
-            People enter price and completion date.
-          </small>
-     <div class="modal-body" *ngIf="itemDetail">
-        <div class="text-center make-continue">
-                <div class="make-confirm-your-offer">
-<div class="make-field">
-<p class="main-title">{{itemDetail.title}} </p>
-  
-  <p class="bid-material">
-  <span class="budget-span"><span style="color:#484848;">Budget: </span> <span class="light-text">MYR{{itemDetail.totalAmount}}</span></span>
-  <span class="service-span" *ngIf="serviceCharge"><span style="color:#484848;">Service charge:</span> <span class="light-text">
-    MYR {{serviceCharge}}
-  </span></span></p>
+          Please provide required details.
+        </small>
+        <small class="text-danger" *ngIf="minReqValIndicator">
+          People enter price and completion date.
+        </small>
+        <div class="modal-body" *ngIf="itemDetail">
+          <div class="text-center make-continue">
+            <div class="make-confirm-your-offer">
+              <div class="make-field">
+                <p class="main-title">{{itemDetail.title}} </p>
 
-<p>Bid price</p>
- <input  min="1"  type="number" placeholder="{{itemDetail.totalAmount?itemDetail.totalAmount:'e.g. 25'}} MYR" 
-                name="offerPrice" [(ngModel)]="offer.offerPrice" required 
-                #offerPrice="ngModel">
+                <p class="bid-material">
+                  <span class="budget-span"><span style="color:#484848;">Budget: </span> <span
+                      class="light-text">MYR{{itemDetail.totalAmount}}</span></span>
+                  <span class="service-span" *ngIf="serviceCharge"><span style="color:#484848;">Service charge:</span>
+                    <span class="light-text">
+                      MYR {{serviceCharge}}
+                    </span></span></p>
 
-</div>
-<div class="make-field">
-          <p>Comment</p>
-          <textarea id="post-task-description" 
-          name="offerComment" [(ngModel)]="offer.comment" 
-           #offerComment="ngModel"  class="tick-input" rows="8"></textarea>
+                <p>Bid price</p>
+                <input min="1" type="number"
+                  placeholder="{{itemDetail.totalAmount?itemDetail.totalAmount:'e.g. 25'}} MYR" name="offerPrice"
+                  [(ngModel)]="offer.offerPrice" required #offerPrice="ngModel">
+
+              </div>
+              <div class="make-field">
+                <p>Comment</p>
+                <textarea id="post-task-description" name="offerComment" [(ngModel)]="offer.comment"
+                  #offerComment="ngModel" class="tick-input" rows="8"></textarea>
 
 
-</div>
-</div>
-                <p class="completion-label">Completion Date <span><i class="fa fa-calendar"></i> {{itemDetail.dueDate|date:'dd-MM-y'}}</span></p>
-                <p class="completion-label">Service charge : <span>{{ netServiceCharge }} % of total task amount</span></p>
-                <p class="completion-label">Amount you will get after service charge deductions : <span>{{offer.offerPrice - (offer.offerPrice * (+netServiceCharge/100)) | number : '1.2-2'}}</span></p>
-                <!-- <material-datepicker name="completionDate" placeholder="select completion date" required
+              </div>
+            </div>
+            <p class="completion-label">Completion Date <span><i class="fa fa-calendar"></i>
+                {{itemDetail.dueDate|date:'dd-MM-y'}}</span></p>
+            <p class="completion-label">Service charge : <span>{{ netServiceCharge }} % of total task amount</span></p>
+            <p class="completion-label">Amount you will get after service charge deductions :
+              <span>{{offer.offerPrice - (offer.offerPrice * (+netServiceCharge/100)) | number : '1.2-2'}}</span></p>
+            <!-- <material-datepicker name="completionDate" placeholder="select completion date" required
                 [ngModel]="offer.completionDate | date:'dd-MM-y'" #completionDate="ngModel"
                style="padding-left:35px;" class="new-date-box"
                [(date)]="offer.completionDate"  dateFormat="DD-MM-YYYY"></material-datepicker>         -->
-                <input id="login-button" class="button-cta button-lrg center full-width" type="submit" value="Make an offer"/>
-                <input id="cancel-button" class="cancel-btn button-cta button-lrg center full-width" data-dismiss="modal" aria-label="Close" value="Cancel"/>
-           
-        </div>   
-      </div>
+            <input id="login-button" class="button-cta button-lrg center full-width" type="submit"
+              value="Make an offer" />
+            <input id="cancel-button" class="cancel-btn button-cta button-lrg center full-width" data-dismiss="modal"
+              aria-label="Close" value="Cancel" />
+
+          </div>
+        </div>
       </form>
     </div>
   </div>
 </div>
 <!--Task Description Pop up -->
-	<div class="modal post-detail-pop fade" id="taskDescriptionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document" *ngIf="itemDetail">
-							<div class="modal-content browse-pop-modal">
-								<button type="button" class="close" (click)="closeReadMore()"><span aria-hidden="true">&times;</span></button>
-							    <div class="modal-body">
-         <div class="post-detail-left">
+<div class="modal post-detail-pop fade" id="taskDescriptionModal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" *ngIf="itemDetail">
+    <div class="modal-content browse-pop-modal">
+      <button type="button" class="close" (click)="closeReadMore()"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="post-detail-left">
           <h4 class="main-title-pop" style="color:#333"><b>{{itemDetail.title}}</b>
             <p class="browse-anchor">
-              <a class="active-a">Open</a> 
+              <a class="active-a">Open</a>
               <!-- <a href="#">Assigned</a> 
               <a href="#">Completed</a> -->
             </p>
           </h4>
-          
-          
-           
-    <div class="post-description">
-     <h4>Description</h4>
-     <p>
-       {{itemDetail.description}}
-   </p>
-   <p class="due-para"><i class="fa fa-calendar"></i> 
-<span class="due-text"><b>Due Date</b> {{itemDetail.dueDate|date }}</span></p>
 
-   <p class="people-req">   <span> <b>People required </b>  5 {{itemDetail.peopleRequired}}</span><br/>
-       <span><b>Budget Type </b> {{itemDetail.budgetType}}</span><br/>
-	   <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Hourly rate </b>$ {{itemDetail.hourlyRate}} <br/></span>
-	   <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Total hours </b> {{itemDetail.totalHours}} <br/></span>
-       <span><b> Total amount </b> {{itemDetail.totalAmount}} MYR</span>
-     </p>
-	 
-     <br>
-    <div *ngIf="itemDetail.locationType == 'Come to work place'">
-      <h4><b>Requirement</b></h4>
-      <p>This task has certain requirements of the yellotasker Worker</p>
-      <p>
-       <img alt="" src="assets/img/map.jpg" width="100%;">
-      </p>
-     </div>
-    </div>
-    <div class="offer-section" >
-     <h4>OFFER</h4>
-     <div class="offer-card" *ngFor ="let list of offerList">
-      <div class="offer-pic">
-       <img [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'" alt=""> &nbsp;&nbsp;<span class="offer-link">
-         <a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
-        <div class="offer-tooltip" style="display:none">
-									<h5><a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a></h5>
-                  <p>231 indrapuri indore near bhawarkua</p>
-                  <p *ngIf="list.interested_user[0]"class="offer-rating-star">
-                      <span  *ngFor="let i of Arr(list.interested_user[0].rating).fill(1)">
-                              <i  class="fa fa-star"></i>
+
+
+          <div class="post-description">
+            <h4>Description</h4>
+            <p>
+              {{itemDetail.description}}
+            </p>
+            <p class="due-para"><i class="fa fa-calendar"></i>
+              <span class="due-text"><b>Due Date</b> {{itemDetail.dueDate|date }}</span></p>
+
+            <p class="people-req"> <span> <b>People required </b> 5 {{itemDetail.peopleRequired}}</span><br />
+              <span><b>Budget Type </b> {{itemDetail.budgetType}}</span><br />
+              <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Hourly rate </b>$ {{itemDetail.hourlyRate}}
+                <br /></span>
+              <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Total hours </b> {{itemDetail.totalHours}}
+                <br /></span>
+              <span><b> Total amount </b> {{itemDetail.totalAmount}} MYR</span>
+            </p>
+
+            <br>
+            <div *ngIf="itemDetail.locationType == 'Come to work place'">
+              <h4><b>Requirement</b></h4>
+              <p>This task has certain requirements of the yellotasker Worker</p>
+              <p>
+                <img alt="" src="assets/img/map.jpg" width="100%;">
+              </p>
+            </div>
+          </div>
+          <div class="offer-section">
+            <h4>OFFER</h4>
+            <div class="offer-card" *ngFor="let list of offerList">
+              <div class="offer-pic">
+                <img
+                  [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'"
+                  alt=""> &nbsp;&nbsp;<span class="offer-link">
+                  <a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
+                  <div class="offer-tooltip" style="display:none">
+                    <h5><a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
+                    </h5>
+                    <p>231 indrapuri indore near bhawarkua</p>
+                    <p *ngIf="list.interested_user[0]" class="offer-rating-star">
+                      <span *ngFor="let i of Arr(list.interested_user[0].rating).fill(1)">
+                        <i class="fa fa-star"></i>
                       </span>
-                  </p>
-									<!-- <p class="offer-rating-star">
+                    </p>
+                    <!-- <p class="offer-rating-star">
                     <span>
                       <i class="fa fa-star"></i>
                        <i class="fa fa-star"></i> 
@@ -455,132 +553,146 @@
                        <i class="fa fa-star"></i> 
                        <i class="fa fa-star"></i></span>
                       </p> -->
-									<p class="offer-completion-rate">100% completion rate</p>
-									<p class="offer-request-quoate"><a href="#">Request Quote</a></p>
-								</div>
-       </span>
-      </div>
-      <div class="offer-rating">
-       <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
-      </div>
-      <div class="offer-complete">
-       <span class="percentage">84%</span>
-      </div>
-      <div class="offer-post-time">
-       <span>{{list.created_at | timeAgo }}</span>
-      </div>
-     </div>
-     <div class="" *ngIf="!offerList?.length > 0">
-        <div class="offer-card">
-            <p class="no-offer">Currently there is no offer for this task</p> <a class="offer-make-btn" (click)= "showOfferConfirmationPopup(itemDetail)">Make an offer</a>
-        </div>
-    </div>
-    </div>
-<div class="pop-accordion">
-  <!--comment accordion start-->
-  <a class="anchor-comment" data-toggle="collapse" data-parent="#accordion" 
-  href="#collapseComment">
-     <h4>View Comments<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
-  </a>
-  <div id="collapseComment" class="panel-collapse collapse">
-<div class="comment-box-browse">
-     <div class="comment-head">
-      <div class="header-comment" *ngIf= "this.commentIndicator"><div class="line"></div><div class="title interactive">
-        {{commentList?.length || 'No'}} comments about this Task</div>
-      </div>
-       <div class="header-comment" *ngIf= "!this.commentIndicator"><div class="line"></div><div class="title interactive">
-        NO Comments</div>
-      </div>
-      <p class="comment-para">Comment below for more details and remember that for your safety, not to share personal information e.g. email and phone numbers.
-      </p> 
-     </div>
-     
-     <div class="commenter">
-        <div class="commenter-pic">
-        <a href="#"><img [src]="userImage?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
-        </div>
-        <div class="commenter-text">
-        <textarea placeholder="Ask a question" [(ngModel)]="comment.commentDescription" #description ="ngModel" 
-        name="description" (ngModelChange)="addCommentChange($event)"></textarea>
-        <p class="comment-footer">
-        <!-- <span><a href="#"><i class="fa fa-cloud-upload" aria-hidden="true"></i></a></span>-->
-          <span><a (click)="addComment(comment, itemDetail)" [class.disabled]="anchorDisable ? true : null"
-          [ngStyle]="{'color': anchorDisable  ? 'grey' : 'black' }">Send</a></span>       </p>
-        </div>
-     
-     </div>
-     <div *ngIf="commentIndicator">
-      <div class="commenter" *ngFor ="let item of commentList">
-        <div id="commentItem" *ngIf="item.commentId == 0">
-          <div class="commenter-pic">
-          <a href="#"><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
-          </div>
-          <div class="commenter-text">
-          <h4><a href="#">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</a></h4>
-          <p class="commenter-desc">{{item.commentDescription}}</p>
-          <p class="timing-reply"><span>{{item.created_at | timeAgo }}</span> <span>
-            <a (click)="onReply(item)"><i class="fa fa-reply"></i> Reply</a></span></p>
-          </div>
-        </div>
-         <div style="display: none" id="item_{{item.id}}">
-	          <div class="commenter-pic">
-                <a href="#"><img [src]="userImage?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
-            </div>
-	          <div class="commenter-text">
-                <textarea value="Ask a question"  [(ngModel)]="replyCommentDesc" #replyDescription ="ngModel" 
-                name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
-                <p class="comment-footer">
-                <span><a (click) = "replyComment(replyCommentDesc, itemDetail, item.id)" 
-                      [class.disabled]="anchorReplyDisable ? true : null"
-                      [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }" >Send</a></span>       </p>
-      	    </div>
-	        </div>
-          <div *ngIf="checkIfReplyExists(item.id, commentList)"  > <!--reply list div starts-->
-           <div *ngFor="let data of repliedObjectList">
-              <div class="commenter sub-reply">
-              <div class="commenter-pic">
-              <a href="#"><img [src]="data.user_detail.profile_image!=null&&data.user_detail.profile_image!=''?data.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
+                    <p class="offer-completion-rate">100% completion rate</p>
+                    <p class="offer-request-quoate"><a href="#">Request Quote</a></p>
+                  </div>
+                </span>
               </div>
-              <div class="commenter-text">
-              <h4><a href="#">{{data.user_detail.first_name}} {{data.user_detail.last_name}}</a></h4>
-              <p class="commenter-desc">{{data.commentDescription}}</p>
-              <p class="timing-reply"><span>{{data.created_at | timeAgo }}</span> <span>
-                <a (click)="onReply(data)"><i class="fa fa-reply"></i> Reply</a></span></p>
+              <div class="offer-rating">
+                <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                    class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+              </div>
+              <div class="offer-complete">
+                <span class="percentage">84%</span>
+              </div>
+              <div class="offer-post-time">
+                <span>{{list.created_at | timeAgo }}</span>
               </div>
             </div>
-             <div style="display: none" id="item_{{data.id}}">
-	          <div class="commenter-pic">
-                <a href="#"><img [src]="userImage?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+            <div class="" *ngIf="!offerList?.length > 0">
+              <div class="offer-card">
+                <p class="no-offer">Currently there is no offer for this task</p> <a class="offer-make-btn"
+                  (click)="showOfferConfirmationPopup(itemDetail)">Make an offer</a>
+              </div>
             </div>
-	          <div class="commenter-text">
-                <textarea value="Ask a question"  [(ngModel)]="replyCommentDesc" #replyDescription ="ngModel" 
-                name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
-                <p class="comment-footer">
-                <span><a (click) = "replyComment(replyCommentDesc, itemDetail, item.id)" 
-                      [class.disabled]="anchorReplyDisable ? true : null"
-                      [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }" >Send</a></span>       </p>
-      	    </div>
-	        </div>
           </div>
-        </div><!--reply list div ends-->
-      </div>
-	    </div>
- 
-    </div>
-    </div>
-  </div> <!--comment accordion end-->
-   </div>
-   <div class="post-detail-right">
-    <h4><b>Task Budget</b></h4>
-    <div class="rate">
-     <p class="main-price">
-      {{itemDetail.totalAmount}} MYR
-     </p>
-     <p class="make-offer">
-      <a (click)= "showOfferConfirmationPopup(itemDetail)">Make An Offer</a>
-     </p>
-    </div>
-     <!-- <div class="share-container">
+          <div class="pop-accordion">
+            <!--comment accordion start-->
+            <a class="anchor-comment" data-toggle="collapse" data-parent="#accordion" href="#collapseComment">
+              <h4>View Comments<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+            </a>
+            <div id="collapseComment" class="panel-collapse collapse">
+              <div class="comment-box-browse">
+                <div class="comment-head">
+                  <div class="header-comment" *ngIf="this.commentIndicator">
+                    <div class="line"></div>
+                    <div class="title interactive">
+                      {{commentList?.length || 'No'}} comments about this Task</div>
+                  </div>
+                  <div class="header-comment" *ngIf="!this.commentIndicator">
+                    <div class="line"></div>
+                    <div class="title interactive">
+                      NO Comments</div>
+                  </div>
+                  <p class="comment-para">Comment below for more details and remember that for your safety, not to share
+                    personal information e.g. email and phone numbers.
+                  </p>
+                </div>
+
+                <div class="commenter">
+                  <div class="commenter-pic">
+                    <a href="#"><img [src]="userImage?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+                  </div>
+                  <div class="commenter-text">
+                    <textarea placeholder="Ask a question" [(ngModel)]="comment.commentDescription"
+                      #description="ngModel" name="description" (ngModelChange)="addCommentChange($event)"></textarea>
+                    <p class="comment-footer">
+                      <!-- <span><a href="#"><i class="fa fa-cloud-upload" aria-hidden="true"></i></a></span>-->
+                      <span><a (click)="addComment(comment, itemDetail)" [class.disabled]="anchorDisable ? true : null"
+                          [ngStyle]="{'color': anchorDisable  ? 'grey' : 'black' }">Send</a></span> </p>
+                  </div>
+
+                </div>
+                <div *ngIf="commentIndicator">
+                  <div class="commenter" *ngFor="let item of commentList">
+                    <div id="commentItem" *ngIf="item.commentId == 0">
+                      <div class="commenter-pic">
+                        <a href="#"><img
+                            [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'"
+                            alt="yellotasker"></a>
+                      </div>
+                      <div class="commenter-text">
+                        <h4><a href="#">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</a></h4>
+                        <p class="commenter-desc">{{item.commentDescription}}</p>
+                        <p class="timing-reply"><span>{{item.created_at | timeAgo }}</span> <span>
+                            <a (click)="onReply(item)"><i class="fa fa-reply"></i> Reply</a></span></p>
+                      </div>
+                    </div>
+                    <div style="display: none" id="item_{{item.id}}">
+                      <div class="commenter-pic">
+                        <a href="#"><img [src]="userImage?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+                      </div>
+                      <div class="commenter-text">
+                        <textarea value="Ask a question" [(ngModel)]="replyCommentDesc" #replyDescription="ngModel"
+                          name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
+                        <p class="comment-footer">
+                          <span><a (click)="replyComment(replyCommentDesc, itemDetail, item.id)"
+                              [class.disabled]="anchorReplyDisable ? true : null"
+                              [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }">Send</a></span> </p>
+                      </div>
+                    </div>
+                    <div *ngIf="checkIfReplyExists(item.id, commentList)">
+                      <!--reply list div starts-->
+                      <div *ngFor="let data of repliedObjectList">
+                        <div class="commenter sub-reply">
+                          <div class="commenter-pic">
+                            <a href="#"><img
+                                [src]="data.user_detail.profile_image!=null&&data.user_detail.profile_image!=''?data.user_detail.profile_image:'assets/img/task-person.png'"
+                                alt="yellotasker"></a>
+                          </div>
+                          <div class="commenter-text">
+                            <h4><a href="#">{{data.user_detail.first_name}} {{data.user_detail.last_name}}</a></h4>
+                            <p class="commenter-desc">{{data.commentDescription}}</p>
+                            <p class="timing-reply"><span>{{data.created_at | timeAgo }}</span> <span>
+                                <a (click)="onReply(data)"><i class="fa fa-reply"></i> Reply</a></span></p>
+                          </div>
+                        </div>
+                        <div style="display: none" id="item_{{data.id}}">
+                          <div class="commenter-pic">
+                            <a href="#"><img [src]="userImage?userImage:'assets/img/task-person.png'"
+                                alt="yellotasker"></a>
+                          </div>
+                          <div class="commenter-text">
+                            <textarea value="Ask a question" [(ngModel)]="replyCommentDesc" #replyDescription="ngModel"
+                              name="replyDescription" (ngModelChange)="addCommentReplyChange($event)"></textarea>
+                            <p class="comment-footer">
+                              <span><a (click)="replyComment(replyCommentDesc, itemDetail, item.id)"
+                                  [class.disabled]="anchorReplyDisable ? true : null"
+                                  [ngStyle]="{'color': anchorReplyDisable  ? 'grey' : 'black' }">Send</a></span> </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--reply list div ends-->
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--comment accordion end-->
+        </div>
+        <div class="post-detail-right">
+          <h4><b>Task Budget</b></h4>
+          <div class="rate">
+            <p class="main-price">
+              {{itemDetail.totalAmount}} MYR
+            </p>
+            <p class="make-offer">
+              <a (click)="showOfferConfirmationPopup(itemDetail)">Make An Offer</a>
+            </p>
+          </div>
+          <!-- <div class="share-container">
 					<p class="share-text">SHARE</p>
 					<div class="buttons-s" *ngIf="repoUrl && itemDetail">
 					  <a ceiboShare [facebook]="{u: repoUrl}" data-toggle="tooltip" title="facebook"><i class="fa fa-facebook"></i></a> 
@@ -590,66 +702,64 @@
             <a ceiboShare [linkedIn]="{url:repoUrl, media: 'http://www.yellotasker.com/assets/img/logo.png', description:itemDetail.title}" data-toggle="tooltip" title="linkedIn"><i aria-hidden="true" class="fa fa-linkedin"></i></a>
 					</div>
 				</div> -->
-        <div class="report-task" (click)="reportTask()"><a> <i class="fa fa-flag"></i> Report this task</a></div>
-    <div class="popup-location">
-     <div class="pop-location-nav">
-      <i class="fa fa-location-arrow"></i>
-     </div>
-     <div class="pop-location-desc">
-      <b>Location</b>
-     </div>
-     <br>
-     <!-- <h5>Come to work place</h5> -->
-        <!--bindings={
+          <div class="report-task" (click)="reportTask()"><a> <i class="fa fa-flag"></i> Report this task</a></div>
+          <div class="popup-location">
+            <div class="pop-location-nav">
+              <i class="fa fa-location-arrow"></i>
+            </div>
+            <div class="pop-location-desc">
+              <b>Location</b>
+            </div>
+            <br>
+            <!-- <h5>Come to work place</h5> -->
+            <!--bindings={
   "ng-reflect-ng-if": "true"
-}--><p>
-  	<span *ngIf="itemDetail.locationType == 'Digital task'"><i class="fa fa-location-arrow" ></i> 
-      Digital task</span>
-      <span *ngIf="itemDetail.locationType == 'Physical task'"><i class="fa fa-location-arrow" ></i> 
-      Physical task {{itemDetail.address}}</span>
-     </p>
-    </div>
-    <div class="popup-location">
-     <div class="pop-location-nav">
-      <i class="fa fa-calendar"></i>
-     </div>
-     <div class="pop-location-desc">
-      <h5>Posted On</h5>
-     </div>
-     <span class="right-post-date">{{itemDetail.created_at | date}}</span>
-    </div>
-    <div class="posted-By">
-      <div class="detail-pic-name">
-        <div class="pic-name-left">
-         <img alt="" [src]="itemDetail.user_detail.profile_image!=null&&itemDetail.user_detail.profile_image!=''?itemDetail.user_detail.profile_image:'assets/img/task-person.png'">
-        </div>
-       <div class="pic-name-right" *ngIf="itemDetail">
-       <p class="posted-by"><b>Posted By </b></p> 
-         <h5><a (click)="visitProfile(itemDetail.user_detail)">{{itemDetail.user_detail.first_name}}</a>
-          <!-- <span class="follow-ico"><a (click)="startFollowing()">
+}-->
+            <p>
+              <span *ngIf="itemDetail.locationType == 'Digital task'"><i class="fa fa-location-arrow"></i>
+                Digital task</span>
+              <span *ngIf="itemDetail.locationType == 'Physical task'"><i class="fa fa-location-arrow"></i>
+                Physical task {{itemDetail.address}}</span>
+            </p>
+          </div>
+          <div class="popup-location">
+            <div class="pop-location-nav">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <div class="pop-location-desc">
+              <h5>Posted On</h5>
+            </div>
+            <span class="right-post-date">{{itemDetail.created_at | date}}</span>
+          </div>
+          <div class="posted-By">
+            <div class="detail-pic-name">
+              <div class="pic-name-left">
+                <img alt=""
+                  [src]="itemDetail.user_detail.profile_image!=null&&itemDetail.user_detail.profile_image!=''?itemDetail.user_detail.profile_image:'assets/img/task-person.png'">
+              </div>
+              <div class="pic-name-right" *ngIf="itemDetail">
+                <p class="posted-by"><b>Posted By </b></p>
+                <h5><a (click)="visitProfile(itemDetail.user_detail)">{{itemDetail.user_detail.first_name}}</a>
+                  <!-- <span class="follow-ico"><a (click)="startFollowing()">
            <img src="assets/img/follow.png"></a></span> -->
-         </h5>
-         <p *ngIf="itemDetail"class="offer-rating-star">
-            <span  *ngFor="let i of Arr(itemDetail.user_detail.rating).fill(1)">
-                    <i  class="fa fa-star"></i>
-            </span>
-        </p>
-         <!-- <p><i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                </h5>
+                <p *ngIf="itemDetail" class="offer-rating-star">
+                  <span *ngFor="let i of Arr(itemDetail.user_detail.rating).fill(1)">
+                    <i class="fa fa-star"></i>
+                  </span>
+                </p>
+                <!-- <p><i class="fa fa-star"></i> <i class="fa fa-star"></i> 
             <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
             <i class="fa fa-star"></i>
         </p> -->
+              </div>
+            </div>
+          </div>
+
+
         </div>
-       </div>
-     </div>
-     
-    
-   </div>
       </div>
-      
+
     </div>
   </div>
-	</div>
-
-
-    
-    
+</div>

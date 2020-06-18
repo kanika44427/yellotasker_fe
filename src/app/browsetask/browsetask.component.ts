@@ -56,6 +56,7 @@ export class BrowseTaskComponent implements OnInit{
   taskByLocation:boolean;
   taskByCategory:boolean;
   taskByBookmark:boolean;
+  currentMenuSelected = 'latest';
   userId:any;
   query : any;
   offerPostSuccess:boolean;

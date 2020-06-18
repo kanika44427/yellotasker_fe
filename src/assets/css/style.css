@@ -1129,7 +1129,7 @@ color:#000 !important;
     padding-top: 15px;
     background: #2e2e2e;
     color: #fff;
-    padding-bottom: 57px;
+    padding-bottom: 0px;
 }
 .posted-card {
     float: left;
@@ -1193,7 +1193,7 @@ i.fa.fa-star {
 margin-bottom:30px;
 }
 .browse-view {
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: 20px;
 }
 .browse-right-menu {
@@ -1500,9 +1500,9 @@ color:yellow !important;
 .browse-menu.profile-banner {
     bottom: -52px;
 }
-/* .sub-banner .profile-banner {
+.sub-banner.profile-banner {
     margin-bottom: 100px;
-} */
+}
 .sub-banner.profile-banner
 {
 background:url(/assets/img/profile-banner.jpg);
@@ -5645,7 +5645,7 @@ a.port-close {
 margin-bottom:0px !important;
 }
 .profile-main-content {
-    margin-top: 58px;
+    margin-top: -10px;
 }
 .user-rating-detail {
     position: relative;
@@ -7069,6 +7069,25 @@ label.switch-wrap input:checked + .switch:before {background: #ffff01;}
 
 .error-text.top-error {text-align: center;color: #f00;padding: 10px 0;}
 .error-text-sign.top-error {text-align: center;color: #f00;padding: 10px 0;}
+
+/* ================ Browse post sidebar ==================== */
+.filter-right {background: #2e2e2e;border-radius: 4px;overflow: hidden;}
+.filter-right ul {list-style: none;padding: 0;margin: 0;}
+.filter-right ul li a {display: block;color: #fff;font-size: 15px;padding: 12px 45px 12px 15px;border-bottom: 1px solid #000;position: relative;}
+.filter-right ul li a:hover {color: #d9d50e;}
+.filter-right ul li a i {position: absolute;right: 15px;top: 12px;}
+.filter-right ul li ul.open-drop{height: 0;transition:height 4s;}
+.filter-right ul li ul.open-drop.active{height: auto;}
+.filter-right ul li ul.open-drop li a {border-bottom: 1px solid #7d7b7b;padding: 10px 15px;font-size: 13px;position: relative;}
+.filter-right ul li ul.open-drop {background: #464646;}
+.filter-right ul li ul.open-drop li a:before {content: ">";padding-right: 10px;}
+ul.open-drop.location .form-check input {display: inline-block;width: auto;}
+ul.open-drop.location .form-check label {color: #fff;margin-left: 5px;margin-bottom: 0;}
+ul.open-drop.location li {padding: 5px 15px;}
+ul.open-drop.location {padding: 5px 0;}
+ul.open-drop.browse-date label {color: #fff;}
+ul.open-drop.browse-date{padding: 10px 0;}
+ul.open-drop.browse-date li{padding: 5px 15px;}
 
 
 @media (min-width : 768px){
