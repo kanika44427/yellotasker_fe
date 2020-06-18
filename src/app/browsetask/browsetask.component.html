@@ -152,12 +152,12 @@
       <div class="col-sm-3">
         <div class="filter-right">
           <ul >
-            <li [ngClass]="{'active' : currentMenuSelected == 'latest'}">
+            <li><!-- [ngClass]="{'active' : currentMenuSelected == 'latest'}" -->
               <a (click)="getLatestTask()">Latest Task Posted</a>
             </li>
-            <li>
+            <li class="active"> <!--add active class when dropdown open -->
               <a href="javascript:void(0);">Browse by due date <i class="fa fa-chevron-down"></i></a>
-              <ul class="open-drop browse-date active">
+              <ul class="open-drop browse-date">
                 <li>
                   <div class="form-gropup">
                     <label for="">Min Date</label>
@@ -174,17 +174,26 @@
             </li>
             <li>
               <a href="javascript:void(0);">Browse by budget <i class="fa fa-chevron-down"></i></a>
-              <ul class="open-drop location active">
+              <ul class="open-drop location">
                 <li>
                   <div class="slidecontainer">
                     <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                   </div>
+				  <div class="slide-values">
+					<div class="value-box">
+						<input type="text" placeholder="min" />
+					</div>
+					<div class="range-to">TO</div>
+					<div class="value-box">
+						<input type="text" placeholder="min" />
+					</div>
+				  </div>
                 </li>
               </ul>
             </li>
             <li>
               <a href="javascript:void(0);">Browse by location <i class="fa fa-chevron-down"></i></a>
-              <ul class="open-drop location active">
+              <ul class="open-drop location">
                 <li>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="checklocation">
@@ -213,7 +222,7 @@
             </li>
             <li>
               <a href="javascript:void(0);">Browse by category <i class="fa fa-chevron-down"></i></a>
-              <ul class="open-drop browse-cat active">
+              <ul class="open-drop browse-cat">
                 <li><a href="#">Wedding</a></li>
                 <li><a href="#">Plumbing</a></li>
                 <li><a href="#">Catering</a></li>
