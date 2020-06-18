@@ -63,6 +63,9 @@ export class BrowseTaskComponent implements OnInit{
   seeMoreIndicator : boolean;
   Arr = Array;
   repoUrl : string; 
+  //Filter SEction 
+  minDate : any;
+  maxDate : any; 
   constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService,
   private reversePipe: ReversePipe,private datePipe: DatePipe,private route:ActivatedRoute,private router:Router){
     this.parentComponent = this.inj.get(AppComponent);

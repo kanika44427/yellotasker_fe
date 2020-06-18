@@ -161,13 +161,17 @@
                 <li>
                   <div class="form-gropup">
                     <label for="">Min Date</label>
-                    <input type="text" class="form-control">
+                    <material-datepicker class="form-control" name="minDate"
+                    placeholder="select min date" [ngModel]="minDate | date:'dd-MM-y'" 
+                     [(date)]="minDate"  dateFormat="DD-MM-YYYY"></material-datepicker>
                   </div>
                 </li>
                 <li>
                   <div class="form-gropup">
                     <label for="">Max Date</label>
-                    <input type="text" class="form-control">
+                    <material-datepicker class="form-control" name="maxDate"
+                    placeholder="select max date" [ngModel]="maxDate | date:'dd-MM-y'" 
+                     [(date)]="maxDate"  dateFormat="DD-MM-YYYY"></material-datepicker>
                   </div>
                 </li>
               </ul>
