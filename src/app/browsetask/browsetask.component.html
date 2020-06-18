@@ -152,11 +152,11 @@
       <div class="col-sm-3">
         <div class="filter-right">
           <ul >
-            <li><!-- [ngClass]="{'active' : currentMenuSelected == 'latest'}" -->
+            <li (click)="getMenuLatest('latest')" [ngClass]="{'active' : currentMenuSelected == 'latest'}">
               <a (click)="getLatestTask()">Latest Task Posted</a>
             </li>
-            <li class="active"> <!--add active class when dropdown open -->
-              <a href="javascript:void(0);">Browse by due date <i class="fa fa-chevron-down"></i></a>
+            <li [ngClass]="{'active' : currentMenuSelected == 'dueDate'}">
+              <a (click)="getMenuLatest('dueDate')">Browse by due date <i class="fa fa-chevron-down"></i></a>
               <ul class="open-drop browse-date">
                 <li>
                   <div class="form-gropup">
@@ -176,8 +176,8 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <a href="javascript:void(0);">Browse by budget <i class="fa fa-chevron-down"></i></a>
+            <li [ngClass]="{'active' : currentMenuSelected == 'budget'}">
+              <a (click)="getMenuLatest('budget')">Browse by budget <i class="fa fa-chevron-down"></i></a>
               <ul class="open-drop location">
                 <li>
                   <div class="slidecontainer">
@@ -195,8 +195,8 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <a href="javascript:void(0);">Browse by location <i class="fa fa-chevron-down"></i></a>
+            <li [ngClass]="{'active' : currentMenuSelected == 'location'}">
+              <a (click)="getMenuLatest('location')">Browse by location <i class="fa fa-chevron-down"></i></a>
               <ul class="open-drop location">
                 <li>
                   <div class="form-check">
@@ -224,8 +224,8 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <a href="javascript:void(0);">Browse by category <i class="fa fa-chevron-down"></i></a>
+            <li [ngClass]="{'active' : currentMenuSelected == 'category'}">
+              <a (click)="getMenuLatest('category')">Browse by category <i class="fa fa-chevron-down"></i></a>
               <ul class="open-drop browse-cat">
                 <li><a href="#">Wedding</a></li>
                 <li><a href="#">Plumbing</a></li>

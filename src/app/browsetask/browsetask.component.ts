@@ -71,6 +71,10 @@ export class BrowseTaskComponent implements OnInit{
     this.parentComponent = this.inj.get(AppComponent);
   }
 
+  getMenuLatest(type){
+    this.currentMenuSelected = type; 
+  }
+
  
 
   ngOnInit() {
