@@ -65,10 +65,12 @@ export class UpdatePasswordComponent  implements OnInit {
            this.successIndicator = true;
            this.commonService.hideLoader();
            this.user = new User();
-            setTimeout(function(){
+           
+            setTimeout(()=>{
+              this.router.navigate(['./']);
               $('#loginPrompt').modal('hide'); 
               $('#LoginModal').modal({backdrop: 'static', keyboard: false},'show'); 
-            }, 1000);
+            }, 3000);
           }
           else if(this.apiResponse.message == 'Invalid reset password link!')
           {
