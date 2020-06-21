@@ -382,7 +382,7 @@ export class HttpService {
             let bodyString = JSON.stringify(budget); // Stringify payload
             let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
             let options       = new RequestOptions({ headers: headers });
-            return this.http.post(this.API_ENDPOINT_UAT + 'getPostTask',budget,options)
+            return this.http.get(this.API_ENDPOINT_UAT + 'getPostTask' + budget)
                            // ...and calling .json() on the response to return data
                             .map((res:Response) =>  res.json())
                             //...errors if any

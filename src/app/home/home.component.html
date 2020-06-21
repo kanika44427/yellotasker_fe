@@ -167,7 +167,7 @@ the dummy text for describing
 					<a routerLink="browse-task/{{item.id}}">
 					<div class="tile three columns panel">
 						<div class="top"><img class="avatar small" 
-							src="{{item.user_detail.profile_image?item.user_detail.profile_image:
+							src="{{item && item.user_detail && item.user_detail.profile_image?item.user_detail.profile_image:
 								'assets/img/task-person.png'}}"  alt="" >
 						<div class="heading"><span class="date">
 							{{item.title.length>30?item.title.substring(0, 30)+'...':item.title}}</span></div></div>

@@ -64,8 +64,8 @@ export class BrowseTaskComponent implements OnInit{
   Arr = Array;
   repoUrl : string; 
   //Filter SEction 
-  minDate : any;
-  maxDate : any; 
+  budgetTypeFilter = 'withMaterial'; 
+
   constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService,
   private reversePipe: ReversePipe,private datePipe: DatePipe,private route:ActivatedRoute,private router:Router){
     this.parentComponent = this.inj.get(AppComponent);
@@ -74,8 +74,6 @@ export class BrowseTaskComponent implements OnInit{
   getMenuLatest(type){
     this.currentMenuSelected = type; 
   }
-
- 
 
   ngOnInit() {
     this.seeMoreIndicator = true;
@@ -141,6 +139,17 @@ export class BrowseTaskComponent implements OnInit{
     });
   //this.serviceCharge=(e.target.value*0.10).toFixed(2);
   }
+
+  applyDueDate(){
+    
+    this.commonService.showLoader();
+    this.httpService.getLatestTask().subscribe(
+      data => {
+        this.apiResponse = data;
+        this.taskList=this.apiResponse.data;
+      }); 
+  }
+
 getLatestTask(){
   this.commonService.showLoader();
   this.httpService.getLatestTask().subscribe(
@@ -225,45 +234,30 @@ getTaskbyBookmark(){
   }); 
 }
 // get task by budget
-getTaskbyBudget(data,type){
+getTaskbyBudget(budgetType){
   this.commonService.showLoader();
-  var param;
-  if(type=='budget'){
-    param ={
-      "totalAmount":data
+  if(budgetType){
+    var budget = budgetType.split("-");
+    var budgetQueryStr = '?budgetmin='+ budget[0]+'&budgetmax='+ (budget[1] ? budget[1] : 100000);
+    if(this.budgetTypeFilter == 'withMaterial')
+    budgetQueryStr = budgetQueryStr + '&budgetType=' + "Materials & workmanship";
+    else 
+    budgetQueryStr = budgetQueryStr + '&budgetType=' + "Workmanship only - I will supply materials";
+    this.httpService.getTaskbyBudget(budgetQueryStr).subscribe(
+      data => {
+        this.apiResponse = data;
+        if(this.apiResponse.message == 'List of tasks.')
+        { 
+        
+          this.taskList=this.apiResponse.data;
+          this.commonService.hideLoader();
+        }
+        else{
+           this.taskList=[];
+           this.commonService.hideLoader();
+        }
+    }); 
   }
-      this.taskByBudget=true;
-      this.taskByDueDate=false;
-      this.taskByCategory=false;
-      this.taskByLocation=false;
-      this.taskByBookmark=false;
-      this.latestTask=false;
-  } else if(type=='category'){
-    param ={
-      "categoryId":data
-      }
-      this.taskByBudget=false;
-      this.taskByDueDate=false;
-      this.taskByCategory=true;
-      this.taskByLocation=false;
-      this.taskByBookmark=false;
-      this.latestTask=false;
-  }
- 
-  this.httpService.getTaskbyBudget(param).subscribe(
-    data => {
-      this.apiResponse = data;
-      if(this.apiResponse.message == 'List of tasks.')
-      { 
-      
-        this.taskList=this.apiResponse.data;
-        this.commonService.hideLoader();
-      }
-      else{
-         this.taskList=[];
-         this.commonService.hideLoader();
-      }
-  }); 
 }
 //get task by location
 getTaskbyLocation(type){

@@ -157,81 +157,62 @@
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'dueDate'}">
               <a (click)="getMenuLatest('dueDate')">Browse by due date <i class="fa fa-chevron-down"></i></a>
-              <ul class="open-drop browse-date">
-                <li>
-                  <div class="form-gropup">
-                    <label for="">Min Date</label>
-                    <material-datepicker class="form-control" name="minDate"
-                    placeholder="select min date" [ngModel]="minDate | date:'dd-MM-y'" 
-                     [(date)]="minDate"  dateFormat="DD-MM-YYYY"></material-datepicker>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-gropup">
-                    <label for="">Max Date</label>
-                    <material-datepicker class="form-control" name="maxDate"
-                    placeholder="select max date" [ngModel]="maxDate | date:'dd-MM-y'" 
-                     [(date)]="maxDate"  dateFormat="DD-MM-YYYY"></material-datepicker>
-                  </div>
-                </li>
-              </ul>
+                <ul class="open-drop browse-date">
+                  <li><a (click)="getTaskbyTime('due_today')">Due Today</a></li>
+                  <li><a (click)="getTaskbyTime('due_tomorrow')">Due Tommorow</a></li>
+                  <li><a (click)="getTaskbyTime('due_current_week')">Due within current week </a></li>
+                  <li><a (click)="getTaskbyTime('due_current_month')">Due within current month </a></li>
+                </ul>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'budget'}">
               <a (click)="getMenuLatest('budget')">Browse by budget <i class="fa fa-chevron-down"></i></a>
-              <ul class="open-drop location">
-                <li>
-                  <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+               <ul class="open-drop location">
+                 <li>
+                  <div style="color: white; margin : 10px">
+                    <p>Please select Budget Type : </p>
+                    <input type="radio" id="withMaterial" [(ngModel)]="budgetTypeFilter" name="budgetType" value="withMaterial">
+                    <label for="male">Materials & workmanship</label><br>
+                    <input type="radio" id="withoutMaterial"   [(ngModel)]="budgetTypeFilter" name="budgetType" value="withoutMaterial">
+                    <label for="female">Workmanship only - I will supply materials</label><br>
                   </div>
-				  <div class="slide-values">
-					<div class="value-box">
-						<input type="text" placeholder="min" />
-					</div>
-					<div class="range-to">TO</div>
-					<div class="value-box">
-						<input type="text" placeholder="min" />
-					</div>
-				  </div>
-                </li>
+                 </li>
+                  <li><a (click)="getTaskbyBudget('0-100')">under 100 MYR </a></li>
+                  <li><a (click)="getTaskbyBudget('100-500')">more than 100 MYR and less than 500 MYR</a></li>
+                  <li><a (click)="getTaskbyBudget('500-1000')">more than 500 MYR and less than 1000 MYR</a></li>
+                  <li><a (click)="getTaskbyBudget('1000-1500')">more than 1000 MYR and less than 1500 MYR</a></li>
+                  <li><a (click)="getTaskbyBudget('1500')">more than 1500 MYR</a></li>
               </ul>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'location'}">
               <a (click)="getMenuLatest('location')">Browse by location <i class="fa fa-chevron-down"></i></a>
               <ul class="open-drop location">
+                
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checklocation">
-                    <label class="form-check-label" for="checklocation">
-                      Bnglore
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checklocation2">
+                    <input class="form-check-input" type="radio" value="Physical" id="checklocation2">
                     <label class="form-check-label" for="checklocation2">
-                      Pune
+                      Physical Task 
                     </label>
                   </div>
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checklocation3">
+                    <input class="form-check-input" type="radio" value="Digital" id="checklocation3">
                     <label class="form-check-label" for="checklocation3">
-                      Jabalpur
+                     Digital Task 
                     </label>
                   </div>
                 </li>
               </ul>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'category'}">
-              <a (click)="getMenuLatest('category')">Browse by category <i class="fa fa-chevron-down"></i></a>
-              <ul class="open-drop browse-cat">
+              <a (click)="getMenuLatest('category')">Browse by save task <i class="fa fa-chevron-down"></i></a>
+              <!-- <ul class="open-drop browse-cat">
                 <li><a href="#">Wedding</a></li>
                 <li><a href="#">Plumbing</a></li>
                 <li><a href="#">Catering</a></li>
                 <li><a href="#">Home Cleaning</a></li>
-              </ul>
+              </ul> -->
             </li>
           </ul>
         </div>
