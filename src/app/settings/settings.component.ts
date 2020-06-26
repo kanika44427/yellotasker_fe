@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component , OnInit, Output, EventEmitter } from '@angular/core';
 import { Injector } from '@angular/core';
 import {AppComponent} from '../app.component';
 import { CommonService } from '../services/common.service';
@@ -61,6 +61,8 @@ export class SettingComponent  implements OnInit {
   newPass : string = ""; 
   confPass : string = ""; 
   user_skill : any =  []; 
+  @Output()
+  setUserDashboard: EventEmitter<any> = new EventEmitter<any>();
   constructor(private inj:Injector,private route:ActivatedRoute,
     public dataService : DataService, 
     private router:Router, private httpService: HttpService, private commonService: CommonService,private datePipe: DatePipe){
@@ -240,6 +242,7 @@ export class SettingComponent  implements OnInit {
     this.commonService.showLoader();
     this.settingObj={};
     this.settingObj=model;
+    if(model && model.profile_image)
     this.settingObj.profile_image=model.profile_image;
     var date = new Date(this.setting.birthday);
     this.settingObj.birthday=date;
@@ -254,6 +257,7 @@ export class SettingComponent  implements OnInit {
         {
           this.setting=this.apiResponse.data;
           this.commonService.hideLoader();
+          this.parentComponent.loginDetails = this.apiResponse.data;
           $('#OfferModalSuccess').modal('show');
           setTimeout(()=>{ 
             $('#OfferModalSuccess').modal('hide');

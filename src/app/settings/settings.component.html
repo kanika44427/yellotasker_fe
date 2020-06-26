@@ -131,9 +131,7 @@
 								<div class="checkbox-item"><input type="checkbox" name="postTask"
 										[checked]="roleArr.indexOf('Post Task') >= 0"
 										(change)="roleType($event,'Post Task');" value="Post Task">
-									<label>
-										<!-- react-text: 4331 -->Post tasks
-										<!-- /react-text --></label>
+									<label>Post tasks</label>
 								</div>
 								<div class="checkbox-item"><input type="checkbox" name="earnMoney"
 										[checked]="roleArr.indexOf('Earn Money') >= 0"
@@ -269,14 +267,14 @@
 							</div>
 							<div class="anchovy-form-item" style="float:left; width:100%;"><label>What qualifications
 									have you got?</label>
-								<input type="text" id="ui-test-first-name" maxlength="30" name="qualification"
+								<input type="text" id="ui-test-first-name" maxlength="200" name="qualification"
 									[(ngModel)]="skills.qualification" #qualification="ngModel"
 									value={{skills.qualification}}
 									placeholder="e.g. Higher School Certificate (HSC), Accredited Barista">
 							</div>
 							<div class="anchovy-form-item" style="float:left; width:100%;"><label>What's your work
 									experience?</label>
-								<input type="text" id="ui-test-first-name" maxlength="30" name="workExperience"
+								<input type="text" id="ui-test-first-name" maxlength="200" name="workExperience"
 									[(ngModel)]="skills.workExperience" #workExperience="ngModel"
 									value={{skills.workExperience}} placeholder="e.g. 3 years as a Barista at The Cafe">
 							</div>
