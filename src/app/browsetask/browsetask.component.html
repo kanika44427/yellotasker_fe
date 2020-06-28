@@ -158,10 +158,10 @@
             <li [ngClass]="{'active' : currentMenuSelected == 'dueDate'}">
               <a (click)="getMenuLatest('dueDate')">Browse by due date <i class="fa fa-chevron-down"></i></a>
                 <ul class="open-drop browse-date">
-                  <li><a (click)="getTaskbyTime('due_today')">Due Today</a></li>
-                  <li><a (click)="getTaskbyTime('due_tomorrow')">Due Tommorow</a></li>
-                  <li><a (click)="getTaskbyTime('due_current_week')">Due within current week </a></li>
-                  <li><a (click)="getTaskbyTime('due_current_month')">Due within current month </a></li>
+                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_today'}"><a  (click)="getTaskbyTime('due_today')">Due Today</a></li>
+                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_tomorrow'}"><a  (click)="getTaskbyTime('due_tomorrow')">Due Tommorow</a></li>
+                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_current_week'}"><a  (click)="getTaskbyTime('due_current_week')">Due within current week </a></li>
+                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_current_month'}" ><a (click)="getTaskbyTime('due_current_month')">Due within current month </a></li>
                 </ul>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'budget'}">
@@ -227,7 +227,7 @@
             <p> {{item.description.length>65?item.description.substring(0, 65)+'...':item.description}} <a
                 (click)="showTaskDescription(item)">Read More</a></p>
             <p class="poster-name">
-              <a *ngIf="item.user_detail!=''"
+              <a *ngIf="item.user_detail && item.user_detail.first_name && item.user_detail.id"
                 routerLink="/profile-view/{{item.user_detail.first_name}}/{{item.user_detail.id}}">
                 <span><img
                     [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'"

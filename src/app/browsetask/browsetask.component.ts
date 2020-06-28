@@ -65,7 +65,7 @@ export class BrowseTaskComponent implements OnInit{
   repoUrl : string; 
   //Filter SEction 
   budgetTypeFilter = 'withMaterial'; 
-
+  TaskbyTimeIndicator = '';  
   constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService,
   private reversePipe: ReversePipe,private datePipe: DatePipe,private route:ActivatedRoute,private router:Router){
     this.parentComponent = this.inj.get(AppComponent);
@@ -73,6 +73,9 @@ export class BrowseTaskComponent implements OnInit{
 
   getMenuLatest(type){
     this.currentMenuSelected = type; 
+    if(this.currentMenuSelected != 'dueDate'){
+      this.TaskbyTimeIndicator = ""; 
+    }
   }
 
   ngOnInit() {
@@ -187,6 +190,7 @@ startFollowing(){
 }
 //get task by time
 getTaskbyTime(time){
+  this.TaskbyTimeIndicator = time; 
   this.commonService.showLoader();
   this.httpService.getTaskbyTime(time).subscribe(
     data => {
