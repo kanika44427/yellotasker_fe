@@ -53,6 +53,7 @@ import { CommunityGuidelinesComponent } from './community-guidelines/community-g
 import { EarnMoneyComponent } from './earn-money/earn-money.component';
 import { TagInputModule } from 'ngx-chips';
 import { PressComponent } from './press/press.component';
+import { MyMessagesComponent } from './my-messages/my-messages.component';
 import { CeiboShare } from 'ng2-social-share';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from "angular5-social-login";
 const appRoutes: Routes = [
@@ -88,6 +89,7 @@ const appRoutes: Routes = [
     //{ path: 'home-dashboard',component:HomeDashboardComponent}, -> delete it 
     { path: 'dashboard',component:DashboardComponent},
     { path: 'badges',component:BadgesComponent},
+    { path: 'my-messages',component:MyMessagesComponent},
     { path: '', component: HomeComponent },
     { path: '**', redirectTo: '' }
   
@@ -151,7 +153,9 @@ export function getAuthServiceConfigs() {
     PressComponent,
     ReportUserComponent,
     PaymentMethodsComponent,
-    CeiboShare
+    CeiboShare,
+    MyMessagesComponent
+
   ],
   imports: [
     BrowserModule,
