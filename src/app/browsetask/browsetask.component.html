@@ -176,11 +176,11 @@
                     <label for="female">Workmanship only - I will supply materials</label><br>
                   </div>
                  </li>
-                  <li><a (click)="getTaskbyBudget('0-100')">under 100 MYR </a></li>
-                  <li><a (click)="getTaskbyBudget('100-500')">more than 100 MYR and less than 500 MYR</a></li>
-                  <li><a (click)="getTaskbyBudget('500-1000')">more than 500 MYR and less than 1000 MYR</a></li>
-                  <li><a (click)="getTaskbyBudget('1000-1500')">more than 1000 MYR and less than 1500 MYR</a></li>
-                  <li><a (click)="getTaskbyBudget('1500')">more than 1500 MYR</a></li>
+                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '0-100'}"><a (click)="getTaskbyBudget('0-100')">under 100 MYR </a></li>
+                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '100-500'}"><a (click)="getTaskbyBudget('100-500')">more than 100 MYR and less than 500 MYR</a></li>
+                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '500-1000'}"><a (click)="getTaskbyBudget('500-1000')">more than 500 MYR and less than 1000 MYR</a></li>
+                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '1000-1500'}"><a (click)="getTaskbyBudget('1000-1500')">more than 1000 MYR and less than 1500 MYR</a></li>
+                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '1500'}"><a (click)="getTaskbyBudget('1500')">more than 1500 MYR</a></li>
               </ul>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'location'}">
@@ -189,7 +189,7 @@
                 
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" value="Physical" id="checklocation2">
+                    <input class="form-check-input" type="radio" value="Physical task" id="checklocation2" name="locationFilter" (change)="getTaskbyLocation('Physical task')">
                     <label class="form-check-label" for="checklocation2">
                       Physical Task 
                     </label>
@@ -197,7 +197,7 @@
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" value="Digital" id="checklocation3">
+                    <input class="form-check-input" type="radio" value="Digital task" id="checklocation3" name="locationFilter" (change)="getTaskbyLocation('Digital task')">
                     <label class="form-check-label" for="checklocation3">
                      Digital Task 
                     </label>
@@ -205,8 +205,8 @@
                 </li>
               </ul>
             </li>
-            <li [ngClass]="{'active' : currentMenuSelected == 'category'}">
-              <a (click)="getMenuLatest('category')">Browse by save task <i class="fa fa-chevron-down"></i></a>
+            <li (click)="getMenuLatest('bookmark')" [ngClass]="{'active' : currentMenuSelected == 'bookmark'}">
+              <a (click)="getTaskbyBookmark()">Browse by save task <i class="fa fa-chevron-down"></i></a>
               <!-- <ul class="open-drop browse-cat">
                 <li><a href="#">Wedding</a></li>
                 <li><a href="#">Plumbing</a></li>
@@ -266,7 +266,7 @@
             <p class="{{item.taskOwnerId==userId?'offer-not-active':'make-offer'}}">
               <a (click)="showOfferConfirmationPopup(item)">Make An Offer</a>
             </p>
-            <p class="save-job">
+            <p class="save-job" style="cursor: pointer;">
               <a (click)="addToSaveJobs(item)"><i class="fa fa-plus"></i> Save this Job </a>
             </p>
             <p class="{{item.taskOwnerId==userId?'offer-not-active view-offer':'view-offer'}}">

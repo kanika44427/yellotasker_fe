@@ -65,7 +65,8 @@ export class BrowseTaskComponent implements OnInit{
   repoUrl : string; 
   //Filter SEction 
   budgetTypeFilter = 'withMaterial'; 
-  TaskbyTimeIndicator = '';  
+  TaskbyTimeIndicator = ''; 
+  TaskbyBudgetIndicator = '';  
   constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService,
   private reversePipe: ReversePipe,private datePipe: DatePipe,private route:ActivatedRoute,private router:Router){
     this.parentComponent = this.inj.get(AppComponent);
@@ -75,6 +76,9 @@ export class BrowseTaskComponent implements OnInit{
     this.currentMenuSelected = type; 
     if(this.currentMenuSelected != 'dueDate'){
       this.TaskbyTimeIndicator = ""; 
+    }
+    if(this.currentMenuSelected != 'budget'){
+      this.TaskbyBudgetIndicator = '';
     }
   }
 
@@ -221,8 +225,13 @@ getTaskbyBookmark(){
     data => {
       this.apiResponse = data;
       if(this.apiResponse.message == 'All task list')
-      { 
-        this.taskList=this.apiResponse.data['save_task'][0].save_task;
+      {
+        if(this.apiResponse.data['save_task'] && this.apiResponse.data['save_task'].length > 0 ){ 
+        this.taskList= this.apiResponse.data['save_task'][0].save_task;
+        }
+        else{
+          this.taskList = []; 
+        }
         this.commonService.hideLoader();
       }
       else{
@@ -239,6 +248,7 @@ getTaskbyBookmark(){
 }
 // get task by budget
 getTaskbyBudget(budgetType){
+  this.TaskbyBudgetIndicator = budgetType; 
   this.commonService.showLoader();
   if(budgetType){
     var budget = budgetType.split("-");
@@ -274,12 +284,6 @@ getTaskbyLocation(type){
       this.apiResponse = data;
       if(this.apiResponse.message == 'List of tasks.')
       { 
-        this.taskByBudget=false;
-        this.taskByDueDate=true;
-        this.taskByCategory=false;
-        this.taskByLocation=false;
-        this.taskByBookmark=false;
-        this.latestTask=false;
         this.taskList=this.apiResponse.data;
         this.commonService.hideLoader();
       }
