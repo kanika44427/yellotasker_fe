@@ -6,7 +6,11 @@
       <div class="auto-search" *ngFor="let item of taskList | search:'title':query">
         <a (click)="showTaskDescription(item)"> {{item.title}} </a>
       </div>
-    </div>
+    </div>    
+  </div>
+  <div class="toggle-menu">
+    <!-- Click on anchor browse task menu will be toggle only for mobile device -->
+    <a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
   </div>
 <!-- 
   <div class="browse-menu">
@@ -218,8 +222,9 @@
         </div>
       </div>
        <!-- End Sidebar -->
+
       <div class="col-sm-9" *ngIf="taskList?.length > 0">
-        <div class="posted-card" *ngFor="let item of taskList">
+        <div class="posted-card desktop-card" *ngFor="let item of taskList">
           <div class="card-left" (click)="showTaskDescription(item)">
             <h4>{{item.title}}
               <!-- <span class="follow-ico"><a (click)="startFollowing()"><img src="assets/img/follow.png"></a></span> -->
@@ -277,6 +282,36 @@
             <reportTask-popup [taskID]="itemDetail.id"></reportTask-popup>
           </div>
         </div>
+
+           <!-- New card UI for mobile -->
+        <div class="task-card mob-card"  *ngFor="let item of taskList">
+          <div class="task-user">
+            <span><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="poster image"></span>
+          </div>
+          <div class="task-detail">
+            <h3>{{item.title}}</h3>
+            <p>{{item.description.length>65?item.description.substring(0, 65)+'...':item.description}}</p>
+            <div class="tast-user-name" *ngIf="item.user_detail">
+              <a href="javascript:void(0);">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</a>
+            </div>
+            <div class="task-rating">
+              <span *ngFor="let i of Arr(item.user_detail.rating).fill(1)">
+                <i class="fa fa-star"></i>
+              </span>
+            </div>
+            <div class="tast-info">
+              <h4 *ngIf="item.locationType == 'Physical task'"><i class="fa fa-location-arrow"></i>
+                {{item.address}}</h4>
+              <h4><i class="fa fa-calendar"></i> <b>Due Date </b>{{item.dueDate | date}}</h4>
+            </div>
+          </div>
+          <div class="task-action">
+            <div class="task-amount">$15</div>
+            <a href="javascript:void(0);">View</a>
+          </div>
+        </div>
+        <!-- New card UI for mobile -->     
+
         <div class="row" *ngIf="seeMoreIndicator">
           <div class="col-sm-12 see-more-cat-btn text-center">
             <a (click)="getMoreItems()">See More</a>

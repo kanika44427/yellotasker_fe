@@ -7094,6 +7094,9 @@ ul.open-drop.browse-date li{padding: 5px 15px;}
 .filter-right ul li.active ul.open-drop {display: block;}
 .filter-right ul li.active i {transform: rotate(-180deg);}
 .filter-right ul li.active > a {color: #efeb10;}
+.sub-banner .toggle-menu{display: none;}
+.mob-card{display: none;}
+.desktop-card{display: block;}
 
 .chat-users{border:1px solid #ddd;border-radius:4px;background:#eee}
 .chat-users .users-tabs ul{list-style:none;padding:0;margin:0}
@@ -7180,7 +7183,32 @@ a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width:
 
 /*====================== End Style for custom modal =================*/
 .stepwizard {display: block;margin: 15px 0;}
+.browse-view {margin-bottom: 70px;}
+.footer,.last{display: none;}
+.sub-banner>img {display: none;}
+.sub-banner {position: relative;}
+.sub-banner .toggle-menu {display:block;position: absolute;right: 0;top: 0;padding: 13px 15px;font-size: 22px;}
+.sub-banner .toggle-menu a {color: #d2d200;}
+.filter-right {position: absolute;top: -40px;width: 100%;z-index: 999;left: 0;border-radius: 0;}
 
+.mob-card{display: block;}
+.desktop-card{display: none;}
+.see-more-cat-btn {margin-top: 15px;}
+.task-card{display:flex;justify-content:space-between;background:#eee;clear:both;padding:10px;border-bottom:1px solid #bcbcbc}
+.task-card .task-user span{width:70px;min-width:70px;height:70px;overflow:hidden;display:inline-block;border-radius:50%}
+.task-card .task-user span img{max-width:100%;height:auto;min-height:70px}
+.task-card .task-detail{padding:0 10px;flex-basis:calc(100% - 115px)}
+.task-card .task-detail h3{font-size:15px;margin-bottom:5px;margin-top:0;font-weight:700;word-break:break-all}
+.task-card:last-child{border:0}
+.task-card:first-child{border-top:5px solid #efeb10}
+.task-card .task-detail p{font-size:13px;margin-bottom:5px;word-break:break-all}
+.task-card .task-detail .tast-user-name a{font-size:13px;color:#1267b0;font-weight:500}
+.task-card .task-detail .tast-info h4{font-size:13px;color:#000}
+.task-card .task-detail .tast-info h4 i{margin-right:6px}
+.task-card .task-action a{background:#dbdb2d;color:#fff;border-radius:2px;font-size:13px;padding:3px 6px}
+.task-card .task-action .task-amount{margin-bottom:5px;text-align:center;font-size:16px;font-weight:700}
+.task-card .task-user{flex-basis:70px}
+.task-card .task-action{flex-basis:45px}
 }
 @media (max-width:360px){
 .menu-open.show {width: 260px;}
