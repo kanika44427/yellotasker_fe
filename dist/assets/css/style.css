@@ -7094,6 +7094,58 @@ ul.open-drop.browse-date li{padding: 5px 15px;}
 .filter-right ul li.active ul.open-drop {display: block;}
 .filter-right ul li.active i {transform: rotate(-180deg);}
 .filter-right ul li.active > a {color: #efeb10;}
+.sub-banner .toggle-menu{display: none;}
+.mob-card{display: none;}
+.desktop-card{display: block;}
+
+.chat-users{border:1px solid #ddd;border-radius:4px;background:#eee}
+.chat-users .users-tabs ul{list-style:none;padding:0;margin:0}
+section.my-messages-main{padding:120px 0 30px}
+.chat-users .users-tabs{padding:10px;border-bottom:1px solid #ddd}
+.chat-users .users-tabs ul li span{display:inline-block;color:#fff;background:#464646;padding:5px 10px;cursor:pointer}
+.chat-users .users-tabs ul{display:flex;justify-content:center}
+.chat-users .users-tabs ul li.active span{background:#d9d60e}
+.chat-users .users-tabs ul li span:hover{background:#3e3e3e}
+.chat-users .users-tabs ul li.active span:hover{background:#dedb0f}
+.chat-user-info{display:flex;align-items:center;padding:10px;border-bottom:1px solid #d8d8d8;cursor:pointer}
+.chat-user-info .chat-user-img{width:50px;height:50px;overflow:hidden;border-radius:50%;border:1px solid #ddd;min-width:50px}
+.chat-user-info .chat-user-detail{padding-left:15px}
+.chat-user-info .chat-user-detail h3{font-size:14px;margin:0;font-weight:700}
+.chat-user-info .chat-user-detail p{font-size:13px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin:0;font-weight:500;max-width:150px}
+.chat-user-info:hover{background:#ddd}
+.chat-user-list ul{list-style:none;padding:0;margin:0}
+.chat-user-list ul li.active .chat-user-info{background:#a5a54d;color:#fff}
+.chat-user-list{max-height:500px;overflow-y:auto}
+.user-chat-block{border:1px solid #ddd;border-radius:4px}
+.user-chat-block .usr-chat-title h3{font-size:18px;margin:0;text-decoration:underline;font-weight:700}
+.user-chat-block .usr-chat-title{background: #eee;padding:12px 15px;border-bottom:1px solid #efefef}
+.usr-chatting-input{display:flex;align-items:center;border-top:1px solid #ddd}
+.usr-chatting-input input{border:0;height:50px;padding:0 15px;font-weight:500;font-size:16px;outline:none}
+.usr-chatting-input .btn-send{height:50px;border:0;outline:none;background:#c6c30c;font-weight:700;text-transform:uppercase;padding:0 16px;color:#fff;transition:.3s;letter-spacing:1px}
+.usr-chatting-input .btn-send:hover{background:#a19e04}
+.usr-chatting-box {overflow-y: auto;max-height: 460px;padding: 30px 15px;}
+.chat-body .answer.left{padding:0 0 0 58px;text-align:left;float:left}
+.chat-body .answer{position:relative;max-width:600px;overflow:hidden;clear:both}
+.chat-body .answer.left .avatar{left:0}
+.chat-body .avatar .avatar-img {width: 40px;height: 40px;overflow: hidden;border-radius: 50%;display: inline-block;border: 1px solid #ddd;}
+.chat-body .avatar .avatar-img img{width: 100%;min-height: 40px;}
+.chat-body .answer .avatar{bottom:36px;position: absolute;}
+.chat .avatar img{display:block;border-radius:20px;height:100%}
+.chat-body .answer .name{font-size:14px;line-height:36px}
+.chat-body .answer.left .avatar .status{right:4px}
+.chat-body .answer .avatar .status{bottom:0}
+.chat-body .answer.left .text{background:#ebebeb;color:#333;border-radius:8px 8px 8px 0}
+.chat-body .answer .text{padding:12px;font-size:16px;line-height:26px;position:relative}
+.chat-body .answer.left .text:before{left:-30px;border-right-color:#ebebeb;border-right-width:12px}
+.chat-body .answer .text:before{content:'';display:block;position:absolute;bottom:0;border:18px solid transparent;border-bottom-width:0}
+.chat-body .answer.left .time{padding-left:12px;color:#333}
+.chat-body .answer .time{font-size:16px;line-height:36px;position:relative;padding-bottom:1px}
+.chat-body .answer.right{padding:0 58px 0 0;text-align:right;float:right}
+.chat-body .answer.right .avatar{right:0}
+.chat-body .answer.right .avatar .status{left:4px}
+.chat-body .answer.right .text{background:#7266ba;color:#fff;border-radius:8px 8px 0 8px}
+.chat-body .answer.right .text:before{right:-30px;border-left-color:#7266ba;border-left-width:12px}
+.chat-body .answer.right .time{padding-right:12px;color:#333}
 
 @media (min-width : 768px){
 .mob-footer,.mob-list-menu {display: none;}
@@ -7131,7 +7183,32 @@ a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width:
 
 /*====================== End Style for custom modal =================*/
 .stepwizard {display: block;margin: 15px 0;}
+.browse-view {margin-bottom: 70px;}
+.footer,.last{display: none;}
+.sub-banner>img {display: none;}
+.sub-banner {position: relative;}
+.sub-banner .toggle-menu {display:block;position: absolute;right: 0;top: 0;padding: 13px 15px;font-size: 22px;}
+.sub-banner .toggle-menu a {color: #d2d200;}
+.filter-right {position: absolute;top: -40px;width: 100%;z-index: 999;left: 0;border-radius: 0;}
 
+.mob-card{display: block;}
+.desktop-card{display: none;}
+.see-more-cat-btn {margin-top: 15px;}
+.task-card{display:flex;justify-content:space-between;background:#eee;clear:both;padding:10px;border-bottom:1px solid #bcbcbc}
+.task-card .task-user span{width:70px;min-width:70px;height:70px;overflow:hidden;display:inline-block;border-radius:50%}
+.task-card .task-user span img{max-width:100%;height:auto;min-height:70px}
+.task-card .task-detail{padding:0 10px;flex-basis:calc(100% - 115px)}
+.task-card .task-detail h3{font-size:15px;margin-bottom:5px;margin-top:0;font-weight:700;word-break:break-all}
+.task-card:last-child{border:0}
+.task-card:first-child{border-top:5px solid #efeb10}
+.task-card .task-detail p{font-size:13px;margin-bottom:5px;word-break:break-all}
+.task-card .task-detail .tast-user-name a{font-size:13px;color:#1267b0;font-weight:500}
+.task-card .task-detail .tast-info h4{font-size:13px;color:#000}
+.task-card .task-detail .tast-info h4 i{margin-right:6px}
+.task-card .task-action a{background:#dbdb2d;color:#fff;border-radius:2px;font-size:13px;padding:3px 6px}
+.task-card .task-action .task-amount{margin-bottom:5px;text-align:center;font-size:16px;font-weight:700}
+.task-card .task-user{flex-basis:70px}
+.task-card .task-action{flex-basis:45px}
 }
 @media (max-width:360px){
 .menu-open.show {width: 260px;}
