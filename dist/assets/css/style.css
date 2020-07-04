@@ -1126,10 +1126,9 @@ color:#000 !important;
     float: left;
     width: 25%;
     text-align: center;
-    padding-top: 15px;
-    background: #2e2e2e;
+    padding: 36px 15px;
+    background: #000000;
     color: #fff;
-    padding-bottom: 0px;
 }
 .posted-card {
     float: left;
