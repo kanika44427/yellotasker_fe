@@ -28,6 +28,7 @@
     "ng2-social-share": "0.0.10",
     "ngx-chips": "^2.1.0",
     "ngx-cookie-service": "^1.0.9",
+    "ngx-device-detector": "^1.4.5",
     "rxjs": "^5.5.12",
     "time-ago-pipe": "^1.2.1",
     "zone.js": "^0.8.14"

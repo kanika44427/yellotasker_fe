@@ -10,7 +10,8 @@ import { DatePipe } from '@angular/common';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import {ActivatedRoute,Router} from '@angular/router';
 import {MyTaskComponent} from './../my-task/myTask.component';
-import {SearchPipe} from '../pipes/search.pipe'
+import {SearchPipe} from '../pipes/search.pipe';
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -30,7 +31,7 @@ export class BrowseTaskComponent implements OnInit{
   saveJobObject :any;
   offerList: any;
   commentList : object;
-  taskListIndicator : boolean;
+ // taskListIndicator : boolean;
   commentIndicator : boolean;
   replyIndicator : boolean;
   errorIndicator : boolean;
@@ -67,9 +68,17 @@ export class BrowseTaskComponent implements OnInit{
   budgetTypeFilter = 'withMaterial'; 
   TaskbyTimeIndicator = ''; 
   TaskbyBudgetIndicator = '';  
-  constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService,
-  private reversePipe: ReversePipe,private datePipe: DatePipe,private route:ActivatedRoute,private router:Router){
-    this.parentComponent = this.inj.get(AppComponent);
+  showFilterMenuIndicator : boolean = false; 
+  constructor(private inj:Injector,private httpService: HttpService, 
+   
+    private commonService: CommonService,
+    private reversePipe: ReversePipe,private datePipe: DatePipe,private route:ActivatedRoute,private router:Router){
+      var type = this.commonService.getMobileType(); 
+      if(type == "MOB" || type == "TAB" )
+      this.showFilterMenuIndicator = false; 
+      else
+       this.showFilterMenuIndicator = true; 
+      this.parentComponent = this.inj.get(AppComponent);
   }
 
   getMenuLatest(type){
@@ -131,7 +140,7 @@ export class BrowseTaskComponent implements OnInit{
                 }
             });
           }
-          this.taskListIndicator = true;
+         // this.taskListIndicator = true;
           this.commonService.hideLoader();
         }
     });
@@ -215,6 +224,10 @@ getTaskbyTime(time){
          this.commonService.hideLoader();
       }
   }); 
+}
+
+showFiltersonMobileDevice(){
+  this.showFilterMenuIndicator = ! this.showFilterMenuIndicator; 
 }
 //get task by time
 getTaskbyBookmark(){
@@ -379,7 +392,7 @@ getTaskbyLocation(type){
   getMoreItems()
   {
     this.pageNum = this.pageNum + 1;
-    this.taskListIndicator = false;
+    //this.taskListIndicator = false;
     this.commonService.showLoader();
      this.httpService.browseAllItems(this.pageNum).subscribe(
       data => {
@@ -388,12 +401,12 @@ getTaskbyLocation(type){
         {
           this.reversePipe.transform(this.apiResponse.data);
           this.taskList = this.taskList.concat(this.apiResponse.data);
-          this.taskListIndicator = true;
+         // this.taskListIndicator = true;
           this.commonService.hideLoader();
         }
         if(this.apiResponse.message == "No task found.")
         {
-          this.taskListIndicator = true;
+          //this.taskListIndicator = true;
           this.seeMoreIndicator = false;
           this.commonService.hideLoader();
         }

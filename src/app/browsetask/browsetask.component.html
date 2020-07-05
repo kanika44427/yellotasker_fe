@@ -9,8 +9,7 @@
     </div>    
   </div>
   <div class="toggle-menu">
-    <!-- Click on anchor browse task menu will be toggle only for mobile device -->
-    <a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+    <a (click)="showFiltersonMobileDevice()"><i class="fa fa-bars"></i></a>
   </div>
 <!-- 
   <div class="browse-menu">
@@ -151,9 +150,9 @@
 
 <div class="browse-view">
   <div class="container">
-    <div class="row" *ngIf="taskListIndicator">
+    <div class="row">
       <!-- Sidebar -->
-      <div class="col-sm-3">
+      <div class="col-sm-3" *ngIf="showFilterMenuIndicator">
         <div class="filter-right">
           <ul >
             <li (click)="getMenuLatest('latest')" [ngClass]="{'active' : currentMenuSelected == 'latest'}">

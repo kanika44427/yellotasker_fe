@@ -42,7 +42,7 @@
 							Please provide required details.
 						</small>
 						<div class="form-item login-form-item"><label class="block">What task do you need done?<span style="color:red;">*</span></label>
-						<input class="{{titleReqIndicator==true?'red-border':''}}" type="text" id="email-input" formControlName="title" name="taskTitle" placeholder="{{parentComponent.catObject?parentComponent.catObject.category_name:'I need help with...'}}"></div>
+						<input class="{{titleReqIndicator==true?'red-border':''}}" type="text" id="email-input" formControlName="title" name="taskTitle" placeholder="{{parentComponent.catObject?'I need help with...' + parentComponent.catObject.category_name:'I need help with... '}}"></div>
 
 					<div class="form-item login-form-item"><label class="block">Describe your task in more detail?<span style="color:red;">*</span></label>
 					<textarea class="{{minLenIndicator==true||descReqIndicator==true?'red-border':''}}" placeholder="{{parentComponent.catObject?(parentComponent.catObject.category_name == 'Other services' ? parentComponent.catObject.category_name : parentComponent.catObject.category_name+' '+parentComponent.catObject.category_group_name):'e.g. I need help cleaning my 3 bedroom 3 bathroom house, including: 
@@ -180,20 +180,9 @@ Everything else
 																<small class="text-danger" *ngIf="errorIndicator">
 																	Please provide required details.
 																</small>
-															  <!--<div class="form-item login-form-item"><label class="block">People required for this task</label>
-																<input min="1"type="number" id="peopleRequired" name="peopleRequired" placeholder="1" 
-																formControlName="peopleRequired" ></div>-->
+															
 															  <br/>
-																<!--<div *ngIf="postTaskStep3Form.value.peopleRequired > 1" class="funkyradio divide-row">
-																			<div class="funkyradio-default full-width">
-																			<input type="radio" name="typeOfPeople" id="radioPeopleRequired" formControlName="typeOfPeople" value="Looking for multiple people"  />
-																			<label for="radioPeopleRequired">Looking for multiple people</label>
-																</div>
-																<div class="funkyradio-default full-width">
-																			<input type="radio" name="typeOfPeople" id="radioPeopleRequired2" formControlName="typeOfPeople" value="Looking for one team with multiple people" />
-																			<label for="radioPeopleRequired2">Looking for one team with multiple people</label>
-																</div>
-																</div>-->		
+																
 																<div class="form-item login-form-item"><label class="block">What's your budget?</label>
 																	<div class="funkyradio divide-row">
 																	<div class="funkyradio-default full-funky">

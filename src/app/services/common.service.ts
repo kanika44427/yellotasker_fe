@@ -53,4 +53,15 @@ getParameterByName(name,url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+getMobileType() {
+    var width_ = window.innerWidth;
+    if (width_ <= 720) {
+        return "MOB";
+    } else if ((width_ > 720) && (width_ < 900)) {
+        return "TAB";
+    } else if ((width_ > 900)) {
+        return "WEB";
+    }
+}
+
 }
