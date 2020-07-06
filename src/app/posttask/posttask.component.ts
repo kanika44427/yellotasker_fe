@@ -56,7 +56,6 @@ molPayValues : any;
 postTaskSucess:boolean;
 budgetReqIndicator:boolean;
 configSettings : any;
-
 constructor(private inj:Injector,private httpService: HttpService, 
   private dataService : DataService,
   private commonService: CommonService, private fb: FormBuilder
@@ -86,7 +85,7 @@ ngOnInit() {
     this.postTaskStep1Form = this.fb.group({
     title: ['', Validators.required],
     description: ['', [Validators.required, Validators.maxLength(5000), Validators.minLength(25)]]
-   
+     
   });
 }
 
