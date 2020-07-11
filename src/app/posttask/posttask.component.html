@@ -45,13 +45,31 @@
 						<input class="{{titleReqIndicator==true?'red-border':''}}" type="text" id="email-input" formControlName="title" name="taskTitle" placeholder="{{parentComponent.catObject?'I need help with ' + parentComponent.catObject.category_name:'I need help with... '}}"></div>
 
 					<div class="form-item login-form-item"><label class="block">Describe your task in more detail?<span style="color:red;">*</span></label>
-					<textarea class="{{minLenIndicator==true||descReqIndicator==true?'red-border':''}}" placeholder="{{parentComponent.catObject && parentComponent.catObject.category_name !== 'Home Cleaning' ? 'Describe your task as detail as possible to receive accurate quotes' :'e.g. I need help cleaning my 3 bedroom 3 bathroom house, including: 
+					<textarea class="{{minLenIndicator==true||descReqIndicator==true?'red-border':''}}" placeholder="{{parentComponent.catObject ? parentComponent.catObject.category_name !== 'Home Cleaning' ? 'Describe your task as detail as possible to receive accurate quotes' :'e.g. I need help cleaning my 3 bedroom 3 bathroom house, including: 
 -Vacuuming
 -Mopping
 -Clean stove top
 -Clean kitchen
 -General tidy up
-'}}" id="post-task-description" (keyup)="changed(postTaskStep1Form.value.description)" 
+' : 'e.g. I need help cleaning my 3 bedroom 3 bathroom house, including:
+
+Vacuuming
+Mopping
+Clean stove top
+Clean kitchen
+General tidy up
+
+Describe your task as detail as possible to receive accurate quotes
+
+Home Cleaning 
+Handyman@tukang
+Tutoring 
+Runner
+Plumbing 
+AirCon Servicing 
+Wedding Services
+Everything else'
+}}" id="post-task-description" (keyup)="changed(postTaskStep1Form.value.description)" 
 					   formControlName="description" class="tick-input" rows="8"></textarea>
 					<span style="float:right; font-size:13px;">{{ charsLeft }} characters remaining</span>
 						<small class="text-danger" *ngIf="minLenIndicator">
