@@ -536,7 +536,7 @@ export class HttpService {
     
            }
             getPostedTaskByLocation(locationType : Object) : Observable<any[]> {
-                return this.http.get(this.API_ENDPOINT_UAT + 'getPostTask?locationType='+ locationType)
+                return this.http.get(this.API_ENDPOINT_UAT + 'getPostTask?locationType='+ locationType + '&taskStatus=open')
                               .map((res:Response) =>  res.json())
                                   .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         

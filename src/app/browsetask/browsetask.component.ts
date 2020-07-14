@@ -267,9 +267,9 @@ getTaskbyBudget(budgetType){
     var budget = budgetType.split("-");
     var budgetQueryStr = '?budgetmin='+ budget[0]+'&budgetmax='+ (budget[1] ? budget[1] : 100000);
     if(this.budgetTypeFilter == 'withMaterial')
-    budgetQueryStr = budgetQueryStr + '&budgetType=' + "Materials & workmanship";
+    budgetQueryStr = budgetQueryStr + '&budgetType=' + "Materials & workmanship&taskStatus=open";
     else 
-    budgetQueryStr = budgetQueryStr + '&budgetType=' + "Workmanship only - I will supply materials";
+    budgetQueryStr = budgetQueryStr + '&budgetType=' + "Workmanship only - I will supply materials&taskStatus=open";
     this.httpService.getTaskbyBudget(budgetQueryStr).subscribe(
       data => {
         this.apiResponse = data;

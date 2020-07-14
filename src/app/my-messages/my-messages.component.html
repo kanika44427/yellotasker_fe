@@ -5,121 +5,25 @@
                 <div class="chat-users">
                     <div class="users-tabs">
                         <ul>
-                            <li class="active"><span>As Poster</span></li>
-                            <li><span>As Worker</span></li>
+                            <li [ngClass]="{'active': postedTaskIndicator}" (click)="getTaskByPoster()"><span>As Poster</span></li>
+                            <li [ngClass]="{'active': !postedTaskIndicator}" (click)="getTaskByDoer()"><span>As Worker</span></li>
                         </ul>
                     </div>
                     <div class="chat-user-list">
                         <ul>
-                            <li>
+                            <li *ngFor ="let taskList of TaskList">
                                 <div class="chat-user-info">
                                     <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
+                                        <img src="{{taskList.task_assigned_user.profile_image}}"
                                             alt="">
                                     </div>
                                     <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
+                                        <h3>{{taskList.task_assigned_user.first_name}} {{taskList.task_assigned_user.last_name}}</h3>
+                                        <p>{{taskList.title}}</p>
                                     </div>
                                 </div>
                             </li>
                             <li class="active">
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chat-user-info">
-                                    <div class="chat-user-img">
-                                        <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"
-                                            alt="">
-                                    </div>
-                                    <div class="chat-user-detail">
-                                        <h3>Joh Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
                                 <div class="chat-user-info">
                                     <div class="chat-user-img">
                                         <img src="https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png"

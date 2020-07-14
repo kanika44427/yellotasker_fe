@@ -113,7 +113,6 @@ export class MyTaskComponent  implements OnInit {
   }
   navigateToBrowseTask(taskList)
   {
-    alert("kanika")
     if(taskList.status=='open')
     this.router.navigate(['./browse-task/',taskList.taskId]);
   }
