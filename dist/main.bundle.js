@@ -2511,7 +2511,7 @@ var signupUser = (function () {
 /***/ "../../../../../src/app/my-messages/my-messages.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"my-messages-main\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-3\">\r\n                <div class=\"chat-users\">\r\n                    <div class=\"users-tabs\">\r\n                        <ul>\r\n                            <li [ngClass]=\"{'active': postedTaskIndicator}\" (click)=\"getTaskByPoster()\"><span>As Poster</span></li>\r\n                            <li [ngClass]=\"{'active': !postedTaskIndicator}\" (click)=\"getTaskByDoer()\"><span>As Worker</span></li>\r\n                        </ul>\r\n                    </div>\r\n                    <div class=\"chat-user-list\">\r\n                        <ul>\r\n                            <li *ngFor =\"let taskList of TaskList\">\r\n                                <div class=\"chat-user-info\">\r\n                                    <div class=\"chat-user-img\">\r\n                                        <img src=\"{{taskList.task_assigned_user.profile_image}}\"\r\n                                            alt=\"\">\r\n                                    </div>\r\n                                    <div class=\"chat-user-detail\">\r\n                                        <h3>{{taskList.task_assigned_user.first_name}} {{taskList.task_assigned_user.last_name}}</h3>\r\n                                        <p>{{taskList.title}}</p>\r\n                                    </div>\r\n                                </div>\r\n                            </li>\r\n                            <li class=\"active\">\r\n                                <div class=\"chat-user-info\">\r\n                                    <div class=\"chat-user-img\">\r\n                                        <img src=\"https://www.pngitem.com/pimgs/m/512-5127328_girls-girly-art-hd-png-download.png\"\r\n                                            alt=\"\">\r\n                                    </div>\r\n                                    <div class=\"chat-user-detail\">\r\n                                        <h3>Joh Doe</h3>\r\n                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing</p>\r\n                                    </div>\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-9\">\r\n                <div class=\"user-chat-block\">\r\n                    <div class=\"usr-chat-title\">\r\n                        <h3>Lorem Ipsum is dummy text</h3>\r\n                    </div>\r\n                    <div class=\"usr-chat-panel chat-body\">\r\n                        <div class=\"usr-chatting-box\">\r\n                            <div class=\"answer left\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img src=\"https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png\" alt=\"\"></div>\r\n                                </div>\r\n                                <div class=\"name\">Alexander Herthic</div>\r\n                                <div class=\"text\">\r\n                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet,\r\n                                    consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit\r\n                                </div>\r\n                                <div class=\"time\">5 min ago</div>\r\n                            </div>\r\n                            <div class=\"answer left\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img src=\"https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png\" alt=\"\"></div>\r\n                                </div>\r\n                                <div class=\"name\">Alexander Herthic</div>\r\n                                <div class=\"text\">\r\n                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet,\r\n                                    consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit\r\n                                </div>\r\n                                <div class=\"time\">5 min ago</div>\r\n                            </div>\r\n                            <div class=\"answer right\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img src=\"https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png\" alt=\"\"></div>\r\n                                </div>\r\n                                <div class=\"name\">Alexander Herthic</div>\r\n                                <div class=\"text\">\r\n                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet,\r\n                                    consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit\r\n                                </div>\r\n                                <div class=\"time\">5 min ago</div>\r\n                            </div>\r\n                            <div class=\"answer right\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img src=\"https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png\" alt=\"\"></div>\r\n                                </div>\r\n                                <div class=\"name\">Alexander Herthic</div>\r\n                                <div class=\"text\">\r\n                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet,\r\n                                    consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit\r\n                                </div>\r\n                                <div class=\"time\">5 min ago</div>\r\n                            </div>\r\n                            <div class=\"answer left\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img src=\"https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png\" alt=\"\"></div>\r\n                                </div>\r\n                                <div class=\"name\">Alexander Herthic</div>\r\n                                <div class=\"text\">\r\n                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet,\r\n                                    consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit\r\n                                </div>\r\n                                <div class=\"time\">5 min ago</div>\r\n                            </div>\r\n                            <div class=\"answer right\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img src=\"https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png\" alt=\"\"></div>\r\n                                </div>\r\n                                <div class=\"name\">Alexander Herthic</div>\r\n                                <div class=\"text\">\r\n                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet,\r\n                                    consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit\r\n                                </div>\r\n                                <div class=\"time\">5 min ago</div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"usr-chatting-input\">\r\n                            <input type=\"text\" placeholder=\"Type here...\">\r\n                            <button class=\"btn-send\">Send</button>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>"
+module.exports = "<section class=\"my-messages-main\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-3\">\r\n                <div class=\"chat-users\">\r\n                    <div class=\"users-tabs\">\r\n                        <ul>\r\n                            <li [ngClass]=\"{'active': postedTaskIndicator}\" (click)=\"getTaskByPoster()\"><span>As Poster</span></li>\r\n                            <li [ngClass]=\"{'active': !postedTaskIndicator}\" (click)=\"getTaskByDoer()\"><span>As Tasker</span></li>\r\n                        </ul>\r\n                    </div>\r\n                    <div class=\"chat-user-list\">\r\n                        <ul *ngIf=\"TaskList && TaskList.length > 0\">\r\n                            <li *ngFor =\"let taskList of TaskList\" [ngClass]=\"{'active': currentTaskItem && currentTaskItem.id == taskList.id}\">\r\n                                <div class=\"chat-user-info\"    (click)=\"getMessagesInDetail(taskList)\">\r\n                                    <div class=\"chat-user-img\">\r\n                                        <img src=\"{{taskList.task_assigned_user.profile_image}}\"\r\n                                            alt=\"\">\r\n                                    </div>\r\n                                    <div class=\"chat-user-detail\">\r\n                                        <h3>{{taskList.task_assigned_user.first_name}} {{taskList.task_assigned_user.last_name}}</h3>\r\n                                        <p>{{taskList.title}}</p>\r\n                                    </div>\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                        <span *ngIf=\"TaskList.length == 0\" style=\"text-align : center;\">\r\n                            No assigned task found.\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-9\">\r\n                <div class=\"user-chat-block\" *ngIf=\"currentTaskItem\">\r\n                    <div class=\"usr-chat-title\">\r\n                        <h3>{{currentTaskItem.title}}</h3>\r\n                    </div>\r\n                    <div class=\"usr-chat-panel chat-body\">\r\n                        <div class=\"usr-chatting-box\" *ngFor=\"let item of commentList\">\r\n                            <div class=\"answer left\" *ngIf=\"item.userId !== currentUserId\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img [src]=\"item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'\" alt=\"yellotasker\">\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"name\">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</div>\r\n                                <div class=\"text\">\r\n                                    {{item.commentDescription}}\r\n                                </div>\r\n                                <div class=\"time\">{{item.created_at | timeAgo }}</div>\r\n                            </div>\r\n                           \r\n                            <div class=\"answer right\" *ngIf=\"item.userId == currentUserId\">\r\n                                <div class=\"avatar\">\r\n                                    <div class=\"avatar-img\"><img [src]=\"item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'\" alt=\"yellotasker\"></div>\r\n                                </div>\r\n                                <div class=\"name\">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</div>\r\n                                <div class=\"text\">\r\n                                    {{item.commentDescription}}\r\n                                </div>\r\n                                <div class=\"time\">{{item.created_at | timeAgo }}</div>\r\n                            </div>\r\n                           \r\n                        </div>\r\n                        <div class=\"usr-chatting-input\">\r\n                            <input type=\"text\" (keyup)=\"enableSendButton()\" placeholder=\"Type here to send a message.\" name=\"comment\"  #comment=\"ngModel\"  [(ngModel)]='user_comment'>\r\n                            <button type=\"submit\" class=\"btn-send\" *ngIf=\"!checkComment\" (click)=\"addComment(currentTaskItem)\">Send</button>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>"
 
 /***/ }),
 
@@ -2540,6 +2540,8 @@ var MyMessagesComponent = (function () {
         this.httpService = httpService;
         this.commonService = commonService;
         this.TaskList = [];
+        this.commentList = [];
+        this.checkComment = true;
     }
     MyMessagesComponent.prototype.ngOnInit = function () {
         window.scrollTo(0, 0);
@@ -2547,11 +2549,13 @@ var MyMessagesComponent = (function () {
     };
     MyMessagesComponent.prototype.getTaskByPoster = function () {
         var _this = this;
+        this.currentTaskItem = null;
         this.postedTaskIndicator = true;
         this.TaskList = [];
-        var userId = this.commonService.getCookieValues("userid");
+        this.currentUserId = this.commonService.getCookieValues("userid");
+        this.currentUserId = +this.currentUserId;
         this.commonService.showLoader();
-        this.httpService.getPostedTask(userId, "postedTask").subscribe(function (data) {
+        this.httpService.getPostedTask(this.currentUserId, "postedTask").subscribe(function (data) {
             _this.apiResponse = data;
             if (_this.apiResponse.message == 'All task list') {
                 if (_this.apiResponse.data.postedTask[0].posted_task && _this.apiResponse.data.postedTask[0].posted_task.length > 0) {
@@ -2570,8 +2574,80 @@ var MyMessagesComponent = (function () {
         });
     };
     MyMessagesComponent.prototype.getTaskByDoer = function () {
+        var _this = this;
+        this.currentTaskItem = null;
         this.TaskList = [];
         this.postedTaskIndicator = false;
+        this.currentUserId = this.commonService.getCookieValues("userid");
+        this.commonService.showLoader();
+        this.httpService.getPostedTask(this.currentUserId, "offerAccepting").subscribe(function (data) {
+            _this.apiResponse = data;
+            if (_this.apiResponse.message == 'All task list') {
+                if (_this.apiResponse.data.offers_accepting[0].offers_accepting && _this.apiResponse.data.offers_accepting[0].offers_accepting.length > 0) {
+                    var taskList = _this.apiResponse.data.offers_accepting[0].offers_accepting;
+                    for (var i = 0; i < taskList.length; i++) {
+                        if (taskList[i].status == "assigned") {
+                            _this.TaskList.push(taskList[i]);
+                        }
+                    }
+                }
+                _this.commonService.hideLoader();
+            }
+            else {
+                _this.commonService.hideLoader();
+            }
+        });
+    };
+    MyMessagesComponent.prototype.getMessagesInDetail = function (item) {
+        this.currentTaskItem = item;
+        this.getAllComments(this.currentTaskItem.id);
+    };
+    MyMessagesComponent.prototype.getAllComments = function (taskId) {
+        var _this = this;
+        this.commonService.showLoader();
+        this.httpService.getAllComment(taskId).subscribe(function (data) {
+            _this.apiResponse = data;
+            _this.commonService.showLoader();
+            if (_this.apiResponse.message == 'Comments list') {
+                _this.commentList = _this.apiResponse.data;
+                _this.commonService.hideLoader();
+            }
+            else {
+                _this.commentList = [];
+                _this.commonService.hideLoader();
+            }
+        });
+    };
+    MyMessagesComponent.prototype.enableSendButton = function () {
+        if (this.user_comment == "" || this.user_comment == null || this.user_comment == undefined)
+            this.checkComment = true;
+        else
+            this.checkComment = false;
+    };
+    MyMessagesComponent.prototype.addComment = function (itemDetail) {
+        var _this = this;
+        var userid = this.commonService.getCookieValues("userid");
+        if (userid) {
+            if (this.user_comment != "") {
+                var comment = {
+                    commentDescription: this.user_comment,
+                    taskId: itemDetail.taskId != undefined ? itemDetail.taskId : itemDetail.id,
+                    userId: userid
+                };
+                this.commonService.showLoader();
+                this.httpService.postComment(comment).subscribe(function (data) {
+                    _this.apiResponse = data;
+                    if (_this.apiResponse.message == 'Reply added successfully.') {
+                        _this.commonService.hideLoader();
+                        _this.user_comment = "";
+                        _this.getAllComments(itemDetail.taskId != undefined ? itemDetail.taskId : itemDetail.id);
+                    }
+                    else {
+                        _this.commonService.hideLoader();
+                    }
+                });
+            }
+        }
     };
     MyMessagesComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({

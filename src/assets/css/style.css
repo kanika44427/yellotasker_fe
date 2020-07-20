@@ -7122,7 +7122,7 @@ section.my-messages-main{padding:120px 0 30px}
 .usr-chatting-input input{border:0;height:50px;padding:0 15px;font-weight:500;font-size:16px;outline:none}
 .usr-chatting-input .btn-send{height:50px;border:0;outline:none;background:#c6c30c;font-weight:700;text-transform:uppercase;padding:0 16px;color:#fff;transition:.3s;letter-spacing:1px}
 .usr-chatting-input .btn-send:hover{background:#a19e04}
-.usr-chatting-box {overflow-y: auto;max-height: 460px;padding: 30px 15px;}
+.usr-chatting-box {overflow-y: auto;max-height: 460px;padding: 5px 15px;}
 .chat-body .answer.left{padding:0 0 0 58px;text-align:left;float:left}
 .chat-body .answer{position:relative;max-width:600px;overflow:hidden;clear:both}
 .chat-body .answer.left .avatar{left:0}
