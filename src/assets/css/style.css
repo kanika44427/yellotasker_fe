@@ -4026,6 +4026,23 @@ div#taskDescriptionModal {
     border-radius: 5px;
     font-size: 14px;
 }
+
+.status-btn {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+ .status-btn a {
+    background:  #333;
+    color: #efeb10;
+    font-weight: 600;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
 a.card-left {
     color: inherit;
 }

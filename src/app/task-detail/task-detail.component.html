@@ -113,10 +113,11 @@
                          </div>
                       </div>
                    </div>
-                   <div class="pop-accordion">
+                   <div class="pop-accordion" *ngIf="!taskStatusIndicator">
                       <a class="anchor-comment" data-toggle="collapse" data-parent="#accordion" 
                       href="#collapse2">
-                         <h4>Comment {{taskStatusIndicator?'history':''}}<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                         <!-- <h4>Comment {{taskStatusIndicator?'history':''}}<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4> -->
+                         <h4>Comments<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
                       </a>
                       <div id="collapse2" class="panel-collapse collapse">
                          <div class="comment-box-browse">
@@ -130,7 +131,7 @@
                             </div>
                             <div *ngIf="!taskStatusIndicator"class="commenter">
                                <div class="commenter-pic">
-                                  <a href="#"><img [src]="userImage" alt="yellotasker"></a>
+                                  <a ><img [src]="userImage" alt="yellotasker"></a>
                                </div>
                                <div class="commenter-text">
                                   <textarea placeholder="Ask a question" [(ngModel)]="comment.commentDescription" #description ="ngModel" 
@@ -146,10 +147,10 @@
                                   <div id="commentItem" *ngIf="item.commentId == 0">
                                      <div class="commenter">
                                         <div class="commenter-pic">
-                                           <a href="#"><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                           <a (click)="navigateToProfile(item.user_detail)" ><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
                                         </div>
                                         <div class="commenter-text">
-                                           <h4><a href="#">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</a>
+                                           <h4><a (click)="navigateToProfile(item.user_detail)">{{item.user_detail.first_name}} {{item.user_detail.last_name}}</a>
                                             <a *ngIf="item.userId==userId" (click)="deleteComment(item.id,item.taskId,item.userId)"><i class="fa fa-trash" style="color:#337ab7;"></i></a>
                                            </h4>
                                            <p class="commenter-desc">{{item.commentDescription}}</p>
@@ -173,15 +174,14 @@
                                         </p>
                                      </div>
                                   </div>
-                                  <!--reply list div starts-->
                                   <div *ngIf="checkIfReplyExists(item.id, commentList)"  >
                                      <div *ngFor="let data of repliedObjectList">
                                         <div class="commenter sub-reply">
                                            <div class="commenter-pic">
-                                              <a href="#"><img [src]="data.user_detail.profile_image!=null&&data.user_detail.profile_image!=''?data.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                              <a (click)="navigateToProfile(data.user_detail)"><img [src]="data.user_detail.profile_image!=null&&data.user_detail.profile_image!=''?data.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
                                            </div>
                                            <div class="commenter-text">
-                                              <h4><a href="#">{{data.user_detail.first_name}} {{data.user_detail.last_name}}</a>
+                                              <h4><a (click)="navigateToProfile(data.user_detail)">{{data.user_detail.first_name}} {{data.user_detail.last_name}}</a>
                                                 <a *ngIf="data.userId==userId" (click)="deleteComment(data.id,data.taskId,data.userId)"><i class="fa fa-trash" style="color:#337ab7;"></i></a>
                                             </h4>
                                               <p class="commenter-desc">{{data.commentDescription}}</p>
@@ -192,7 +192,7 @@
                                         </div>
                                         <div style="display: none" id="item_{{data.id}}">
                                            <div class="commenter-pic">
-                                              <a href="#"><img [src]="userImage!='null'&&userImage!=''?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                              <a ><img [src]="userImage ? userImage :'assets/img/task-person.png'" alt="yellotasker"></a>
                                            </div>
                                            <div class="commenter-text">
                                               <textarea value="Ask a question"  [(ngModel)]="replyCommentDesc" #replyDescription ="ngModel" 
@@ -206,7 +206,6 @@
                                         </div>
                                      </div>
                                   </div>
-                                  <!--reply list div ends-->
                                </div>
                             </div>
                          </div>
@@ -238,9 +237,9 @@
                                                   <div class="offer-rating">
                                                         <img [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'" alt=""> &nbsp;&nbsp;
                                                         <span class="offer-link">
-                                                                <a routerLink ="/profile-view/{{list.interested_user[0].first_name}}/{{list.interested_user[0].id}}">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
+                                                                <a (click)="navigateToProfile(list.interested_user[0])" >{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
                                                                 <div class="offer-tooltip" style="display:none">
-                                                                   <h5><a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a></h5>
+                                                                   <h5><a (click)="navigateToProfile(list.interested_user[0])">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a></h5>
                                                                    <p>231 indrapuri indore near bhawarkua</p>
                                                                    <p class="offer-rating-star"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></p>
                                                                    <p class="offer-completion-rate">100% completion rate</p>
@@ -307,13 +306,13 @@
                                          
                                              <div class="offer-rating">
                                                    <span class="offer-link">
-                                                           <a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
+                                                           <a (click)="navigateToProfile(list.interested_user[0])">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
                                                            <div class="offer-tooltip" style="display:none">
-                                                              <h5><a href="#">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a></h5>
+                                                              <h5><a (click)="navigateToProfile(list.interested_user[0])">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a></h5>
                                                               <p>231 indrapuri indore near bhawarkua</p>
                                                               <p class="offer-rating-star"><span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></p>
                                                               <p class="offer-completion-rate">100% completion rate</p>
-                                                              <p class="offer-request-quoate"><a href="#">Request Quote</a></p>
+                                                              <p class="offer-request-quoate"><a>Request Quote</a></p>
                                                            </div>
                                                          </span>
                                                    <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
@@ -401,20 +400,20 @@
                             </div>
                             <div class="commenter">
                                <div class="commenter-pic">
-                                  <a href="#"><img [src]="userImage!='null'&&userImage!=''?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                  <a><img [src]="userImage!='null'&&userImage!=''?userImage:'assets/img/task-person.png'" alt="yellotasker"></a>
                                </div>
                                <div class="commenter-text">
                                   <textarea value="Ask a question"  [(ngModel)]="messages" 
                                   name="messages" ></textarea>
                                   <p class="comment-footer">
-                                     <span><a href="#"><i class="fa fa-cloud-upload" aria-hidden="true"></i></a></span>
+                                     <span><a><i class="fa fa-cloud-upload" aria-hidden="true"></i></a></span>
                                      <span><a (click)="addMessage(messages, task)">Send</a></span>							
                                   </p>
                                </div>
                             </div>
                             <div class="commenter" *ngFor ="let msg of messageData">
                                <div class="commenter-pic">
-                                  <a href="#"><img [src]="msg.comment_posted_user.profile_image!=null&&msg.comment_posted_user.profile_image!=''?msg.comment_posted_user.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
+                                  <a (click)="navigateToProfile(msg.comment_posted_user)" ><img [src]="msg.comment_posted_user.profile_image!=null&&msg.comment_posted_user.profile_image!=''?msg.comment_posted_user.profile_image:'assets/img/task-person.png'" alt="yellotasker"></a>
                                </div>
                                <div *ngIf="taskDetails.offerAssignedTaskIndicator||taskDetails.postedTaskIndicator"class="commenter-text">
                                   <h4><a>{{msg.comment_posted_user.first_name}} {{msg.comment_posted_user.last_name }}
@@ -556,10 +555,10 @@
                            </div>
                         </div>
                         <div *ngIf="taskDetails.postedTaskIndicator" class="sam-btn">
-                            <a (click)="openMessage()">Message {{taskDoer!=undefined?taskDoer.first_name+' '+taskDoer.last_name:''}}</a>
+                            <a [routerLink]="['/my-messages']">Message {{taskDoer!=undefined?taskDoer.first_name+' '+taskDoer.last_name:''}}</a>
                         </div>
                         <div *ngIf="taskDetails.offerAssignedTaskIndicator" class="sam-btn">
-                            <a (click)="openMessage()">Message {{task.task_posted_user.first_name}} {{task.task_posted_user.last_name}}</a>
+                            <a [routerLink]="['/my-messages']">Message {{task.task_posted_user.first_name}} {{task.task_posted_user.last_name}}</a>
                         </div>
                      </div>
                      <div *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')" class="change-status">
@@ -575,20 +574,9 @@
                                  </option>
                             </select>
                         </div>
-
-                        <div *ngIf="taskDetails.offerAssignedTaskIndicator==true&&hideStatus==false" class="change-status">
-                            <label>Change task Status</label>    
-                            <select name="status"  #status="ngModel"  [(ngModel)]="taskStatus"  (ngModelChange)="onChange(taskStatus,task, prevStatus)"
-                            (focus)="prevStatus=taskStatus">
-                            <option value="">
-                                -Please Select-
-                              </option>
-                                    <option value="completed from doer" style="color:green;">
-                                        completed from my side
-                                      </option>
-                                </select>
-                            </div>
-
+                       <div *ngIf="taskDetails.offerAssignedTaskIndicator && taskStatus !== 'completed from doer'" class="status-btn">
+                           <a (click)="taskCompletedFromDoer('completed from doer',task)">Complete Task</a>
+                        </div>
                      <!-- <div *ngIf="!hideStatus&&taskStatus!='open'&&taskStatus!='assigned'&&!taskDetails.offerTaskIndicator||(taskDetails.offerAssignedTaskIndicator==true&&(taskStatus=='assigned'||taskStatus=='reopen'))" class="change-status">
                             <label>Change task Status</label>    
                             <select *ngIf="taskStatus=='assigned'" [(ngModel)]="taskStatus"  (change)="onChange($event.target.value,task)">
@@ -995,9 +983,31 @@ data-toggle="molpayseamless"
               <!--</form>-->
        </div>	
       </div>
+       </div>
     </div>
-    </div>
+</div>
 
+<div class="modal fade post-task-model"  id="successPopUp"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title" id="myModalLabel">Congratulations !!!</h4>
+              </div>
+      <div class="modal-body">
+<div role="tabpanel" class="tab-pane" >
+   <br/>
+   <div class="text-center">
+   <p>
+      Task completed successfully.
+   </p>
+   </div> 
+</div>
+</div>
+</div>
+</div>
+</div>
   
 
       

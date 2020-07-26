@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, Injector } from '@angul
 import { MyTaskComponent } from '../my-task/myTask.component';
 import { HttpService } from '../services/http.service';
 import { CommonService } from '../services/common.service';
+import {ActivatedRoute,Router} from '@angular/router';
 import { Comment } from '../browsetask/comment';
 import { DatePipe } from '@angular/common';
 import { DatepickerModule } from 'angular2-material-datepicker';
@@ -57,7 +58,9 @@ export class TaskDetailComponent implements OnInit {
   errorIndicator: boolean;
   Arr = Array;
   posterPayablePrice: any;
-  constructor(private inj: Injector, private httpService: HttpService, private commonService: CommonService, private reversePipe: ReversePipe, private datePipe: DatePipe,
+  constructor(private inj: Injector, private httpService: HttpService, 
+    private router:Router,
+    private commonService: CommonService, private reversePipe: ReversePipe, private datePipe: DatePipe,
     private dataService: DataService) {
     this.parentComponent = this.inj.get(MyTaskComponent);
   }
@@ -81,11 +84,11 @@ export class TaskDetailComponent implements OnInit {
     this.task = this.parentComponent.taskData;
     this.taskDetails = this.parentComponent;
     this.userImage = this.commonService.getCookieValues("userImage");
-    this.userImage = this.userImage != 'null' && this.userImage != '' ? this.userImage : 'assets/img/task-person.png';
+    this.userImage = this.userImage != null && this.userImage != '' && this.userImage != undefined ? this.userImage : 'assets/img/task-person.png';
     this.userId = this.commonService.getCookieValues("userid");
     this.taskStatusIndicator = this.task.status == 'open' ? false : true;
     this.taskStatus = this.task.status;
-
+  console.log( this.userImage);
     this.comment = new Comment();
     var taskId = this.task.taskId != undefined ? this.task.taskId : this.task.id;
     this.getAllComments(taskId);
@@ -260,6 +263,12 @@ export class TaskDetailComponent implements OnInit {
     }
 
   }
+
+  navigateToProfile(userDetail){
+    $('#myModal6').modal('hide');
+    this.router.navigate(['./profile-view/'+ userDetail.first_name+'/'+ userDetail.id]);
+  }
+
   closePopup() {
     $('#myModal6').modal('hide');
     this.parentComponent.taskDetail = false;
@@ -494,6 +503,30 @@ export class TaskDetailComponent implements OnInit {
       this.feedbackRating.push(i);
     }
   }
+
+  taskCompletedFromDoer(e, taskDetail){
+    var param = {
+      taskId: taskDetail.taskId != undefined ? taskDetail.taskId : taskDetail.id,
+      taskDoerId: taskDetail.taskDoerId,
+      status: e
+    }
+    this.httpService.changeStatus(param).subscribe(
+      data => {
+        this.apiResponse = data;
+        if (this.apiResponse.message == 'Task completed successfully from doer') {
+          this.commonService.hideLoader();
+          this.task.status = param.status;
+          this.hideStatus = (param.status == 'closed' || param.status == 'reopen') ? true : false;
+          this.showFeedback = (param.status == 'closed' || param.status == 'reopen') ? true : false;
+          $('#collapseFeedback').addClass('in');
+          $('#successPopUp').modal('show');
+        }
+        else {
+          this.commonService.hideLoader();
+        }
+      });
+  }
+
   onChange(e, taskDetail, prevStatus) {
 
     var param = {

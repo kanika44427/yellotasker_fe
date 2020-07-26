@@ -12,13 +12,23 @@
                     <div class="chat-user-list">
                         <ul *ngIf="TaskList && TaskList.length > 0">
                             <li *ngFor ="let taskList of TaskList" [ngClass]="{'active': currentTaskItem && currentTaskItem.id == taskList.id}">
-                                <div class="chat-user-info"    (click)="getMessagesInDetail(taskList)">
-                                    <div class="chat-user-img">
+                                <div class="chat-user-info" *ngIf="postedTaskIndicator" (click)="getMessagesInDetail(taskList)">
+                                    <div class="chat-user-img" >
                                         <img src="{{taskList.task_assigned_user.profile_image}}"
                                             alt="">
                                     </div>
                                     <div class="chat-user-detail">
                                         <h3>{{taskList.task_assigned_user.first_name}} {{taskList.task_assigned_user.last_name}}</h3>
+                                        <p>{{taskList.title}}</p>
+                                    </div>
+                                </div>
+                                <div class="chat-user-info" *ngIf="!postedTaskIndicator" (click)="getMessagesInDetail(taskList)">
+                                    <div class="chat-user-img" >
+                                        <img src="{{taskList.task_posted_user.profile_image}}"
+                                            alt="">
+                                    </div>
+                                    <div class="chat-user-detail">
+                                        <h3>{{taskList.task_posted_user.first_name}} {{taskList.task_posted_user.last_name}}</h3>
                                         <p>{{taskList.title}}</p>
                                     </div>
                                 </div>
