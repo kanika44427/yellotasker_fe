@@ -11,7 +11,7 @@ export class HttpService {
      // Resolve HTTP using the constructor
      constructor (private http: Http) {}
      // private instance variable to hold base url
-     private API_ENDPOINT_UAT = 'http://api.yellotasker.com/api/v1/';
+     private API_ENDPOINT_UAT = 'https://api.yellotasker.com/api/v1/';
 
      login(user : any) : Observable<any[]>  {
         //let bodyString = JSON.stringify(user); // Stringify payload

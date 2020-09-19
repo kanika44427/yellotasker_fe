@@ -34,9 +34,9 @@
                                 </div>
                             </li>
                         </ul>
-                        <span *ngIf="TaskList.length == 0" style="text-align : center;">
+                        <div class="not-assigned" *ngIf="TaskList.length == 0" >
                             No assigned task found.
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,10 +71,11 @@
                             </div>
                            
                         </div>
-                        <div class="usr-chatting-input">
-                            <input type="text" (keyup)="enableSendButton()" placeholder="Type here to send a message." name="comment"  #comment="ngModel"  [(ngModel)]='user_comment'>
-                            <button type="submit" class="btn-send" *ngIf="!checkComment" (click)="addComment(currentTaskItem)">Send</button>
-                        </div>
+                        
+                    </div>
+                    <div class="usr-chatting-input">
+                        <input type="text" (keyup)="enableSendButton()" placeholder="Type here to send a message." name="comment"  #comment="ngModel"  [(ngModel)]='user_comment'>
+                        <button type="submit" class="btn-send" *ngIf="!checkComment" (click)="addComment(currentTaskItem)">Send</button>
                     </div>
                 </div>
             </div>

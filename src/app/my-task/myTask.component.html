@@ -33,7 +33,7 @@
 					     <button class="filter-btn" (click)="removeFilter()">Remove filter</button>
 					<div class="posted-card" *ngFor ="let taskList of TaskList | search:'status': query">
 							
-						<div class="posted-card-sec"  class="{{taskList.status}}" >
+						<div class="posted-card-sec" >
 						     <!-- <a  class="{{taskList.status=='expired'||(taskList.status=='assigned'&&savedTaskIndicator==true)?'card-left not-active':'card-left'}}"> -->
 								<a  class="card-left">
 								<h4>{{taskList.title.length>50?taskList.title.substring(0, 50)+'...':taskList.title}}
@@ -75,7 +75,7 @@
 									<span><i class="fa fa-calendar"></i> Due date {{taskList.dueDate|date}}</span>
 								</p>
 								<p class="task-verview">
-									<span class="{{taskList.status.substring(taskList.status.length-1, taskList.status.length)==' '?taskList.status.substring(0, taskList.status.length-1):taskList.status}}-text">
+									<span class="">
 										{{taskList.status=='assigned'&&(offerTaskIndicator||savedTaskIndicator)?'Assigned to somebody':taskList.status}}</span> 
 									<span class="myi-task-comm">{{taskList.comment_count}} Comment</span>
 									<span class="my-task-offer">{{taskList.offer_count}} Offers</span>

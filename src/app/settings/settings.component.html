@@ -46,7 +46,7 @@
 							<a href="javascript:void(0);" class="child-menu-main"  [ngClass]="{'setting-active':  activeMenu=='privacy-settings'||activeMenu=='notf-preference'||activeMenu=='notf-alerts'|| activeMenu=='password-change'}" (click)="toggleMenu()">Privacy & Settings</a>
 							<ul class="submenu-tabs" [ngClass]="openMenu ? 'show' : ''">
 								<li><a  (click)="settingTab('privacy-settings')" [ngClass]="{'submenu-active':  activeMenu=='privacy-settings'}">Account deactivation </a></li>
-								<li><a (click)="settingTab('notf-preference')"  [ngClass]="{'submenu-active':  activeMenu=='notf-preference'}">Notification preference</a></li>
+								<!-- <li><a (click)="settingTab('notf-preference')"  [ngClass]="{'submenu-active':  activeMenu=='notf-preference'}">Notification preference</a></li> -->
 								<li><a (click)="settingTab('notf-alerts')" [ngClass]="{'submenu-active':  activeMenu=='notf-alerts'}">Notification alerts</a></li>
 								<li><a (click)="settingTab('password-change')" [ngClass]="{'submenu-active':  activeMenu=='password-change'}">Password change</a></li>
 							</ul>
