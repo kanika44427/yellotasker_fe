@@ -228,6 +228,20 @@ export class TaskDetailComponent implements OnInit {
           this.apiResponse = data;
           this.commonService.showLoader();
           if (this.apiResponse.message == 'Task Assigned successfully') {
+            var param = {
+              taskId: task.taskId != undefined ? task.taskId : task.id,
+              totalAmount: list.offerPrice, 
+              title: task.title,
+              description: task.description,
+              locationType: task.locationType,
+              dueDate: task.dueDate,
+              budgetType: task.budgetType,
+              address: task.address
+            }
+            this.httpService.updatePostTask(param).subscribe(
+              data => {
+
+              }); 
             alert('Task Assigned successfully');
             //this.commentIndicator = true;
             //  this.commentList = this.apiResponse.data;
