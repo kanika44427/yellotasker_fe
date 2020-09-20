@@ -91,6 +91,12 @@ ngOnInit() {
 
 changed(description) {
     this.charsLeft = 5000 - description.length;
+    if(description.length < 25){
+      this.minLenIndicator = true; 
+    }
+    else{
+      this.minLenIndicator = false; 
+    }
 }
 
  //step 1 continue
@@ -116,7 +122,7 @@ onStep1Submit(form : any , model: any, isValid: boolean) {
     {
       this.titleReqIndicator=model.title==''?true:false;
       this.descReqIndicator=model.description==''?true:false;
-      if(form.controls.description._errors.minlength)
+      if(form.controls.description.errors.minlength)
       {
         this.minLenIndicator = true;
         this.errorIndicator = false;
