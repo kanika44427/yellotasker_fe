@@ -21,6 +21,7 @@ export class MyMessagesComponent  implements OnInit {
   ngOnInit() {
     window.scrollTo(0,0);
     this.getTaskByPoster();
+    this.currentUserId=this.commonService.getCookieValues("userid");
   }
 
   getTaskByPoster(){
@@ -80,10 +81,11 @@ export class MyMessagesComponent  implements OnInit {
 
   getMessagesInDetail(item){
     this.currentTaskItem = item; 
-    this.getAllComments(this.currentTaskItem.id); 
+    this.getAllComments(item.taskId != undefined ? item.taskId : item.id); 
   }
 
   getAllComments(taskId) {
+    this.currentUserId=this.commonService.getCookieValues("userid");
     this.commonService.showLoader();
     this.httpService.getAllComment(taskId).subscribe(
       data => {

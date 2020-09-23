@@ -14,7 +14,7 @@
                             <li *ngFor ="let taskList of TaskList" [ngClass]="{'active': currentTaskItem && currentTaskItem.id == taskList.id}">
                                 <div class="chat-user-info" *ngIf="postedTaskIndicator" (click)="getMessagesInDetail(taskList)">
                                     <div class="chat-user-img" >
-                                        <img src="{{taskList.task_assigned_user.profile_image}}"
+                                        <img [src]="taskList.task_assigned_user.profile_image!=null&&taskList.task_assigned_user.profile_image!=''?taskList.task_assigned_user.profile_image:'assets/img/task-person.png'"
                                             alt="">
                                     </div>
                                     <div class="chat-user-detail">
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="chat-user-info" *ngIf="!postedTaskIndicator" (click)="getMessagesInDetail(taskList)">
                                     <div class="chat-user-img" >
-                                        <img src="{{taskList.task_posted_user.profile_image}}"
+                                        <img [src]="taskList.task_posted_user.profile_image!=null&&taskList.task_posted_user.profile_image!=''?taskList.task_posted_user.profile_image:'assets/img/task-person.png'"
                                             alt="">
                                     </div>
                                     <div class="chat-user-detail">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="usr-chat-panel chat-body">
                         <div class="usr-chatting-box" *ngFor="let item of commentList">
-                            <div class="answer left" *ngIf="item.userId !== currentUserId">
+                            <div class="answer left" *ngIf="item.userId != currentUserId">
                                 <div class="avatar">
                                     <div class="avatar-img"><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="yellotasker">
                                     </div>

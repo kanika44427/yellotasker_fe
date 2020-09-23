@@ -380,14 +380,13 @@
                     </div>
                  </div>
                  <!-- -->
-                   <div class="pop-accordion" *ngIf="taskStatusIndicator &&!taskDetails.offerTaskIndicator ">
-                      <!-- <a href="#" class="anchor-acc" style="padding:0px;"><h4 style="margin-bottom:0px;">View Message History <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4></a> -->
+                   <!-- <div class="pop-accordion" *ngIf="taskStatusIndicator &&!taskDetails.offerTaskIndicator ">
+
                       <a class="anchor-acc" style="padding:0px;" data-toggle="collapse" 
                       data-parent="#accordion" href="#collapse4">
                          <h4 style="margin-bottom:0px;">View Messages {{taskStatus!='assigned'?'history':''}} <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
                       </a>
-                      <!-- <div class="acc-open" id="acc-div" style="display:none;">
-                         <div class="offer-card"> -->
+                      
                       <div id="collapse4" class="panel-collapse collapse">
                          <div class="comment-box-browse">
                             <div class="comment-head">
@@ -424,12 +423,12 @@
                                   <p class="timing-reply"><span>{{msg.updated_at | timeAgo }}</span> <span>
                                  </span>
                                  </p>
-                                  <!-- <p class="timing-reply"><span>1 mins ago</span> <span><a href="#"><i class="fa fa-reply"></i> Reply</a></span></p> -->
+                                 
                                </div>
                             </div>
                          </div>
                       </div>
-                   </div>
+                   </div> -->
                    <div class="pop-accordion" *ngIf="taskStatus!='assigned'&&taskStatus!='open'&&showFeedback==true||(taskDetails.offerAssignedTaskIndicator&&taskStatus=='assigned'&&showFeedback==true)||taskStatus=='completed from doer'">
                       <a class="anchor-desc" data-toggle="collapse" data-parent="#accordion" href="#collapseFeedback">
                          <h4>Feedback <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
