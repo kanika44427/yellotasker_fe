@@ -89,13 +89,13 @@
 								{{taskList.totalAmount}} MYR
 							</p>
 							 <p class="make-offer for-saved-task">
-									<a *ngIf="postedTaskIndicator" class="{{taskList.status=='expired'?'not-active':''}}" (click)="openTaskDetail(taskList)">
+									<a *ngIf="postedTaskIndicator||offerTaskIndicator||offerAssignedTaskIndicator" class="{{taskList.status=='expired'?'not-active':''}}" (click)="openTaskDetail(taskList)">
 											<span  class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
 													(taskList.status=='reopen'||taskList.status=='assigned'?'Track Status':(taskList.status=='closed'?'Done !!':
 													(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
 													</span>
 									</a>
-									<a *ngIf="!postedTaskIndicator" class="{{taskList.status=='expired'?'not-active':''}}" routerLink="/browse-task/{{taskList.taskId}}">
+									<a *ngIf="!postedTaskIndicator&&!offerTaskIndicator&&!offerAssignedTaskIndicator" class="{{taskList.status=='expired'?'not-active':''}}" routerLink="/browse-task/{{taskList.taskId}}">
 										<span  class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
 												(taskList.status=='reopen'||taskList.status=='assigned'?'Track Status':(taskList.status=='closed'?'Done !!':
 												(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
