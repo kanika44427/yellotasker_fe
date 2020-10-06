@@ -3,7 +3,7 @@ import { Injector } from '@angular/core';
 import {AppComponent} from '../app.component';
 import { CommonService } from '../services/common.service';
 import { HttpService } from '../services/http.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -20,8 +20,9 @@ export class PublicProfileComponent  implements OnInit {
   apiPortfolioResponse : any;
   portfolioImagesArr : any;
   userID : any;
-  constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService,private route:ActivatedRoute){
+  constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService,private route:ActivatedRoute , private router: Router){
     this.parentComponent = this.inj.get(AppComponent);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   ngOnInit() {
 
