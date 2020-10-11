@@ -225,16 +225,21 @@
                                       <div class="panel panel-default" >
                                           <div class="panel-heading">
                                               <h4 class="panel-title">
-                                                  <a data-toggle="collapse"
-                                                   [attr.data-parent]="'#accordion_' + i" 
-                                                   [attr.href]="'#collapseOne_' + i">
+                                                  <a (click)="navigateToProfile(list.interested_user[0])"> 
                                                    {{list.interested_user[0].first_name}} 
-                                                   {{list.interested_user[0].last_name}}</a>
+                                                   {{list.interested_user[0].last_name}}
+                                                 </a>
+                                                <!-- <span class="percentage">84%</span> -->
+                                                   <div class="offer-post-time assign-btn-of">
+                                                      <span *ngIf="taskStatus=='open'&&!taskDetails.offerTaskIndicator" class=""><a (click)="assignTask(task,list)">Assign</a></span>
+                                                   </div>
+                                                  <div class="offer-post-time">
+                                                      <span class=""><a (click)="showOfferDetail()">View Offer Details</a></span>
+                                                   </div>
                                               </h4>
                                           </div>
-                                          <div [attr.id]="'collapseOne_' + i" class="panel-collapse collapse">
-                                              
-                                                  <div class="offer-rating">
+                                        <!-- <div [attr.id]="'collapseOne_' + i" class="panel-collapse collapse">
+                                                   <div class="offer-rating">
                                                         <img [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'" alt=""> &nbsp;&nbsp;
                                                         <span class="offer-link">
                                                                 <a (click)="navigateToProfile(list.interested_user[0])" >{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
@@ -247,25 +252,12 @@
                                                                 </div>
                                                               </span>
                                                         <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
-                                                     </div>
-                                               
-                                              
-                                               <div class="offer-complete">
-                                                  <span class="percentage">84%</span>
-                                               </div>
-                                               <div class="offer-post-time assign-btn-of">
-                                                  <span *ngIf="taskStatus=='open'&&!taskDetails.offerTaskIndicator" class=""><a (click)="assignTask(task,list)">Assign</a></span>
-                                               </div>
-                                              <div class="offer-post-time">
-                                                  <span class=""><a (click)="showOfferDetail()">View Detail</a></span>
-                                               </div>
-                                          </div>
+                                                     </div> 
+                                          </div>-->
                                           <div *ngIf="showOfferDetailIndicator" class="offer-child">
-                                              
-                                           <h3>Offer detail</h3>
-                                             <span><b>offer price :</b> {{list.offerPrice}} MYR</span>
-                                            <span><b>offer comment :</b> {{list.comment}}</span>
-                                             <span><b>completion date : </b> {{list.completionDate}}</span>
+                                             <span><b>Offer price :</b> {{list.offerPrice}} MYR</span>
+                                            <span><b>Offer comment :</b> {{list.comment}}</span>
+                                             <span><b>Completion date : </b> {{list.completionDate}}</span>
                                             
                                         </div>
                                       </div>

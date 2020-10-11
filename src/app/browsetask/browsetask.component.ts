@@ -306,6 +306,12 @@ getTaskbyLocation(type){
       }
   }); 
 }
+
+navigateToProfile(userDetail){
+  $('#taskDescriptionModal').modal('hide');
+  this.router.navigate(['./profile-view/'+ userDetail.first_name+'/'+ userDetail.id]);
+}
+
   showTaskDescription(item)
   {
 
@@ -510,8 +516,8 @@ getTaskbyLocation(type){
             $('#OfferModalConfirmation').modal('hide');
             this.offerPostSuccess=true;
             $('#OfferModalSuccess').modal({backdrop: 'static', keyboard: false},'show');
-            model.commentDescription=model.offerComment;
-            this.addComment(model,this.itemDetail);
+            //model.commentDescription=model.offerComment;
+            //this.addComment(model,this.itemDetail);
           }
           else if(this.apiResponse.message == 'Offer already exists.Do you want to update?'){
   

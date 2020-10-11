@@ -213,7 +213,9 @@ Everything else'
 																	</div>
 																	<div class="form-item login-form-item half-width" >
 																		<label class="block">MYR</label>
-																	 	<input min="1" (keypress)="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" class="price-in" type="number" id="email-input" name="amount" placeholder="e.g. 25"
+																		 <input min="1"  class="price-in" type="number"
+																		 (keypress)="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+																		  id="email-input" name="amount" placeholder="e.g. 25"
 																			  ([ngModel])="postTaskStep3Form.value.amount" formControlName="amount">
 																			 
 																	 </div>

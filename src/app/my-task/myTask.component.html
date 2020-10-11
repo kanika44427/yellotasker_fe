@@ -118,6 +118,9 @@
 						<reportTask-popup [taskID]="taskList.id"></reportTask-popup>
 					   </div>
 				</div>
+				<div *ngIf="(TaskList | search : 'status' : query).length == 0">
+                  There are no tasks under this section.
+				</div>
 				<div class="modal fade post-task-model"  id="confirmDelete"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
 					  <div class="modal-content">
