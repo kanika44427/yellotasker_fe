@@ -6,7 +6,7 @@
 						<li  [ngClass]="{'mega-menu-active': savedTaskIndicator}">
 						 <a (click)="showTask('saveTask')">My saved task</a></li>
 						<li [ngClass]="{'mega-menu-active': postedTaskIndicator}"><a (click)="showTask('postedTask')">Posted task</a></li>       
-						<li [ngClass]="{'mega-menu-active': offerTaskIndicator}"><a (click)="showTask('offerPending')">Offer Pending</a></li>  					 
+						<li [ngClass]="{'mega-menu-active': offerTaskIndicator}"><a (click)="showTask('offerPending')">Offer pending</a></li>  					 
 						<li [ngClass]="{'mega-menu-active': offerAssignedTaskIndicator}"><a (click)="showTask('offerAccepting')">Offer assigned</a></li>
 				</ul>
 			</div>
@@ -18,9 +18,9 @@
 			<div class="row">
 				<div class="col-sm-8">
 						<div class="total-task">
-								<p><i class="fa fa-bitbucket"></i> Total {{savedTaskIndicator==true?'Saved ':(postedTaskIndicator==true?'Posted':(offerTaskIndicator==true?'Offer Pending':'Offer Assigned'))}} Task- {{TaskList?.length || '0'}} </p>
+								<p><i class="fa fa-bitbucket"></i> Total {{savedTaskIndicator==true?'saved ':(postedTaskIndicator==true?'posted':(offerTaskIndicator==true?'Offer pending':'Offer assigned'))}} Task- {{TaskList?.length || '0'}} </p>
 						</div>
-						<label>Filter Task by status: </label>
+						<label>Filter task by status: </label>
 						 <select [(ngModel)]="query" class="filter-select">
 							<option value = "">Please Select</option>
 							<option value = "open">open</option>	

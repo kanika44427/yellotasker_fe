@@ -143,6 +143,9 @@ export class BrowseTaskComponent implements OnInit{
          // this.taskListIndicator = true;
           this.commonService.hideLoader();
         }
+        else{
+          this.commonService.hideLoader();
+        }
     });
   }
   getServiceCharge(){

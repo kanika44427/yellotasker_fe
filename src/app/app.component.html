@@ -44,10 +44,10 @@
 								 <div class="welcome-div" style="display:none;">
 									<div class="user-name">
                     <p><a [routerLink] ="['/dashboard']">Dashboard</a></p>
-                    <p><a (click)="navigateToPublicProfile()">Public Profile</a></p>
+                    <p><a (click)="navigateToPublicProfile()">Public profile</a></p>
 										<p><a [routerLink] ="['/settings']">Settings</a></p>
-                    <p><a [routerLink] ="['/my-task']">My Tasks</a></p>
-                     <p><a [routerLink] ="['/my-messages']">My Messages</a></p>
+                    <p><a [routerLink] ="['/my-task']">My tasks</a></p>
+                     <p><a [routerLink] ="['/my-messages']">My messages</a></p>
 										<p><a (click)="logout()">Logout</a></p>
 									</div> 
 								</div>
@@ -71,13 +71,13 @@
         <ul *ngIf="!loginIndicator">
           <li><a (click)="redirectToMenu('register')">Register</a></li>
           <li><a (click)="redirectToMenu('login')">Login</a></li>
-          <li><a (click)="redirectToMenu('postTask')">Post Task</a></li>
-          <li><a (click)="redirectToMenu('browse-task')">Browse Task</a></li>
-          <li><a (click)="redirectToMenu('my-task')">My Tasks</a></li>
+          <li><a (click)="redirectToMenu('postTask')">Post task</a></li>
+          <li><a (click)="redirectToMenu('browse-task')">Browse task</a></li>
+          <li><a (click)="redirectToMenu('my-task')">My tasks</a></li>
           <li><a (click)="redirectToMenu('category-list')">Categories</a></li>
           <li><a (click)="redirectToMenu('how-it-works')">How it works</a></li>
           <li><a (click)="redirectToMenu('how-to-earn-money')">How To earn money</a></li>
-          <li><a (click)="redirectToMenu('community-guidelines')">Community Guidelines</a></li>
+          <li><a (click)="redirectToMenu('community-guidelines')">Community guidelines</a></li>
           <li><a (click)="redirectToMenu('trust-and-safety')">Trust and safety</a></li>
           <!-- <li><a (click)="redirectToMenu('browse-task')">Help</a></li> -->
           <li><a (click)="redirectToMenu('support')">Faq</a></li>
@@ -91,13 +91,13 @@
         <ul *ngIf="loginIndicator">
           <li><a (click)="redirectToMenu('')">Home</a></li>
           <li><a (click)="redirectToMenu('dashboard')">Dashboard</a></li>
-          <li><a (click)="redirectToMenu('postTask')">Post Task</a></li>
-          <li><a (click)="redirectToMenu('browse-task')">Browse Task</a></li>
+          <li><a (click)="redirectToMenu('postTask')">Post task</a></li>
+          <li><a (click)="redirectToMenu('browse-task')">Browse task</a></li>
           <li><a (click)="redirectToMenu('settings')">Settings</a></li>
           <li><a (click)="redirectToMenu('category-list')">Categories</a></li>
           <li><a (click)="redirectToMenu('how-it-works')">How it works</a></li>
           <li><a (click)="redirectToMenu('how-to-earn-money')">How To earn money</a></li>
-          <li><a (click)="redirectToMenu('community-guidelines')">Community Guidelines</a></li>
+          <li><a (click)="redirectToMenu('community-guidelines')">Community guidelines</a></li>
           <li><a (click)="redirectToMenu('trust-and-safety')">Trust and safety</a></li>
           <!-- <li><a (click)="redirectToMenu('browse-task')">Help</a></li> -->
           <li><a (click)="redirectToMenu('support')">Faq</a></li>
@@ -215,19 +215,19 @@
       <li>
         <a (click)="footerMenuRedirection('browse-task')" [ngClass]="{'active': footerMenu=='browse-task'}">
           <i class="fa fa-search"></i>
-          <span>Browse Task</span>
+          <span>Browse task</span>
         </a>
       </li>
       <li>
         <a (click)="footerMenuRedirection('post-task')" [ngClass]="{'active': footerMenu=='post-task'}">
           <i class="fa fa-plus-square"></i>
-          <span>Post Task</span>
+          <span>Post task</span>
         </a>
       </li>
       <li>
         <a (click)="footerMenuRedirection('my-task')" [ngClass]="{'active': footerMenu=='my-task'}">
           <i class="fa fa-tasks"></i>
-          <span>My Task</span>
+          <span>My task</span>
         </a>
       </li>
       <li>

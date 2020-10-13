@@ -39,13 +39,13 @@
 								{{profileData.about_me}}
 						</div>
 						<div  *ngIf="profileData.tagLine != null">
-							<h4>{{profileData.first_name}}'s Tagline</h4>
+							<h4>{{profileData.first_name}}'s tagline</h4>
 							
 									{{profileData.tagLine}}
 							
 						</div>
 						<div  *ngIf="profileData.language != null">
-							<h4>Languages Known</h4>
+							<h4>Languages known</h4>
 						
 							    {{profileData.language}}
 							
@@ -57,7 +57,7 @@
 							
 						</div>
 						<div  *ngIf="profileData.workExperience != null">
-							<h4>Work Experience</h4>
+							<h4>Work experience</h4>
 							
 							    {{profileData.workExperience}}
 							
@@ -69,10 +69,12 @@
 								</span>
 						</div>
 						<div>
-							<h4>Completion Percentage</h4>
-							
-							    {{ profileData.percentageCompletion!= null?profileData.percentageCompletion:'-'}} %
-							
+							<h4>Completion percentage (as poster) </h4>
+						    {{ profileData.completion_rate_poster != null?profileData.completion_rate_poster:'-'}} %
+						</div>
+						<div>
+							<h4>Completion percentage (as tasker) </h4>
+						    {{ profileData.completion_rate_doer != null?profileData.completion_rate_doer:'-'}} %
 						</div>
 			</div>
         <div class="other-border">
@@ -80,13 +82,13 @@
 					<li class="active" role="presentation">
 						<a aria-controls="home" (click)="getUserProfile('poster')" data-toggle="tab"
 						 role="tab" aria-expanded="true">
-							As Poster
+							As poster
 						</a>
 					</li>
 					<li role="presentation" class="">
 						<a aria-controls="profile" (click)="getUserProfile('worker')"
 						 data-toggle="tab" role="tab" aria-expanded="false">
-							As Worker
+							As tasker
 						</a>
 					</li>
 			</ul>

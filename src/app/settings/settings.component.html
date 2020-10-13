@@ -38,12 +38,12 @@
 						<!-- <li><a href="#">Badges</a></li> -->
 						<!--<li><a href="#">Task Alert Keywords</a></li>-->
 						<!--<li><a href="#">Notification Settings</a></li>-->
-						<li><a (click)="settingTab('mobile')" [ngClass]="{'setting-active': activeMenu=='mobile'}">Mobile Verification</a></li>
+						<li><a (click)="settingTab('mobile')" [ngClass]="{'setting-active': activeMenu=='mobile'}">Mobile verification</a></li>
 						<li><a (click)="settingTab('portfolio')" [ngClass]="{'setting-active':  activeMenu=='portfolio'}">Portfolio</a>
 						</li>
 						<!-- <li ><a href="#">Password</a></li> -->
 						<li>
-							<a href="javascript:void(0);" class="child-menu-main"  [ngClass]="{'setting-active':  activeMenu=='privacy-settings'||activeMenu=='notf-preference'||activeMenu=='notf-alerts'|| activeMenu=='password-change'}" (click)="toggleMenu()">Privacy & Settings</a>
+							<a href="javascript:void(0);" class="child-menu-main"  [ngClass]="{'setting-active':  activeMenu=='privacy-settings'||activeMenu=='notf-preference'||activeMenu=='notf-alerts'|| activeMenu=='password-change'}" (click)="toggleMenu()">Privacy & settings</a>
 							<ul class="submenu-tabs" [ngClass]="openMenu ? 'show' : ''">
 								<li><a  (click)="settingTab('privacy-settings')" [ngClass]="{'submenu-active':  activeMenu=='privacy-settings'}">Account deactivation </a></li>
 								<!-- <li><a (click)="settingTab('notf-preference')"  [ngClass]="{'submenu-active':  activeMenu=='notf-preference'}">Notification preference</a></li> -->
@@ -60,7 +60,7 @@
 					<div class="anchovy-form" *ngIf="activeMenu=='account'">
 						<form #settingForm="ngForm" (ngSubmit)="settingSave(settingForm.value, settingForm.valid);"
 							novalidate class="form setting">
-							<div class="anchovy-form-item" style="float:left; width:100%;"><label>Upload Avatar</label>
+							<div class="anchovy-form-item" style="float:left; width:100%;"><label>Upload avatar</label>
 								<div class="avatar-holder">
 									<div class="anchovy-avatar-input">
 										<div class="loaderific-not-loading"></div>
