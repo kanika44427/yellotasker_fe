@@ -1,6 +1,6 @@
 <div class="sub-banner">
-  <img src="assets/img/sub-banner.jpg" alt="">
-  <div class="search">
+  
+  <div class="search" style="margin-top:100px;">
     <input [(ngModel)]="query"><i class="fa fa-search"></i>
     <div *ngIf="query.length > 0">
       <div class="auto-search" *ngFor="let item of taskList | search:'title':query">
@@ -153,7 +153,7 @@
     <div class="row">
       <!-- Sidebar -->
       <div class="col-sm-3" *ngIf="showFilterMenuIndicator">
-        <div class="filter-right">
+        <div class="filter-right" style="margin-top:120px;">
           <ul >
             <li (click)="getMenuLatest('latest')" [ngClass]="{'active' : currentMenuSelected == 'latest'}">
               <a (click)="getLatestTask()">Latest Task Posted</a>
@@ -222,7 +222,7 @@
       </div>
        <!-- End Sidebar -->
 
-      <div class="col-sm-9" *ngIf="taskList?.length > 0">
+      <div class="col-sm-9" *ngIf="taskList?.length > 0" style="margin-top:125px;">
         <div class="posted-card desktop-card" *ngFor="let item of taskList">
           <div class="card-left" (click)="showTaskDescription(item)">
             <h4>{{item.title}}
