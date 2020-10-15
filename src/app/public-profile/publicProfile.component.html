@@ -9,9 +9,9 @@
 			<div class="user-name-detail">
 			 <h4>{{profileData.first_name}} {{profileData.last_name}}</h4>
 			 <p *ngIf="profileData.location">
-			  <i class="fa fa-map-marker"></i> {{profileData.location}}
+			  <i class="fa fa-map-mark	er"></i> {{profileData.location}}
 			 </p>
-			 <p>
+			 <p>			
 				Member since {{profileData.created_at|date}}
 			 </p>
 			 <p style="font-size:13px;" (click)="reportUser()">
@@ -68,14 +68,8 @@
 									<i class="fa fa-star"></i>
 								</span>
 						</div>
-						<div>
-							<h4>Completion percentage (as poster) </h4>
-						    {{ profileData.completion_rate_poster != null?profileData.completion_rate_poster:'-'}} %
-						</div>
-						<div>
-							<h4>Completion percentage (as tasker) </h4>
-						    {{ profileData.completion_rate_doer != null?profileData.completion_rate_doer:'-'}} %
-						</div>
+						
+						
 			</div>
         <div class="other-border">
 			<ul class="nav nav-tabs" role="tablist">
@@ -84,6 +78,7 @@
 						 role="tab" aria-expanded="true">
 							As poster
 						</a>
+						
 					</li>
 					<li role="presentation" class="">
 						<a aria-controls="profile" (click)="getUserProfile('worker')"
@@ -99,10 +94,14 @@
 					<p>No Completion Rate</p>
 					<small>1 completed tasks</small>
 					</div>-->
+					<div>
+						<h4>Completion percentage</h4>
+						{{ profileData.completion_rate_poster != null?profileData.completion_rate_poster:'-'}} %
+					</div>
 					<div class="main-profile-review">
 						<h4>Review</h4>
 					<div *ngFor ="let list of profileData.task_as_poster">
-				     <div *ngIf="list.doer_user_detail && list.doer_user_detail.doer_review">
+				     <div *ngIf="list.doer_user_detail && list.doer_user_detail.doer_review; else elseBlock">
 					  <div *ngFor ="let review of list.doer_user_detail.doer_review">
 							  <span *ngIf= "review.taskId == list.id" >
 									<div class="half-review" >
@@ -115,7 +114,7 @@
 										<span *ngIf="list.doer_user_detail.first_name && list.doer_user_detail.last_name">
 										   <a routerLink ="/profile-view/{{list.doer_user_detail.first_name}}/{{list.doer_user_detail.id}}" (click)="getProfileOfOthers()">
 											{{list.doer_user_detail.first_name}} {{list.doer_user_detail.last_name}} </a> said "
-										</span>
+											</span>
 									      {{review.doerReview}}"
 										<p style="color:#666; font-size:13px; margin-top:10px;">
 												{{list.updated_at | timeAgo }}
@@ -129,13 +128,23 @@
 							</span>
 					   </div>
 					 </div>
+					<ng-template #elseBlock>
+						<p>There are no reviews</p>
+					</ng-template>
 				   </div>
+				   <div *ngIf = "profileData.task_as_poster && profileData.task_as_poster.length==0">
+					<p>There are no reviews</p>
+			</div>
 				</div>
 		</div><!--user profile close-->
 		<div *ngIf="!posterIndicator"><!-- task doer indicator --> 
+			<div>
+				<h4>Completion percentage</h4>
+				{{ profileData.completion_rate_doer != null?profileData.completion_rate_doer:'-'}} %
+			</div>
 			<h4>Review</h4>
 			<div *ngFor ="let list of profileData.task_as_doer">
-				<div *ngIf="list.task_posted_user && list.task_posted_user.poster_review">
+				<div *ngIf="list.task_posted_user && list.task_posted_user.poster_review; else elseBlock1">
 				 <div *ngFor ="let review of list.task_posted_user.poster_review">
 						 <span *ngIf= "review.taskId == list.id" >
 							   <div class="half-review" >
@@ -163,7 +172,13 @@
 				   
 				  </div>
 				</div>
+				<ng-template #elseBlock1>
+					<p>There are no reviews</p>
+				</ng-template>
 			  </div>
+			<div *ngIf = "profileData.task_as_doer && profileData.task_as_doer.length==0">
+					<p>There are no reviews</p>
+			</div>
 		</div>
 	   </div>
 	  </div>
