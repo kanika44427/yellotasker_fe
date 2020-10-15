@@ -7255,6 +7255,7 @@ a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width:
     position: relative;
     display: inline-block;
     border-bottom: 1px dotted black;
+    opacity : 5; 
   }
   
   .tooltip .tooltiptext {
@@ -7270,7 +7271,7 @@ a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width:
     bottom: 125%;
     left: 50%;
     margin-left: -60px;
-    opacity: 0;
+    opacity: 5;
     transition: opacity 0.3s;
   }
   
