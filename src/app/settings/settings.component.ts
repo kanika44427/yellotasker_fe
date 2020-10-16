@@ -143,9 +143,9 @@ export class SettingComponent  implements OnInit {
           var date = new Date(this.setting.birthday);
           this.setting.birthday=date;
           this.roleArr=[];
-          if(this.setting.user_type!=null&&this.setting.user_type==''){
+          if(this.setting.user_type!=null&&this.setting.user_type!==''){
             this.roleArr = this.setting.user_type.split(',');
-            console.log("roleArr", this.roleArr);
+            
            }
           this.getRole=this.roleArr;
           this.emailAlert=(this.setting.email_alert=="true")?true:false;

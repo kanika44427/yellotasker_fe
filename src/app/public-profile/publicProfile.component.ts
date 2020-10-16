@@ -20,6 +20,8 @@ export class PublicProfileComponent  implements OnInit {
   apiPortfolioResponse : any;
   portfolioImagesArr : any;
   userID : any;
+  noReviewsAsPoster : boolean = true; 
+  noReviewsAsTasker : boolean = true; 
   constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService,private route:ActivatedRoute , private router: Router){
     this.parentComponent = this.inj.get(AppComponent);
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -50,6 +52,20 @@ export class PublicProfileComponent  implements OnInit {
         if(this.apiResponse.message == 'User public profile' || this.apiResponse.message == 'Review found')
         {
           this.profileData=this.apiResponse.data;
+          if(this.profileData.task_as_poster){
+           for(var i= 0; i < this.profileData.task_as_poster; i++){
+            if(this.profileData.task_as_poster[i].doer_user_detail && this.profileData.task_as_poster[i].doer_user_detail.doer_review){
+                this.noReviewsAsPoster = true; 
+            }
+           }
+          }
+          if(this.profileData.task_as_doer){
+            for(var i= 0; i < this.profileData.task_as_doer; i++){
+             if(this.profileData.task_as_doer[i].task_posted_user && this.profileData.task_as_doer[i].task_posted_user.poster_review){
+                 this.noReviewsAsTasker = true; 
+             }
+            }
+           }
           if(this.profileData.skills != null)
           {
             this.profileData.skills  = this.profileData.skills.split(',');

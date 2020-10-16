@@ -101,12 +101,12 @@
 					<div class="main-profile-review">
 						<h4>Review</h4>
 					<div *ngFor ="let list of profileData.task_as_poster">
-				     <div *ngIf="list.doer_user_detail && list.doer_user_detail.doer_review; else elseBlock">
+				     <div *ngIf="list.doer_user_detail && list.doer_user_detail.doer_review">
 					  <div *ngFor ="let review of list.doer_user_detail.doer_review">
 							  <span *ngIf= "review.taskId == list.id" >
 									<div class="half-review" >
 											<div class="recent-detail" >
-										<div class="recent-pic" *ngIf ="list.task_posted_user">
+										<div class="recent-pic" *ngIf ="list.task_posted_user;">
 												<img [src]="list.doer_user_detail.profile_image!=null&&list.doer_user_detail.profile_image!=''?list.doer_user_detail.profile_image:'assets/img/task-person.png'">
 										</div>
 										<span>{{list.title}}</span>
@@ -128,13 +128,8 @@
 							</span>
 					   </div>
 					 </div>
-					<ng-template #elseBlock>
-						<p>There are no reviews</p>
-					</ng-template>
 				   </div>
-				   <div *ngIf = "profileData.task_as_poster && profileData.task_as_poster.length==0">
-					<p>There are no reviews</p>
-			</div>
+				   <p *ngIf="noReviewsAsPoster">There are no reviews</p>
 				</div>
 		</div><!--user profile close-->
 		<div *ngIf="!posterIndicator"><!-- task doer indicator --> 
@@ -144,7 +139,7 @@
 			</div>
 			<h4>Review</h4>
 			<div *ngFor ="let list of profileData.task_as_doer">
-				<div *ngIf="list.task_posted_user && list.task_posted_user.poster_review; else elseBlock1">
+				<div *ngIf="list.task_posted_user && list.task_posted_user.poster_review">
 				 <div *ngFor ="let review of list.task_posted_user.poster_review">
 						 <span *ngIf= "review.taskId == list.id" >
 							   <div class="half-review" >
@@ -176,9 +171,7 @@
 					<p>There are no reviews</p>
 				</ng-template>
 			  </div>
-			<div *ngIf = "profileData.task_as_doer && profileData.task_as_doer.length==0">
-					<p>There are no reviews</p>
-			</div>
+			  <p *ngIf="noReviewsAsTasker">There are no reviews</p>
 		</div>
 	   </div>
 	  </div>

@@ -7083,6 +7083,19 @@ label.switch-wrap input:checked + .switch:before {background: #ffff01;}
 .error-text.top-error {text-align: center;color: #f00;padding: 10px 0;}
 .error-text-sign.top-error {text-align: center;color: #f00;padding: 10px 0;}
 
+.setting-sidebar ul{
+    padding-left: 0;
+}
+.text-center.success-loader img{
+    max-width: 130px;
+}
+.browse-view{
+    min-height: 46vh;
+}
+section.my-messages-main{
+    min-height: 65vh;
+}
+
 /* ================ Browse post sidebar ==================== */
 .filter-right {background: #2e2e2e;border-radius: 4px;overflow: hidden;}
 .filter-right ul {list-style: none;padding: 0;margin: 0;}
