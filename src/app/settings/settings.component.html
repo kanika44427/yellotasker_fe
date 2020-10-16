@@ -128,7 +128,7 @@
 									[(ngModel)]="setting.about_me" #about_me="ngModel"
 									id="ui-test-description">{{setting.about_me}}</textarea></div>
 							<div class="anchovy-form-item"><label>On Yellotasker I want to</label>
-								<div class="checkbox-item"><input type="checkbox" name="postTask"
+								<div class="checkbox-item" ><input type="checkbox" name="postTask"
 										[checked]="roleArr.indexOf('Post Task') >= 0"
 										(change)="roleType($event,'Post Task');" value="Post Task">
 									<label>Post tasks</label>
@@ -444,7 +444,7 @@
 					<h4 class="modal-title" id="myModalLabel">Details Saved Successfully</h4>
 				</div>
 				<div class="modal-body">
-					<div class="text-center">
+					<div class="text-center success-loader">
 						<img src="assets/img/checkmark.gif" alt="yellotasker">
 						<p><b>Profile updated</b></p>
 					</div>

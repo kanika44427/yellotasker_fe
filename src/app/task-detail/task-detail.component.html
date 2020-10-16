@@ -43,8 +43,10 @@
                                 <span><b> Total amount </b>{{task.totalAmount}} MYR</span>
                               </p>
                               <p>
-                                    <span><b> Location </b>{{task.locationType=='Digital task'?task.locationType:task.locationType+ task.address}}</span>
-                                 </p>
+                                    <span><b> Location </b>{{task.locationType}}</span>
+                                    <br/>
+                                    <span *ngIf="task.locationType =='Physical task'">{{task.address}}</span>
+                              </p>
                                 </div>
                                  <div *ngIf="showForm" class="desrciption-form">
                                     <form  #editForm="ngForm" (ngSubmit)="submitForm(editForm.value, editForm.valid);" 
@@ -84,7 +86,7 @@
                                           </select>
                                      </div>
                                      <div class="form-control">
-                                      <label>Total amount</label>
+                                      <label>Total amount</label>       
                                       <input type="text" name="totalAmount" [(ngModel)]="taskInfo.totalAmount"  required 
                                       #totalAmount="ngModel" >
                                      </div>
@@ -94,6 +96,7 @@
                                                 <option value="Physical task">
                                                         Physical task
                                                     </option>
+                                                    <br>
                                                     <option value="Digital task">
                                                            Digital task
                                                           </option>

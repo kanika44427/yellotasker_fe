@@ -279,7 +279,7 @@
           </div>
           <div *ngIf="itemDetail">
             <reportTask-popup [taskID]="itemDetail.id"></reportTask-popup>
-          </div>
+          </div> 
         </div>
 
            <!-- New card UI for mobile -->
@@ -746,8 +746,9 @@
             <p>
               <span *ngIf="itemDetail.locationType == 'Digital task'"><i class="fa fa-location-arrow"></i>
                 Digital task</span>
-              <span *ngIf="itemDetail.locationType == 'Physical task'"><i class="fa fa-location-arrow"></i>
-                Physical task {{itemDetail.address}}</span>
+              <span class="container-fluid" *ngIf="itemDetail.locationType == 'Physical task'">
+                Physical task <br>{{itemDetail.address}}
+              </span>
             </p>
           </div>
           <div class="popup-location">

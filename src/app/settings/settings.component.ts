@@ -93,8 +93,8 @@ export class SettingComponent  implements OnInit {
   }
 
   toggleMenu(){
-    this.openMenu = !this.openMenu;
-    this.settingTab('privacy-settings');
+    this.openMenu = !this.openMenu; 
+    //this.settingTab('privacy-settings');
   }
 
 
@@ -145,6 +145,7 @@ export class SettingComponent  implements OnInit {
           this.roleArr=[];
           if(this.setting.user_type!=null&&this.setting.user_type==''){
             this.roleArr = this.setting.user_type.split(',');
+            console.log("roleArr", this.roleArr);
            }
           this.getRole=this.roleArr;
           this.emailAlert=(this.setting.email_alert=="true")?true:false;
