@@ -83,12 +83,9 @@
                <div class="post-details">
                 <span class="category-container">{{blog.blog_type}}</span>  <span class="author">{{blog.author}}</span>
                   </div>
-                  <a routerLink ="/blogs/{{blog.id}}">
-                    <h3>
-                       {{blog.blog_title}}
-                    </h3>
-                 </a>
-               <div class="blog-main-descr" [innerHTML]="blog.blog_description.length>100?blog.blog_description.substring(0, 100)+'...':blog.blog_description"></div> 
+                   
+               <a routerLink ="/blogs/{{blog.id}}"><h3>{{blog.blog_title}}</h3></a>
+            <div class="blog-main-descr" [innerHTML]="blog.blog_description"></div>
               </div>
              </div>
             </div>
