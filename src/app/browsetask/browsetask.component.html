@@ -1,6 +1,6 @@
 <div class="sub-banner">
   
-  <div class="search" style="margin-top:100px;">
+  <div class="search" style="margin-top:125px;">
     <input [(ngModel)]="query"><i class="fa fa-search"></i>
     <div *ngIf="query.length > 0">
       <div class="auto-search" *ngFor="let item of taskList | search:'title':query">
@@ -342,7 +342,7 @@
           {{offerPostSuccess==true?'Quote Successfully provided for FREE':'Successfully Posted Offer'}}</h4>
       </div>
       <div class="modal-body">
-        <div class="text-center">
+        <div class="text-center success-loader">
           <img src="assets/img/checkmark.gif" alt="yellotasker">
           <p><b>Offer has been posted for this task.</b></p>
         </div>

@@ -77,7 +77,7 @@ const appRoutes: Routes = [
     { path: 'my-task' , component: MyTaskComponent },
     { path: 'blogs' , component: BlogComponent },
     { path:  'blogs/:id',component: BlogDetailComponent},
-    { path:  'submit-a-request',component: SubmitRequestComponent},
+    { path:  'contact-us',component: SubmitRequestComponent},
     { path: 'group-detail/:id',component: GroupDetailComponent},
     { path: 'payment/acknowledgement',component:PaymentAcknowledgmentComponent},
     { path: 'payment/history',component:PaymentHistoryComponent},
