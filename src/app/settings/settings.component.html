@@ -120,6 +120,7 @@
 										[ngModel]="setting.birthday | date:'dd-MM-y'" style="padding-left:35px;"
 										class="new-date-box" [(date)]="setting.birthday" dateFormat="DD-MM-YYYY">
 									</material-datepicker>
+									
 								</div>
 							</div>
 							<!-- <div class="anchovy-form-item"><label>ABN</label>
@@ -302,7 +303,7 @@
 											<div class="attachment-input">
 												<form method="post" enctype="multipart/form-data"><input type="file"
 														(change)="imageUpload($event,'portfolio')"></form>
-												<img *ngIf="portfolioImage" [src]="portfolioImage">
+												<img style="width: 25%; margin-right: 5%" *ngIf="portfolioImage" [src]="portfolioImage">
 												<button class="button-ghost button-med attachment-text">
 													Select file(s)</button>
 												<button (click)="uploadImage()"
@@ -316,7 +317,7 @@
 												<li *ngFor="let item of portfolioImagesArr">
 													<a (click)="deletePortfolioImage(item.imageId)"
 														class="port-close"><i class="fa fa-close"></i></a>
-													<img [src]="item.images"></li>
+													<img style="width: 100%; margin-right: 5%" [src]="item.images"></li>
 												<li>
 													<!-- <a href="#" class="port-close"><i class="fa fa-close"></i></a>
 												<img src="assets/img/service1.jpg"></li>
