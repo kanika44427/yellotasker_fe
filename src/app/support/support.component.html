@@ -1,10 +1,10 @@
 	
 	<div class="sub-banner">
-		<img src="assets/img/help-banner.jpg" alt="">
+		<img style="width:100%" src="assets/img/help-banner.jpg" alt="">
     <div class="about-page over-support-content text-center">
       <div class="container">
     
-      <div class="search">
+      <div style="margin-left: -20%;" class="search">
         <input [(ngModel)]="query"><i class="fa fa-search"></i>
        <div  *ngIf = "query.length > 0" class="auto-search">
           <div  *ngFor="let item of supportList">
