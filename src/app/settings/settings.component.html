@@ -90,9 +90,9 @@
 									<!-- /react-text --></label><input type="text" id="ui-test-last-name" maxlength="30"
 									name="last_name" [(ngModel)]="setting.last_name" #last_name="ngModel"
 									value={{setting.last_name}}></div>
-							<div class="anchovy-form-item"><label>Tagline</label><input type="text" id="ui-test-tagline"
-									placeholder="Mini bio" name="tagLine" [(ngModel)]="setting.tagLine"
-									#tagLine="ngModel" value={{setting.tagLine}}></div>
+							<div class="anchovy-form-item"><label>Tagline</label><textarea name="tagLine" [(ngModel)]="setting.tagLine" id="ui-test-tagline"
+									 #tagLine="ngModel" placeholder="Mini Bio" style="height: 35px;">{{setting.tagLine}}></textarea></div>
+							
 							<div class="anchovy-form-item"><label>Location</label>
 								<div class="air-location-component"><input name="location"
 										[(ngModel)]="setting.location" #location="ngModel" type="text"
@@ -190,7 +190,7 @@
 										Mobile number verified successfully :
 										<span id="settingsPhone" *ngIf="setting.phone">{{setting.phone }} </span>
 										<span id="phone" *ngIf="mobileNumber">{{ mobileNumber }} </span>
-										<img src="assets/img/checkmark.gif" alt="yellotasker">
+										<img src="assets/im g/checkmark.gif" alt="yellotasker">
 
 									</div>
 									<!--call section open -->
