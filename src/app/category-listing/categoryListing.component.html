@@ -1,5 +1,5 @@
 <div class="sub-banner">
-		<img src="assets/img/about-banner.jpg" alt="">
+		<img src="assets/img/about-banner.jpg" alt="" style="width:100%">
 		<div class="banner-content-inner">
 			<h1>Browse Categories</h1>
 			<h3>Lets know something about us</h3>
@@ -16,7 +16,7 @@
 				<div class="col-md-6 list-category text-primary">
 									<h3 class="title">
 										
-									    <p routerLink ="/group-detail/{{category.group_id}}"><img src={{category.category_group_image}}> {{category.category_group_name}}</p>
+									    <p style="cursor: pointer" routerLink ="/group-detail/{{category.group_id}}"><img src={{category.category_group_image}}> {{category.category_group_name}}</p>
 									</h3>
 							 
 									<div class="list-group" *ngFor ="let subCategory of category.category">
@@ -25,9 +25,9 @@
 											<div class="truncate pull-left">	{{subCategory.category_name}}</div><span class="badge"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
 									</div>
 									
-                                    <span class="list-footer">
-									    <a  class="btn btn-sm btn-primary">View All</a>
-                                    </span>
+                                    
+									   <!--  <a  class="btn btn-sm btn-primary">View All</a> -->
+                                    
 
 								</div>
 					

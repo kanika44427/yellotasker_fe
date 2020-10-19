@@ -308,6 +308,8 @@ export class SettingComponent  implements OnInit {
     if(type=='skills'){
       this.getSkills();
     }
+
+    
     // if(type=='mobile'){
     //   this.showMobile=true;
     //   this.showAccount=false;
