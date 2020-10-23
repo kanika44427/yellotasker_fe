@@ -507,13 +507,15 @@ export class SettingComponent  implements OnInit {
     this.skillsObj.skills = []; 
     if(this.user_skill && this.user_skill.length > 0){
       for(var i=0; i< this.user_skill.length ; i++){
-       this.skillsObj.skills.push(this.user_skill[i].value);
+       if(this.user_skill[i] && !this.user_skill[i].value)
+         this.skillsObj.skills.push(this.user_skill[i]);
+       if(this.user_skill[i] && this.user_skill[i].value)
+         this.skillsObj.skills.push(this.user_skill[i].value);
        if(i == this.user_skill.length -1){
         this.skillsObj.skills = this.skillsObj.skills.toString();
        }
       }
     }
-    console.log(this.skillArray);
     this.skillsObj.modeOfreach=this.getAround.toString();
     let userId=this.commonService.getCookieValues("userid");
     this.httpService.saveUserProfile(this.skillsObj,userId).subscribe(
