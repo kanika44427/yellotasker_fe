@@ -93,6 +93,7 @@
           <li><a (click)="redirectToMenu('dashboard')">Dashboard</a></li>
           <li><a (click)="redirectToMenu('postTask')">Post task</a></li>
           <li><a (click)="redirectToMenu('browse-task')">Browse task</a></li>
+          <li><a (click)="redirectToMenu('my-messages')">Messages</a></li>
           <li><a (click)="redirectToMenu('settings')">Settings</a></li>
           <li><a (click)="redirectToMenu('category-list')">Categories</a></li>
           <li><a (click)="redirectToMenu('how-it-works')">How it works</a></li>
@@ -231,9 +232,9 @@
         </a>
       </li>
       <li>
-        <a (click)="footerMenuRedirection('profile')" [ngClass]="{'active': footerMenu=='profile'}">
+        <a (click)="footerMenuRedirection('my-messages')" [ngClass]="{'active': footerMenu=='profile'}">
           <i class="fa fa-user-o"></i>
-          <span>Profile</span>
+          <span>Messages</span>
         </a>
       </li>
     </ul>

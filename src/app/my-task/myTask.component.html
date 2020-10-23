@@ -75,8 +75,12 @@
 									<span><i class="fa fa-calendar"></i> Due date {{taskList.dueDate|date}}</span>
 								</p>
 								<p class="task-verview">
-									<span class="">
-										{{taskList.status=='assigned'&&(offerTaskIndicator||savedTaskIndicator)?'Assigned to somebody':taskList.status}}</span> 
+									<span class="" *ngIf="taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator)">
+										Assigned to somebody</span> 
+										<span class="" *ngIf="taskList.status=='cancel'">
+										Cancelled</span> 
+										<span class="" *ngIf="taskList.status !=='cancel' && !(taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator))">
+										{{taskList.status}}</span> 
 									<span class="myi-task-comm">{{taskList.comment_count}} Comment</span>
 									<span class="my-task-offer">{{taskList.offer_count}} Offers</span>
 								</p>

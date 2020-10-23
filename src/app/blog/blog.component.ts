@@ -49,6 +49,11 @@ getblogs(cat,type){
         this.blogs=this.apiResponse.data;
         this.commonService.hideLoader();
       }
+      else if(this.apiResponse.message == 'all blogs'){
+          this.blogs=this.apiResponse.data ? this.apiResponse.data[0] : [];
+        console.log(this.blogs)
+        this.commonService.hideLoader();
+      }
       else{
          this.blogs = [];
          this.commonService.hideLoader();

@@ -51,7 +51,7 @@
                 <input type="radio" name="view" value="cards" id="cards" class="switcher" checked=""><label (click)="showBlog('list')" for="cards">Card View</label>
                 <input type="radio" name="view" value="rows" id="rows" class="switcher"><label (click)="showBlog('grid')" for="rows">Row View</label>
               </div>
-            </div>
+            </div> 
            </div>
      <div class="row blog-widget" *ngIf="gridBlog" id="blog-grid" >
       <div class="col-sm-4" *ngFor ="let blog of blogs">
