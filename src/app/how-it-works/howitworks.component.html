@@ -278,7 +278,7 @@ the dummy text for describing
 			</div>
 			<div class="row task-comment text-center" *ngIf="taskList">
 				<div class="col-sm-3" *ngFor ="let item of taskList">
-					<a routerLink="browse-task/{{item.id}}">
+					<a routerLink="/browse-task/{{item.id}}">
 					<div class="tile three columns panel">
 						<div class="top"><img class="avatar small" 
 							src="{{item.user_detail.profile_image?item.user_detail.profile_image:

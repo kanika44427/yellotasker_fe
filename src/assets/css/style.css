@@ -2915,6 +2915,7 @@ padding: 50px 0px;
 .row.earn-point.for-how-it .earn-content {
     float: left;
     width: 55%;
+    margin-left: 4%;
 }
 .earn-section.earn-how {
     height: auto;

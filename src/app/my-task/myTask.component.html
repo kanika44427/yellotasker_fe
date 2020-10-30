@@ -1,90 +1,109 @@
 <div class="sub-banner profile-banner">
-	
-		<div class="browse-menu profile-banner">
-			<div class="container">
-				<ul>
-						<li  [ngClass]="{'mega-menu-active': savedTaskIndicator}">
-						 <a (click)="showTask('saveTask')">My saved task</a></li>
-						<li [ngClass]="{'mega-menu-active': postedTaskIndicator}"><a (click)="showTask('postedTask')">Posted task</a></li>       
-						<li [ngClass]="{'mega-menu-active': offerTaskIndicator}"><a (click)="showTask('offerPending')">Offer pending</a></li>  					 
-						<li [ngClass]="{'mega-menu-active': offerAssignedTaskIndicator}"><a (click)="showTask('offerAccepting')">Offer assigned</a></li>
-				</ul>
-			</div>
+
+	<div class="browse-menu profile-banner">
+		<div class="container">
+			<ul>
+				<li [ngClass]="{'mega-menu-active': savedTaskIndicator}">
+					<a (click)="showTask('saveTask')">My saved task</a></li>
+				<li [ngClass]="{'mega-menu-active': postedTaskIndicator}"><a (click)="showTask('postedTask')">Posted
+						task</a></li>
+				<li [ngClass]="{'mega-menu-active': offerTaskIndicator}"><a (click)="showTask('offerPending')">Offer
+						pending</a></li>
+				<li [ngClass]="{'mega-menu-active': offerAssignedTaskIndicator}"><a
+						(click)="showTask('offerAccepting')">Offer assigned</a></li>
+						
+			</ul>
 		</div>
 	</div>
-	
-	<div class="browse-view">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-8">
-						<div class="total-task">
-								<p><i class="fa fa-bitbucket"></i> Total {{savedTaskIndicator==true?'saved ':(postedTaskIndicator==true?'posted':(offerTaskIndicator==true?'Offer pending':'Offer assigned'))}} Task- {{TaskList?.length || '0'}} </p>
-						</div>
-						<label>Filter task by status: </label>
-						 <select [(ngModel)]="query" class="filter-select">
-							<option value = "">Please Select</option>
-							<option value = "open">open</option>	
-							<option value = "expired">expired</option>
-							<option value="assigned">assigned</option>
-							<option value="completed from doer">completed from doer</option>
-							<option value="completed">completed</option>
-							<option value="closed">closed</option>
-						  </select>
-					     <button class="filter-btn" (click)="removeFilter()">Remove filter</button>
-					<div class="posted-card" *ngFor ="let taskList of TaskList | search:'status': query">
-							
-						<div class="posted-card-sec" >
-						     <!-- <a  class="{{taskList.status=='expired'||(taskList.status=='assigned'&&savedTaskIndicator==true)?'card-left not-active':'card-left'}}"> -->
-								<a  class="card-left">
-								<h4>{{taskList.title.length>50?taskList.title.substring(0, 50)+'...':taskList.title}}
-									
-									<div *ngIf="savedTaskIndicator">
-										<a title="Delete this task" (click)="confrimDelete(taskList.taskId)">
-									       <i class="fa fa-trash" ></i>
-										</a>
-									</div>
-									<div *ngIf="postedTaskIndicator&&taskList.status=='open'">
-									<a title="Delete this task" (click)="confrimDelete(taskList.id)">
-										<i class="fa fa-trash" ></i>
-									 </a>
-								 </div>
-									<div *ngIf="offerTaskIndicator">
-										<a title="Delete this task" (click)="confrimDeleteOffer(taskList.id,taskList.taskId)">
-									       <i class="fa fa-trash" ></i>
-										</a>
-									</div>
-								</h4>
-								<p class="card-left-content"><span>{{taskList.description}}</span></p><span>...</span> 
-								<a *ngIf="postedTaskIndicator||offerTaskIndicator||offerAssignedTaskIndicator" 
-								class="{{taskList.status=='expired'?'not-active':''}}" (click)="openTaskDetail(taskList)">
+</div>
+
+<div class="browse-view">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="total-task">
+					<p><i class="fa fa-bitbucket"></i> Total
+						{{savedTaskIndicator==true?'saved ':(postedTaskIndicator==true?'posted':(offerTaskIndicator==true?'Offer pending':'Offer assigned'))}}
+						Task- {{TaskList?.length || '0'}} </p>
+				</div>
+				<label>Filter task by status: </label>
+				<select [(ngModel)]="query" class="filter-select">
+					<option value="">Please Select</option>
+					<option value="open">open</option>
+					<option value="expired">expired</option>
+					<option value="assigned">assigned</option>
+					<option value="completed from doer">completed from doer</option>
+					<option value="completed">completed</option>
+					<option value="closed">closed</option>
+					<option value="closed">cancelled</option>
+				</select>
+				<button class="filter-btn" (click)="removeFilter()">Remove filter</button>
+				<div class="posted-card" *ngFor="let taskList of TaskList | search:'status': query">
+
+					<div class="posted-card-sec">
+						<!-- <a  class="{{taskList.status=='expired'||(taskList.status=='assigned'&&savedTaskIndicator==true)?'card-left not-active':'card-left'}}"> -->
+						<a class="card-left">
+							<h4>{{taskList.title.length>50?taskList.title.substring(0, 50)+'...':taskList.title}}
+
+								<div *ngIf="savedTaskIndicator">
+									<a title="Delete this task" (click)="confrimDelete(taskList.taskId)">
+										<i class="fa fa-trash"></i>
+									</a>
+								</div>
+								<div *ngIf="postedTaskIndicator&&taskList.status=='open'">
+									<a title="Cancel this task" (click)="confrimDelete(taskList.id)">
+										<i class="fa fa-trash"></i>
+									</a>
+								</div>
+								<div *ngIf="offerTaskIndicator">
+									<a title="Delete this offer"
+										(click)="confrimDeleteOffer(taskList.id,taskList.taskId)">
+										<i class="fa fa-trash"></i>
+									</a>
+								</div>
+							</h4>
+							<p class="card-left-content"><span>{{taskList.description}}</span></p><span>...</span>
+							<a *ngIf="postedTaskIndicator||offerTaskIndicator||offerAssignedTaskIndicator"
+								class="{{taskList.status=='expired'?'not-active':''}}"
+								(click)="openTaskDetail(taskList)">
 								<b>Read More</b></a>
-								<a *ngIf="!postedTaskIndicator&&!offerTaskIndicator&&!offerAssignedTaskIndicator" class="{{taskList.status=='expired'||taskList.status=='assigned'?'not-active':''}}" routerLink="/browse-task/{{taskList.taskId}}">Read More</a>
-								<p class="poster-name">
-									<span><img src="{{taskList.task_posted_user.profile_image?taskList.task_posted_user.profile_image:'assets/img/task-person.png'}}" alt=""></span>
-									<span><a routerLink ="/profile-view/{{taskList.task_posted_user.first_name}}/{{taskList.task_posted_user.id}}">{{taskList.task_posted_user.first_name}} {{taskList.task_posted_user.last_name}}</a><br/>
-										<span  *ngFor="let i of Arr(taskList.task_posted_user.rating).fill(1)">
-											<i  class="fa fa-star"></i>
+							<a *ngIf="!postedTaskIndicator&&!offerTaskIndicator&&!offerAssignedTaskIndicator"
+								class="{{taskList.status=='expired'||taskList.status=='assigned'?'not-active':''}}"
+								routerLink="/browse-task/{{taskList.taskId}}">Read More</a>
+							<p class="poster-name">
+								<span><img
+										src="{{taskList.task_posted_user.profile_image?taskList.task_posted_user.profile_image:'assets/img/task-person.png'}}"
+										alt=""></span>
+								<span><a
+										routerLink="/profile-view/{{taskList.task_posted_user.first_name}}/{{taskList.task_posted_user.id}}">{{taskList.task_posted_user.first_name}}
+										{{taskList.task_posted_user.last_name}}</a><br />
+									<span *ngFor="let i of Arr(taskList.task_posted_user.rating).fill(1)">
+										<i class="fa fa-star"></i>
 									</span>
-									</span>
-								</p>
-								<p class="location-date">
-									<span *ngIf="taskList.locationType == 'Work remotely'"><i class="fa fa-location-arrow" ></i> 
-										Work remotely</span>
-										<span *ngIf="taskList.locationType == 'Come to work place'"><i class="fa fa-location-arrow" ></i> 
-										Come to work place at {{taskList.address}}</span>
-									<span><i class="fa fa-calendar"></i> Due date {{taskList.dueDate|date}}</span>
-								</p>
-								<p class="task-verview">
-									<span class="" *ngIf="taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator)">
-										Assigned to somebody</span> 
-										<span class="" *ngIf="taskList.status=='cancel'">
-										Cancelled</span> 
-										<span class="" *ngIf="taskList.status !=='cancel' && !(taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator))">
-										{{taskList.status}}</span> 
-									<span class="myi-task-comm">{{taskList.comment_count}} Comment</span>
-									<span class="my-task-offer">{{taskList.offer_count}} Offers</span>
-								</p>
-							</a>
+								</span>
+							</p>
+							<p class="location-date">
+								<span *ngIf="taskList.locationType == 'Work remotely'"><i
+										class="fa fa-location-arrow"></i>
+									Work remotely</span>
+								<span *ngIf="taskList.locationType == 'Come to work place'"><i
+										class="fa fa-location-arrow"></i>
+									Come to work place at {{taskList.address}}</span>
+								<span><i class="fa fa-calendar"></i> Due date {{taskList.dueDate|date}}</span>
+							</p>
+							<p class="task-verview">
+								<span class=""
+									*ngIf="taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator)">
+									Assigned to somebody</span>
+								<span class="" *ngIf="taskList.status=='cancel'">
+									Cancelled</span>
+								<span class=""
+									*ngIf="taskList.status !=='cancel' && !(taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator))">
+									{{taskList.status}}</span>
+								<span class="myi-task-comm">{{taskList.comment_count}} Comment</span>
+								<span class="my-task-offer">{{taskList.offer_count}} Offers</span>
+							</p>
+						</a>
 						<div class="card-right">
 							<p class="post-date">
 								Posted on {{taskList.created_at| date}}
@@ -92,27 +111,33 @@
 							<p class="main-price">
 								{{taskList.totalAmount}} MYR
 							</p>
-							 <p class="make-offer for-saved-task">
-									<a *ngIf="postedTaskIndicator||offerTaskIndicator||offerAssignedTaskIndicator" class="{{taskList.status=='expired'?'not-active':''}}" (click)="openTaskDetail(taskList)">
-											<span  class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
+							<p class="make-offer for-saved-task">
+								<a *ngIf="postedTaskIndicator||offerTaskIndicator||offerAssignedTaskIndicator"
+									class="{{taskList.status=='expired'?'not-active':''}}"
+									(click)="openTaskDetail(taskList)">
+									<span
+										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
 													(taskList.status=='reopen'||taskList.status=='assigned'?'Track Status':(taskList.status=='closed'?'Done !!':
 													(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
-													</span>
-									</a>
-									<a *ngIf="!postedTaskIndicator&&!offerTaskIndicator&&!offerAssignedTaskIndicator" class="{{taskList.status=='expired'?'not-active':''}}" routerLink="/browse-task/{{taskList.taskId}}">
-										<span  class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
+									</span>
+								</a>
+								<a *ngIf="!postedTaskIndicator&&!offerTaskIndicator&&!offerAssignedTaskIndicator"
+									class="{{taskList.status=='expired'?'not-active':''}}"
+									routerLink="/browse-task/{{taskList.taskId}}">
+									<span
+										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
 												(taskList.status=='reopen'||taskList.status=='assigned'?'Track Status':(taskList.status=='closed'?'Done !!':
 												(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
-												</span>
-									</a>
+									</span>
+								</a>
 
-								 <!-- <a (click)= "showTaskDescription(taskList)"><span  class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
+								<!-- <a (click)= "showTaskDescription(taskList)"><span  class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
 									 (taskList.status=='reopen'||taskList.status=='assigned'?'Track Status':(taskList.status=='closed'?'Done !!':
 									 (taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Please Wait'))))}}
 									 </span>
 								</a> -->
-							 </p>
-							
+							</p>
+
 							<!-- <p  class="view-offer yello-gap">
 								<a class='not-active'></a>
 							</p> -->
@@ -120,36 +145,47 @@
 					</div>
 					<div *ngIf="taskList">
 						<reportTask-popup [taskID]="taskList.id"></reportTask-popup>
-					   </div>
+					</div>
 				</div>
 				<div *ngIf="(TaskList | search : 'status' : query).length == 0">
-                  There are no tasks under this section.
+					There are no tasks under this section.
 				</div>
-				<div class="modal fade post-task-model"  id="confirmDelete"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade post-task-model" id="confirmDelete" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
-					  <div class="modal-content">
+						<div class="modal-content">
 							<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									  <span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="myModalLabel">Confirm</h4>
-								  </div>
-						<div class="modal-body">
-				<div role="tabpanel" class="tab-pane" >
-					<br/>
-					<div class="text-center">
-					<p><b>Are you sure you want to delete task?</b><br><a (click)="deleteOfferIndicator==true?deleteOffertask():deleteSavedtask()">Yes</a> <a data-dismiss="modal"
-						>No</a></p>
-					</div> 
-				</div>
-				</div>
-				</div>
-				</div>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Please confirm</h4>
+							</div>
+							<div class="modal-body">
+								<div role="tabpanel" class="tab-pane">
+									<br />
+									<div class="text-center">
+										<p><span *ngIf="savedTaskIndicator"><b>Are you sure you want to delete this task?</b><br><a
+												(click)="deleteOfferIndicator==true?deleteOffertask():deleteSavedtask()">Yes</a>
+											<a style="padding-left: 1%; " data-dismiss="modal">No</a></span></p>
+
+										<p><span *ngIf="postedTaskIndicator"><b>Are you sure you want to cancel this task?</b><br><a
+												(click)="deleteOfferIndicator==true?deleteOffertask():deleteSavedtask()">Yes</a>
+											<a style="padding-left: 1%; " data-dismiss="modal">No</a></span></p>
+
+											<p><span *ngIf="offerTaskIndicator"><b>Are you sure you want to delete this offer?</b><br><a
+												(click)="deleteOfferIndicator==true?deleteOffertask():deleteSavedtask()">Yes</a>
+											<a style="padding-left: 1%; " data-dismiss="modal">No</a></span></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div *ngIf="taskDetail">
-						<task-detail (someEvent)="showTask($event)" (deleteTask)="confrimDelete($event)" [data]="taskList" [indicator]="taskDetail"></task-detail>
+					<task-detail (someEvent)="showTask($event)" (deleteTask)="confrimDelete($event)" [data]="taskList"
+						[indicator]="taskDetail"></task-detail>
 				</div>
 
-<!--******Task Cart ****************
+				<!--******Task Cart ****************
 				<div class="posted-card side-border gray-open-task" *ngFor ="let taskList of TaskList">
 						<div class="posted-card-sec">
 						     <div class="card-left">
@@ -392,4 +428,3 @@
 			</div>
 		</div>
 	</div>-->
-	
