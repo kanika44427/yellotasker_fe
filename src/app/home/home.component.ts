@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit{
      categoryList :any;
      how_1 : any;
      how_2 : any;
-     how_3 : any;
+     how_3 : any;  
      how_1_full : any;
      how_2_full : any;
      how_3_full : any;
