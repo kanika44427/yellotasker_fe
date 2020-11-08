@@ -280,7 +280,7 @@
 									value={{skills.workExperience}} placeholder="e.g. 3 years as a Barista at The Cafe">
 							</div>
 							<div class="save-btn-yellow"><button type="submit" id="ui-test-begin-save"
-									class="button-med button-cta">Save Skill</button></div>
+									class="button-med button-cta">Save skill</button></div>
 						</form>
 					</div>
 					<!--setting form close-->
@@ -308,7 +308,7 @@
 													Select file(s)</button>
 												<button (click)="uploadImage()"
 													class="button-ghost button-med attachment-text">
-													Upload Photo</button>
+													upload photo</button>
 												<label class="error-text">
 													{{errorMessage}}
 												</label>
@@ -342,7 +342,7 @@
 
                		<!-- Account deactivation -->
 					<div *ngIf="activeMenu=='privacy-settings'" class="anchovy-form alert-main">
-						<h4>Account Deactivation</h4>
+						<h4>Account deactivation</h4>
 						<p>You can deactivate your account.You will no longer login to this account.</p>
 						<div class="mt-20">
 						<button id="ui-test-begin-save" class="button-med button-cta" (click)="deactivateAcc()"
@@ -355,7 +355,7 @@
 						<h4>Alerts</h4>
 						<form action="">
 							<div class="alert-input">
-								<h5>Email Alerts</h5>
+								<h5>Email alerts</h5>
 								<label class="switch-wrap">
 								<input type="checkbox" 	[checked]="emailAlert"
 								(change)="emailAlertAction();"  />
@@ -363,7 +363,7 @@
 								</label>
 							</div>
 							<div class="alert-input">
-									<h5>Mobile Alerts</h5>
+									<h5>Mobile alerts</h5>
 									<label class="switch-wrap">
 									<input type="checkbox"	[checked]="mobileAlert"
 									(change)="mobileAlertAction();" />
@@ -383,7 +383,7 @@
 					   
 					<div  *ngIf="activeMenu=='password-change'" class="anchovy-form alert-main">
 								<div class="col-sm-12">
-									<h4>Change Your Password</h4>
+									<h4>Change your password</h4>
 <form class="reset-form" #resetForm="ngForm" (ngSubmit)="resetPassword(resetForm.value, resetForm.valid);" novalidate>
 								
 										<label class="error-text">
@@ -394,22 +394,22 @@
 										 </label>
 										 
 										<div class="form-group">
-										<label>Current Password <span style="color:red;">*</span></label>
+										<label>Current password <span style="color:red;">*</span></label>
 										<input type="password" required tabindex="2" [(ngModel)]="oldPass"  name="oldPassword" #oldPassword="ngModel" >
 										</div>
 										<div class="form-group">
-										<label>New Password <span style="color:red;">*</span></label>
+										<label>New password <span style="color:red;">*</span></label>
 										<input type="password" required tabindex="2" name="newPassword" [(ngModel)]="newPass" #newPassword="ngModel">
 										</div>
 										<div class="form-group">
-										<label>Confirm New Password <span style="color:red;">*</span></label>
+										<label>Confirm new password <span style="color:red;">*</span></label>
 										<input type="password" required tabindex="2" name="confirmNewPassword" [(ngModel)]="confPass" #confirmNewPassword = "ngModel">
 										</div>
 										 <small *ngIf = "passwordIndicator" class="pull-left">
 									    Password and confirm password are not same.
 										 </small>
 										<input id="login-button" class="button-med button-cta" 
-										type="submit" value="Change Password" />
+										type="submit" value="Change password" />
 </form>
 								</div>
 					</div>

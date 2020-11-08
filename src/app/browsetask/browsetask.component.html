@@ -156,7 +156,7 @@
         <div class="filter-right" style="margin-top:120px;">
           <ul >
             <li (click)="getMenuLatest('latest')" [ngClass]="{'active' : currentMenuSelected == 'latest'}">
-              <a (click)="getLatestTask()">Latest Task Posted</a>
+              <a (click)="getLatestTask()">Latest task posted</a>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'dueDate'}">
               <a (click)="getMenuLatest('dueDate')">Browse by due date <i class="fa fa-chevron-down"></i></a>
@@ -172,7 +172,7 @@
                <ul class="open-drop location">
                  <li>
                   <div style="color: white; margin : 10px">
-                    <p>Please select Budget Type : </p>
+                    <p>Please select Budget type : </p>
                     <input type="radio" id="withMaterial" [(ngModel)]="budgetTypeFilter" name="budgetType" value="withMaterial">
                     <label for="male">Materials & workmanship</label><br>
                     <input type="radio" id="withoutMaterial"   [(ngModel)]="budgetTypeFilter" name="budgetType" value="withoutMaterial">
@@ -229,7 +229,7 @@
               <!-- <span class="follow-ico"><a (click)="startFollowing()"><img src="assets/img/follow.png"></a></span> -->
             </h4>
             <p> {{item.description.length>65?item.description.substring(0, 65)+'...':item.description}} <a
-                (click)="showTaskDescription(item)">Read More</a></p>
+                (click)="showTaskDescription(item)">read more</a></p>
             <p class="poster-name">
               <a *ngIf="item.user_detail && item.user_detail.first_name && item.user_detail.id"
                 routerLink="/profile-view/{{item.user_detail.first_name}}/{{item.user_detail.id}}">
@@ -253,7 +253,7 @@
                 Digital task</span>
               <span *ngIf="item.locationType == 'Physical task'"><i class="fa fa-location-arrow"></i>
                 Come to work place at {{item.address}}</span>
-              <span><i class="fa fa-calendar"></i> <b>Due Date </b>{{item.dueDate | date}}</span>
+              <span><i></i> <b>Due date </b>{{item.dueDate | date}}</span>
             </p>
             <p class="task-verview">
               <span class="myi-task-comm">{{item.comment_count}} Comment</span>
@@ -268,10 +268,10 @@
               {{item.totalAmount}} MYR
             </p>
             <p class="{{item.taskOwnerId==userId?'offer-not-active':'make-offer'}}">
-              <a (click)="showOfferConfirmationPopup(item)">Make an Offer</a>
+              <a (click)="showOfferConfirmationPopup(item)">Make an offer</a>
             </p>
             <p class="save-job" style="cursor: pointer;">
-              <a (click)="addToSaveJobs(item)"><i class="fa fa-plus"></i> Save this Job </a>
+              <a (click)="addToSaveJobs(item)"><i class="fa fa-plus"></i> Save this task </a>
             </p>
             <!-- <p class="{{item.taskOwnerId==userId?'offer-not-active view-offer':'view-offer'}}">
               <a (click)="showTaskDescription(item)">View & Make Offer</a>
@@ -313,7 +313,7 @@
 
         <div class="row" *ngIf="seeMoreIndicator">
           <div class="col-sm-12 see-more-cat-btn text-center">
-            <a (click)="getMoreItems()">See More</a>
+            <a (click)="getMoreItems()">See more</a>
           </div>
         </div>
       </div>
@@ -492,7 +492,7 @@
 
               </div>
             </div>
-            <p class="completion-label">Completion Date <span><i class="fa fa-calendar"></i>
+            <p class="completion-label">Completion date <span><i class="fa fa-calendar"></i>
                 {{itemDetail.dueDate|date:'dd-MM-y'}}</span></p>
             <p class="completion-label">Service charge : <span>{{ netServiceCharge }} % of total task amount</span></p>
             <p class="completion-label">Amount you will get after service charge deductions :
@@ -535,11 +535,11 @@
             <p>
               {{itemDetail.description}}
             </p>
-            <p class="due-para"><i class="fa fa-calendar"></i>
-              <span class="due-text"><b>Due Date</b> {{itemDetail.dueDate|date }}</span></p>
+            <p class="due-para"><i></i>
+              <span class="due-text"><b>Due date</b> {{itemDetail.dueDate|date }}</span></p>
 
             <p class="people-req"> <span> <b>People required </b> 5 {{itemDetail.peopleRequired}}</span><br />
-              <span><b>Budget Type </b> {{itemDetail.budgetType}}</span><br />
+              <span><b>Budget type </b> {{itemDetail.budgetType}}</span><br />
               <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Hourly rate </b>$ {{itemDetail.hourlyRate}}
                 <br /></span>
               <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Total hours </b> {{itemDetail.totalHours}}
@@ -557,7 +557,7 @@
             </div>
           </div>
           <div class="offer-section">
-            <h4>OFFER</h4>
+            <h4>Offers</h4>
             <div class="offer-card" *ngFor="let list of offerList">
               <div class="offer-pic">
                 <img
@@ -607,7 +607,7 @@
           <div class="pop-accordion">
             <!--comment accordion start-->
             <a class="anchor-comment" data-toggle="collapse" data-parent="#accordion" href="#collapseComment">
-              <h4>View Comments<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+              <h4>View comments<span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
             </a>
             <div id="collapseComment" class="panel-collapse collapse">
               <div class="comment-box-browse">
@@ -619,8 +619,8 @@
                   </div>
                   <div class="header-comment" *ngIf="!this.commentIndicator">
                     <div class="line"></div>
-                    <div class="title interactive">
-                      NO Comments</div>
+                    <div style="color:gray; margin-top:0.05%" ><b>
+                      No comments</b></div>
                   </div>
                   <p class="comment-para">Comment below for more details and remember that for your safety, not to share
                     personal information e.g. email and phone numbers.
@@ -711,13 +711,13 @@
           <!--comment accordion end-->
         </div>
         <div class="post-detail-right">
-          <h4><b>Task Budget</b></h4>
+          <h4><b>Task budget</b></h4>
           <div class="rate">
             <p class="main-price">
               {{itemDetail.totalAmount}} MYR
             </p>
             <p class="make-offer">
-              <a (click)="showOfferConfirmationPopup(itemDetail)">Make An Offer</a>
+              <a (click)="showOfferConfirmationPopup(itemDetail)">Make an offer</a>
             </p>
           </div>
           <!-- <div class="share-container">
@@ -756,7 +756,7 @@
               <i class="fa fa-calendar"></i>
             </div>
             <div class="pop-location-desc">
-              <h5>Posted On</h5>
+              <h5>Posted on</h5>
             </div>
             <span class="right-post-date">{{itemDetail.created_at | date}}</span>
           </div>
@@ -767,7 +767,7 @@
                   [src]="itemDetail.user_detail.profile_image!=null&&itemDetail.user_detail.profile_image!=''?itemDetail.user_detail.profile_image:'assets/img/task-person.png'">
               </div>
               <div class="pic-name-right" *ngIf="itemDetail">
-                <p class="posted-by"><b>Posted By </b></p>
+                <p class="posted-by"><b>Posted by </b></p>
                 <h5><a (click)="visitProfile(itemDetail.user_detail)">{{itemDetail.user_detail.first_name}}</a>
                   <!-- <span class="follow-ico"><a (click)="startFollowing()">
            <img src="assets/img/follow.png"></a></span> -->
