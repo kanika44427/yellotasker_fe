@@ -170,6 +170,8 @@ export class BrowseTaskComponent implements OnInit{
   }
 
 getLatestTask(){
+  this.seeMoreIndicator = true; 
+  this.pageNum = 1; 
   this.commonService.showLoader();
   this.httpService.getLatestTask().subscribe(
     data => {
@@ -206,6 +208,7 @@ startFollowing(){
 }
 //get task by time
 getTaskbyTime(time){
+  this.seeMoreIndicator = false; 
   this.TaskbyTimeIndicator = time; 
   this.commonService.showLoader();
   this.httpService.getTaskbyTime(time).subscribe(
@@ -234,6 +237,7 @@ showFiltersonMobileDevice(){
 }
 //get task by time
 getTaskbyBookmark(){
+  this.seeMoreIndicator = false; 
   this.commonService.showLoader();
   var userId=this.commonService.getCookieValues('userid');
   var taskType='saveTask';
@@ -264,6 +268,7 @@ getTaskbyBookmark(){
 }
 // get task by budget
 getTaskbyBudget(budgetType){
+  this.seeMoreIndicator = false; 
   this.TaskbyBudgetIndicator = budgetType; 
   this.commonService.showLoader();
   if(budgetType){
@@ -291,6 +296,7 @@ getTaskbyBudget(budgetType){
 }
 //get task by location
 getTaskbyLocation(type){
+  this.seeMoreIndicator = false; 
   this.commonService.showLoader();
   var param={
     locationType:type

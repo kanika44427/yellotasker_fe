@@ -19,7 +19,7 @@
 				</div>
 				<div class="col-sm-4 text-center">
 					<div class="profile-completion-info">
-						<h4>Your Profile Is {{totalPercentage | number : '1.2-2'}} % Complete</h4>
+						<h4>Your profile is {{totalPercentage | number : '1.2-2'}} % complete</h4>
 					</div>
 				</div>
 			</div>
@@ -109,15 +109,14 @@
 									Please enter valid email address.
 								</small>
 							</div>
-							<div class="anchovy-form-item"><label>
-									<!-- react-text: 4315 -->Birthday
-									<!-- /react-text --></label>
+							<div class="anchovy-form-item">
+								<label>Birthday</label>
 								<div id="date-of-birth-input">
 									<!-- <input type="number" min="1" max="31" class="date" name="date"  [(ngModel)]="setting.date" #date="ngModel" placeholder="DD">
 							<input type="number" min="1" max="12" class="month" name="month"  [(ngModel)]="setting.month" #month="ngModel" placeholder="MM" value="1">
 							<input type="number" min="1900" max="2017" class="year" name="year"  [(ngModel)]="setting.year" #year="ngModel" placeholder="YYYY"> -->
 									<material-datepicker ngDefaultControl name="birthday" placeholder="select date"
-										[ngModel]="setting.birthday | date:'dd-MM-y'" style="padding-left:35px;"
+										[ngModel]="setting.birthday | date:'dd-MM-YYYY'" style="padding-left:35px;"
 										class="new-date-box" [(date)]="setting.birthday" dateFormat="DD-MM-YYYY">
 									</material-datepicker>
 									

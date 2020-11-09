@@ -716,7 +716,7 @@
             <p class="main-price">
               {{itemDetail.totalAmount}} MYR
             </p>
-            <p class="make-offer">
+            <p [ngClass]="itemDetail.taskOwnerId==userId?'offer-not-active':'make-offer'">
               <a (click)="showOfferConfirmationPopup(itemDetail)">Make An Offer</a>
             </p>
           </div>
