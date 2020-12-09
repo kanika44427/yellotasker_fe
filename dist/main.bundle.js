@@ -5196,6 +5196,7 @@ var SettingComponent = (function () {
         this.mobileNumber = "";
         this.errorMobileMessage = "";
         this.isMobileVerified = false;
+        this.getSkills();
     };
     SettingComponent.prototype.toggleMenu = function () {
         this.openMenu = !this.openMenu;
@@ -5336,17 +5337,18 @@ var SettingComponent = (function () {
     SettingComponent.prototype.settingSave = function (model, isValid) {
         var _this = this;
         this.commonService.showLoader();
-        this.settingObj = {};
-        this.settingObj = model;
+        //this.settingObj={};
+        //this.settingObj=model;
         if (model && model.profile_image)
-            this.settingObj.profile_image = model.profile_image;
+            this.setting.profile_image = model.profile_image;
         var date = new Date(this.setting.birthday);
-        this.settingObj.birthday = date;
-        this.settingObj.user_type = this.getRole.toString();
+        this.setting.birthday = date;
+        this.setting.user_type = this.getRole.toString();
         var userId = this.commonService.getCookieValues("userid");
-        this.settingObj.email_alert = this.emailAlert;
-        this.settingObj.mobile_alert = this.mobileAlert;
-        this.httpService.saveUserProfile(this.settingObj, userId).subscribe(function (data) {
+        this.setting.email_alert = this.emailAlert;
+        this.setting.mobile_alert = this.mobileAlert;
+        //this.setting = this.settingObj; 
+        this.httpService.saveUserProfile(this.setting, userId).subscribe(function (data) {
             _this.apiResponse = data;
             if (_this.apiResponse.message == 'Profile updated successfully') {
                 _this.setting = _this.apiResponse.data;
@@ -5476,28 +5478,40 @@ var SettingComponent = (function () {
         // }
     };
     SettingComponent.prototype.getSkills = function () {
-        var _this = this;
-        var userId = this.commonService.getCookieValues("userid");
-        this.commonService.showLoader();
-        this.httpService.getUserProfile(userId).subscribe(function (data) {
-            _this.apiResponse = data;
-            if (_this.apiResponse.message == 'User data fetched.') {
-                _this.user_skill = [];
-                _this.skills = _this.apiResponse.data;
-                if (_this.skills.skills != null && _this.skills.skills !== '') {
-                    _this.user_skill = _this.skills.skills.split(',');
-                }
-                var modeOfReach = [];
-                if (_this.skills.modeOfreach != null && _this.skills.modeOfreach !== '') {
-                    modeOfReach = _this.skills.modeOfreach.split(',');
-                }
-                _this.skillArray = modeOfReach;
-                _this.commonService.hideLoader();
-            }
-            else {
-                _this.commonService.hideLoader();
-            }
-        });
+        if (this.setting.skills != null && this.setting.skills !== '') {
+            this.user_skill = this.setting.skills.split(',');
+        }
+        var modeOfReach = [];
+        if (this.setting.modeOfreach != null && this.setting.modeOfreach !== '') {
+            modeOfReach = this.setting.modeOfreach.split(',');
+        }
+        this.skillArray = modeOfReach;
+        this.skills.language = this.setting.language;
+        this.skills.qualification = this.setting.qualification;
+        this.skills.workExperience = this.setting.workExperience;
+        // let userId=this.commonService.getCookieValues("userid");
+        // this.commonService.showLoader();
+        // this.httpService.getUserProfile(userId).subscribe(
+        //   data => {
+        //     this.apiResponse = data;
+        //     if(this.apiResponse.message == 'User data fetched.')
+        //     {
+        //        this.user_skill = [];
+        //        this.setting = this.apiResponse.data;
+        //        if(this.setting.skills!=null&&this.setting.skills !==''){
+        //         this.user_skill= this.setting.skills.split(',');
+        //         }
+        //        let modeOfReach=[];
+        //        if(this.setting.modeOfreach!=null&&this.setting.modeOfreach !==''){
+        //         modeOfReach=this.setting.modeOfreach.split(',');
+        //        }
+        //        this.skillArray=modeOfReach;
+        //        this.commonService.hideLoader();
+        //     }
+        //     else{
+        //        this.commonService.hideLoader();
+        //     }
+        // });
     };
     SettingComponent.prototype.modeOfReach = function (e, value) {
         if (e.target.checked) {
@@ -5598,16 +5612,20 @@ var SettingComponent = (function () {
                     this.skillsObj.skills.push(this.user_skill[i].value);
                 if (i == this.user_skill.length - 1) {
                     this.skillsObj.skills = this.skillsObj.skills.toString();
+                    this.setting.skills = this.skillsObj.skills;
                 }
             }
         }
-        this.skillsObj.modeOfreach = this.getAround.toString();
+        this.setting.modeOfreach = this.getAround.toString();
+        this.setting.language = this.skillsObj.language;
+        this.setting.qualification = this.skillsObj.qualification;
+        this.setting.workExperience = this.skillsObj.workExperience;
         var userId = this.commonService.getCookieValues("userid");
-        this.httpService.saveUserProfile(this.skillsObj, userId).subscribe(function (data) {
+        this.httpService.saveUserProfile(this.setting, userId).subscribe(function (data) {
             _this.apiResponse = data;
             if (_this.apiResponse.message == 'Profile updated successfully') {
-                _this.getAround = [];
-                _this.skillsObj = _this.apiResponse.data;
+                //this.getAround=[];
+                _this.setting = _this.apiResponse.data;
                 _this.commonService.hideLoader();
                 $('#OfferModalSuccess').modal('show');
                 setTimeout(function () {
