@@ -354,7 +354,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">
-          {{offerPostSuccess==true?'Quote Successfully provided for FREE':'Successfully Posted Offer'}}</h4>
+          {{offerPostSuccess==true?'Quote successfully provided for FREE':'Successfully Posted Offer'}}</h4>
       </div>
       <div class="modal-body">
         <div class="text-center success-loader">
@@ -490,7 +490,7 @@
                       class="light-text">MYR{{itemDetail.totalAmount}}</span></span>
                   <span class="service-span" *ngIf="serviceCharge"><span style="color:#484848;">Service charge:</span>
                     <span class="light-text">
-                      MYR {{serviceCharge}}
+                      MYR {{(offer.offerPrice * netServiceCharge)/100 }}
                     </span></span></p>
 
                 <p>Bid price</p>
@@ -512,6 +512,7 @@
             <p class="completion-label">Service charge : <span>{{ netServiceCharge }} % of total task amount</span></p>
             <p class="completion-label">Amount you will get after service charge deductions :
               <span>{{offer.offerPrice - (offer.offerPrice * (+netServiceCharge/100)) | number : '1.2-2'}}</span></p>
+
             <!-- <material-datepicker name="completionDate" placeholder="select completion date" required
                 [ngModel]="offer.completionDate | date:'dd-MM-y'" #completionDate="ngModel"
                style="padding-left:35px;" class="new-date-box"
