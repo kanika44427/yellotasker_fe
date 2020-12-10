@@ -6,7 +6,7 @@
 					<span aria-hidden="true">&times;</span></button>
 				<button *ngIf="locationIndicator||budgetIndicator" class="back" (click)="back()" type="button">
 					<i class="fa fa-angle-left"></i></button>
-				<h4 class="modal-title" id="myModalLabel">Post your task For FREE</h4>
+				<h4 class="modal-title" id="myModalLabel">Post your task for FREE</h4>
 			</div>
 			<div class="modal-body">
 				<div class="stepwizard">
@@ -64,16 +64,18 @@
 -Clean kitchen
 -General tidy up
 ' : 'Describe your task as detail as possible to receive accurate quotes'
-}}" id="post-task-description" (keyup)="changed(postTaskStep1Form.value.description)" 
-					   formControlName="description" class="tick-input" rows="8"></textarea>
-					<span style="float:right; font-size:13px;">{{ charsLeft }} characters remaining</span>
-						<small class="text-danger" *ngIf="minLenIndicator">
-							Tell us more! Please enter at least 25 characters.
-						</small>
-					<span class="sub-content" style="float:left; width:100%;color: #000 !important;">For your safety, please do not share personal information, e.g., email, phone or address.</span>
-					</div>
-					<div class="form-item login-form-item center padder5">
-					<!--	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" id="login-button" class="button-cta button-lrg center full-width">
+}}" id="post-task-description" (keyup)="changed(postTaskStep1Form.value.description)" formControlName="description"
+									class="tick-input" rows="8"></textarea>
+								<span style="float:right; font-size:13px;">{{ charsLeft }} characters remaining</span>
+								<small class="text-danger" *ngIf="minLenIndicator">
+									Tell us more! Please enter at least 25 characters.
+								</small>
+								<span class="sub-content" style="float:left; width:100%;color: #000 !important;">For
+									your safety, please do not share personal information, e.g., email, phone or
+									address.</span>
+							</div>
+							<div class="form-item login-form-item center padder5">
+								<!--	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" id="login-button" class="button-cta button-lrg center full-width">
 							Continue
 						</a>-->
 								<input id="taskStep1Continue" class="button-cta button-lrg center full-width"
@@ -255,7 +257,7 @@
 							</div>
 							<div class="form-item login-form-item center padder5">
 								<input id="taskStep3Continue" class="button-cta button-lrg center full-width"
-									value="Get Quotes Now" type="submit">
+									value="Get quotes now" type="submit">
 							</div>
 						</form>
 					</div>

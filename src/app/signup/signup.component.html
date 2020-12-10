@@ -15,11 +15,11 @@
 			    <div class="form-item login-form-item first-name">
 						<label class="block">First name <span style="color:red;">*</span></label>
 						<input class="{{firstError==true?'red-border':''}}"  type="text" id="email-input" name="firstName" 
-						required [(ngModel)]="user.first_name" #firstName ="ngModel" placeholder="First Name">
+						required [(ngModel)]="user.first_name" #firstName ="ngModel" placeholder="First name">
 				  </div>
 								<div class="form-item login-form-item second-name"><label class="block">Last name</label>
 								 <input type="text" id="email-input"  name="lastName" [(ngModel)]="user.last_name"
-								  #lastName ="ngModel" placeholder="Last Name">
+								  #lastName ="ngModel" placeholder="Last name">
 								</div>
 								<div class="form-item login-form-item"><label class="block">Email <span style="color:red;">*</span></label>
 									<input class="{{emailError==true||(email.touched && !email?.valid)?'red-border':''}}" type="email" placeholder="Email" required [(ngModel)]="user.email" #email="ngModel" 
@@ -41,7 +41,7 @@
 
 								<div class="form-item login-form-item center padder5">
 									<button id="login-button" class="button-cta button-lrg center full-width" type="submit">
-										Welcome To Yellotasker</button></div>
+										Welcome to yellotasker</button></div>
 									<div class="login-div text-center">
 									<p>Already have an account? <a (click)="openLoginPopup()">Login</a></p>
 								</div>

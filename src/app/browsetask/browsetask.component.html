@@ -1,17 +1,17 @@
 <div class="sub-banner">
-  
+
   <div class="search" style="margin-top:125px;">
     <input [(ngModel)]="query"><i class="fa fa-search"></i>
     <div *ngIf="query.length > 0">
       <div class="auto-search" *ngFor="let item of taskList | search:'title':query">
         <a (click)="showTaskDescription(item)"> {{item.title}} </a>
       </div>
-    </div>    
+    </div>
   </div>
   <div class="toggle-menu">
     <a (click)="showFiltersonMobileDevice()"><i class="fa fa-bars"></i></a>
   </div>
-<!-- 
+  <!-- 
   <div class="browse-menu">
     <div class="container">
       <ul>
@@ -48,7 +48,7 @@
 										</ul>
 									</div>-->
 
-              <!-- </div>
+  <!-- </div>
             </div>
           </div>
         </li>
@@ -145,7 +145,7 @@
 
       </ul>
     </div>
-  </div> --> 
+  </div> -->
 </div>
 
 <div class="browse-view">
@@ -154,55 +154,68 @@
       <!-- Sidebar -->
       <div class="col-sm-3" *ngIf="showFilterMenuIndicator">
         <div class="filter-right" style="margin-top:120px;">
-          <ul >
+          <ul>
             <li (click)="getMenuLatest('latest')" [ngClass]="{'active' : currentMenuSelected == 'latest'}">
               <a (click)="getLatestTask()">Latest task posted</a>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'dueDate'}">
               <a (click)="getMenuLatest('dueDate')">Browse by due date <i class="fa fa-chevron-down"></i></a>
-                <ul class="open-drop browse-date">
-                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_today'}"><a  (click)="getTaskbyTime('due_today')">Due Today</a></li>
-                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_tomorrow'}"><a  (click)="getTaskbyTime('due_tomorrow')">Due Tommorow</a></li>
-                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_current_week'}"><a  (click)="getTaskbyTime('due_current_week')">Due within current week </a></li>
-                  <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_current_month'}" ><a (click)="getTaskbyTime('due_current_month')">Due within current month </a></li>
-                </ul>
+              <ul class="open-drop browse-date">
+                <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_today'}"><a
+                    (click)="getTaskbyTime('due_today')">Due Today</a></li>
+                <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_tomorrow'}"><a
+                    (click)="getTaskbyTime('due_tomorrow')">Due Tommorow</a></li>
+                <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_current_week'}"><a
+                    (click)="getTaskbyTime('due_current_week')">Due within current week </a></li>
+                <li [ngClass]="{'active' : TaskbyTimeIndicator == 'due_current_month'}"><a
+                    (click)="getTaskbyTime('due_current_month')">Due within current month </a></li>
+              </ul>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'budget'}">
               <a (click)="getMenuLatest('budget')">Browse by budget <i class="fa fa-chevron-down"></i></a>
-               <ul class="open-drop location">
-                 <li>
+              <ul class="open-drop location">
+                <li>
                   <div style="color: white; margin : 10px">
                     <p>Please select Budget type : </p>
-                    <input type="radio" id="withMaterial" [(ngModel)]="budgetTypeFilter" name="budgetType" value="withMaterial">
+                    <input type="radio" id="withMaterial" [(ngModel)]="budgetTypeFilter" name="budgetType"
+                      value="withMaterial">
                     <label for="male">Materials & workmanship</label><br>
-                    <input type="radio" id="withoutMaterial"   [(ngModel)]="budgetTypeFilter" name="budgetType" value="withoutMaterial">
+                    <input type="radio" id="withoutMaterial" [(ngModel)]="budgetTypeFilter" name="budgetType"
+                      value="withoutMaterial">
                     <label for="female">Workmanship only - I will supply materials</label><br>
                   </div>
-                 </li>
-                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '0-100'}"><a (click)="getTaskbyBudget('0-100')">under 100 MYR </a></li>
-                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '100-500'}"><a (click)="getTaskbyBudget('100-500')">more than 100 MYR and less than 500 MYR</a></li>
-                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '500-1000'}"><a (click)="getTaskbyBudget('500-1000')">more than 500 MYR and less than 1000 MYR</a></li>
-                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '1000-1500'}"><a (click)="getTaskbyBudget('1000-1500')">more than 1000 MYR and less than 1500 MYR</a></li>
-                  <li [ngClass]="{'active' : TaskbyBudgetIndicator == '1500'}"><a (click)="getTaskbyBudget('1500')">more than 1500 MYR</a></li>
+                </li>
+                <li [ngClass]="{'active' : TaskbyBudgetIndicator == '0-100'}"><a
+                    (click)="getTaskbyBudget('0-100')">under 100 MYR </a></li>
+                <li [ngClass]="{'active' : TaskbyBudgetIndicator == '100-500'}"><a
+                    (click)="getTaskbyBudget('100-500')">more than 100 MYR and less than 500 MYR</a></li>
+                <li [ngClass]="{'active' : TaskbyBudgetIndicator == '500-1000'}"><a
+                    (click)="getTaskbyBudget('500-1000')">more than 500 MYR and less than 1000 MYR</a></li>
+                <li [ngClass]="{'active' : TaskbyBudgetIndicator == '1000-1500'}"><a
+                    (click)="getTaskbyBudget('1000-1500')">more than 1000 MYR and less than 1500 MYR</a></li>
+                <li [ngClass]="{'active' : TaskbyBudgetIndicator == '1500'}"><a (click)="getTaskbyBudget('1500')">more
+                    than 1500 MYR</a></li>
               </ul>
             </li>
             <li [ngClass]="{'active' : currentMenuSelected == 'location'}">
               <a (click)="getMenuLatest('location')">Browse by location <i class="fa fa-chevron-down"></i></a>
               <ul class="open-drop location">
-                
+
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" value="Physical task" id="checklocation2" name="locationFilter" (change)="getTaskbyLocation('Physical task')">
+                    <input class="form-check-input" type="radio" value="Physical task" id="checklocation2"
+                      name="locationFilter" (change)="getTaskbyLocation('Physical task')">
                     <label class="form-check-label" for="checklocation2">
-                      Physical Task 
+                      Physical Task
                     </label>
                   </div>
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" value="Digital task" id="checklocation3" name="locationFilter" (change)="getTaskbyLocation('Digital task')">
+                    <input class="form-check-input" type="radio" value="Digital task" id="checklocation3"
+                      name="locationFilter" (change)="getTaskbyLocation('Digital task')">
                     <label class="form-check-label" for="checklocation3">
-                     Digital Task 
+                      Digital Task
                     </label>
                   </div>
                 </li>
@@ -220,7 +233,7 @@
           </ul>
         </div>
       </div>
-       <!-- End Sidebar -->
+      <!-- End Sidebar -->
 
       <div class="col-sm-9" *ngIf="taskList?.length > 0" style="margin-top:125px;">
         <div class="posted-card desktop-card" *ngFor="let item of taskList">
@@ -279,13 +292,15 @@
           </div>
           <div *ngIf="itemDetail">
             <reportTask-popup [taskID]="itemDetail.id"></reportTask-popup>
-          </div> 
+          </div>
         </div>
 
-           <!-- New card UI for mobile -->
-        <div class="task-card mob-card"  *ngFor="let item of taskList">
+        <!-- New card UI for mobile -->
+        <div class="task-card mob-card" *ngFor="let item of taskList">
           <div class="task-user">
-            <span><img [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'" alt="poster image"></span>
+            <span><img
+                [src]="item.user_detail.profile_image!=null&&item.user_detail.profile_image!=''?item.user_detail.profile_image:'assets/img/task-person.png'"
+                alt="poster image"></span>
           </div>
           <div class="task-detail">
             <h3>{{item.title}}</h3>
@@ -309,7 +324,7 @@
             <a href="javascript:void(0);">View</a>
           </div>
         </div>
-        <!-- New card UI for mobile -->     
+        <!-- New card UI for mobile -->
 
         <div class="row" *ngIf="seeMoreIndicator">
           <div class="col-sm-12 see-more-cat-btn text-center">
@@ -538,7 +553,7 @@
             <p class="due-para"><i></i>
               <span class="due-text"><b>Due date</b> {{itemDetail.dueDate|date }}</span></p>
 
-            <p class="people-req"> <span> <b>People required </b> 5 {{itemDetail.peopleRequired}}</span><br />
+            <p class="people-req">
               <span><b>Budget type </b> {{itemDetail.budgetType}}</span><br />
               <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Hourly rate </b>$ {{itemDetail.hourlyRate}}
                 <br /></span>
@@ -563,16 +578,12 @@
                 <img
                   [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'"
                   alt=""> &nbsp;&nbsp;<span class="offer-link">
-                  <a (click)="navigateToProfile(list.interested_user[0])">{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
-                  <div class="offer-tooltip" style="display:none">
-                    <h5><a >{{list.interested_user[0].first_name}} {{list.interested_user[0].last_name}}</a>
-                    </h5>
-                    <p>231 indrapuri indore near bhawarkua</p>
-                    <p *ngIf="list.interested_user[0]" class="offer-rating-star">
-                      <span *ngFor="let i of Arr(list.interested_user[0].rating).fill(1)">
-                        <i class="fa fa-star"></i>
-                      </span>
-                    </p>
+                  <a (click)="navigateToProfile(list.interested_user[0])">{{list.interested_user[0].first_name}}
+                    {{list.interested_user[0].last_name}}</a>
+                  
+                    
+                    
+                    
                     <!-- <p class="offer-rating-star">
                     <span>
                       <i class="fa fa-star"></i>
@@ -581,9 +592,8 @@
                        <i class="fa fa-star"></i> 
                        <i class="fa fa-star"></i></span>
                       </p> -->
-                    <p class="offer-completion-rate">100% completion rate</p>
-                    <p class="offer-request-quoate"><a href="#">Request Quote</a></p>
-                  </div>
+                   
+                  
                 </span>
               </div>
               <div class="offer-rating">
@@ -619,8 +629,8 @@
                   </div>
                   <div class="header-comment" *ngIf="!this.commentIndicator">
                     <div class="line"></div>
-                    <div style="color:gray; margin-top:0.05%" ><b>
-                      No comments</b></div>
+                    <div style="color:gray; margin-top:0.05%"><b>
+                        No comments</b></div>
                   </div>
                   <p class="comment-para">Comment below for more details and remember that for your safety, not to share
                     personal information e.g. email and phone numbers.
@@ -745,7 +755,7 @@
   "ng-reflect-ng-if": "true"
 }-->
             <p>
-              <span *ngIf="itemDetail.locationType == 'Digital task'"><i class="fa fa-location-arrow"></i>
+              <span *ngIf="itemDetail.locationType == 'Digital task'">
                 Digital task</span>
               <span class="container-fluid" *ngIf="itemDetail.locationType == 'Physical task'">
                 Physical task <br>{{itemDetail.address}}
