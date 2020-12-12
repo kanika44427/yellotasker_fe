@@ -275,7 +275,7 @@
                    <div *ngIf="(taskDetails.offerTaskIndicator&&taskStatus=='open'||taskDetails.offerAssignedTaskIndicator&&(taskStatus=='reopen'||taskStatus=='assigned'))&&offerList?.length > 0"class="pop-accordion">
                     <a class="anchor-offer" data-toggle="collapse" data-parent="#accordion" 
                     href="#collapse5">
-                       <h4>My Offer <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                       <h4>My offer <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
                     </a>
                     <div id="collapse5" class="panel-collapse collapse">
                        <div class="offer-section child-acor">
@@ -336,8 +336,8 @@
                                          <span><b>offer price :</b> {{list.offerPrice}} MYR </span>
                                          <span><b>offer comment :</b> {{list.comment}}</span>
                                          <span><b>completion date : </b> {{list.completionDate}}</span>
-                                         Note : offer price is amount you get into bank account after deductions of 
-                                         service charges from your quoted bid price. 
+                                         <span style="padding-top: 10px;"><b>Note</b> : offer price is amount you get into bank account after deductions of 
+                                         service charges from your quoted bid price. </span>
                                     </div>
                                     <!-- -->
                                     <!-- edit offer -->
@@ -426,7 +426,7 @@
                    </div> -->
                    <div class="pop-accordion" *ngIf="taskStatus!='assigned'&&taskStatus!='open'&&showFeedback==true||(taskDetails.offerAssignedTaskIndicator&&taskStatus=='assigned'&&showFeedback==true)||taskStatus=='completed from doer'">
                       <a class="anchor-desc" data-toggle="collapse" data-parent="#accordion" href="#collapseFeedback">
-                         <h4>Feedback <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
+                         <h4>Reviews <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4>
                       </a>
                       <div id="collapseFeedback" class="panel-collapse collapse">
                          <div class="panel-body">
@@ -556,9 +556,9 @@
                         </div>
                      </div>
                      <div *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')" class="change-status">
-                        <label>Change task Status</label>    
+                        <label>change task status</label>    
                         <select name="status"  #status="ngModel"  [(ngModel)]="taskStatus"  (ngModelChange)="onChange(taskStatus,task, prevStatus)"
-                        (focus)="prevStatus=taskStatus">
+                        (focus)="prevStatus=taskStatus" placeholder="task status">
                                
                                 <option style="color:green;">
                                     completed 
