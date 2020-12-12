@@ -397,6 +397,7 @@ export class SettingComponent  implements OnInit {
       modeOfReach=this.setting.modeOfreach.split(',');
      }
      this.skillArray=modeOfReach;
+     this.getAround = modeOfReach; 
      this.skills.language = this.setting.language; 
      this.skills.qualification = this.setting.qualification; 
      this.skills.workExperience = this.setting.workExperience; 

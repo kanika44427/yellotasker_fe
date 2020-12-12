@@ -326,7 +326,7 @@
         </div>
         <!-- New card UI for mobile -->
 
-        <div class="row" *ngIf="seeMoreIndicator">
+        <div class="row" *ngIf="seeMoreIndicator && taskList?.length > 10">
           <div class="col-sm-12 see-more-cat-btn text-center">
             <a (click)="getMoreItems()">See more</a>
           </div>
