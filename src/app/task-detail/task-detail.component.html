@@ -6,7 +6,7 @@
              <div class="post-detail-left">
                 <span *ngIf="taskDetails.offerAssignedTaskIndicator==true&&taskStatus=='assigned'"class="blink_text"><b>4 days left for completion of this task.</b></span>
                 <span class="browse-anchor">
-                    <a class="active-a">{{task.status}}</a>
+                    <a class="active-a">{{task.status | titlecase}}</a>
                     <!-- <a *ngIf="!taskStatusIndicator&&!taskDetails.offerTaskIndicator" style="background:none !important; color:#484848 !important;" href="#">
                       <i class="fa fa-trash" style="color:#337ab7;"></i></a> -->
                         <a *ngIf="taskDetails.savedTaskIndicator&&!taskStatusIndicator&&!taskDetails.offerTaskIndicator" (click)="confrimDelete(task.taskId)" style="background:none !important; color:#484848 !important;" >
@@ -37,16 +37,19 @@
                             <p>
                                {{task.description}}
                             </p>
-                            <p class="due-para"><i class="fa fa-calendar"></i> 
-                              <span class="due-text"><b>Due Date</b> {{task.dueDate|date}}</span></p>
+                            
                               <p> <span><b>Budget Type </b> {{task.budgetType }}</span><br>
-                                <span><b> Total amount </b>{{task.totalAmount}} MYR</span>
-                              </p>
-                              <p>
+                                <span><b> Total amount </b>{{task.totalAmount}} MYR</span><br>
+                              
+                              
                                     <span><b> Location </b>{{task.locationType}}</span>
                                     <br/>
+                                    
                                     <span *ngIf="task.locationType =='Physical task'">{{task.address}}</span>
+                                    
                               </p>
+                              <p class="due-para"><i class="fa fa-calendar"></i> 
+                                 <span class="due-text"><b>Due Date</b> {{task.dueDate|date}}</span></p>
                                 </div>
                                  <div *ngIf="showForm" class="desrciption-form">
                                     <form  #editForm="ngForm" (ngSubmit)="submitForm(editForm.value, editForm.valid);" 
@@ -515,7 +518,9 @@
             </div>
                 <div class="popup-location">
                    <div class="pop-location-nav">
-                      <i class="fa fa-calendar"></i>
+                     <div style="font-size: 15px;">
+                      <i class="fa fa-calendar" style="margin-top: 32px;"></i>
+                   </div>
                    </div>
                    <div class="pop-location-desc">
                       <h4>Posted on :</h4>
@@ -525,7 +530,7 @@
                    </div>
                 </div>
                 <div *ngIf="taskStatusIndicator">
-                <h4>Assigned To  : </h4>
+                <h4>Assigned to  : </h4>
                 <div *ngIf="taskDoer" class="offer-pic" style="float:left; width:25%;">
                    <img  [src]="taskDoer.profile_image!=null&&taskDoer.profile_image!=''?taskDoer.profile_image:'assets/img/task-person.png'"alt=""> 
                 </div>
@@ -540,7 +545,9 @@
             </div>
                 <div class="popup-location" *ngIf="taskStatusIndicator">
                         <div class="pop-location-nav">
-                           <i class="fa fa-calendar"></i>
+                           <div style="font-size: 15px;">
+                           <i class="fa fa-calendar" style="margin-top: 32px;"></i>
+                        </div>
                         </div>
                         <div class="pop-location-desc">
                            <h4>Assigned on :</h4>
@@ -556,20 +563,20 @@
                         </div>
                      </div>
                      <div *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')" class="change-status">
-                        <label>change task status</label>    
+                        <label>Change Task status</label>    
                         <select name="status"  #status="ngModel"  [(ngModel)]="taskStatus"  (ngModelChange)="onChange(taskStatus,task, prevStatus)"
                         (focus)="prevStatus=taskStatus" placeholder="task status">
                                
                                 <option style="color:green;">
-                                    completed 
+                                    Completed 
                                   </option>
                                 <option style="color:red;">
-                                    reopen
+                                    Reopen
                                  </option>
                             </select>
                         </div>
                        <div *ngIf="taskDetails.offerAssignedTaskIndicator && taskStatus !== 'completed from doer'" class="status-btn">
-                           <a (click)="taskCompletedFromDoer('completed from doer',task)">Complete Task</a>
+                           <a (click)="taskCompletedFromDoer('completed from doer',task)">Complete task</a>
                         </div>
                      <!-- <div *ngIf="!hideStatus&&taskStatus!='open'&&taskStatus!='assigned'&&!taskDetails.offerTaskIndicator||(taskDetails.offerAssignedTaskIndicator==true&&(taskStatus=='assigned'||taskStatus=='reopen'))" class="change-status">
                             <label>Change task Status</label>    

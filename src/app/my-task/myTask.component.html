@@ -8,7 +8,7 @@
 				<li [ngClass]="{'mega-menu-active': postedTaskIndicator}"><a (click)="showTask('postedTask')">Posted
 						task</a></li>
 				<li [ngClass]="{'mega-menu-active': offerTaskIndicator}"><a (click)="showTask('offerPending')">Offered
-						Task</a></li>
+						task</a></li>
 				<li [ngClass]="{'mega-menu-active': offerAssignedTaskIndicator}"><a
 						(click)="showTask('offerAccepting')">Task assigned</a></li>
 
@@ -100,7 +100,7 @@
 									Cancelled</span>
 								<span class=""
 									*ngIf="taskList.status !=='cancel' && !(taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator))">
-									{{taskList.status}}</span>
+									{{taskList.status | titlecase }}</span>
 								<span class="myi-task-comm">{{taskList.comment_count}} Comment</span>
 								<span class="my-task-offer">{{taskList.offer_count}} Offers</span>
 							</p>

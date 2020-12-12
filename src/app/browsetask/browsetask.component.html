@@ -551,8 +551,6 @@
             <p>
               {{itemDetail.description}}
             </p>
-            <p class="due-para"><i></i>
-              <span class="due-text"><b>Due date</b> {{itemDetail.dueDate|date }}</span></p>
 
             <p class="people-req">
               <span><b>Budget type </b> {{itemDetail.budgetType}}</span><br />
@@ -560,9 +558,12 @@
                 <br /></span>
               <span *ngIf="itemDetail.budgetType == 'Per Hour'"><b>Total hours </b> {{itemDetail.totalHours}}
                 <br /></span>
-              <span><b> Total amount </b> {{itemDetail.totalAmount}} MYR</span>
+              <span><b> Total amount </b> {{itemDetail.totalAmount}} MYR <br/></span>
+              <!-- <div class="due-para">-->
+                <span class="due-text"><b><i class="fa fa-calendar"></i> Due date</b> {{itemDetail.dueDate|date }}</span>
+              <!-- </div> -->
             </p>
-
+            
             <br>
             <div *ngIf="itemDetail.locationType == 'Come to work place'">
               <h4><b>Requirement</b></h4>
@@ -764,8 +765,9 @@
             </p>
           </div>
           <div class="popup-location">
-            <div class="pop-location-nav">
-              <i class="fa fa-calendar"></i>
+            <div class="pop-location-nav" style="font-size: 15px;">
+
+              <i class="fa fa-calendar" style="margin-top: 30px;"></i>
             </div>
             <div class="pop-location-desc">
               <h5>Posted on</h5>
