@@ -77,8 +77,7 @@
 								<span><img
 										src="{{taskList.task_posted_user.profile_image?taskList.task_posted_user.profile_image:'assets/img/task-person.png'}}"
 										alt=""></span>
-								<span><a
-										routerLink="/profile-view/{{taskList.task_posted_user.first_name}}/{{taskList.task_posted_user.id}}">{{taskList.task_posted_user.first_name}}
+								<span><a routerLink="/profile-view/{{taskList.task_posted_user.first_name}}/{{taskList.task_posted_user.id}}">{{taskList.task_posted_user.first_name}}
 										{{taskList.task_posted_user.last_name}}</a><br />
 									<span *ngFor="let i of Arr(taskList.task_posted_user.rating).fill(1)">
 										<i class="fa fa-star"></i>

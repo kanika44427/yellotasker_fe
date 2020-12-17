@@ -264,8 +264,8 @@
             <p class="location-date">
               <span *ngIf="item.locationType == 'Digital task'"><i class="fa fa-location-arrow"></i>
                 Digital task</span>
-              <span *ngIf="item.locationType == 'Physical task'"><i class="fa fa-location-arrow"></i>
-                Come to work place at {{item.address}}</span>
+              <span *ngIf="item.locationType == 'Physical task'" ><i class="fa fa-location-arrow"></i>
+                {{item.address}}</span>
               <span><i></i> <b>Due date </b>{{item.dueDate | date}}</span>
             </p>
             <p class="task-verview">
@@ -752,6 +752,7 @@
               <b>Location</b>
             </div>
             <br>
+            <br>
             <!-- <h5>Come to work place</h5> -->
             <!--bindings={
   "ng-reflect-ng-if": "true"
@@ -759,15 +760,16 @@
             <p>
               <span *ngIf="itemDetail.locationType == 'Digital task'">
                 Digital task</span>
-              <span class="container-fluid" *ngIf="itemDetail.locationType == 'Physical task'">
-                Physical task <br>{{itemDetail.address}}
+              <span *ngIf="itemDetail.locationType == 'Physical task'">
+                Physical task <br><br>
+                <span>{{itemDetail.address}}</span>
               </span>
             </p>
           </div>
           <div class="popup-location">
             <div class="pop-location-nav" style="font-size: 15px;">
 
-              <i class="fa fa-calendar" style="margin-top: 30px;"></i>
+              <i class="fa fa-calendar"></i>
             </div>
             <div class="pop-location-desc">
               <h5>Posted on</h5>

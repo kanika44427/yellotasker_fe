@@ -115,7 +115,7 @@
 									<!-- <input type="number" min="1" max="31" class="date" name="date"  [(ngModel)]="setting.date" #date="ngModel" placeholder="DD">
 							<input type="number" min="1" max="12" class="month" name="month"  [(ngModel)]="setting.month" #month="ngModel" placeholder="MM" value="1">
 							<input type="number" min="1900" max="2017" class="year" name="year"  [(ngModel)]="setting.year" #year="ngModel" placeholder="YYYY"> -->
-									<material-datepicker ngDefaultControl name="birthday" placeholder="select date"
+									<material-datepicker type="date" ngDefaultControl name="birthday" placeholder="select date"
 										[ngModel]="setting.birthday | date:'dd-MM-YYYY'" style="padding-left:35px;"
 										class="new-date-box" [(date)]="setting.birthday" dateFormat="DD-MM-YYYY">
 									</material-datepicker>

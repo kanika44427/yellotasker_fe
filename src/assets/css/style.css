@@ -1183,6 +1183,7 @@ p.view-offer {
 }
 i.fa.fa-star {
     color: #ffd303;
+
 }
 .posted-card
 {
@@ -4981,6 +4982,7 @@ margin-left:15px;
     padding: 10px 15px;
     border-radius: 40px;
     color: #000;
+    margin-left: -134px;
 }
 .child-acor .offer-post-time {
     margin-top: 10px;
@@ -5146,7 +5148,7 @@ h4.right-heading-recent {
     display: table;
     width: 40%;
     background: yellow;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     text-align: center;
     margin: 0 auto;
@@ -5554,7 +5556,8 @@ margin-top:0px;
 }
 .post-description h4
 {
-    color: #858585;
+    color: black;
+    font-weight: bold;
 }
 .posted-By.tp-post {
     padding-bottom: 15px;
@@ -5910,7 +5913,7 @@ span.completed-text {
 ul.top-links-left {
     float: left;
     width: 100%;
-    margin:: 24px 0px;
+    margin: 24px 0px;
 }
 .how-left ul li {
     float: left;
