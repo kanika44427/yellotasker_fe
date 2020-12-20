@@ -259,6 +259,9 @@ export class SettingComponent  implements OnInit {
         if(this.apiResponse.message == 'Profile updated successfully')
         {
           this.setting=this.apiResponse.data;
+          if(this.setting && this.setting.profile_image){
+            this.commonService.setCookieValues("userImage", this.setting.profile_image);
+          }
           this.commonService.hideLoader();
           this.parentComponent.loginDetails = this.apiResponse.data;
           $('#OfferModalSuccess').modal('show');
