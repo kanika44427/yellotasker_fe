@@ -10,6 +10,7 @@ import { DatepickerModule } from 'angular2-material-datepicker'
 import { DatePipe } from '@angular/common';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgDatepickerModule } from 'ng2-datepicker';
 //application components 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
@@ -166,7 +167,8 @@ export function getAuthServiceConfigs() {
     DatepickerModule ,
     BrowserAnimationsModule,
     SocialLoginModule,
-    TagInputModule
+    TagInputModule, 
+    NgDatepickerModule
   ],
   
   providers: [CookieService , DatePipe,  {

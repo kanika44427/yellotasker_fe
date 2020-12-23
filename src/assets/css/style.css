@@ -5913,7 +5913,7 @@ span.completed-text {
 ul.top-links-left {
     float: left;
     width: 100%;
-    margin: 24px 0px;
+    
 }
 .how-left ul li {
     float: left;
@@ -6317,7 +6317,9 @@ margin: 0;
 }
 .row.text-center.feature-part .col-sm-4 {
     margin-bottom: 15px;
+    
 }
+
 .earn-section h3 {
     text-align: center;
 }

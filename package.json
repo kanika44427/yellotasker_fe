@@ -25,6 +25,7 @@
     "angular2-material-datepicker": "^0.5.0",
     "angular5-social-login": "^1.0.9",
     "core-js": "^2.4.1",
+    "ng2-datepicker": "^3.1.1",
     "ng2-social-share": "0.0.10",
     "ngx-chips": "^2.1.0",
     "ngx-cookie-service": "^1.0.9",

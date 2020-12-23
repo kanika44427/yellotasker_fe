@@ -10,6 +10,8 @@ import { DatePipe } from '@angular/common';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import {ReversePipe} from '../pipes/reversePipes';
 import { DataService } from '../services/data.service';
+import { DatepickerOptions } from 'ng2-datepicker'; 
+//import * as frLocale from 'date-fns/locale/fr'; 
 declare var jquery:any;
 declare var $ :any;
 
@@ -61,6 +63,20 @@ export class SettingComponent  implements OnInit {
   newPass : string = ""; 
   confPass : string = ""; 
   user_skill : any =  []; 
+
+  options: DatepickerOptions = {
+    // minYear: 1970,
+    // maxYear: 2020,
+    // displayFormat: 'MMM D[,] YYYY',
+    // //barTitleFormat: 'MMMM YYYY',
+    // dayNamesFormat: 'dd',
+    // firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+    // //minDate: new Date(Date.now()), // Minimal selectable date
+    // maxDate: new Date(Date.now()),  // Maximal selectable date
+    // barTitleIfEmpty: 'Click to select a date',
+    // placeholder: 'Click to select a date', // HTML input placeholder attribute (default: '')
+    };
+
   @Output()
   setUserDashboard: EventEmitter<any> = new EventEmitter<any>();
   constructor(private inj:Injector,private route:ActivatedRoute,
