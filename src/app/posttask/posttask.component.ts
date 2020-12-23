@@ -200,6 +200,7 @@ onStep1Submit(form : any , model: any, isValid: boolean) {
       {
         var date = new Date(this.user.dueDate);
         this.task.dueDate=date;
+            
 
         if(loginId!=null) {
          

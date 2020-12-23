@@ -109,6 +109,7 @@ export class HttpService {
      posttask(task : Object) : Observable<any[]>
      {
         let bodyString = JSON.stringify(task); // Stringify payload
+        console.log("task details" , bodyString); // Stringify payload)
         let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options       = new RequestOptions({ headers: headers }); // Create a request option
         return this.http.post(this.API_ENDPOINT_UAT + 'postTask/createTask', task , options)

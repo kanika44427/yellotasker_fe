@@ -7,16 +7,19 @@
 			 <img [src]="profileData.profile_image!=null&&profileData.profile_image!=''?profileData.profile_image:'assets/img/task-person.png'">
 			</div>
 			<div class="user-name-detail">
-			 <h4>{{profileData.first_name}} {{profileData.last_name}}</h4>
+			 <h4 style="margin-left: -15px; margin-top: 20px">{{profileData.first_name}} {{profileData.last_name}}</h4>
 			 <p *ngIf="profileData.location">
 			  <i class="fa fa-map-mark	er"></i> {{profileData.location}}
 			 </p>
-			 <p>			
+			 <div style="margin-left: -15px;">
+			 <p style="margin: 0 0 2px;">			
 				Member since {{profileData.created_at|date}}
 			 </p>
+			 
 			 <p style="font-size:13px;" (click)="reportUser()">
 			  <i class="fa fa-flag"></i> <a style="color:#000;">Report this member</a>
 			 </p>
+			 </div>
 			</div>
 		   </div>
 		  
