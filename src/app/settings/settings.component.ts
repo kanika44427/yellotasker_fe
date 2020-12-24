@@ -63,7 +63,7 @@ export class SettingComponent  implements OnInit {
   newPass : string = ""; 
   confPass : string = ""; 
   user_skill : any =  []; 
-
+  uploadImageIndicator : boolean= false; 
   options: DatepickerOptions = {
     // minYear: 1970,
     // maxYear: 2020,
@@ -292,6 +292,9 @@ export class SettingComponent  implements OnInit {
   }
    
   imageUpload(event,type){
+
+    if(event.target.files && event.target.files[0].name){
+      this.uploadImageIndicator = true; 
     let imageName=event.target.files[0].name;
     let ext = (imageName.substring(imageName.lastIndexOf('.') + 1).toLowerCase());
     let reader = new FileReader();
@@ -301,6 +304,11 @@ export class SettingComponent  implements OnInit {
     } else {
     }
         reader.readAsDataURL(event.target.files[0]);
+
+   }
+   else{
+    this.uploadImageIndicator = false;
+   }
   }
   onLoadCallback(e){
       this.setting.profile_image=e.target["result"];
@@ -325,11 +333,15 @@ export class SettingComponent  implements OnInit {
     this.activeMenu=type;
     if(type=='account'||type=='skills'||type=='mobile'||type=='portfolio') {
       this.openMenu = false;
+      if(type == 'portfolio'){
+        this.getPortfolioImages(); 
+      }
     }
     if(type=='skills'){
       this.getSkills();
     }
-
+    
+    
     
     // if(type=='mobile'){
     //   this.showMobile=true;
@@ -407,6 +419,29 @@ export class SettingComponent  implements OnInit {
     //   this.passwordChange=false;
     // }
   }
+ 
+
+  getPortfolioImages(){
+    let userId=this.commonService.getCookieValues("userid");
+    var param={
+      userId : userId,
+    }
+    this.commonService.showLoader();
+    this.httpService.getPortfolioImage(param).subscribe(
+      data => {
+        this.apiResponse = data;
+        if(this.apiResponse.message == 'Portfolio Image found')
+        {
+           this.portfolioImagesArr=[];
+           this.portfolioImagesArr=this.apiResponse.data;
+           this.commonService.hideLoader();
+        }
+        else{
+           this.commonService.hideLoader();
+        }
+    }); 
+  }
+
   getSkills(){
     if(this.setting.skills!=null&&this.setting.skills !==''){
       this.user_skill= this.setting.skills.split(',');
@@ -482,6 +517,7 @@ export class SettingComponent  implements OnInit {
           else{
             this.commonService.hideLoader();
           }
+          this.uploadImageIndicator = false; 
       });
     }
     else{

@@ -302,18 +302,22 @@
 									<div class="attachment-input-submit clearfix">
 										<div class="attachment-input-holder">
 											<div class="attachment-input">
-												<form method="post" enctype="multipart/form-data"><input type="file"
-														(change)="imageUpload($event,'portfolio')"></form>
-												<img style="width: 25%; margin-right: 5%" *ngIf="portfolioImage" [src]="portfolioImage">
-												<button class="button-ghost button-med attachment-text">
-													Select file(s)</button>
-												<button (click)="uploadImage()"
-													class="button-ghost button-med attachment-text">
-													upload photo</button>
+												<form method="post" enctype="multipart/form-data">
+													<input type="file" (change)="imageUpload($event,'portfolio')">
+												</form>
+												<img style="width: 25%;	" *ngIf="portfolioImage" [src]="portfolioImage">
+												
+												<button class="button-ghost button-med attachment-text" *ngIf="!uploadImageIndicator">
+													Select file(s)
+												</button>
+												
 												<label class="error-text">
 													{{errorMessage}}
 												</label>
-											</div>
+												<button (click)="uploadImage()" *ngIf="uploadImageIndicator" class="button-ghost button-med attachment-text"> Upload photo </button>	
+										</div>	
+												
+											
 											<ul class="portfolio-select-img">
 												<li *ngFor="let item of portfolioImagesArr">
 													<a (click)="deletePortfolioImage(item.imageId)"
