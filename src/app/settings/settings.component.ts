@@ -298,12 +298,21 @@ export class SettingComponent  implements OnInit {
     let imageName=event.target.files[0].name;
     let ext = (imageName.substring(imageName.lastIndexOf('.') + 1).toLowerCase());
     let reader = new FileReader();
-    if(ext=='png'||ext=='jpg')
+    if(event.target.files[0].size <  500000){
+      this.errorMessage= null; 
+      if(ext=='png'||ext=='jpg')
     {
         reader.onload = type=='portfolio'?this.onPortImgCallback.bind(this):this.onLoadCallback.bind(this);
+        
     } else {
+     
     }
-        reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(event.target.files[0]);
+  }
+  else{
+    this.errorMessage = "Maximum size of a file can be 5 MB."
+
+  }  
 
    }
    else{
