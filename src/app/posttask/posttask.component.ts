@@ -200,8 +200,8 @@ onStep1Submit(form : any , model: any, isValid: boolean) {
       {
          var date = new Date(this.user.dueDate)  ;
         
-         this.task.dueDate = date.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
-        //this.task.dueDate = date; 
+        //this.task.dueDate = date.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+        this.task.dueDate = date; 
         //var date =  new Date(this.user.dueDate.setDate(this.user.dueDate.getDate() - 1));
             
 

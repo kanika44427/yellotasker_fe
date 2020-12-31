@@ -242,7 +242,7 @@ export class TaskDetailComponent implements OnInit {
               data => {
 
               }); 
-            alert('Task Assigned successfully');
+            $('#TaskAssignedModal').modal({ backdrop: 'static', keyboard: false }, 'show');
             //this.commentIndicator = true;
             //  this.commentList = this.apiResponse.data;
             this.closePopup();
@@ -250,7 +250,7 @@ export class TaskDetailComponent implements OnInit {
             this.commonService.hideLoader();
           }
           else {
-            alert('Task already assigned !');
+            $('#TaskAlreadyAssigned').modal({ backdrop: 'static', keyboard: false }, 'show');
             this.commentIndicator = false;
             this.commonService.hideLoader();
           }
@@ -302,15 +302,17 @@ export class TaskDetailComponent implements OnInit {
         if (this.apiResponse.message == 'Comment deleted successfully.') {
           this.getAllComments(taskId);
           this.commonService.hideLoader();
-          alert('comment deleted successfully');
+          $('#DeleteCommentModal').modal({ backdrop: 'static', keyboard: false }, 'show');
         }
         else {
           this.getAllComments(taskId);
           this.commonService.hideLoader();
         }
       });
+     
   }
-  showEditForm() {
+
+  showEditForm(){
     $('#collapse1').addClass('in');
     this.showForm = true;
   }
@@ -344,7 +346,7 @@ export class TaskDetailComponent implements OnInit {
             this.commonService.hideLoader();
             this.showForm = false;
             $('#collapse1').removeClass('in');
-            alert('Task  updated successfully');
+            $('#TaskUpdateModal').modal({ backdrop: 'static', keyboard: false }, 'show');
           }
           else {
             this.commonService.hideLoader();
@@ -359,7 +361,6 @@ export class TaskDetailComponent implements OnInit {
 
         this.errorIndicator = true;
     }
-
   }
   onChangeLocation(e) {
     this.taskInfo.locationType = e;
@@ -384,7 +385,7 @@ export class TaskDetailComponent implements OnInit {
             this.offerList.splice(index, 1);
           }
           this.commonService.hideLoader();
-          alert('offer deleted successfully');
+          $('#DeleteOfferModal').modal({ backdrop: 'static', keyboard: false }, 'show');
           $('#myModal6').modal('hide');
           this.parentComponent.taskDetail = false;
           this.someEvent.next('offerPending');
@@ -411,7 +412,7 @@ export class TaskDetailComponent implements OnInit {
         if (this.apiResponse.message == 'Offer updated successfully.') {
           this.commonService.hideLoader();
           this.editOffer = false;
-          alert('Offer updated successfully.');
+          $('#OfferUpdateModal').modal({ backdrop: 'static', keyboard: false }, 'show'); 
         }
         else {
           this.commonService.hideLoader();
