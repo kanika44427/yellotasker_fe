@@ -198,10 +198,9 @@ onStep1Submit(form : any , model: any, isValid: boolean) {
     var amt=model.amount;
     if(isValid && amt > 0)
       {
-         var date = new Date(this.user.dueDate)  ;
-        
+         var myDate = new Date(this.user.dueDate);
         //this.task.dueDate = date.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
-        this.task.dueDate = date; 
+        this.task.dueDate = myDate.toISOString().replace('.000Z', '');    
         //var date =  new Date(this.user.dueDate.setDate(this.user.dueDate.getDate() - 1));
             
 

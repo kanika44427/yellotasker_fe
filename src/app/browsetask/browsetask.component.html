@@ -575,11 +575,13 @@
           </div>
           <div class="offer-section">
             <h4>Offers</h4>
+            
             <div class="offer-card" *ngFor="let list of offerList">
               <div class="offer-pic">
-                <img
-                  [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'"
-                  alt=""> &nbsp;&nbsp;<span class="offer-link">
+                <img [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'"
+                  alt=""> 
+                  
+                  <span class="offer-link">
                   <a (click)="navigateToProfile(list.interested_user[0])">{{list.interested_user[0].first_name}}
                     {{list.interested_user[0].last_name}}</a>
                   
@@ -605,6 +607,7 @@
               <div class="offer-complete">
                 <span class="percentage">84%</span>
               </div>
+            
               <div class="offer-post-time">
                 <span>{{list.created_at | timeAgo }}</span>
               </div>
@@ -748,17 +751,17 @@
             <div class="pop-location-nav">
               <i class="fa fa-location-arrow"></i>
             </div>
-            <div class="pop-location-desc">
+            <div class="pop-location-desc pb-4" style="padding-bottom: 10px;">
               <b>Location</b>
             </div>
-            <br>
-            <br>
+
+            
             <!-- <h5>Come to work place</h5> -->
             <!--bindings={
   "ng-reflect-ng-if": "true"
 }-->
-            <p>
-              <span *ngIf="itemDetail.locationType == 'Digital task'">
+            <p style="margin: 0 0 -5px">
+              <span  *ngIf="itemDetail.locationType == 'Digital task'">
                 Digital task</span>
               <span *ngIf="itemDetail.locationType == 'Physical task'">
                 Physical task <br>
@@ -783,8 +786,8 @@
                   [src]="itemDetail.user_detail.profile_image!=null&&itemDetail.user_detail.profile_image!=''?itemDetail.user_detail.profile_image:'assets/img/task-person.png'">
               </div>
               <div class="pic-name-right" *ngIf="itemDetail">
-                <p class="posted-by"><b>Posted by </b></p>
-                <h5><a (click)="visitProfile(itemDetail.user_detail)">{{itemDetail.user_detail.first_name}}</a>
+                <p class="posted-by" style="margin-bottom: -2px"><b>Posted by </b></p>
+                <h5 style="margin-bottom: 2px;"><a (click)="visitProfile(itemDetail.user_detail)">{{itemDetail.user_detail.first_name}}</a>
                   <!-- <span class="follow-ico"><a (click)="startFollowing()">
            <img src="assets/img/follow.png"></a></span> -->
                 </h5>

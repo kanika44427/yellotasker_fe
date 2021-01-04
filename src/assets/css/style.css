@@ -2026,7 +2026,7 @@ p.location-date span:nth-child(1) {
 .offer-card {
     float: left;
     width: 100%;
-    height: 75px;
+    height: 130px;
     line-height: 75px;
     padding: 0px 15px;
     border: 1px solid #eee;
@@ -2050,12 +2050,14 @@ p.location-date span:nth-child(1) {
 .offer-complete {
     float: left;
     width: 25%;
-    text-align: center;
+    text-align: left;
+    margin-top: 56px;
+    margin-left: -147px
 }
 .offer-post-time {
     float: left;
-    width: 25%;
-    text-align: center;
+    width: 55%;
+    text-align: right;
     font-size: 13px;
     font-weight: 700;
     color: #686868;
@@ -2077,6 +2079,7 @@ span.percentage {
 span.offer-link
 {
 position:relative;
+
 }
 .offer-tooltip {
     position: absolute;
@@ -2969,7 +2972,10 @@ border:none !important;
 .offer-rating {
     float: left;
     width: 22%;
-    text-align: center;
+    text-align: left;
+    margin-top: 21px;
+    margin-right: -2;
+    margin-left: -110px;     
 }
 div#acc-div {
     float: left;
@@ -5539,7 +5545,7 @@ margin-top:0px;
 
 .posted-By .pic-name-left {
     float: left;
-    width: 40%;
+    width: 33%;
 }
 .posted-By .pic-name-right {
     float: left;
@@ -5817,7 +5823,8 @@ span.offer-link {
     width: 59%;
     margin-left: 0px !important;
     font-size: 13px;
-    text-align: right;
+    text-align: left;
+    margin-top: -10px;
 }
 .offer-rating span:nth-child(2) {
     float: left;
