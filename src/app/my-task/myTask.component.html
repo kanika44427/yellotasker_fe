@@ -23,7 +23,7 @@
 			<div class="col-sm-8">
 				<div class="total-task">
 					<p><i class="fa fa-bitbucket"></i> Total
-						{{savedTaskIndicator==true?'saved ':(postedTaskIndicator==true?'posted':(offerTaskIndicator==true?'Offer pending':'Offer assigned'))}}
+						{{savedTaskIndicator==true?'saved ':(postedTaskIndicator==true?'posted':(offerTaskIndicator==true?'offered':'Offer assigned'))}}
 						task- {{TaskList?.length || '0'}} </p>
 				</div>
 				<label>Filter task by status: </label>
@@ -93,7 +93,7 @@
 									Come to work place at {{taskList.address}}</span>
 								<span><i class="fa fa-calendar"></i> Due date {{taskList.dueDate|date}}</span>
 							</p>
-							<p class="task-verview">
+							<p class="task-verview" style="height: 2vh;">
 								<span class=""
 									*ngIf="taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator)">
 									Assigned to somebody</span>
@@ -101,12 +101,13 @@
 									Cancelled</span>
 								<span class=""
 									*ngIf="taskList.status !=='cancel' && !(taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator))">
-									<p style="text-transform: capitalize;">{{taskList.status }}</p></span>
+									<p style="text-transform: capitalize; margin-bottom: -18px">{{taskList.status }}</p></span>
+
 								<span class="myi-task-comm">{{taskList.comment_count}} Comment</span>
 								<span class="my-task-offer">{{taskList.offer_count}} Offers</span>
 							</p>
 						</div>
-						<div class="card-right" style="padding: 52px 15px;">
+						<div class="card-right">
 							<p class="post-date">
 								Posted on {{taskList.created_at| date}}
 							</p>
@@ -480,7 +481,7 @@
 		<div class="modal-body">
 		  <div class="text-center success-loader">
 			<img src="assets/img/checkmark.gif" alt="yellotasker">
-			<p><b>Offer delete successfully.</b></p>
+			<p><b>Offer deleted successfully.</b></p>
 		  </div>
 		</div>
 	  </div>

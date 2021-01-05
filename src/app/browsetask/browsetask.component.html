@@ -582,6 +582,7 @@
                   alt=""> 
                   
                   <span class="offer-link">
+                    
                   <a (click)="navigateToProfile(list.interested_user[0])">{{list.interested_user[0].first_name}}
                     {{list.interested_user[0].last_name}}</a>
                   
@@ -604,9 +605,7 @@
                 <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                     class="fa fa-star"></i> <i class="fa fa-star"></i></span>
               </div>
-              <div class="offer-complete">
-                <span class="percentage">84%</span>
-              </div>
+             
             
               <div class="offer-post-time">
                 <span>{{list.created_at | timeAgo }}</span>
