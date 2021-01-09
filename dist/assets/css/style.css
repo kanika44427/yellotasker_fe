@@ -1123,9 +1123,12 @@ color:#000 !important;
     float: left;
     width: 25%;
     text-align: center;
-    padding: 36px 15px;
+    padding: 45px 15px;
     background: #000000;
     color: #fff;
+}
+.desc-cl {
+    min-height: 40px;
 }
 .posted-card {
     float: left;
@@ -4990,7 +4993,7 @@ margin-left:15px;
     padding: 10px 15px;
     border-radius: 40px;
     color: #000;
-    margin-left: -134px;
+    margin-left: -67px;
 }
 .child-acor .offer-post-time {
     margin-top: 10px;
@@ -5526,10 +5529,10 @@ margin-top:0px;
     margin-bottom: 0px;
     border-bottom: none;
 }
-.popup-location
-{
-margin-top:0px;
-}
+/* .popup-location */
+/* { */
+/* margin-top:0px; */
+/* } */
 .right-post-date {
     margin-top: 3px;
     float: left;
@@ -7156,6 +7159,7 @@ section.my-messages-main{padding:120px 0 30px}
 .chat-users .users-tabs ul li.active span:hover{background:#dedb0f}
 .chat-user-info{display:flex;align-items:center;padding:10px;border-bottom:1px solid #d8d8d8;cursor:pointer}
 .chat-user-info .chat-user-img{width:50px;height:50px;overflow:hidden;border-radius:50%;border:1px solid #ddd;min-width:50px}
+.chat-user-info .chat-user-img img {width: 100%;height: auto;min-height: 50px;}
 .chat-user-info .chat-user-detail{padding-left:15px}
 .chat-user-info .chat-user-detail h3{font-size:14px;margin:0;font-weight:700}
 .chat-user-info .chat-user-detail p{font-size:13px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin:0;font-weight:500;max-width:150px}
@@ -7324,3 +7328,32 @@ a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width:
     visibility: visible;
     opacity: 1;
   }
+  .oc-main {
+    display: flex;
+    align-items: center;
+}
+
+.oc-main .oc-img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.oc-main .oc-img img {
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+}
+
+.oc-info h3 {
+    background: transparent;
+    padding: 0;
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.oc-info {
+    padding-left: 7px;
+}

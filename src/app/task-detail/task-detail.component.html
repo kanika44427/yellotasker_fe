@@ -43,7 +43,7 @@
                                  {{task.description}}
                               </p>
 
-                              <p class="people-req"> <span><b>Budget Type </b> {{task.budgetType }}</span><br>
+                              <p class="people-req"> <span><b>Budget type </b> {{task.budgetType }}</span><br>
                                  <span><b> Total amount </b>{{task.totalAmount}} MYR</span><br>
 
 
@@ -54,7 +54,7 @@
 
                               
                               <p class="due-para" style="margin-top: -24px;"><i class="fa fa-calendar"></i>
-                                 <span class="due-text"><b style="margin-right: 62px;">Due Date</b> {{task.dueDate|date}}</span>
+                                 <span class="due-text"><b style="margin-right: 62px;">Due date</b> {{task.dueDate|date}}</span>
                               </p>
                            
                            </div>
@@ -79,7 +79,7 @@
                                     </small>
                                  </div>
                                  <div class="form-control">
-                                    <label>Due Date</label>
+                                    <label>Due date</label>
                                     <material-datepicker ngDefaultControl name="dueDate" placeholder="select date"
                                        [ngModel]="taskInfo.dueDate | date:'dd-MM-y'" style="padding-left:35px;"
                                        class="new-date-box" [(date)]="taskInfo.dueDate" dateFormat="DD-MM-YYYY">
@@ -279,17 +279,22 @@
                               <div class="offer-child">
                                  <div class="row">
                                     <div class="col-sm-4">
-                                       <img [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'" alt="" style="height:39px;"> 
-
-                                       <a (click)="navigateToProfile(list.interested_user[0])"> 
-                                          {{list.interested_user[0].first_name}} 
-                                          {{list.interested_user[0].last_name}}
-                                        </a>
-                                        
-                                       <div *ngFor="let i of Arr(list.interested_user[0].rating).fill(1)">                                         
-										            <i class="fa fa-star" style="margin-left: -63px;"></i>
-									            </div>
-
+                                       <div class="oc-main">
+                                          <div class="oc-img">
+                                             <img [src]="list.interested_user[0].profile_image!=null&&list.interested_user[0].profile_image!=''?list.interested_user[0].profile_image:'assets/img/task-person.png'" alt="" > 
+                                          </div>
+                                          <div class="oc-info">
+                                             <h3>
+                                                <a (click)="navigateToProfile(list.interested_user[0])"> 
+                                                   {{list.interested_user[0].first_name}} 
+                                                   {{list.interested_user[0].last_name}}
+                                                </a>
+                                             </h3>
+                                             <div class="oc-rating" *ngFor="let i of Arr(list.interested_user[0].rating).fill(1)">                                         
+                                                <i class="fa fa-star" style="margin-left: -63px;"></i>
+                                             </div>
+                                          </div>
+                                       </div>
                                     </div>
                                     <div class="col-sm-6">
                                        <span><b>Offer price :</b> {{list.offerPrice}} MYR</span>
