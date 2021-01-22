@@ -5,10 +5,11 @@
                aria-hidden="true">&times;</span></button>
          <div class="modal-body">
             <div class="post-detail-left">
-               <span *ngIf="taskDetails.offerAssignedTaskIndicator==true&&taskStatus=='assigned'"
-                  class="blink_text"><b>4 days left for completion of this task.</b></span>
+               <!-- <span *ngIf="taskDetails.offerAssignedTaskIndicator==true&&taskStatus=='assigned'"
+                  class="blink_text"><b>4 days left for completion of this task.</b></span> -->
                <span class="browse-anchor">
-                  <a class="active-a">{{task.status | titlecase}}</a>
+                  <a class="active-a" *ngIf="task.status == 'completed from doer'">Completed from doer</a>
+                  <a class="active-a" *ngIf="task.status !== 'completed from doer'">{{task.status | titlecase}}</a>
                   <!-- <a *ngIf="!taskStatusIndicator&&!taskDetails.offerTaskIndicator" style="background:none !important; color:#484848 !important;" href="#">
                       <i class="fa fa-trash" style="color:#337ab7;"></i></a> -->
                   <a *ngIf="taskDetails.savedTaskIndicator&&!taskStatusIndicator&&!taskDetails.offerTaskIndicator"

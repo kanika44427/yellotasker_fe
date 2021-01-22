@@ -1,37 +1,40 @@
 <div>
    
-        <h4 class="right-heading-recent ">Recent Activity on Yellotasker</h4>
-           
-     <div class="right-card" *ngFor ="let list of taskList">
-     
-      <div class="right-card-content">
-     <!--  <h4> 
-         <span style="color:#337ab7;">
-            <i id="message" class="{{list.title=='New Task Added'||list.title=='Offer posted'?'fa fa-thumb-tack':(list.title=='Comment Added'||list.title=='Comment Added'?'fa fa-envelope':'fa fa-tags')}}"></i>
-        </span> 
-       <!-- <span style="color:#337ab7;"><i id="message" class="fa fa-thumb-tack"></i></span>
-        <span style="color:#337ab7;"><i id="message" class="fa fa-tags"></i></span> 
-           
+        
+    
+        <ul class="nav nav-tabs" style="margin-top:-120px" role="tablist">
+            <li role="presentation" [ngClass]="{'active': posterIndicator}" >
+                <a (click)="getTaskSummary('Poster')">As Poster</a>
+            </li>
+            <li role="presentation" [ngClass]="{'active': !posterIndicator}">
+                <a (click)="getTaskSummary('Worker')">As Tasker</a>
+            </li>
+        </ul>
+        <h4 class="right-heading-recent ">Notifications  </h4>
+        <div *ngIf="taskList && taskList.length > 1">
+            <div class="right-card" *ngFor ="let list of taskList">
             
-           {{list.title}}</h4>-->
-       <p *ngIf="list.title=='Comment Added'">
-           <a href="#">{{list.user_details.first_name}} {{list.user_details.last_name}}</a> commented
-            {{list.message}} on <a href="">{{list.commentsDetails.task_detail.title}}</a></p>
-       <p *ngIf="list.title=='New Task Added'">
-           <a href="">{{list.user_details.first_name}} {{list.user_details.last_name}}</a> 
-           posted a task <a *ngIf="list.taskDetails !== null">{{list.taskDetails.title}}</a></p>
-       <p *ngIf="list.title=='Task updated'">
-            <a href="">{{list.taskDetails.post_user_detail.first_name}} {{list.taskDetails.post_user_detail.last_name}} </a> 
-            updated a task <a *ngIf="list.taskDetails !== null">{{list.taskDetails.title}}</a></p>
-       <p *ngIf="list.title=='Offer posted'">
-            <a href="">{{list.user_details.first_name}} {{list.user_details.last_name}} </a>
-            made an offer on <a href="">{{list.title}}</a></p>
-       <p *ngIf="list.title=='User register'">
-                <a href="">{{list.user_details.first_name}} {{list.user_details.last_name}} </a>
-                 has recently registered on Yellotasker at {{list.userRegisterd.created_at | date}}
-        </p>
-      </div>
-     </div>
+            <div class="right-card-content">
+            
+            <p *ngIf="list.title=='Comment Added'">
+                <a href="#">{{list.user_details.first_name}} {{list.user_details.last_name}}</a> commented
+                    {{list.message}} on <a href="">{{list.commentsDetails.task_detail.title}}</a></p>
+            <p *ngIf="list.title=='New Task Added'">
+                <a href="">{{list.user_details.first_name}} {{list.user_details.last_name}}</a> 
+                posted a task <a *ngIf="list.taskDetails !== null">{{list.taskDetails.title}}</a></p>
+            <p *ngIf="list.title=='Task updated'">
+                    <a href="">{{list.taskDetails.post_user_detail.first_name}} {{list.taskDetails.post_user_detail.last_name}} </a> 
+                    updated a task <a *ngIf="list.taskDetails !== null">{{list.taskDetails.title}}</a></p>
+            <p *ngIf="list.title=='Offer posted'">
+                    <a href="">{{list.user_details.first_name}} {{list.user_details.last_name}} </a>
+                    made an offer on <a href="">{{list.title}}</a></p>
+            <p *ngIf="list.title=='User register'">
+                        <a href="">{{list.user_details.first_name}} {{list.user_details.last_name}} </a>
+                        has recently registered on Yellotasker at {{list.userRegisterd.created_at | date}}
+                </p>
+            </div>
+            </div>
+        </div>
 
      <!-- <div class="right-card">
       <div class="right-card-pic">

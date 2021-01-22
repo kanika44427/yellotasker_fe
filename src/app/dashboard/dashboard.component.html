@@ -141,28 +141,7 @@
 								
 							</div>
 						
-						<div class="performance-profile">
-							<!--<p><img src="assets/img/success-btn.png"> <span>80% Task Completed on time</span></p>
-                                                <p><img src="assets/img/success-btn.png"> <span>50 Jobs Done</span></p>
-                                                <p><img src="assets/img/success-btn.png"> <span>600 $ cash earned</span></p>-->
-
-							<p class="badge-content text-center" style="padding-bottom: 150px; margin-left:30px;">
-								<span style="display:block; margin:-35px auto 13px auto">
-									Notifications
-								</span>
-								You haven't received any notifications yet	
-							</p>
-							<ul class="nav nav-tabs" style="margin-top:-120px" role="tablist">
-								<li role="presentation" [ngClass]="{'active': posterIndicator}" >
-									<a (click)="getTaskSummary('Poster')">As Poster</a>
-								</li>
-								<li role="presentation" [ngClass]="{'active': !posterIndicator}">
-									<a (click)="getTaskSummary('Worker')">As Tasker</a>
-								</li>
-							</ul>
-							
-							
-						</div>
+						
 						<div class="recent-profile-activity">
 							<notification-browse-task></notification-browse-task>
 						</div>

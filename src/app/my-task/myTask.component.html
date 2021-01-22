@@ -101,7 +101,14 @@
 									Cancelled</span>
 								<span class=""
 									*ngIf="taskList.status !=='cancel' && !(taskList.status=='assigned' && (offerTaskIndicator||savedTaskIndicator))">
-									<p style="text-transform: capitalize; margin-bottom: -18px">{{taskList.status }}</p></span>
+									<p style="margin-bottom: -18px"  *ngIf="taskList.status == 'completed from doer'">
+										Completed from tasker
+									</p>
+									
+									<p style="margin-bottom: -18px"  *ngIf="taskList.status !== 'completed from doer'">
+										{{taskList.status | titlecase }}
+									</p>
+								</span>
 
 								<span class="myi-task-comm">{{taskList.comment_count}} Comment</span>
 								<span class="my-task-offer">{{taskList.offer_count}} Offers</span>
@@ -464,6 +471,23 @@
 		  <div class="text-center success-loader">
 			<img src="assets/img/checkmark.gif" alt="yellotasker">
 			<p><b>Task updated successfully.</b></p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  <div class="modal fade" id="updateTaskStatusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span></button>
+		  <h4 class="modal-title" id="myModalLabel">Update Task Status</h4>
+		</div>
+		<div class="modal-body">
+		  <div class="text-center success-loader">
+			<p><b>Do you want to update status of the task ? </b></p>
 		  </div>
 		</div>
 	  </div>

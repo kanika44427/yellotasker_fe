@@ -436,8 +436,8 @@ export class HttpService {
                             .catch((error:any) => Observable.throw(error.json().error || 'Server error'));  
         }
          // notification api
-         notifications(){
-            return this.http.get(this.API_ENDPOINT_UAT + 'notifications')
+         notifications(id){
+            return this.http.get(this.API_ENDPOINT_UAT + 'notifications?user_id='+id )
             // ...and calling .json() on the response to return data
              .map((res:Response) =>  res.json())
              //...errors if any

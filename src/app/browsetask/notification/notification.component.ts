@@ -17,24 +17,36 @@ declare var $ :any;
 export class NotificationComponent  implements OnInit {
   parentComponent:any;
   apiResponse:any;
+  posterIndicator : any;
   taskList:any;
   constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService){
       this.parentComponent = this.inj.get(AppComponent);
     }
   ngOnInit() {
+    this.posterIndicator = true;
   window.scrollTo(0,0);
-  this.httpService.notifications().subscribe(
+  let userId=this.commonService.getCookieValues("userid");
+  this.httpService.notifications(userId).subscribe(
     data => {
       this.apiResponse = data;
       if(this.apiResponse.message == 'Notification list found')
       {
-        console.log('list', this.apiResponse);
-        this.taskList = this.apiResponse.data;
-        //this.taskList=this.taskList.slice(1, 10);
-        console.log('list', this.taskList);
-     //   this.taskListIndicator = true;
+        this.taskList = this.apiResponse.data.poster;
         this.commonService.hideLoader();
       }
   });
+  }
+
+  getTaskSummary(userType)
+  {
+    if(userType == "Poster")
+    {
+      this.posterIndicator = true;
+      this.taskList = this.apiResponse.data.poster;
+    }
+    if(userType == "Worker"){
+      this.posterIndicator = false;
+      this.taskList = this.apiResponse.data.doer;
+    }
   }
 }
