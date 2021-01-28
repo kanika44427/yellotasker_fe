@@ -109,25 +109,30 @@
 					  <div *ngFor ="let review of list.doer_user_detail.doer_review">
 							  <span *ngIf= "review.taskId == list.id" >
 									<div class="half-review" >
+
 											<div class="recent-detail" >
 										<div class="recent-pic" *ngIf ="list.task_posted_user;">
 												<img [src]="list.doer_user_detail.profile_image!=null&&list.doer_user_detail.profile_image!=''?list.doer_user_detail.profile_image:'assets/img/task-person.png'">
 										</div>
-										<span>{{list.title}}</span>
+										<span><b>{{list.title}}</b></span>
 										<br/>
 										<span *ngIf="list.doer_user_detail.first_name && list.doer_user_detail.last_name">
 										   <a routerLink ="/profile-view/{{list.doer_user_detail.first_name}}/{{list.doer_user_detail.id}}" (click)="getProfileOfOthers()">
 											{{list.doer_user_detail.first_name}} {{list.doer_user_detail.last_name}} </a> said "
 											</span>
-									      {{review.doerReview}}"
-										<p style="color:#666; font-size:13px; margin-top:10px;">
+											
+										  {{review.doerReview}}"
+										
+										<p style="color:#666; font-size:13px; margin-top:2px; margin-left: 60px">
 												{{list.updated_at | timeAgo }}
-										</p>
+												<br>
+										
 									<span *ngFor = "let rating of createRange(review.doerRating)">
 											<i class="fa fa-star"></i> 
 									</span>
-								 
+								</p>
 								 </div>
+								 
 								 </div>
 							</span>
 					   </div>
@@ -193,7 +198,7 @@
 		
 	   </div>
 	   <div class="recent-profile-activity main-profile-right" *ngIf="profileData.modeOfreach != null">
-		<p class="text-center review-bg"><span>Transpotation</span></p>
+		<p class="text-center review-bg"><span>Transportation</span></p>
 		<p *ngFor = "let data of profileData.modeOfreach">{{data}}</p>
 		
 	   </div>

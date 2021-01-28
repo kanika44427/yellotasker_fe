@@ -1630,8 +1630,9 @@ p.badge-content.text-center {
 }
 .recent-detail {
     float: left;
-    width: 86%;
+    width: 130%;
     margin-bottom: 15px;
+    padding: 1px 5px 6px;
     font-size: 13px;
 }
 .card-profile ul li a {
@@ -6699,7 +6700,7 @@ margin-bottom: 15px !important;    background: #34495e;
     margin-top: 40px;
 }
 h4.right-heading-recent {
-    margin-top: 5px;
+    margin-top: 75px;
 }
 .card-profile {
     width: 98%;
@@ -7098,7 +7099,7 @@ label.switch-wrap input:checked + .switch:before {background: #ffff01;}
 .profile-complete-box{margin-bottom: 50px;overflow: hidden;}
 .usr-info {display: flex;align-items: center;}
 .usr-info .usr-profile-pic {width: 80px;height: 80px;overflow: hidden;border-radius: 50%;min-width: 80px;margin-right: 25px;}
-.usr-info .usr-profile-pic img {width: 100%;min-height: 110px;}
+.usr-info .usr-profile-pic img {width: 100%;min-height: 80px;}
 .profile-completion-info h4 {margin: 0;font-size: 16px;}
 .profile-completion-info {border: 1px solid #b5b5b5;padding: 25px 15px;border-radius: 4px;}
 .mt-20{margin-top:20px;}

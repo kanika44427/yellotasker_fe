@@ -298,7 +298,7 @@ export class SettingComponent  implements OnInit {
     let imageName=event.target.files[0].name;
     let ext = (imageName.substring(imageName.lastIndexOf('.') + 1).toLowerCase());
     let reader = new FileReader();
-    if(event.target.files[0].size <  500000){
+    if(event.target.files[0].size <  5000000){
       this.errorMessage= null; 
       if(ext=='png'||ext=='jpg')
     {
