@@ -7358,3 +7358,12 @@ a.close-menu {left: -29px;position: absolute;background: #fff;color: #000;width:
 .oc-info {
     padding-left: 7px;
 }
+
+.save-task-not-active {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .save-task-not-active a{
+      color: grey; 
+  }

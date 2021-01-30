@@ -283,7 +283,7 @@
             <p class="{{item.taskOwnerId==userId?'offer-not-active':'make-offer'}}">
               <a (click)="showOfferConfirmationPopup(item)">Make an offer</a>
             </p>
-            <p class="save-job" style="cursor: pointer;">
+            <p class="{{item.taskOwnerId==userId?'save-task-not-active':'save-job'}}" style="cursor: pointer;">
               <a (click)="addToSaveJobs(item)"><i class="fa fa-plus"></i> Save this task </a>
             </p>
             <!-- <p class="{{item.taskOwnerId==userId?'offer-not-active view-offer':'view-offer'}}">

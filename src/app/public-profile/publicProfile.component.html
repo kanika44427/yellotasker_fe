@@ -125,12 +125,14 @@
 										
 										<p style="color:#666; font-size:13px; margin-top:2px; margin-left: 60px">
 												{{list.updated_at | timeAgo }}
-												<br>
+										</p>
+												<span *ngFor = "let rating of createRange(review.doerRating)">
+													<i class="fa fa-star"></i> 
+											</span>
+											
 										
-									<span *ngFor = "let rating of createRange(review.doerRating)">
-											<i class="fa fa-star"></i> 
-									</span>
-								</p>
+									
+								
 								 </div>
 								 
 								 </div>
@@ -138,7 +140,7 @@
 					   </div>
 					 </div>
 				   </div>
-				   <p *ngIf="noReviewsAsPoster">There are no reviews</p>
+				   <p *ngIf="noReviewsAsPoster">There are no reviews - poster</p>
 				</div>
 		</div><!--user profile close-->
 		<div *ngIf="!posterIndicator"><!-- task doer indicator --> 
@@ -146,7 +148,7 @@
 				<h4>Completion percentage</h4>
 				{{ profileData.completion_rate_doer != null?profileData.completion_rate_doer:'-'}} %
 			</div>
-			<h4>Review</h4>
+			<h4>Reviews</h4>
 			<div *ngFor ="let list of profileData.task_as_doer">
 				<div *ngIf="list.task_posted_user && list.task_posted_user.poster_review">
 				 <div *ngFor ="let review of list.task_posted_user.poster_review">
@@ -163,13 +165,13 @@
 									   {{list.task_posted_user.first_name}} {{list.task_posted_user.last_name}} </a> said "
 								   </span>
 									 {{review.posterReview}}"
-								   <p style="color:#666; font-size:13px; margin-top:10px;">
-										   {{list.updated_at | timeAgo }}
-								   </p>
+								  
 							   <span *ngFor = "let rating of createRange(review.posterRating)">
 									   <i class="fa fa-star"></i> 
 							   </span>
-							
+							   <p style="color:#666; font-size:13px; margin-top:10px;">
+								{{list.updated_at | timeAgo }}
+								</p>
 							</div>
 							</div>
 					   </span>
@@ -177,10 +179,10 @@
 				  </div>
 				</div>
 				<ng-template #elseBlock1>
-					<p>There are no reviews</p>
+					<p>There are no reviews - tasker</p>
 				</ng-template>
 			  </div>
-			  <p *ngIf="noReviewsAsTasker">There are no reviews</p>
+			  <p *ngIf="noReviewsAsTasker">There are no reviews- tasker</p>
 		</div>
 	   </div>
 	  </div>
