@@ -29,18 +29,17 @@
 				<label>Filter task by status: </label>
 				<select [(ngModel)]="query" class="filter-select">
 					<option value="">Please select</option>
-					<option value="open">open</option>
-					<option value="expired">expired</option>
-					<option value="assigned">assigned</option>
-					<option value="completed from doer">completed from tasker</option>
-					<option value="completed">completed</option>
-					<option value="closed">closed</option>
-					<option value="closed">cancelled</option>
+					<option value="open">Open</option>
+					<option value="expired">Expired</option>
+					<option value="assigned">Assigned</option>
+					<option value="completed from doer">Completed from tasker</option>
+					<option value="completed">Completed</option>
+					<option value="reopen">Reopen</option>
+					<option value="closed">Cancelled</option>
 				</select>
 				<button class="filter-btn" (click)="removeFilter()">Remove filter</button>
 				<div class="posted-card" *ngFor="let taskList of TaskList | search :'status': query ">
 					<div class="posted-card-sec">
-						<!-- <a  class="{{taskList.status=='expired'||(taskList.status=='assigned'&&savedTaskIndicator==true)?'card-left not-active':'card-left'}}"> -->
 						<div class="card-left">
 							<h4>
 							<a *ngIf="postedTaskIndicator||offerTaskIndicator||offerAssignedTaskIndicator"
@@ -125,9 +124,10 @@
 									class="{{taskList.status=='expired'?'not-active':''}}"
 									(click)="openTaskDetail(taskList)">
 									<span
-										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'Action Required':
-													(taskList.status=='reopen'||taskList.status=='assigned'?'Track status':(taskList.status=='Completed'?'Completed':
-													(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Track status'))))}}
+										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'blink_text':''}}">
+										{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer' && postedTaskIndicator || taskList.status=='reopen' && offerAssignedTaskIndicator ?'Action Required':
+													(taskList.status=='reopen' && postedTaskIndicator ||taskList.status=='assigned' || taskList.status=='completed from doer' ?'Track status':(taskList.status=='Completed'?'Completed':
+													(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
 									</span>
 								</a>
 								<a *ngIf="!postedTaskIndicator&&!offerTaskIndicator&&!offerAssignedTaskIndicator"
@@ -136,7 +136,7 @@
 									<span
 										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'Action Required':
 												(taskList.status=='reopen'||taskList.status=='assigned'?'Track status':(taskList.status=='completed'?'Completed':
-												(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Track status'))))}}
+												(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
 									</span>
 								</a>
 

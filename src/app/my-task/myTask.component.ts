@@ -118,6 +118,8 @@ export class MyTaskComponent  implements OnInit {
   }
   showTask(listType){
     this.commonService.showLoader();
+    this.removeFilter(); 
+    this.query = "";
     if(listType=='saveTask'){
       this.savedTaskIndicator=true;
       this.postedTaskIndicator=false;
