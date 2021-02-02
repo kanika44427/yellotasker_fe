@@ -77,6 +77,9 @@ getTaskSummary(userType)
 
   redirectToMyTask(taskType) {
     this.commonService.setCookieValues('taskType',taskType);
+    // if(this.posterIndicator == true)
+    // this.router.navigateByUrl('./my-task?type=posted-task');
+    // else
     this.router.navigate(['./my-task']);
   }
 }

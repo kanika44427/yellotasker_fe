@@ -644,14 +644,12 @@
                         {{task.task_posted_user.last_name}}</a>
                   </div>
                </div>
-               <div
-                  *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')"
+               <div *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')"
                   class="change-status">
-                  <label>Change Task status</label>
+                  <label>Change task status</label>
                   <select name="status" #status="ngModel" [(ngModel)]="taskStatus"
-                     (ngModelChange)="onChange(taskStatus,task, prevStatus)" (focus)="prevStatus=taskStatus"
-                     placeholder="task status">
-
+                     (ngModelChange)="onChange(taskStatus,task, prevStatus)" (focus)="prevStatus=taskStatus">
+                     <!-- <option value="">Please select</option> -->
                      <option style="color:green;">
                         Completed
                      </option>
@@ -660,7 +658,7 @@
                      </option>
                   </select>
                </div>
-               <div *ngIf="taskDetails.offerAssignedTaskIndicator && taskStatus !== 'completed from doer'"
+               <div *ngIf="taskDetails.offerAssignedTaskIndicator && taskStatus !== 'completed from doer' && taskStatus !== 'Completed'"
                   class="status-btn">
                   <a (click)="taskCompletedFromDoer('completed from doer',task)">Complete task</a>
                </div>

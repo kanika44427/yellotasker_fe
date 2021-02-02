@@ -543,7 +543,7 @@ export class TaskDetailComponent implements OnInit {
   }
 
   onChange(e, taskDetail, prevStatus) {
-
+    //$('#updateTaskStatusModal').modal('show');
     var param = {
       taskId: taskDetail.taskId != undefined ? taskDetail.taskId : taskDetail.id,
       taskDoerId: taskDetail.taskDoerId,
@@ -556,7 +556,7 @@ export class TaskDetailComponent implements OnInit {
           data => {
             this.apiResponse = data;
             if (this.apiResponse.message == 'Task completed successfully from doer') {
-              console.log('e', param.status);
+              //console.log('e', param.status);
               this.commonService.hideLoader();
               this.hideStatus = param.status == 'completed' || param.status == 'completed from doer' ? true : false;;
               this.task.status = param.status;
@@ -590,6 +590,7 @@ export class TaskDetailComponent implements OnInit {
         });
     }
   }
+
   openMessage() {
     $('#collapse4').addClass('in');
   }

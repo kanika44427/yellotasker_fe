@@ -34,10 +34,10 @@
 						<div class="card-profile" *ngIf="dashboardData">
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation" [ngClass]="{'active': posterIndicator}">
-									<a (click)="getTaskSummary('Poster')">As Poster</a>
+									<a (click)="getTaskSummary('Poster')">As poster</a>
 								</li>
 								<li role="presentation" [ngClass]="{'active': !posterIndicator}">
-									<a (click)="getTaskSummary('Worker')">As Tasker</a>
+									<a (click)="getTaskSummary('Worker')">As tasker</a>
 								</li>
 							</ul>
 
@@ -49,19 +49,19 @@
 									</a> 
 								</div>
 								<div>
-								     <a (click)="redirectToMyTask('offerAccepting')">
+								     <a (click)="redirectToMyTask('postedTask')">
 										Task in progress:
 										{{dashboardData.user_Task_Summary.as_poster.assigned + dashboardData.user_Task_Summary.as_poster.completed_from_doer}}
 								
 								      </a>
 							    </div>
 								<div>
-									<a (click)="redirectToMyTask('offerAccepting')">
+									<a (click)="redirectToMyTask('postedTask')">
 										Reopen : {{dashboardData.user_Task_Summary.as_poster.reopen}}
 									</a>
 								</div>
 								<div>
-									<a (click)="redirectToMyTask('offerAccepting')">
+									<a (click)="redirectToMyTask('postedTask')">
 										Completed : {{dashboardData.user_Task_Summary.as_poster.closed}}
 									</a>
 								</div>
