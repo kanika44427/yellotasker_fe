@@ -39,7 +39,6 @@
 				</select>
 				<button class="filter-btn" (click)="removeFilter()">Remove filter</button>
 				<div class="posted-card" *ngFor="let taskList of TaskList | search :'status': query ">
-
 					<div class="posted-card-sec">
 						<!-- <a  class="{{taskList.status=='expired'||(taskList.status=='assigned'&&savedTaskIndicator==true)?'card-left not-active':'card-left'}}"> -->
 						<div class="card-left">
@@ -126,18 +125,18 @@
 									class="{{taskList.status=='expired'?'not-active':''}}"
 									(click)="openTaskDetail(taskList)">
 									<span
-										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
-													(taskList.status=='reopen'||taskList.status=='assigned'?'Track Status':(taskList.status=='closed'?'Done !!':
-													(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
+										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'Action Required':
+													(taskList.status=='reopen'||taskList.status=='assigned'?'Track status':(taskList.status=='Completed'?'Completed':
+													(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Track status'))))}}
 									</span>
 								</a>
 								<a *ngIf="!postedTaskIndicator&&!offerTaskIndicator&&!offerAssignedTaskIndicator"
 									class="{{taskList.status=='expired'?'not-active':''}}"
 									routerLink="/browse-task/{{taskList.taskId}}">
 									<span
-										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed-from-doer'?'Action Required':
-												(taskList.status=='reopen'||taskList.status=='assigned'?'Track Status':(taskList.status=='closed'?'Done !!':
-												(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Offers Awaiting'))))}}
+										class="{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'blink_text':''}}">{{taskList.status=='open'&&(taskList.offer_count!=0||taskList.comment_count!=0)||taskList.status=='completed from doer'?'Action Required':
+												(taskList.status=='reopen'||taskList.status=='assigned'?'Track status':(taskList.status=='completed'?'Completed':
+												(taskList.status=='expired'?'Expired':(taskList.status=='pending'?'Pending':'Track status'))))}}
 									</span>
 								</a>
 
