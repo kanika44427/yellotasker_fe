@@ -13,7 +13,7 @@ import {ActivatedRoute,Router} from '@angular/router';
 export class DashboardComponent implements OnInit{
   apiResponse : any;
   dashboardData : any;
- 
+  posterIndicator : any;
   totalPercentage : any;
   parentComponent : any;
   categoryList : any;
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit(){
-    
+    this.posterIndicator = true;
     let userId=this.commonService.getCookieValues("userid");
     this.commonService.showLoader();
     this.httpService.dashboard(userId).subscribe(
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit{
         this.commonService.showLoader();
         if(this.apiResponse.message == 'Category dashboard list')
         {
-          this.categoryList=this.apiResponse .data;
+          this.categoryList=this.apiResponse.data;
           this.commonService.hideLoader();
         }
         else{
@@ -59,14 +59,27 @@ export class DashboardComponent implements OnInit{
     });
   }
 
-  
+getTaskSummary(userType)
+ {
+    if(userType == "Poster")
+   {
+      this.posterIndicator = true;
+    }
+        if(userType == "Worker"){
+          this.posterIndicator = false;
+        }
+    }
 
   openPostTask(cat)
   {
     this.parentComponent.openPostTaskPopup(cat);
   }
+
   redirectToMyTask(taskType) {
     this.commonService.setCookieValues('taskType',taskType);
+    // if(this.posterIndicator == true)
+    // this.router.navigateByUrl('./my-task?type=posted-task');
+    // else
     this.router.navigate(['./my-task']);
   }
 }

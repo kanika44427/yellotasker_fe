@@ -18,7 +18,7 @@ export class NotificationComponent  implements OnInit {
   parentComponent:any;
   apiResponse:any;
   posterIndicator : any;
-  taskList:any;
+  taskList:any = []; ;
   constructor(private inj:Injector,private httpService: HttpService, private commonService: CommonService){
       this.parentComponent = this.inj.get(AppComponent);
     }
@@ -34,7 +34,7 @@ export class NotificationComponent  implements OnInit {
         this.taskList = this.apiResponse.data.poster;
         this.commonService.hideLoader();
       }
-  });
+   });
   }
 
   getTaskSummary(userType)

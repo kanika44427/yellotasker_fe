@@ -45,7 +45,7 @@ export class MyTaskComponent  implements OnInit {
   reasonList : any;
   Arr = Array;
   query : any;
-  constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService,private reversePipe: ReversePipe,private datePipe: DatePipe,private router:Router){
+  constructor(private inj:Injector, private httpService: HttpService, private commonService: CommonService,private reversePipe: ReversePipe,private datePipe: DatePipe,private router:Router, private route: ActivatedRoute){
     this.parentComponent = this.inj.get(AppComponent);
     this.query = "";
   }
@@ -118,6 +118,8 @@ export class MyTaskComponent  implements OnInit {
   }
   showTask(listType){
     this.commonService.showLoader();
+    this.removeFilter(); 
+    this.query = "";
     if(listType=='saveTask'){
       this.savedTaskIndicator=true;
       this.postedTaskIndicator=false;

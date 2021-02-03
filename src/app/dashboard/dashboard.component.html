@@ -19,59 +19,9 @@
 			<div class="profile-complete-box">
 				<div class="profile-counter" *ngIf="dashboardData">
 					<h4>Your profile is {{totalPercentage | number : '1.2-2'}} % complete</h4>
-					<!-- <p><a href="#">Skill  : {{dashboardData.skill_completion}} </a> &nbsp;&nbsp;&nbsp;
-								   <a href="#">Profile  : {{dashboardData.profile_completion}}</a> &nbsp;&nbsp;&nbsp;
-								  <a href="#"> Badges  : {{dashboardData.badges}}</a>
-								</p> -->
+				
 				</div>
 			</div>
-			<!--<div class="dashboard-main">
-							<div class="refer-a-friend text-center">
-							 <img src="assets/img/refer.png" height="90px;">
-							 <h4><b>Get free Yellotasker Credit</b></h4>
-							 <p>
-					  Invite a friend to try Yellotasker with 25 MYR towards their first task.
-					  Once it’s completed, you’ll get 10 MYR Yellotasker Credit*<br>
-					  *Terms and conditions apply. Find out more <a href="#">here</a><br>
-					  <a href="#" class="refer-link">Refer A Friend</a>
-							 </p>
-							</div>
-						   </div>-->
-			<!-- <div id="adv_team_4_columns_carousel" 
-						   class="carousel slide four_shows_one_move team_columns_carousel_wrapper"
-						    data-ride="carousel" data-interval="2000" data-pause="hover">
-							
-							<div class="carousel-inner" role="listbox">
-							
-							   <div class="item active" *ngFor ="let cat of categoryList">
-								  <div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image product-item" >
-										  <div class="service-pic" >
-										   <a (click)="openPostTask(cat)">
-											   <img alt="" src="{{cat.category_image}}">
-											   <div class="service-over">
-												<p>{{cat.category_name}}</p>
-											   </div>
-											   <div class="service-over-post">
-												   <a>post a task now </a>
-											   </div>
-										   </a>
-									   </div>
-								  </div>
-							   </div>
-							</div>
-						
-							<a class="left carousel-control team_columns_carousel_control_left adv_left" href="#adv_team_4_columns_carousel" role="button" data-slide="prev">
-							<span class="fa fa-angle-left team_columns_carousel_control_icons" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-							</a>
-							
-							<a class="right carousel-control team_columns_carousel_control_right adv_right" href="#adv_team_4_columns_carousel" role="button" data-slide="next">
-							<span class="fa fa-angle-right team_columns_carousel_control_icons" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-							</a>
-						 </div> 
-				    
-				   </div>-->
 			<div class="row">
 				<div class="col-sm-12 head-pro text-center">
 					<h3>My task summary</h3>
@@ -81,14 +31,13 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="profile-tabs">
-						<!-- Nav tabs -->
 						<div class="card-profile" *ngIf="dashboardData">
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation" [ngClass]="{'active': posterIndicator}">
-									<a (click)="getTaskSummary('Poster')">As Poster</a>
+									<a (click)="getTaskSummary('Poster')">As poster</a>
 								</li>
 								<li role="presentation" [ngClass]="{'active': !posterIndicator}">
-									<a (click)="getTaskSummary('Worker')">As Tasker</a>
+									<a (click)="getTaskSummary('Worker')">As tasker</a>
 								</li>
 							</ul>
 
@@ -96,23 +45,23 @@
 							<div class="post-worker-info tab-content" *ngIf="posterIndicator == true">
 								<div> 
 									<a (click)="redirectToMyTask('postedTask')">
-										Task Posted : {{dashboardData.user_Task_Summary.as_poster.posted_offers}}
+										Task posted : {{dashboardData.user_Task_Summary.as_poster.posted_offers}}
 									</a> 
 								</div>
 								<div>
-								     <a (click)="redirectToMyTask('offerAccepting')">
+								     <a (click)="redirectToMyTask('postedTask')">
 										Task in progress:
 										{{dashboardData.user_Task_Summary.as_poster.assigned + dashboardData.user_Task_Summary.as_poster.completed_from_doer}}
 								
 								      </a>
 							    </div>
 								<div>
-									<a (click)="redirectToMyTask('offerAccepting')">
+									<a (click)="redirectToMyTask('postedTask')">
 										Reopen : {{dashboardData.user_Task_Summary.as_poster.reopen}}
 									</a>
 								</div>
 								<div>
-									<a (click)="redirectToMyTask('offerAccepting')">
+									<a (click)="redirectToMyTask('postedTask')">
 										Completed : {{dashboardData.user_Task_Summary.as_poster.closed}}
 									</a>
 								</div>
@@ -142,9 +91,9 @@
 							</div>
 						
 						
-						<div class="recent-profile-activity">
-							<notification-browse-task></notification-browse-task>
-						</div>
+						<!-- <div class="recent-profile-activity">
+							 <notification-browse-task></notification-browse-task> 
+						</div> -->
 
 
 
