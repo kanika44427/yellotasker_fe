@@ -1626,7 +1626,7 @@ p.badge-content.text-center {
 }
 .recent-pic {
     float: left;
-    width: 13%;
+    width: 12%;
 }
 .recent-detail {
     float: left;
@@ -1653,6 +1653,12 @@ p.badge-content.text-center {
 	padding: 15px !important;
 	line-height:auto !important;
 }
+
+.add{
+    margin-left: 134px; 
+}
+
+
 .card-profile ul li a:hover
 {
 background:none !important;
