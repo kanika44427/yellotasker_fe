@@ -107,13 +107,15 @@
 							</div>
 							<div class="main-profile-review">
 								<h4>Review</h4>
+								
 								<div *ngFor="let list of profileData.task_as_poster">
 									<div *ngIf="list.doer_user_detail && list.doer_user_detail.doer_review">
 										<div *ngFor="let review of list.doer_user_detail.doer_review">
 											<span *ngIf="review.taskId == list.id">
 												<div class="half-review">
-
+													
 													<div class="recent-detail">
+														
 														<div class="recent-pic" *ngIf="list.task_posted_user;" style="margin-top: 20px;">
 															<img [src]="list.doer_user_detail.profile_image!=null&&list.doer_user_detail.profile_image!=''?list.doer_user_detail.profile_image:'assets/img/task-person.png'">
 														</div>
@@ -125,27 +127,29 @@
 																{{list.doer_user_detail.first_name}}
 																{{list.doer_user_detail.last_name}} </a> said "
 														</span>
-
-
 														{{review.doerReview}}"
-
-														<p style="color:#666; font-size:13px; margin-top:2px; margin-left: 60px">
-															{{list.updated_at | timeAgo }}
-															<br>
-
-															<span *ngFor="let rating of createRange(review.doerRating)">
-																<i class="fa fa-star"></i>
-															</span>
-
+														<br /> 	
+														<span *ngFor="let rating of createRange(review.doerRating)">
+															<i class="fa fa-star"></i>
+														</span>
+													<br />
+														<p style="color:#666; font-size:13px; margin-top:2px">
+															{{list.updated_at | timeAgo }}	
 														</p>
+														
 													</div>
-
+												
+												
+												
+												
 												</div>
 											</span>
 										</div>
 									</div>
+								
 								</div>
-								<p *ngIf="noReviewsAsPoster">There are no reviews</p>
+								
+								<p *ngIf="!noReviewsAsPoster">There are no reviews</p>
 						</div>
 						</div>
 						<!--user profile close-->
@@ -176,12 +180,13 @@
 															{{list.task_posted_user.last_name}} </a> said "
 													</span>
 													{{review.posterReview}}"
-													<p style="color:#666; font-size:13px; margin-top:2px; margin-left: 60px">
-														{{list.updated_at | timeAgo }}
 													<br />
 													<span *ngFor="let rating of createRange(review.posterRating)">
 														<i class="fa fa-star"></i>
 													</span>
+													<br />
+													<p style="color:#666; font-size:13px; margin-top:2px">
+														{{list.updated_at | timeAgo }}
 												</p>
 												</div>
 											</div>
@@ -189,11 +194,9 @@
 
 									</div>
 								</div>
-								<ng-template #elseBlock1>
-									<p>There are no reviews</p>
-								</ng-template>
+								
 							</div>
-							<p *ngIf="noReviewsAsTasker">There are no reviews</p>
+							<p *ngIf="!noReviewsAsTasker">There are no reviews</p>
 						</div>
 					</div>
 				</div>
@@ -219,7 +222,7 @@
 					<p class="text-center review-bg"><span>Portfolio</span></p>
 					<ul class="portfolio-select-img portfolio-last">
 						<li *ngFor="let item of portfolioImagesArr">
-							<img style="width: 100%; max-height: 60px" [src]="item.images">
+							<img style="width: 100%; max-height: 60px; object-fit: contain;" [src]="item.images">
 						</li>
 
 					</ul>
