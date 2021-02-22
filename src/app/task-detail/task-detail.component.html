@@ -8,7 +8,7 @@
                <!-- <span *ngIf="taskDetails.offerAssignedTaskIndicator==true&&taskStatus=='assigned'"
                   class="blink_text"><b>4 days left for completion of this task.</b></span> -->
                <span class="browse-anchor">
-                  <a class="active-a" *ngIf="task.status == 'completed from doer'">Completed from tasker</a>
+                  <a class="active-a" *ngIf="task.status == 'completed from doer'">Completed from doer</a>
                   <a class="active-a" *ngIf="task.status !== 'completed from doer'">{{task.status | titlecase}}</a>
                   <!-- <a *ngIf="!taskStatusIndicator&&!taskDetails.offerTaskIndicator" style="background:none !important; color:#484848 !important;" href="#">
                       <i class="fa fa-trash" style="color:#337ab7;"></i></a> -->
@@ -254,7 +254,7 @@
                   <div class="pop-accordion">
                      <!-- <a href="#" class="anchor-offer"><h4>Offer <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h4></a> -->
                      <a class="anchor-offer" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                        <h4>Offers {{taskStatusIndicator?'history':''}} <span><i class="fa fa-angle-down"
+                        <h4>Offer {{taskStatusIndicator?'history':''}} <span><i class="fa fa-angle-down"
                                  aria-hidden="true"></i></span></h4>
                      </a>
                      <!-- <div class="acc-open" id="acc-offer" style="display:none;">
@@ -370,6 +370,7 @@
                                      </div>
                                      <!-- offer detail -->
                                      <div  class="offer-child">
+                                         <span><b>Task price :</b> {{task.totalAmount}} MYR </span>
                                          <span><b>Offer price :</b> {{list.offerPrice}} MYR </span>
                                          <span><b>Offer comment :</b> {{list.comment}}</span>
                                          <span><b>Completion date : </b> {{list.completionDate}}</span>
@@ -400,7 +401,7 @@
                                  </div>
                                  <!-- offer detail -->
                                  <div class="offer-child">
-                                    <!-- <span><b>Task price :</b> {{task.totalAmount}} MYR </span> -->
+                                    <span><b>Task price :</b> {{task.totalAmount}} MYR </span>
                                     <span><b>Offer price :</b> {{list.offerPrice}} MYR </span>
                                     <span><b>Offer comment :</b> {{list.comment}}</span>
                                     <span><b>Completion date : </b> {{list.completionDate}}</span>
@@ -647,12 +648,14 @@
                         {{task.task_posted_user.last_name}}</a>
                   </div>
                </div>
-               <div *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')"
+               <div
+                  *ngIf="taskDetails.postedTaskIndicator==true&&hideStatus==false&&(taskStatus=='completed from doer'||taskStatus=='reopen')"
                   class="change-status">
-                  <label>Change task status</label>
+                  <label>Change Task status</label>
                   <select name="status" #status="ngModel" [(ngModel)]="taskStatus"
-                     (ngModelChange)="onChange(taskStatus,task, prevStatus)" (focus)="prevStatus=taskStatus">
-                     <!-- <option value="">Please select</option> -->
+                     (ngModelChange)="onChange(taskStatus,task, prevStatus)" (focus)="prevStatus=taskStatus"
+                     placeholder="task status">
+
                      <option style="color:green;">
                         Completed
                      </option>
@@ -661,7 +664,7 @@
                      </option>
                   </select>
                </div>
-               <div *ngIf="taskDetails.offerAssignedTaskIndicator && taskStatus !== 'completed from doer' && taskStatus !== 'Completed'"
+               <div *ngIf="taskDetails.offerAssignedTaskIndicator && taskStatus !== 'completed from doer'"
                   class="status-btn">
                   <a (click)="taskCompletedFromDoer('completed from doer',task)">Complete task</a>
                </div>
