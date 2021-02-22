@@ -51,13 +51,30 @@ export class MyTaskComponent  implements OnInit {
   }
   ngOnInit() {
     var redirectFromDashboard=this.commonService.getCookieValues('taskType');
+    var filterType =this.commonService.getCookieValues('filterType');
     window.scrollTo(0,0);
     if(redirectFromDashboard) {
       this.showTask(redirectFromDashboard);
       this.savedTaskIndicator = false;
       this.postedTaskIndicator=redirectFromDashboard=='postedTask'?true:false;
+      if(this.postedTaskIndicator == true && filterType == "open")
+      this.query = "open"; 
+      if(this.postedTaskIndicator == true && filterType == "assigned")
+      this.query = "assigned"; 
+      if(this.postedTaskIndicator == true && filterType == "reopen")
+      this.query = "reopen"; 
+      if(this.postedTaskIndicator == true && filterType == "completed")
+      this.query = "completed"; 
       this.offerTaskIndicator=redirectFromDashboard=='offerPending'?true:false;
+      if(this.offerTaskIndicator == true && filterType == "open")
+      this.query = "open"; 
       this.offerAssignedTaskIndicator=redirectFromDashboard=='offerAccepting'?true:false;
+      if(this.offerAssignedTaskIndicator == true && filterType == "assigned")
+      this.query = "assigned"; 
+      if(this.offerAssignedTaskIndicator == true && filterType == "completed")
+      this.query = "completed"; 
+      if(this.offerAssignedTaskIndicator == true && filterType == "completed from doer")
+      this.query = "completed from doer"; 
       this.taskDetail=false;
       this.commonService.deleteCookieValues('taskType');
     } else{

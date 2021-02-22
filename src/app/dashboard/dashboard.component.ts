@@ -64,19 +64,20 @@ getTaskSummary(userType)
     if(userType == "Poster")
    {
       this.posterIndicator = true;
-    }
-        if(userType == "Worker"){
+   }
+   if(userType == "Worker"){
           this.posterIndicator = false;
-        }
     }
+  }
 
   openPostTask(cat)
   {
     this.parentComponent.openPostTaskPopup(cat);
   }
 
-  redirectToMyTask(taskType) {
+  redirectToMyTask(taskType, filterType) {
     this.commonService.setCookieValues('taskType',taskType);
+    this.commonService.setCookieValues('filterType',filterType);
     // if(this.posterIndicator == true)
     // this.router.navigateByUrl('./my-task?type=posted-task');
     // else

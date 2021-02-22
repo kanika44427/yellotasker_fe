@@ -44,45 +44,45 @@
 
 							<div class="post-worker-info tab-content" *ngIf="posterIndicator == true">
 								<div> 
-									<a (click)="redirectToMyTask('postedTask')">
+									<a (click)="redirectToMyTask('postedTask' , 'open')">
 										Task posted : {{dashboardData.user_Task_Summary.as_poster.posted_offers}}
 									</a> 
 								</div>
 								<div>
-								     <a (click)="redirectToMyTask('postedTask')">
+								     <a (click)="redirectToMyTask('postedTask', 'assigned')">
 										Task in progress:
 										{{dashboardData.user_Task_Summary.as_poster.assigned + dashboardData.user_Task_Summary.as_poster.completed_from_doer}}
 								
 								      </a>
 							    </div>
 								<div>
-									<a (click)="redirectToMyTask('postedTask')">
+									<a (click)="redirectToMyTask('postedTask', 'reopen')">
 										Reopen : {{dashboardData.user_Task_Summary.as_poster.reopen}}
 									</a>
 								</div>
 								<div>
-									<a (click)="redirectToMyTask('postedTask')">
+									<a (click)="redirectToMyTask('postedTask', 'completed')">
 										Completed : {{dashboardData.user_Task_Summary.as_poster.closed}}
 									</a>
 								</div>
 						</div>
 							<div class="post-worker-info tab-content" *ngIf="posterIndicator == false">
 								<div>
-									<a (click)="redirectToMyTask('offerPending')">
+									<a (click)="redirectToMyTask('offerPending', 'open')">
 										Offered task : {{dashboardData.user_Task_Summary.as_doer.posted_offers}}
 									</a>
 								</div>
 								<div>
-									<a (click)="redirectToMyTask('offerAccepting')">
+									<a (click)="redirectToMyTask('offerAccepting', 'assigned')">
 										Task assigned : {{dashboardData.user_Task_Summary.as_doer.assigned}}
 									</a>
 								</div>
 								<div>
-								<a (click)="redirectToMyTask('offerAccepting')">
+								<a (click)="redirectToMyTask('offerAccepting', 'completed')">
 								     completed : {{dashboardData.user_Task_Summary.as_doer["completed "]   }}
 								</a>
 								</div>
-								<div><a (click)="redirectToMyTask('offerAccepting')">
+								<div><a (click)="redirectToMyTask('offerAccepting', 'completed from doer')">
 									Completed from tasker : {{dashboardData.user_Task_Summary.as_doer.awaitingPayment}}
 									
 								</a>
