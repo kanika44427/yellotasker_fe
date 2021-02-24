@@ -111,7 +111,7 @@
 								<div *ngFor="let list of profileData.task_as_poster">
 									<div *ngIf="list.doer_user_detail && list.doer_user_detail.doer_review">
 										<div *ngFor="let review of list.doer_user_detail.doer_review">
-											<span *ngIf="review.taskId == list.id">
+											<!-- <span *ngIf="review.taskId == list.id"> -->
 												<div class="half-review">
 													
 													<div class="recent-detail">
@@ -143,13 +143,11 @@
 												
 												
 												</div>
-											</span>
+											<!-- </span> -->
 										</div>
 									</div>
-								
 								</div>
-								
-								<p *ngIf="!noReviewsAsPoster">There are no reviews</p>
+								<p *ngIf="noReviewsAsPoster">There are no reviews</p>
 						</div>
 						</div>
 						<!--user profile close-->
@@ -160,10 +158,10 @@
 								{{ profileData.completion_rate_doer != null?profileData.completion_rate_doer:'-'}} %
 							</div>
 							<h4>Review</h4>
-							<div *ngFor="let list of profileData.task_as_doer">
+							<div *ngFor="let list of profileData.task_as_doer;">
 								<div *ngIf="list.task_posted_user && list.task_posted_user.poster_review">
 									<div *ngFor="let review of list.task_posted_user.poster_review">
-										<span *ngIf="review.taskId == list.id">
+										<!-- <span *ngIf="review.taskId == list.id"> -->
 											<div class="half-review">
 												<div class="recent-detail">
 													<div class="recent-pic" *ngIf="list.task_posted_user" style="margin-top: 20px;">
@@ -190,13 +188,13 @@
 												</p>
 												</div>
 											</div>
-										</span>
+										<!-- </span> -->
 
 									</div>
 								</div>
 								
 							</div>
-							<p *ngIf="!noReviewsAsTasker">There are no reviews</p>
+							<p *ngIf="noReviewsAsTasker">There are no reviews</p>
 						</div>
 					</div>
 				</div>

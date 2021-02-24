@@ -48,6 +48,7 @@ import { PaymentHistoryComponent } from './payments/payment-history/payment-hist
 import { PaymentMethodsComponent } from './payments/payment-methods/payment-methods.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { FilterlistPipe } from './pipes/filterListPipe';
 import { TrustsafetyComponent } from './trustsafety/trustsafety.component';
 import { BadgesComponent } from './badges/badges.component';
 import { CommunityGuidelinesComponent } from './community-guidelines/community-guidelines.component';
@@ -130,6 +131,7 @@ export function getAuthServiceConfigs() {
     ResetPasswordComponent,
     UpdatePasswordComponent,
     TimeAgoPipe,
+    FilterlistPipe, 
     MyTaskComponent,
     ReporttaskComponent,
     PublicProfileComponent, 

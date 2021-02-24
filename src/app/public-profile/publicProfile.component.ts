@@ -48,21 +48,22 @@ export class PublicProfileComponent  implements OnInit {
     this.httpService.getUserPublicProfile(id).subscribe(
       data => {
         this.apiResponse = data;
-        console.log('response',this.apiResponse);
+        //console.log('response',this.apiResponse);
         if(this.apiResponse.message == 'User public profile' || this.apiResponse.message == 'Review found')
         {
           this.profileData=this.apiResponse.data;
           if(this.profileData.task_as_poster){
-           for(var i= 0; i < this.profileData.task_as_poster; i++){
-            if(this.profileData.task_as_poster[i].doer_user_detail && this.profileData.task_as_poster[i].doer_user_detail.doer_review){
-                this.noReviewsAsPoster = true; 
+           for(var i= 0; i < this.profileData.task_as_poster.length; i++){
+            if(this.profileData.task_as_poster[i].doer_user_detail && this.profileData.task_as_poster[i].doer_user_detail.doer_review && this.profileData.task_as_poster[i].doer_user_detail.doer_review.length > 0){
+                this.noReviewsAsPoster = false; 
             }
            }
           }
           if(this.profileData.task_as_doer){
-            for(var i= 0; i < this.profileData.task_as_doer; i++){
-             if(this.profileData.task_as_doer[i].task_posted_user && this.profileData.task_as_doer[i].task_posted_user.poster_review){
-                 this.noReviewsAsTasker = true; 
+            for(var i= 0; i < this.profileData.task_as_doer.length; i++){
+             if(this.profileData.task_as_doer[i].task_posted_user && this.profileData.task_as_doer[i].task_posted_user.poster_review && this.profileData.task_as_doer[i].task_posted_user.poster_review.length > 0){
+                 this.noReviewsAsTasker = false; 
+                 console.log("i" + i ,  this.profileData.task_as_doer[i].task_posted_user.poster_review)
              }
             }
            }

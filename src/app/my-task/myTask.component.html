@@ -38,7 +38,7 @@
 					<option value="closed">Cancelled</option>
 				</select>
 				<button class="filter-btn" (click)="removeFilter()">Remove filter</button>
-				<div class="posted-card" *ngFor="let taskList of TaskList | search :'status': query ">
+				<div class="posted-card" *ngFor="let taskList of TaskList | filterlist : query ">
 					<div class="posted-card-sec">
 						<div class="card-left">
 							<h4>
